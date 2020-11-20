@@ -3,7 +3,7 @@
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: Autoscout24 sync
-Version: 0.2
+Version: 0.2.1
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
