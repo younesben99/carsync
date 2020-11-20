@@ -9,5 +9,4 @@ Author URI: https://digiflow.be/
 License: GPL2
 GitHub Plugin URI: https://github.com/younesben99/carsync
 */
-
 ?>
