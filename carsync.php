@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Carsync
+Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: Autoscout24 sync
 Version: 0.2
