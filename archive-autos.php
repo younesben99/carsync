@@ -1,5 +1,5 @@
 <?php
 
-echo("single");
+echo("archive");
 
 ?>
