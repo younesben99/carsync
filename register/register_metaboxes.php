@@ -127,6 +127,12 @@
             <label for="carkleurexterieur-input">Kleur exterieur</label>
             <input type="text" name="carkleurexterieur-input" id="carkleurexterieur-input" value="<?php echo $value_kleurexterieur ?>" />
 
+            <label for="caremissieklasse-input">Emissieklasse</label>
+            <input type="text" name="caremissieklasse-input" id="caremissieklasse-input" value="<?php echo $value_emissieklasse ?>" />
+
+            <label for="carco-input">Co</label>
+            <input type="text" name="carco-input" id="carco-input" value="<?php echo $value_co ?>" />
+
             <label for="carprijs-input">Prijs</label>
             <input type="text" name="carprijs-input" id="carprijs-input" value="<?php echo $value_prijs ?>" />
 
@@ -136,11 +142,6 @@
             <label for="carbtwaftrekbaar-input">BTW aftrekbaar</label>
             <input type="text" name="carbtwaftrekbaar-input" id="carbtwaftrekbaar-input" value="<?php echo $value_btwaftrekbaar ?>" />
 
-            <label for="caremissieklasse-input">Emissieklasse</label>
-            <input type="text" name="caremissieklasse-input" id="caremissieklasse-input" value="<?php echo $value_emissieklasse ?>" />
-
-            <label for="carco-input">Co</label>
-            <input type="text" name="carco-input" id="carco-input" value="<?php echo $value_co ?>" />
             </div>
 <?php    
     }
