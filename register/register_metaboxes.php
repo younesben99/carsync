@@ -10,12 +10,140 @@
         add_meta_box( 'car_meta_data', 'Car meta data', 'car_meta_cb', 'autos' );
         //informatie over de wagen
         add_meta_box( 'car_gegevens', 'Wagen gegevens', 'car_gegevens_cb', 'autos' );
+        //wagen opties
+        add_meta_box( 'car_options', 'Wagen opties', 'car_options_cb', 'autos' );
     }
     
     
     
     //render the data
     
+           
+    function car_options_cb($post)
+    {
+        $opt_comfort = array("Achterbank 1/3 - 2/3", "Airconditioning", "Armsteun", "Automatische klimaatregeling", "Cruise Control", "Electrische ruiten", "Electrische zetelverstelling", "Elektrisch verstelbare buitenspiegels", "Elektrische achterklep", "Getinte ramen", "Hill-Hold Control", "Lederen stuurwiel", "Lendensteun", "Lichtsensor", "Massagestoelen", "Multifunctioneel stuur", "Navigatiesysteem", "Open dak", "Parkeerhulp", "Parkeerhulp achter", "Parkeerhulp voor", "Regensensor", "Start/Stop systeem", "Zetelverwarming");
+        $opt_enter_media = array("Bluetooth", "Boordcomputer", "CD", "Digitale radio-ontvangst", "Handsfree", "MP3", "Radio", "Sound system", "USB");
+        $opt_extra = array("Aanraakscherm", "Bagagerek", "Lichtmetalen velgen", "Schakelpaddles", "Schuifdeur", "Skiluik", "Sneeuwbanden", "Sportzetels", "Spraakbediening", "Trekhaak");
+        $opt_veiligheid = array("ABS", "Achter airbag", "Airbag bestuurder", "Airbag passagier", "Alarm", "Automatische Tractie Controle", "Bandenspanningscontrolesysteem", "Centrale deurvergrendeling met afstandsbediening", "Centrale vergrendeling", "Dagrijlichten", "Dodehoekdetectie", "Electronic Stability Program", "Hoofd airbag", "Isofix", "LED verlichting", "Mistlampen", "Startonderbreker", "Stuurbekrachtiging", "Xenon Lichten", "Zij-airbags");
+
+        $value_enter_media = get_post_meta( $post->ID, '_car_enter_media_key', true );
+        if(empty($value_enter_media)){
+            $value_enter_media = array();
+        }
+        $value_comfort = get_post_meta( $post->ID, '_car_comfort_key', true );
+        if(empty($value_comfort)){
+            $value_comfort = array();
+        }
+        $value_extra = get_post_meta( $post->ID, '_car_extra_key', true );
+        if(empty($value_extra)){
+            $value_extra = array();
+        }
+        $value_veiligheid = get_post_meta( $post->ID, '_car_veiligheid_key', true );
+        if(empty($value_veiligheid)){
+            $value_veiligheid = array();
+        }
+    ?>          
+            <style>.car_gegevens label {padding: 18px 0 5px;font-weight: 600;}.checkwrap,.fields{display:flex;flex-direction:column;}
+            .checkboxtitle{    font-size: 15px;font-weight:600; margin-top:10px;margin-bottom:10px;}.fields label{margin-bottom:5px;}</style>
+            
+            <div class="checkwrap">
+
+            <div class="label checkboxtitle">Comfort en gemak</div>
+            
+            <div class="fields">
+            
+            <?php foreach ($opt_comfort as $opt) {
+               ?>
+               <label><input type="checkbox" name="carcomfort[]" value="<?php echo $opt; ?>"
+               <?php foreach($value_comfort as $value){
+                   if($value == $opt){
+                       echo("checked");
+                   }
+               } ?>
+               /> <?php echo $opt; ?></label>
+               
+               <?php
+             } 
+             ?>
+                
+             </div>
+             </div> 
+             <div class="checkwrap">
+
+            <div class="label checkboxtitle">Entertainment en media</div>
+            
+            <div class="fields">
+            
+            <?php foreach ($opt_enter_media as $opt) {
+               ?>
+               <label><input type="checkbox" name="carenter_media[]" value="<?php echo $opt; ?>"
+               <?php foreach($value_enter_media as $value){
+                   if($value == $opt){
+                       echo("checked");
+                   }
+               } ?>
+               /> <?php echo $opt; ?></label>
+              
+               <?php
+             } 
+             ?>
+                
+             </div>           
+
+            </div>
+             
+            <div class="checkwrap">
+
+            <div class="label checkboxtitle">Veiligheid</div>
+            
+            <div class="fields">
+            
+            <?php foreach ($opt_veiligheid as $opt) {
+               ?>
+               <label><input type="checkbox" name="carveiligheid[]" value="<?php echo $opt; ?>"
+               <?php foreach($value_veiligheid as $value){
+                   if($value == $opt){
+                       echo("checked");
+                   }
+               } ?>
+               /> <?php echo $opt; ?></label>
+             
+               <?php
+             } 
+             ?>
+                
+             </div>           
+
+            </div>
+
+
+            <div class="checkwrap">
+
+            <div class="label checkboxtitle">Extra</div>
+            
+            <div class="fields">
+            
+            <?php foreach ($opt_extra as $opt) {
+               ?>
+               <label style="font-weight:400;"><input type="checkbox" name="carextra[]" value="<?php echo $opt; ?>"
+               <?php foreach($value_extra as $value){
+                   if($value == $opt){
+                       echo("checked");
+                   }
+               } ?>
+               /> <?php echo $opt; ?></label>
+             
+               <?php
+             } 
+             ?>
+                
+                       
+
+            </div>
+    <?php    
+    }
+
+
     
     function car_meta_cb($post)
     {
@@ -28,7 +156,7 @@
         $value_wagentitel = get_post_meta( $post->ID, '_car_wagentitel_key', true );
         $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
 ?>          
-            <style>.inside label {padding: 18px 0 5px;font-weight: 600;}</style>
+            <style>.car_gegevens label {padding: 18px 0 5px;font-weight: 600;}</style>
 
             <div style="display:flex;flex-direction:column;">
 
@@ -53,6 +181,8 @@
             </div>
 <?php    
     }
+
+
 
     function car_gegevens_cb($post)
     {
@@ -79,7 +209,7 @@
         $value_co = get_post_meta( $post->ID, '_car_co_key', true );
 
 ?>          
-            <style>.inside label {padding: 18px 0 5px;font-weight: 600;}</style>
+            
 
             <div style="display:flex;flex-direction:column;">
             
@@ -199,7 +329,36 @@
         if(isset($_POST["caremissieklasse-input"]))
             update_post_meta($post->ID, '_car_emissieklasse_key', $_POST["caremissieklasse-input"]);        
         if(isset($_POST["carco-input"]))
-            update_post_meta($post->ID, '_car_co_key', $_POST["carco-input"]);               
+            update_post_meta($post->ID, '_car_co_key', $_POST["carco-input"]);
+        if(isset($_POST["carenter_media"])){
+            update_post_meta($post->ID, '_car_enter_media_key', $_POST["carenter_media"]); 
+        }
+        else{
+            $_POST["carenter_media"] = array();
+            update_post_meta($post->ID, '_car_enter_media_key', $_POST["carenter_media"]); 
+        }
+        if(isset($_POST["carcomfort"])){
+            update_post_meta($post->ID, '_car_comfort_key', $_POST["carcomfort"]); 
+        }
+        else{
+            $_POST["carcomfort"] = array();
+            update_post_meta($post->ID, '_car_comfort_key', $_POST["carcomfort"]); 
+        }
+        if(isset($_POST["carveiligheid"])){
+            update_post_meta($post->ID, '_car_veiligheid_key', $_POST["carveiligheid"]); 
+        }
+        else{
+            $_POST["carveiligheid"] = array();
+            update_post_meta($post->ID, '_car_veiligheid_key', $_POST["carveiligheid"]); 
+        }
+        if(isset($_POST["carextra"])){
+            update_post_meta($post->ID, '_car_extra_key', $_POST["carextra"]); 
+        }
+        else{
+            $_POST["carextra"] = array();
+            update_post_meta($post->ID, '_car_extra_key', $_POST["carextra"]); 
+        }
+                         
     }
      
     add_action('save_post', 'metadata_save');
