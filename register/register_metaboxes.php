@@ -43,8 +43,7 @@
             $value_veiligheid = array();
         }
     ?>          
-            <style>.car_gegevens label {padding: 18px 0 5px;font-weight: 600;}.checkwrap,.fields{display:flex;flex-direction:column;}
-            .checkboxtitle{    font-size: 15px;font-weight:600; margin-top:10px;margin-bottom:10px;}.fields label{margin-bottom:5px;}</style>
+            <style>.select2{    width: 100% !important;}#car_gegevens label{padding:18px 0 5px;font-weight:600}.checkwrap,.fields{display:flex;flex-direction:column}.checkboxtitle{font-size:15px;font-weight:600;margin-top:10px;margin-bottom:10px}.fields label{margin-bottom:5px}.select2-selection__rendered{line-height:39px!important}.select2-container .select2-selection--single{height:42px!important}.select2-selection__arrow{height:42px!important}</style>
             
             <div class="checkwrap">
 
@@ -187,7 +186,8 @@
     function car_gegevens_cb($post)
     {
         //data ophalen en in klaarmaken voor parsing
-        
+        $value_merk = "Audi";
+        $value_model = "";
         $value_eersteinschrijving = get_post_meta( $post->ID, '_car_eersteinschrijving_key', true );
         $value_carrosserievorm = get_post_meta( $post->ID, '_car_carrosserievorm_key', true );
         $value_zitplaatsen = get_post_meta( $post->ID, '_car_zitplaatsen_key', true );
@@ -214,6 +214,17 @@
             <div style="display:flex;flex-direction:column;">
             
 
+            <label for="carmerk-input">Merk</label> 
+            <select name="carmerk-input" id="carmerk-input">
+                    <option>Selecteer Merk</option>
+            </select>
+            <div id="echo">
+            </div>
+            
+
+
+            <label for="carmodel-input">Model</label>
+            <input type="text" name="carmodel-input" id="carmodel-input" value="<?php echo $value_model ?>" />
 
             <label for="careersteinschrijving-input">Eersteinschrijving</label>
             <input type="text" name="careersteinschrijving-input" id="careersteinschrijving-input" value="<?php echo $value_eersteinschrijving ?>" />
@@ -271,6 +282,10 @@
 
             <label for="carbtwaftrekbaar-input">BTW aftrekbaar</label>
             <input type="text" name="carbtwaftrekbaar-input" id="carbtwaftrekbaar-input" value="<?php echo $value_btwaftrekbaar ?>" />
+
+
+            
+            
 
             </div>
 <?php    
