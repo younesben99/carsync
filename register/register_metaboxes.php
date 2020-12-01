@@ -218,8 +218,10 @@
             <select name="carmerk-input" id="carmerk-input">
                     <option>Selecteer Merk</option>
             </select>
-            <div id="echo">
-            </div>
+            <label for="carmodel-input">Model</label> 
+            <select name="carmodel-input" id="carmodel-input">
+                    <option>Selecteer Model</option>
+            </select>
             
 
 
