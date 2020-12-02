@@ -219,7 +219,7 @@
                     <option>Selecteer Merk</option>
             </select>
             <label for="carmodel-input">Model</label> 
-            <select name="carmodel-input" id="carmodel-input" disabled>
+            <select name="carmodel-input" id="carmodel-input">
                     <option>Selecteer Model</option>
             </select>
             
