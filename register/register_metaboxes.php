@@ -187,7 +187,7 @@
     {
         //data ophalen en in klaarmaken voor parsing
         $value_merk = "Audi";
-        $value_model = "";
+        $value_model = "A3";
         $value_eersteinschrijving = get_post_meta( $post->ID, '_car_eersteinschrijving_key', true );
         $value_carrosserievorm = get_post_meta( $post->ID, '_car_carrosserievorm_key', true );
         $value_zitplaatsen = get_post_meta( $post->ID, '_car_zitplaatsen_key', true );
@@ -216,17 +216,15 @@
 
             <label for="carmerk-input">Merk</label> 
             <select name="carmerk-input" id="carmerk-input">
-                    <option>Selecteer Merk</option>
+            <option></option>
             </select>
             <label for="carmodel-input">Model</label> 
-            <select name="carmodel-input" id="carmodel-input">
-                    <option>Selecteer Model</option>
+            <select name="carmodel-input" id="carmodel-input" >
+            <option></option> 
             </select>
             
 
 
-            <label for="carmodel-input">Model</label>
-            <input type="text" name="carmodel-input" id="carmodel-input" value="<?php echo $value_model ?>" />
 
             <label for="careersteinschrijving-input">Eersteinschrijving</label>
             <input type="text" name="careersteinschrijving-input" id="careersteinschrijving-input" value="<?php echo $value_eersteinschrijving ?>" />
@@ -375,7 +373,10 @@
             $_POST["carextra"] = array();
             update_post_meta($post->ID, '_car_extra_key', $_POST["carextra"]); 
         }
-                         
+        if(isset($_POST["carmerk-input"])){
+            wp_set_object_terms( $post->ID, array($_POST['carmerk-input'],$_POST['carmodel-input']), 'merkenmodel' );
+        }
+        
     }
      
     add_action('save_post', 'metadata_save');
