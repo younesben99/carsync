@@ -1,6 +1,7 @@
 <?php
 
 
+
     //add metabox
 
     add_action( 'add_meta_boxes', 'metaboxes_list' );
@@ -177,6 +178,7 @@
 
     function car_gegevens_cb($post)
     {
+       
         //data ophalen en in klaarmaken voor parsing
         $allemerken = get_terms( array(
             'taxonomy' => 'merkenmodel',
@@ -227,12 +229,12 @@
         $value_btwaftrekbaar = get_post_meta( $post->ID, '_car_btwaftrekbaar_key', true );
         $value_emissieklasse = get_post_meta( $post->ID, '_car_emissieklasse_key', true );
         $value_co = get_post_meta( $post->ID, '_car_co_key', true );
-
+        $gallery_data = get_post_meta( $post->ID, 'mgop_media_value', true );
 ?>          
             
 
             <div style="display:flex;flex-direction:column;">
-            
+            <div><?php print_r($gallery_data);?></div>
             <label for="carmerk-input">Merk</label> 
             <select name="carmerk-input" id="carmerk-input">
             <option selected><?php echo($value_merk); ?></option>

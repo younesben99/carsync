@@ -9,7 +9,7 @@ function autos_post_type() {
             ),
                 'public'      => true,
                 'has_archive' => true,
-                'supports' => array('title','author')
+                'supports' => array('title', 'editor',)
         )
     );
 }
