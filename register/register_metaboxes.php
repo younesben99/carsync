@@ -151,8 +151,6 @@
         $value_sync = get_post_meta( $post->ID, '_car_sync_key', true );
         $value_uniq = get_post_meta( $post->ID, '_car_uniq_key', true );
         $value_status = get_post_meta( $post->ID, '_car_status_key', true );
-        $value_badge = get_post_meta( $post->ID, '_car_badge_key', true );
-        $value_wagentitel = get_post_meta( $post->ID, '_car_wagentitel_key', true );
         $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
 ?>          
             <style>.car_gegevens label {padding: 18px 0 5px;font-weight: 600;}</style>
@@ -170,12 +168,6 @@
             
             <label for="carstatus-input">Car status</label>
             <input type="text" name="carstatus-input" id="carstatus-input" value="<?php echo $value_status ?>" />
-            
-            <label for="carwagentitel-input">Car wagentitel</label>
-            <input type="text" name="carwagentitel-input" id="carwagentitel-input" value="<?php echo $value_wagentitel ?>" />
-            
-            <label for="carbadge-input">Badge</label>
-            <input type="text" name="carbadge-input" id="carbadge-input" value="<?php echo $value_badge ?>" />
 
             </div>
 <?php    
@@ -186,8 +178,36 @@
     function car_gegevens_cb($post)
     {
         //data ophalen en in klaarmaken voor parsing
-        $value_merk = "Audi";
-        $value_model = "A3";
+        $allemerken = get_terms( array(
+            'taxonomy' => 'merkenmodel',
+            'hide_empty' => false,
+            'parent' => 0
+        ) );
+        
+        
+        $term_list_merk = wp_get_post_terms( $post->ID, 'merkenmodel', array( 'fields' => 'names','parent' => 0 ));
+        $term_list_merk_ids = wp_get_post_terms( $post->ID, 'merkenmodel', array( 'fields' => 'ids','parent' => 0 ));	
+        $merkophalen;
+        $modelophalen;
+        foreach($term_list_merk_ids as $term_id){
+            $termid=$term_id;
+        }	
+        $term_list_model = wp_get_post_terms( $post->ID, 'merkenmodel', array( 'fields' => 'names','parent' => $termid ));
+        
+        foreach($term_list_merk as $term){
+            $merkophalen = $term;
+            
+        }
+        
+        foreach($term_list_model as $term){
+            $modelophalen = $term;
+            
+        }
+        
+        $value_merk = $merkophalen ;
+        $value_model = $modelophalen;
+        $value_badge = get_post_meta( $post->ID, '_car_badge_key', true );
+        $value_wagentitel = get_post_meta( $post->ID, '_car_wagentitel_key', true );
         $value_eersteinschrijving = get_post_meta( $post->ID, '_car_eersteinschrijving_key', true );
         $value_carrosserievorm = get_post_meta( $post->ID, '_car_carrosserievorm_key', true );
         $value_zitplaatsen = get_post_meta( $post->ID, '_car_zitplaatsen_key', true );
@@ -213,18 +233,20 @@
 
             <div style="display:flex;flex-direction:column;">
             
-
             <label for="carmerk-input">Merk</label> 
             <select name="carmerk-input" id="carmerk-input">
-            <option></option>
+            <option selected><?php echo($value_merk); ?></option>
             </select>
             <label for="carmodel-input">Model</label> 
             <select name="carmodel-input" id="carmodel-input" >
-            <option></option> 
+            <option selected><?php echo($value_model); ?></option> 
             </select>
             
-
-
+            <label for="carwagentitel-input">Car wagentitel</label>
+            <input type="text" name="carwagentitel-input" id="carwagentitel-input" value="<?php echo $value_wagentitel ?>" />
+            
+            <label for="carbadge-input">Badge</label>
+            <input type="text" name="carbadge-input" id="carbadge-input" value="<?php echo $value_badge ?>" />
 
             <label for="careersteinschrijving-input">Eersteinschrijving</label>
             <input type="text" name="careersteinschrijving-input" id="careersteinschrijving-input" value="<?php echo $value_eersteinschrijving ?>" />
@@ -374,8 +396,15 @@
             update_post_meta($post->ID, '_car_extra_key', $_POST["carextra"]); 
         }
         if(isset($_POST["carmerk-input"])){
-            wp_set_object_terms( $post->ID, array($_POST['carmerk-input'],$_POST['carmodel-input']), 'merkenmodel' );
+            $merkwaarde = $_POST["carmerk-input"];
+            $modelwaarde = $_POST["carmodel-input"];
+            wp_insert_term($merkwaarde,  'merkenmodel' );
+            $merkpush = get_term_by('name', $merkwaarde, 'merkenmodel');
+            wp_insert_term($modelwaarde,  'merkenmodel',array('parent' => $merkpush->term_id) );
+            wp_set_object_terms( $post->ID, array($merkwaarde,$modelwaarde), 'merkenmodel' );
+
         }
+        
         
     }
      
