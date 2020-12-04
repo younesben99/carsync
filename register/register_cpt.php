@@ -9,10 +9,11 @@ function autos_post_type() {
             ),
                 'public'      => true,
                 'has_archive' => true,
-                'supports' => array('title', 'editor',)
+                'supports' => array('title', )
         )
     );
 }
+
 add_action('init', 'autos_post_type');
 
 function merk_model_taxonomies() {

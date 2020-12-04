@@ -14,12 +14,26 @@ require_once( __DIR__ . '/register/register_cpt.php');
 require_once( __DIR__ . '/register/register_metaboxes.php');
 require_once( __DIR__ . '/register/register_archive.php');
 require_once( __DIR__ . '/register/register_single.php');
+require_once( __DIR__ . '/register/register_gallery.php');
 function add_admin_scripts( $hook ) {
 
     global $post;
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
         if ( 'autos' === $post->post_type ) {     
+
+            //gallery
+            wp_enqueue_script('jquery-ui-core');
+	        wp_enqueue_script('jquery-ui-widget');
+            wp_enqueue_script('jquery-ui-sortable');
+            wp_enqueue_script(  'gallery-cpt-js', plugin_dir_url( __FILE__ ).'/js/autos-gallery.js' , array('jquery', 'jquery-ui-sortable'));
+            wp_enqueue_style('gallery-metabox', plugin_dir_url( __FILE__ ).'/css/autos-gallery.css');
+            
+            if ( ! did_action( 'wp_enqueue_media' ) )
+	        	wp_enqueue_media();
+            //endgallery
+
+
             wp_enqueue_script(  'autos-cpt-js', plugin_dir_url( __FILE__ ).'/js/post-edit-page.js' );
             wp_enqueue_script( 'select2js','https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js', array(), '1.0' );
             wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
@@ -57,7 +71,7 @@ add_filter('comments_open', '__return_false', 20, 2);
 add_filter('pings_open', '__return_false', 20, 2);
 
 // Hide existing comments
-add_filter('comments_array', '__return_empty_array', 10, 2);
+add_filter('comments_array', '__return_empty_array', 10, 2); 
 
 // Remove comments page in menu
 add_action('admin_menu', function () {

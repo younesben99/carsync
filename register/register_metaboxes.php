@@ -1,7 +1,7 @@
 <?php
 
-
-
+    
+    
     //add metabox
 
     add_action( 'add_meta_boxes', 'metaboxes_list' );
@@ -13,6 +13,7 @@
         add_meta_box( 'car_gegevens', 'Wagen gegevens', 'car_gegevens_cb', 'autos' );
         //wagen opties
         add_meta_box( 'car_options', 'Wagen opties', 'car_options_cb', 'autos' );
+        
     }
     
     
@@ -139,7 +140,7 @@
                 
                        
 
-            </div>
+            </div></div>
     <?php    
     }
 
@@ -153,11 +154,12 @@
         $value_uniq = get_post_meta( $post->ID, '_car_uniq_key', true );
         $value_status = get_post_meta( $post->ID, '_car_status_key', true );
         $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
+        $value_sync_images = get_post_meta( $post->ID, '_car_syncimages_key', true );
 ?>          
             <style>.car_gegevens label {padding: 18px 0 5px;font-weight: 600;}</style>
 
             <div style="display:flex;flex-direction:column;">
-
+            
             <label for="caruniq-input">Car unique id</label>
             <input type="text" name="caruniq-input" id="caruniq-input" value="<?php echo $value_uniq ?>" />
             
@@ -170,6 +172,8 @@
             <label for="carstatus-input">Car status</label>
             <input type="text" name="carstatus-input" id="carstatus-input" value="<?php echo $value_status ?>" />
 
+            <label for="carsyncimages-input">Car syncimages</label>
+            <input type="text" name="carsyncimages-input" id="carsyncimages-input" value="<?php echo $value_syncimages ?>" />
             </div>
 <?php    
     }
@@ -229,19 +233,19 @@
         $value_btwaftrekbaar = get_post_meta( $post->ID, '_car_btwaftrekbaar_key', true );
         $value_emissieklasse = get_post_meta( $post->ID, '_car_emissieklasse_key', true );
         $value_co = get_post_meta( $post->ID, '_car_co_key', true );
-        $gallery_data = get_post_meta( $post->ID, 'mgop_media_value', true );
+        $gallery_data = get_post_meta( $post->ID, 'mgop_mb_galerij', true );
 ?>          
             
 
             <div style="display:flex;flex-direction:column;">
-            <div><?php print_r($gallery_data);?></div>
+            <div><?php echo($gallery_data);?></div>
             <label for="carmerk-input">Merk</label> 
             <select name="carmerk-input" id="carmerk-input">
-            <option selected><?php echo($value_merk); ?></option>
+            <option selected disabled><?php echo($value_merk); ?></option>
             </select>
             <label for="carmodel-input">Model</label> 
             <select name="carmodel-input" id="carmodel-input" >
-            <option selected><?php echo($value_model); ?></option> 
+            <option selected disabled><?php echo($value_model); ?></option> 
             </select>
             
             <label for="carwagentitel-input">Car wagentitel</label>
@@ -321,6 +325,8 @@
         global $post;
         if(isset($_POST["carsync-input"]))
         update_post_meta($post->ID, '_car_sync_key', $_POST["carsync-input"]);
+        if(isset($_POST["carsyncimages-input"]))
+        update_post_meta($post->ID, '_car_syncimages_key', $_POST["carsyncimages-input"]);
         if(isset($_POST["caruniq-input"]))
             update_post_meta($post->ID, '_car_uniq_key', $_POST["caruniq-input"]);
         if(isset($_POST["carstatus-input"]))
@@ -404,12 +410,32 @@
             $merkpush = get_term_by('name', $merkwaarde, 'merkenmodel');
             wp_insert_term($modelwaarde,  'merkenmodel',array('parent' => $merkpush->term_id) );
             wp_set_object_terms( $post->ID, array($merkwaarde,$modelwaarde), 'merkenmodel' );
+            $posttitle= $merkwaarde . " " .  $modelwaarde;
+            
+            // Set this variable to false initially.
+        static $updated = false;
 
+        // If title has already been set once, bail.
+            if ( $updated ) {
+                return;
+             }
+    
+        // Since we're updating this post's title, set this
+        // variable to true to ensure it doesn't happen again.
+            $updated = true;
+            // Update the post's title.
+            wp_update_post( [
+            'ID'         => $post->ID,
+            'post_title' =>  $posttitle,
+            'post_name'  => sanitize_title( $posttitle),
+         ] );
+            
         }
-        
-        
+       
+
+
     }
-     
+   
     add_action('save_post', 'metadata_save');
 
    
