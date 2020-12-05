@@ -1,6 +1,7 @@
 <?php
 
 
+require_once( __DIR__ . '/carsync_posts_maken.php');
 
 function carsync_data_ophalen(){
 //FILES
@@ -71,7 +72,8 @@ if (curl_errno($ch)) {
         $fh = fopen($file, "w+");
         fwrite($fh, $result);
         fclose($fh);
-
+        //posts maken
+        carsync_posts_maken();
     } else {
 
         $fhlog_error2 = fopen(WP_PLUGIN_DIR . $httperrorfilepath, "w+");
@@ -90,6 +92,7 @@ if (curl_errno($ch)) {
 }
 
 curl_close($ch);
+
 }
 
 /*
