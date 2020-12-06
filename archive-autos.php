@@ -1,9 +1,11 @@
 <?php
 
-$allposts= get_posts( array('post_type'=>'autos','numberposts'=>-1) );
-foreach ($allposts as $eachpost) {
-  wp_delete_post( $eachpost->ID, true );
-}
+
+ /**/
+        $allposts= get_posts( array('post_type'=>'autos','numberposts'=>-1) );
+        foreach ($allposts as $eachpost) {
+          wp_delete_post( $eachpost->ID, true );
+        }
 
 //do_action('carsync_data_ophalen_hook');
 if(file_exists(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json')) {
@@ -111,14 +113,36 @@ if(!empty($cars) && $cars !== 0 && $cars !== null){
         $vermogenkw = $car['details']['vehicle']['engine']['power']['kw']['raw'];
         
         $comfortengemakraw = $car['details']['vehicle']['equipment']['as24'];
-        $entertainmentenmedia = $car['details']['vehicle']['equipment']['as24'];
-        $extraopties = $car['details']['vehicle']['equipment']['as24'];
-        $veiligheid = $car['details']['vehicle']['equipment']['as24'];
+        $entertainmentenmediaraw = $car['details']['vehicle']['equipment']['as24'];
+        $extraoptiesraw = $car['details']['vehicle']['equipment']['as24'];
+        $veiligheidraw = $car['details']['vehicle']['equipment']['as24'];
+        
+       
+        $syncimagesloop = $car['details']['media']['images'];
+        $syncimages = array();
+        foreach($syncimagesloop as $image){
+            array_push($syncimages, $image['formats']['jpg']['size1280x960']);
+        }
+        
         $comfortengemak = array();
         foreach($comfortengemakraw as $optie) {
             array_push($comfortengemak,$optie['id']['formatted']);
         }
-        print_r($comfortengemak);
+        $entertainmentenmedia = array();
+        foreach($entertainmentenmediaraw as $optie) {
+            array_push($entertainmentenmedia,$optie['id']['formatted']);
+        }
+        $extraopties = array();
+        foreach($extraoptiesraw as $optie) {
+            array_push($extraopties,$optie['id']['formatted']);
+        }
+        $veiligheid = array();
+        foreach($veiligheidraw as $optie) {
+            array_push($veiligheid,$optie['id']['formatted']);
+        }
+
+        
+
         wp_insert_term($merk,  'merkenmodel' );
         $merkpush = get_term_by('name', $merk, 'merkenmodel');
         wp_insert_term($model,  'merkenmodel',array('parent' => $merkpush->term_id) );
@@ -160,10 +184,14 @@ if(!empty($cars) && $cars !== 0 && $cars !== null){
                 '_car_comfort_key' => $comfortengemak,
                 '_car_veiligheid_key' => $veiligheid,
                 '_car_extra_key' => $extraopties,
+                '_car_syncimages_key' => $syncimages,
                 '_car_sync_key' => 'YES'
             ),
         );
-        //wp_insert_post($post_arr);
+        /*
+     */
+        wp_insert_post($post_arr);
+        
     }
     echo("<hr>");
     

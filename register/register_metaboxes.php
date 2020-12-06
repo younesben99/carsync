@@ -173,7 +173,14 @@
             <input type="text" name="carstatus-input" id="carstatus-input" value="<?php echo $value_status ?>" />
 
             <label for="carsyncimages-input">Car syncimages</label>
-            <input type="text" name="carsyncimages-input" id="carsyncimages-input" value="<?php echo $value_syncimages ?>" />
+            <div style="display:flex;flex-wrap:wrap;">
+            <?php
+                foreach($value_sync_images as $image){
+                echo("<img src='". $image."' width='150px' style='margin:5px;' />");
+                }
+            ?>
+            </div>
+           
             </div>
 <?php    
     }
