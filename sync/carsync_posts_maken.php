@@ -1,10 +1,9 @@
 <?php
 
 function carsync_posts_maken(){
-    $allposts= get_posts( array('post_type'=>'autos','numberposts'=>-1) );
-    foreach ($allposts as $eachpost) {
-      wp_delete_post( $eachpost->ID, true );
-    }       
+
+    //MODIGIED DATE TEST EN DELETE
+      
    
    //do_action('carsync_data_ophalen_hook');
    if(file_exists(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json')) {
@@ -17,10 +16,30 @@ function carsync_posts_maken(){
    
    $array = json_decode($Vdata, true);
    $cars = $array['data']['search']['listings']['listings'];
+
+   /*
+
+   FULL LOOP
+
+   */
+
+  if(!empty($cars) && $cars !== 0 && $cars !== null){
+    foreach ($cars as $car)
+    {
+                //MODIGIED DATE TEST EN DELETE
+    $allposts= get_posts( array('post_type'=>'autos','numberposts'=>-1) );
+    foreach ($allposts as $post) {
+        $currentmd = get_post_meta( $post->ID, '_car_modifieddate_key', true );
+        if( $currentmd !== $car['details']['publication']['changedTimestamp']){
+            wp_delete_post( $post->ID, true );
+        }
+    }
+    }
+}
    if(!empty($cars) && $cars !== 0 && $cars !== null){
        foreach ($cars as $car)
        {
-           
+       
            echo  $car['details']['vehicle']['classification']['make']['formatted'] . ' ' .$car['details']['vehicle']['classification']['model']['formatted'];
            echo "<br><br>";
            echo  $car['id'];
