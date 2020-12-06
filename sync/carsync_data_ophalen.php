@@ -59,8 +59,6 @@ if (curl_errno($ch)) {
 
     die('Couldn\'t send request: ' . curl_error($ch));
     
-    
-    
 } else {
     // check the HTTP status code of the request
     $resultStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -75,6 +73,7 @@ if (curl_errno($ch)) {
         fwrite($fh, $result);
         fclose($fh);
         //posts maken
+        carsync_posts_maken();
     } else {
 
         $fhlog_error2 = fopen(WP_PLUGIN_DIR . $httperrorfilepath, "w+");
@@ -100,7 +99,7 @@ curl_close($ch);
 
 CRON JOB CONFIGUREREN
 
-
+*/
 function my_cron_schedules($schedules){
     if(!isset($schedules["15min"])){
         $schedules["15min"] = array(
@@ -115,6 +114,6 @@ add_filter('cron_schedules','my_cron_schedules');
 if ( ! wp_next_scheduled( 'carsync_data_ophalen_hook' ) ) {
     wp_schedule_event( time(), '15min', 'carsync_data_ophalen_hook' );
 }
-*/
-add_action( 'carsync_data_ophalen_hook', 'carsync_data_ophalen' );
+
+add_action( 'carsync_data_ophalen_hook', 'carsync_data_ophalen' , 10, 0);
 ?>
