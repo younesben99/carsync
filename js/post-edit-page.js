@@ -31,7 +31,15 @@
           
 
       });
-     
+      
+      $("#sync_switch").on("click",function(){
+        if($("#sync_switch").prop('checked')){
+            $("#carsync-input").val("YES");
+        }
+        else{
+            $("#carsync-input").val("NO");
+        }
+      });
     
 });
 

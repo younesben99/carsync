@@ -3,7 +3,11 @@
 function carsync_posts_maken(){
 
     //MODIGIED DATE TEST EN DELETE
-      
+    
+    // $allposts= get_posts( array('post_type'=>'autos','numberposts'=>-1) );
+    // foreach ($allposts as $eachpost) {
+    //   wp_delete_post( $eachpost->ID, true );
+    // }
    
    //do_action('carsync_data_ophalen_hook');
    if(file_exists(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json')) {
@@ -17,37 +21,26 @@ function carsync_posts_maken(){
    $array = json_decode($Vdata, true);
    $cars = $array['data']['search']['listings']['listings'];
 
-   /*
 
-   FULL LOOP
-
-   */
-
-  if(!empty($cars) && $cars !== 0 && $cars !== null){
-    foreach ($cars as $car)
-    {
-                //MODIGIED DATE TEST EN DELETE
-    $allposts= get_posts( array('post_type'=>'autos','numberposts'=>-1) );
-    foreach ($allposts as $post) {
-        $currentmd = get_post_meta( $post->ID, '_car_modifieddate_key', true );
-        if( $currentmd !== $car['details']['publication']['changedTimestamp']){
-            wp_delete_post( $post->ID, true );
-        }
-    }
-    }
-}
+ 
    if(!empty($cars) && $cars !== 0 && $cars !== null){
+       
+
+
+    //DATA VERWIJDEREN OF MAKEN
+       $allposts= get_posts( array('post_type'=>'autos','numberposts'=>-1) );
+       if(empty($allposts)){
+        //vars setup en posts maken
+       $caridarray = array();
        foreach ($cars as $car)
        {
+           
        
-           echo  $car['details']['vehicle']['classification']['make']['formatted'] . ' ' .$car['details']['vehicle']['classification']['model']['formatted'];
-           echo "<br><br>";
-           echo  $car['id'];
-           //var_dump($car['details']['vehicle']);
-           echo "<br><br>";
+          
            //SET VARS
        
            $uniqid = $car['id'];
+           array_push($caridarray,$uniqid);
            $merk = $car['details']['vehicle']['classification']['make']['formatted'];
            $model = $car['details']['vehicle']['classification']['model']['formatted'];
            $merkenmodel = esc_html($merk) . " ". esc_html($model);
@@ -169,62 +162,106 @@ function carsync_posts_maken(){
                }
                
            }
-   
            
+    
+        wp_insert_term($merk,  'merkenmodel' );
+        $merkpush = get_term_by('name', $merk, 'merkenmodel');
+        wp_insert_term($model,  'merkenmodel',array('parent' => $merkpush->term_id) );
+        $modelpush = get_term_by('name', $model, 'merkenmodel');
+        $post_arr = array(
+        'post_title'   => $merkenmodel,
+        'post_status'  => 'publish',
+        'post_type'    => 'autos',
+        'tax_input'    => array(
+            "merkenmodel" => array(
+                $merkpush->term_id,
+                $modelpush->term_id
+            )
+        ),
+        'meta_input'   => array(
+            '_car_uniq_key' => $uniqid,
+            '_car_wagentitel_key' => $wagentitel,
+            '_car_modifieddate_key' => $changedTimestap,
+            '_car_eersteinschrijving_key' => $eersteinschrijving,
+            '_car_carrosserievorm_key' => $carrosserievorm,
+            '_car_zitplaatsen_key' => $zitplaatsen,
+            '_car_brandstof_key' => $brandstof,
+            '_car_aantaldeuren_key' => $aantaldeuren,
+            '_car_staat_key' => $staat,
+            '_car_kilometerstand_key' => $kmstand,
+            '_car_transmissie_key' => $transmissie,
+            '_car_bouwjaar_key' => $bouwjaar,
+            '_car_kw_key' => $vermogenkw,
+            '_car_pk_key' => $vermogenpk,
+            '_car_cilinderinhoud_key' => $cilinderinhoud,
+            '_car_kleurinterieur_key' => $kleurinterieur,
+            '_car_kleurexterieur_key' => $kleurexterieur,
+            '_car_prijs_key' => $price,
+            '_car_oudeprijs_key' => $oudeprijs,
+            '_car_btwaftrekbaar_key' => $btwaftrekbaar,
+            '_car_emissieklasse_key' => $emissieklasse,
+            '_car_co_key' => $co,
+            '_car_enter_media_key' => $entertainmentenmedia,
+            '_car_comfort_key' => $comfortengemak,
+            '_car_veiligheid_key' => $veiligheid,
+            '_car_extra_key' => $extraopties,
+            '_car_syncimages_key' => $syncimages,
+            '_car_sync_key' => 'YES'
+            ),
+        );
+ 
+         wp_insert_post($post_arr);
+       }
+    }
+       else
+       {
+        foreach ($allposts as $post) {
    
-           wp_insert_term($merk,  'merkenmodel' );
-           $merkpush = get_term_by('name', $merk, 'merkenmodel');
-           wp_insert_term($model,  'merkenmodel',array('parent' => $merkpush->term_id) );
-           $modelpush = get_term_by('name', $model, 'merkenmodel');
-           $post_arr = array(
-               'post_title'   => $merkenmodel,
-               'post_status'  => 'publish',
-               'post_type'    => 'autos',
-               'tax_input'    => array(
-                   "merkenmodel" => array(
-                       $merkpush->term_id,
-                       $modelpush->term_id
-                   )
-               ),
-               'meta_input'   => array(
-                   '_car_uniq_key' => $uniqid,
-                   '_car_wagentitel_key' => $wagentitel,
-                   '_car_modifieddate_key' => $changedTimestap,
-                   '_car_eersteinschrijving_key' => $eersteinschrijving,
-                   '_car_carrosserievorm_key' => $carrosserievorm,
-                   '_car_zitplaatsen_key' => $zitplaatsen,
-                   '_car_brandstof_key' => $brandstof,
-                   '_car_aantaldeuren_key' => $aantaldeuren,
-                   '_car_staat_key' => $staat,
-                   '_car_kilometerstand_key' => $kmstand,
-                   '_car_transmissie_key' => $transmissie,
-                   '_car_bouwjaar_key' => $bouwjaar,
-                   '_car_kw_key' => $vermogenkw,
-                   '_car_pk_key' => $vermogenpk,
-                   '_car_cilinderinhoud_key' => $cilinderinhoud,
-                   '_car_kleurinterieur_key' => $kleurinterieur,
-                   '_car_kleurexterieur_key' => $kleurexterieur,
-                   '_car_prijs_key' => $price,
-                   '_car_oudeprijs_key' => $oudeprijs,
-                   '_car_btwaftrekbaar_key' => $btwaftrekbaar,
-                   '_car_emissieklasse_key' => $emissieklasse,
-                   '_car_co_key' => $co,
-                   '_car_enter_media_key' => $entertainmentenmedia,
-                   '_car_comfort_key' => $comfortengemak,
-                   '_car_veiligheid_key' => $veiligheid,
-                   '_car_extra_key' => $extraopties,
-                   '_car_syncimages_key' => $syncimages,
-                   '_car_sync_key' => 'YES'
-               ),
-           );
-           /*
-        */
-           wp_insert_post($post_arr);
-           
+            $currentid = get_post_meta( $post->ID, '_car_uniq_key', true );
+            $synctrue = get_post_meta( $post->ID, '_car_sync_key', true ); 
+        
+             
+     
+            if(in_array($currentid,$caridarray) && $synctrue == 'YES'){
+                //modifieddate checken en verwijderen
+                
+            }
+            else{
+                if($synctrue == 'YES'){
+                    //is gesynct en uniqid is niet terug te vinden in de api
+                    wp_delete_post($post->ID, true );
+                }
+                
+            }
+     
+     
+            }
        }
        
+
+
+       
+           
+       }
+        /*
+       
+       
+       
+       EINDE VARIABLES VOORBEREIDEN
+
+
+    
+       */
+
+       
+            
+            /*
+            
+        */
+        
+
    }
 
-}
+
 
 ?>

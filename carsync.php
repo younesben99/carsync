@@ -30,7 +30,7 @@ function add_admin_scripts( $hook ) {
             wp_enqueue_script('jquery-ui-sortable');
             wp_enqueue_script(  'gallery-cpt-js', plugin_dir_url( __FILE__ ).'/js/autos-gallery.js' , array('jquery', 'jquery-ui-sortable'));
             wp_enqueue_style('gallery-metabox', plugin_dir_url( __FILE__ ).'/css/autos-gallery.css');
-            
+            wp_enqueue_style('csstoggle', plugin_dir_url( __FILE__ ).'/css/toggle.css');
             if ( ! did_action( 'wp_enqueue_media' ) )
 	        	wp_enqueue_media();
             //endgallery

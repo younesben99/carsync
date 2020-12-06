@@ -162,7 +162,21 @@
             
             <label for="caruniq-input">Car unique id</label>
             <input type="text" name="caruniq-input" id="caruniq-input" value="<?php echo $value_uniq ?>" />
-            
+            <div style="margin:10px 0;">
+            <label class="toggle-switchy" for="sync_switch" data-size="lg">
+								<input 
+                                
+                                <?php
+                                    if($value_sync == 'YES'){
+                                        echo 'checked';
+                                    }
+                                ?>
+                                type="checkbox" id="sync_switch">
+								<span class="toggle">
+									<span class="switch"></span>
+								</span>
+			</label>
+            </div>
             <label for="carsync-input">Car sync</label>
             <input type="text" name="carsync-input" id="carsync-input" value="<?php echo $value_sync ?>" />
 

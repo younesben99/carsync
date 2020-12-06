@@ -1,7 +1,7 @@
 <?php
 
 
-
+//carsync_posts_maken();
 
 //do_action('carsync_data_ophalen_hook');
 if(file_exists(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json')) {
@@ -15,20 +15,52 @@ else{
 $array = json_decode($Vdata, true);
 $cars = $array['data']['search']['listings']['listings'];
 if(!empty($cars) && $cars !== 0 && $cars !== null){
+    $caridarray = array();
     foreach ($cars as $car)
     {
         
-        echo  $car['details']['vehicle']['classification']['make']['formatted'] . ' ' .$car['details']['vehicle']['classification']['model']['formatted'];
-        echo "<br><br>";
-        echo  $car['id'];
+        //echo  $car['details']['vehicle']['classification']['make']['formatted'] . ' ' .$car['details']['vehicle']['classification']['model']['formatted'];
+        //echo "<br><br>";
+        //echo  $car['id'];
         //var_dump($car['details']['vehicle']);
-        echo "<br><br>";
-    
+        //echo "<br><br>";
+        
+        $caridtemp = $car['id'];
+        array_push($caridarray,$caridtemp);
+        
         
     }
+    //var_dump($caridarray);
     echo("<hr>");
+
     
-    var_dump($cars); 
+    
+
+    $allposts= get_posts( array('post_type'=>'autos','numberposts'=>-1) );
+    foreach ($allposts as $post) {
+        
+            $currentid = get_post_meta( $post->ID, '_car_uniq_key', true );
+            $synctrue = get_post_meta( $post->ID, '_car_sync_key', true ); 
+        
+       
+            if(in_array($currentid,$caridarray) && $synctrue == 'YES'){
+                echo(get_the_title($post->ID).' true<br>');
+            }
+            else{
+                if($synctrue !== 'YES'){
+                    echo(get_the_title($post->ID).' <b>false <- IGNORING WP POST: </b>'.$post->ID.'<br>');
+                }
+                else{
+                    echo(get_the_title($post->ID).' <b>false <- DELETING WP POST: </b>'.$post->ID.'<br>');
+                }
+                
+            }
+
+
+    }
+    
+    
+   
 }
 
 
