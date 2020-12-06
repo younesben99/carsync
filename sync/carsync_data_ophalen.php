@@ -59,6 +59,7 @@ if (curl_errno($ch)) {
 
     die('Couldn\'t send request: ' . curl_error($ch));
     
+
 } else {
     // check the HTTP status code of the request
     $resultStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);

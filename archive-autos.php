@@ -114,7 +114,11 @@ if(!empty($cars) && $cars !== 0 && $cars !== null){
         $entertainmentenmedia = $car['details']['vehicle']['equipment']['as24'];
         $extraopties = $car['details']['vehicle']['equipment']['as24'];
         $veiligheid = $car['details']['vehicle']['equipment']['as24'];
-        
+        $comfortengemak = array();
+        foreach($comfortengemakraw as $optie) {
+            array_push($comfortengemak,$optie['id']['formatted']);
+        }
+        print_r($comfortengemak);
         wp_insert_term($merk,  'merkenmodel' );
         $merkpush = get_term_by('name', $merk, 'merkenmodel');
         wp_insert_term($model,  'merkenmodel',array('parent' => $merkpush->term_id) );
