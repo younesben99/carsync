@@ -30,6 +30,9 @@ curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 curl_setopt($ch, CURLOPT_TIMEOUT,60);
+//SSL IGNORE
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 //DEBUG
 curl_setopt($ch, CURLOPT_VERBOSE, true);
 curl_setopt($ch, CURLOPT_STDERR, fopen(WP_PLUGIN_DIR . $debugfile, "w+"));
@@ -109,9 +112,9 @@ function my_cron_schedules($schedules){
 add_filter('cron_schedules','my_cron_schedules');
 
 
-if ( ! wp_next_scheduled( 'carsync_data_ophalen' ) ) {
-    wp_schedule_event( time(), '15min', 'carsync_data_ophalen' );
+if ( ! wp_next_scheduled( 'carsync_data_ophalen_hook' ) ) {
+    wp_schedule_event( time(), '15min', 'carsync_data_ophalen_hook' );
 }
 */
-add_action( 'carsync_data_ophalen', 'carsync_data_ophalen' );
+add_action( 'carsync_data_ophalen_hook', 'carsync_data_ophalen' );
 ?>
