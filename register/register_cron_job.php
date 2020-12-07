@@ -14,11 +14,11 @@ function my_cron_schedules($schedules){
 add_filter('cron_schedules','my_cron_schedules');
 
 
-if ( ! wp_next_scheduled( 'carsync_posts_maken_hook' ) ) {
-    wp_schedule_event( time(), '15min', 'carsync_posts_maken_hook' );
+if ( ! wp_next_scheduled( 'carsync_data_ophalen_hook' ) ) {
+    wp_schedule_event( time(), 'daily', 'carsync_data_ophalen_hook' );
 }
 
 
-add_action( 'carsync_posts_maken_hook', 'carsync_posts_maken' , 10, 0);
+add_action( 'carsync_data_ophalen_hook', 'carsync_data_ophalen' , 10, 0);
 
-?>
+?>  
