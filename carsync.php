@@ -11,10 +11,11 @@ GitHub Plugin URI: https://github.com/younesben99/carsync
 */
 
 require_once( __DIR__ . '/register/register_cpt.php');
+require_once( __DIR__ . '/register/register_gallery.php');
 require_once( __DIR__ . '/register/register_metaboxes.php');
 require_once( __DIR__ . '/register/register_archive.php');
 require_once( __DIR__ . '/register/register_single.php');
-require_once( __DIR__ . '/register/register_gallery.php');
+
 require_once( __DIR__ . '/register/register_cron_job.php');
 require_once( __DIR__ . '/sync/carsync_data_ophalen.php');
 require_once( __DIR__ . '/sync/create_post_by_uniq_id.php');
@@ -22,7 +23,6 @@ require_once( __DIR__ . '/sync/create_post_by_uniq_id.php');
 function add_admin_scripts( $hook ) {
 
     global $post;
-
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
         if ( 'autos' === $post->post_type ) {     
 
@@ -43,6 +43,7 @@ function add_admin_scripts( $hook ) {
             wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
             wp_enqueue_style( 'select2css' );
         }
+       
     }
 }
 add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
@@ -95,5 +96,8 @@ function get_string_between($string, $start, $end){
     $ini += strlen($start);
     $len = strpos($string, $end, $ini) - $ini;
     return substr($string, $ini, $len);
-	}
+    }
+    
+
+
 ?>

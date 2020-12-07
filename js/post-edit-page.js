@@ -40,6 +40,15 @@
             $("#carsync-input").val("NO");
         }
       });
+      
+      $("#verkocht_switch").on("click",function(){
+        if($("#verkocht_switch").prop('checked')){
+            $("#carstatus-input").val("VERKOCHT");
+        }
+        else{
+            $("#carstatus-input").val("ACTIEF");
+        }
+      });
     
 });
 

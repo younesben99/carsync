@@ -7,8 +7,10 @@
     add_action( 'add_meta_boxes', 'metaboxes_list' );
     function metaboxes_list()
     {
-        //informatie over de post
+        //informatie over de post hiddens
         add_meta_box( 'car_meta_data', 'Car meta data', 'car_meta_cb', 'autos' );
+        //instellingen van de post
+        add_meta_box( 'car_settings', 'Instellingen', 'car_settings_cb', 'autos' );
         //informatie over de wagen
         add_meta_box( 'car_gegevens', 'Wagen gegevens', 'car_gegevens_cb', 'autos' );
         //wagen opties
@@ -145,23 +147,18 @@
     }
 
 
-    
-    function car_meta_cb($post)
+    function car_settings_cb($post)
     {
         //data ophalen en in klaarmaken voor parsing
 
         $value_sync = get_post_meta( $post->ID, '_car_sync_key', true );
-        $value_uniq = get_post_meta( $post->ID, '_car_uniq_key', true );
         $value_status = get_post_meta( $post->ID, '_car_status_key', true );
-        $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
-        $value_sync_images = get_post_meta( $post->ID, '_car_syncimages_key', true );
 ?>          
             <style>.car_gegevens label {padding: 18px 0 5px;font-weight: 600;}</style>
 
             <div style="display:flex;flex-direction:column;">
             
-            <label for="caruniq-input">Car unique id</label>
-            <input type="text" name="caruniq-input" id="caruniq-input" value="<?php echo $value_uniq ?>" />
+           
             <div style="margin:10px 0;">
             <label class="toggle-switchy" for="sync_switch" data-size="lg">
 								<input 
@@ -180,11 +177,47 @@
             <label for="carsync-input">Car sync</label>
             <input type="text" name="carsync-input" id="carsync-input" value="<?php echo $value_sync ?>" />
 
+            <div style="margin:10px 0;">
+            <label class="toggle-switchy" for="verkocht_switch" data-size="lg">
+								<input 
+                                
+                                <?php
+                                    if($value_status == 'VERKOCHT'){
+                                        echo 'checked';
+                                    }
+                                ?>
+                                type="checkbox" id="verkocht_switch">
+								<span class="toggle">
+									<span class="switch"></span>
+								</span>
+			</label>
+            </div>
+            <label for="carstatus-input">Car status</label>
+            <input type="text" name="carstatus-input" id="carstatus-input" value="<?php echo $value_status ?>" />
+
+            
+           
+            </div>
+<?php    
+    }
+    function car_meta_cb($post)
+    {
+        //data ophalen en in klaarmaken voor parsing
+
+        $value_uniq = get_post_meta( $post->ID, '_car_uniq_key', true );
+        $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
+        $value_sync_images = get_post_meta( $post->ID, '_car_syncimages_key', true );
+?>          
+            <style>.car_gegevens label {padding: 18px 0 5px;font-weight: 600;}</style>
+
+            <div style="display:flex;flex-direction:column;">
+            
+            <label for="caruniq-input">Car unique id</label>
+            <input type="text" name="caruniq-input" id="caruniq-input" value="<?php echo $value_uniq ?>" />
+            
             <label for="carmodifieddate-input">Car modified date</label>
             <input type="text" name="carmodifieddate-input" id="carmodifieddate-input" value="<?php echo $value_modifieddate ?>" />
             
-            <label for="carstatus-input">Car status</label>
-            <input type="text" name="carstatus-input" id="carstatus-input" value="<?php echo $value_status ?>" />
 
             <label for="carsyncimages-input">Car syncimages</label>
             <div style="display:flex;flex-wrap:wrap;">
@@ -342,12 +375,59 @@
     //saving the data
 
     function metadata_save(){
- 
+        
         global $post;
-        if(isset($_POST["carsync-input"]))
-        update_post_meta($post->ID, '_car_sync_key', $_POST["carsync-input"]);
-        if(isset($_POST["carsyncimages-input"]))
-        update_post_meta($post->ID, '_car_syncimages_key', $_POST["carsyncimages-input"]);
+       
+        if(isset($_POST["carsync-input"])){
+            update_post_meta($post->ID, '_car_sync_key', $_POST["carsync-input"]);
+            
+            $vdw_gallery_id = get_post_meta( $post->ID, 'vdw_gallery_id', true );
+            
+            if($_POST["carsync-input"] == 'NO' && empty($vdw_gallery_id)){
+                $imgtoadd = array();
+                $syncimagesarray = get_post_meta( $post->ID, '_car_syncimages_key', true );
+    
+                foreach($syncimagesarray as $img){
+                    include_once( ABSPATH . 'wp-admin/includes/image.php' );
+                    $imageurl = $img;
+                    $postitle = get_string_between($imageurl,"_",".jpg/");
+                    $imagetype = end(explode('/', getimagesize($imageurl)['mime']));
+                    $uniq_name = date('dmY').''.(int) microtime(true); 
+                    $filename = $uniq_name.'.'.$imagetype;
+                
+                    $uploaddir = wp_upload_dir();
+                    $uploadfile = $uploaddir['path'] . '/' . $filename;
+                    $contents= file_get_contents($imageurl);
+                    $savefile = fopen($uploadfile, 'w');
+                    fwrite($savefile, $contents);
+                    fclose($savefile);
+                
+                    $wp_filetype = wp_check_filetype(basename($filename), null );
+                    $attachment = array(
+                        'post_mime_type' => $wp_filetype['type'],
+                        'post_title' => $postitle,
+                        'post_content' => '',
+                        'post_status' => 'inherit'
+                    );
+                
+                    $attach_id = wp_insert_attachment( $attachment, $uploadfile );
+                    $imagenew = get_post( $attach_id );
+                    $fullsizepath = get_attached_file( $imagenew->ID );
+                    $attach_data = wp_generate_attachment_metadata( $attach_id, $fullsizepath );
+                    wp_update_attachment_metadata( $attach_id, $attach_data ); 
+                    array_push($imgtoadd,$attach_id);
+                }
+            }
+        }
+        
+        if(isset($_POST["carsyncimages-input"])){
+            update_post_meta($post->ID, '_car_syncimages_key', $_POST["carsyncimages-input"]);
+        }
+        
+        if(!empty($imgtoadd)){
+            update_post_meta($post->ID, 'vdw_gallery_id', $imgtoadd);
+        }
+        
         if(isset($_POST["caruniq-input"]))
             update_post_meta($post->ID, '_car_uniq_key', $_POST["caruniq-input"]);
         if(isset($_POST["carstatus-input"]))

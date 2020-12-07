@@ -2,7 +2,7 @@
     float: left;
     width: 150px;
     text-align: center;
-    margin: 10px 10px 10px 0;
+    margin: 9px;
     cursor: move;
   }
   .gallerycontrols {
@@ -12,8 +12,8 @@
     width: 23px;
     text-align: center;
     height: 23px;
-    margin-top: -149px;
-    margin-left: 119px;
+    margin-top: -116px;
+    margin-left: 129px;
     cursor: pointer;
     padding-top: 1px;
     border-radius: 5px;

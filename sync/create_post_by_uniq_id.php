@@ -178,6 +178,7 @@ function create_post_by_uniq_id($passed_id){
                  '_car_kleurexterieur_key' => $kleurexterieur,
                  '_car_prijs_key' => $price,
                  '_car_oudeprijs_key' => $oudeprijs,
+                 '_car_badge_key' => $badge,
                  '_car_btwaftrekbaar_key' => $btwaftrekbaar,
                  '_car_emissieklasse_key' => $emissieklasse,
                  '_car_co_key' => $co,

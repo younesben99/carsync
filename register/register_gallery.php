@@ -32,7 +32,7 @@
 
           <li>
             <input type="hidden" name="vdw_gallery_id[<?php echo $key; ?>]" value="<?php echo $value; ?>">
-            <img class="image-preview change-image" src="<?php echo $image[0]; ?>">
+            <div class="image-preview change-image" style='width: 156px;height: 119px;background:url("<?php echo $image[0]; ?>");background-size:cover;'></div>
             <div class="gallerycontrols remove-image" style="">&#10006;</div>
           </li>
 
@@ -52,8 +52,6 @@
 
     if(isset($_POST['vdw_gallery_id'])) {
       update_post_meta($post_id, 'vdw_gallery_id', $_POST['vdw_gallery_id']);
-    } else {
-      delete_post_meta($post_id, 'vdw_gallery_id');
     }
   }
   
