@@ -160,11 +160,12 @@
             
            
             <div style="margin:10px 0;">
+            Behouden op de site?
             <label class="toggle-switchy" for="sync_switch" data-size="lg">
 								<input 
                                 
                                 <?php
-                                    if($value_sync == 'YES'){
+                                    if($value_sync !== 'YES'){
                                         echo 'checked';
                                     }
                                 ?>
@@ -174,10 +175,12 @@
 								</span>
 			</label>
             </div>
-            <label for="carsync-input">Car sync</label>
-            <input type="text" name="carsync-input" id="carsync-input" value="<?php echo $value_sync ?>" />
-
+          
+            <label for="carsync-input" style="display:none">Car sync</label>
+            <input type="text" name="carsync-input" style="display:none" id="carsync-input" value="<?php echo $value_sync ?>" />
+           
             <div style="margin:10px 0;">
+            Verkocht markeren? 
             <label class="toggle-switchy" for="verkocht_switch" data-size="lg">
 								<input 
                                 
@@ -192,8 +195,8 @@
 								</span>
 			</label>
             </div>
-            <label for="carstatus-input">Car status</label>
-            <input type="text" name="carstatus-input" id="carstatus-input" value="<?php echo $value_status ?>" />
+            <label for="carstatus-input" style="display:none;">Car status</label>
+            <input type="text" name="carstatus-input" style="display:none;" id="carstatus-input" value="<?php echo $value_status ?>" />
 
             
            

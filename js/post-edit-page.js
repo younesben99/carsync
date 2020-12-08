@@ -34,16 +34,21 @@
       
       $("#sync_switch").on("click",function(){
         if($("#sync_switch").prop('checked')){
-            $("#carsync-input").val("YES");
+            $("#carsync-input").val("NO");
         }
         else{
-            $("#carsync-input").val("NO");
+            $("#carsync-input").val("YES");
         }
       });
       
       $("#verkocht_switch").on("click",function(){
         if($("#verkocht_switch").prop('checked')){
             $("#carstatus-input").val("VERKOCHT");
+            if($("#sync_switch").prop('checked') == false){
+                $("#sync_switch").trigger("click");
+            }
+            
+           
         }
         else{
             $("#carstatus-input").val("ACTIEF");

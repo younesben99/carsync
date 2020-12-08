@@ -19,7 +19,7 @@ $qry = '{"query":"query ListingsSummaryQuery { search { listings(metadata: {page
 
 $headers = array();
 $headers[] = 'Content-Type: application/json';
-$headers[] = 'Authorization: '.$authToken;s
+$headers[] = 'Authorization: '.$authToken;
 
 $ch = curl_init();
 

@@ -35,7 +35,7 @@ if(!empty($cars) && $cars !== 0 && $cars !== null){
 
 
     var_dump($caridarray);
-    //echo("<hr>");
+    echo("<hr>");
 
     
     
@@ -60,33 +60,33 @@ if(!empty($cars) && $cars !== 0 && $cars !== null){
         
        
             if(in_array($currentid,$caridarray) && $synctrue == 'YES'){
-                //echo(get_the_title($post->ID).' gevonden<br>');
+                echo(get_the_title($post->ID).' gevonden<br>');
             }
             else{
                 if($synctrue !== 'YES'){
-                    //echo(get_the_title($post->ID).' <b>false <- IGNORING WP POST: </b>'.$post->ID.'<br>');
+                    echo(get_the_title($post->ID).' <b>false <- IGNORING WP POST: </b>'.$post->ID.'<br>');
                 }
                 else{
-                    //echo(get_the_title($post->ID).' <b>false <- DELETING WP POST: </b>'.$post->ID.'<br>');
+                    echo(get_the_title($post->ID).' <b>false <- DELETING WP POST: </b>'.$post->ID.'<br>');
                 }
                 
             }
 
 
     }
-   // echo("<hr>");
-    //var_dump($wpuniqidarray);
+    echo("<hr>");
+    var_dump($wpuniqidarray);
 
-  // echo("<hr>");
+   echo("<hr>");
 
- //  echo("Verschil is: <br>");
+   echo("Verschil is: <br>");
 
    $diffr = array_diff($caridarray,$wpuniqidarray);
 
-   // var_dump($diffr);
+    var_dump($diffr);
     if(!empty($array_verschil)){
         foreach($array_verschil as $car){
-           // echo($car);
+            echo($car);
         }
     }
 }
