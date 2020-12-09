@@ -29,4 +29,6 @@
 }.gallerycontrols .emoji{
     font-size:10px;
     }
-    
+    .swal2-title {
+        font-size: 1.175em !important;
+    }

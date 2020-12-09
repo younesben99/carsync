@@ -41,9 +41,9 @@ function carsync_posts_maken(){
        {
 
         $wpuniqidarray = array();
-        $car_md_array_wp = array();
         foreach ($allposts as $post) {
-   
+            $array_tijd_verschil = array();
+            $car_md_array_wp = array();
             $currentid = get_post_meta( $post->ID, '_car_uniq_key', true );
             array_push($wpuniqidarray,$currentid);
             $synctrue = get_post_meta( $post->ID, '_car_sync_key', true ); 

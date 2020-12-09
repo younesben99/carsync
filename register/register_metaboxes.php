@@ -381,13 +381,20 @@
         
         global $post;
        
+     
+        if(isset($_POST['vdw_gallery_id'])) {
+            update_post_meta($post->ID, 'vdw_gallery_id', $_POST['vdw_gallery_id']);
+        }
+        else{
+            update_post_meta($post->ID, 'vdw_gallery_id', null);
+        }
         if(isset($_POST["carsync-input"])){
             update_post_meta($post->ID, '_car_sync_key', $_POST["carsync-input"]);
             
             $vdw_gallery_id = get_post_meta( $post->ID, 'vdw_gallery_id', true );
-            
+            $imgtoadd = array();
             if($_POST["carsync-input"] == 'NO' && empty($vdw_gallery_id)){
-                $imgtoadd = array();
+                
                 $syncimagesarray = get_post_meta( $post->ID, '_car_syncimages_key', true );
     
                 foreach($syncimagesarray as $img){
@@ -430,7 +437,7 @@
         if(!empty($imgtoadd)){
             update_post_meta($post->ID, 'vdw_gallery_id', $imgtoadd);
         }
-        
+       
         if(isset($_POST["caruniq-input"]))
             update_post_meta($post->ID, '_car_uniq_key', $_POST["caruniq-input"]);
         if(isset($_POST["carstatus-input"]))

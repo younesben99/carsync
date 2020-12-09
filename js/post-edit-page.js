@@ -2,6 +2,22 @@
 
     $(document).ready(function(){
         
+    $("#publish").on("click",function(){
+        if($("#carsync-input").val() == "NO" && $("#gallery-metabox-list").children().length === 0 ){
+            
+              Swal.fire({
+                type: 'succes',
+                title: 'De foto\'s worden gedownload naar uw website',
+                text: 'Een ogenblik geduld...',
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                },
+              })
+        }
+       
+    });
     $("#carmerk-input").select2({placeholder: "Selecteer Merk",disabled: true});
     $("#carmodel-input").select2({placeholder: "Selecteer Model",disabled: true}); 
     
