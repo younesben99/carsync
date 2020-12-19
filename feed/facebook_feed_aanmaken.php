@@ -10,8 +10,8 @@ function fb_feed_aanmaken(){
         <title>Vehicles Feed</title>
         <link rel="self" href="http://www.example.com"/>';
     $fb_xml_pt3 = '</listings>';
-    $fb_xml_loop;
-
+    $fb_xml_loop = "";
+    
     $allposts= get_posts( array('post_type'=>'autos','numberposts'=>-1) );
     if(!empty($allposts)){
     foreach ($allposts as $car)
