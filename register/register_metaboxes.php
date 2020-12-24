@@ -269,6 +269,8 @@
         
         $value_merk = $merkophalen ;
         $value_model = $modelophalen;
+        $value_merkcf = get_post_meta( $post->ID, '_car_merkcf_key', true );
+        $value_modelcf = get_post_meta( $post->ID, '_car_modelcf_key', true );
         $value_badge = get_post_meta( $post->ID, '_car_badge_key', true );
         $value_wagentitel = get_post_meta( $post->ID, '_car_wagentitel_key', true );
         $value_eersteinschrijving = get_post_meta( $post->ID, '_car_eersteinschrijving_key', true );
@@ -290,10 +292,12 @@
         $value_btwaftrekbaar = get_post_meta( $post->ID, '_car_btwaftrekbaar_key', true );
         $value_emissieklasse = get_post_meta( $post->ID, '_car_emissieklasse_key', true );
         $value_co = get_post_meta( $post->ID, '_car_co_key', true );
+        $value_description = get_post_meta( $post->ID, '_car_description_key', true );
         $gallery_data = get_post_meta( $post->ID, 'mgop_mb_galerij', true );
 ?>          
             
-
+            <input type="hidden" name="merkcf-input" id="merkcf-input" value="<?php echo $value_merkcf ?>" />
+            <input type="hidden" name="modelcf-input" id="modelcf-input" value="<?php echo $value_modelcf ?>" />
             <div style="display:flex;flex-direction:column;">
             <div><?php echo($gallery_data);?></div>
             <label for="carmerk-input">Merk</label> 
@@ -307,6 +311,9 @@
             
             <label for="carwagentitel-input">Car wagentitel</label>
             <input type="text" name="carwagentitel-input" id="carwagentitel-input" value="<?php echo $value_wagentitel ?>" />
+
+            <label for="cardescription-input">Car description</label>
+            <textarea type="text" name="cardescription-input" rows="4" id="cardescription-input"><?php echo $value_description ?></textarea>
             
             <label for="carbadge-input">Badge</label>
             <input type="text" name="carbadge-input" id="carbadge-input" value="<?php echo $value_badge ?>" />
@@ -466,6 +473,8 @@
             update_post_meta($post->ID, '_car_transmissie_key', $_POST["cartransmissie-input"]);
         if(isset($_POST["carbouwjaar-input"]))
             update_post_meta($post->ID, '_car_bouwjaar_key', $_POST["carbouwjaar-input"]);
+        if(isset($_POST["cardescription-input"]))
+            update_post_meta($post->ID, '_car_description_key', $_POST["cardescription-input"]);
         if(isset($_POST["carkw-input"]))
             update_post_meta($post->ID, '_car_kw_key', $_POST["carkw-input"]);
         if(isset($_POST["carpk-input"]))
@@ -486,6 +495,10 @@
             update_post_meta($post->ID, '_car_emissieklasse_key', $_POST["caremissieklasse-input"]);        
         if(isset($_POST["carco-input"]))
             update_post_meta($post->ID, '_car_co_key', $_POST["carco-input"]);
+        if(isset($_POST["merkcf-input"]))
+            update_post_meta($post->ID, '_car_merkcf_key', $_POST["carmerk-input"]);
+        if(isset($_POST["modelcf-input"]))
+            update_post_meta($post->ID, '_car_modelcf_key', $_POST["carmodel-input"]);
         if(isset($_POST["carenter_media"])){
             update_post_meta($post->ID, '_car_enter_media_key', $_POST["carenter_media"]); 
         }

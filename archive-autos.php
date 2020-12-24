@@ -4,6 +4,7 @@
 //carsync_posts_maken();
 //carsync_data_ophalen();
 //do_action('carsync_data_ophalen_hook');
+echo get_post_type_archive_link("autos");
 if(file_exists(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json')) {
     $Vdata = file_get_contents(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json');
 }

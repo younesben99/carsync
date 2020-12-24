@@ -80,7 +80,7 @@ function create_post_by_uniq_id($passed_id){
                 $changedTimestapwithOffset = $car['details']['publication']['changedTimestampWithOffset'];
                 $createdTimestampWithOffset = $car['details']['publication']['createdTimestampWithOffset'];
                 $state = $car['details']['publication']['state'];
-             
+                $description = $car['details']['description'];
                 $zitplaatsen = $car['details']['vehicle']['interior']['numberOfSeats'];
                 $btwaftrekbaar = $car['details']['prices']['pricepublic']['taxDeductible']; 
                
@@ -201,7 +201,10 @@ function create_post_by_uniq_id($passed_id){
                  '_car_veiligheid_key' => $veiligheid,
                  '_car_extra_key' => $extraopties,
                  '_car_syncimages_key' => $syncimages,
-                 '_car_sync_key' => 'YES'
+                 '_car_sync_key' => 'YES',
+                 '_car_description_key' => $description,
+                 '_car_merkcf_key' => $merk,
+                 '_car_modelcf_key' => $model
                  ),
              );
       

@@ -18,6 +18,7 @@ require_once( __DIR__ . '/register/register_single.php');
 require_once( __DIR__ . '/register/register_cron_job.php');
 require_once( __DIR__ . '/sync/carsync_data_ophalen.php');
 require_once( __DIR__ . '/sync/create_post_by_uniq_id.php');
+include_once( __DIR__ . '/register/register_admin_toolbar_links.php');
 //require_once( __DIR__ . '/templates/dashboard.php');
 //require_once( __DIR__ . '/templates/dashboard-card-aanmaken.php');
 
@@ -33,12 +34,14 @@ function add_admin_scripts( $hook ) {
             wp_enqueue_script('jquery-ui-sortable');
             wp_enqueue_script(  'gallery-cpt-js', plugin_dir_url( __FILE__ ).'/js/autos-gallery.js' , array('jquery', 'jquery-ui-sortable'));
             wp_enqueue_style('gallery-metabox', plugin_dir_url( __FILE__ ).'/css/autos-gallery.css');
+            wp_enqueue_style('editorcss', 'https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.23.0/ui/trumbowyg.min.css');
+            
             wp_enqueue_style('csstoggle', plugin_dir_url( __FILE__ ).'/css/toggle.css');
             if ( ! did_action( 'wp_enqueue_media' ) )
 	        	wp_enqueue_media();
             //endgallery
             wp_enqueue_script(  'sweetalert2', 'https://cdn.jsdelivr.net/npm/sweetalert2@10.12.3/dist/sweetalert2.all.min.js' );
-            
+            wp_enqueue_script(  'editorjs', 'https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.23.0/trumbowyg.min.js' );
             wp_enqueue_script(  'autos-cpt-js', plugin_dir_url( __FILE__ ).'/js/post-edit-page.js' );
             wp_enqueue_script( 'select2js','https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js', array(), '1.0' );
             wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
@@ -99,6 +102,6 @@ function get_string_between($string, $start, $end){
     return substr($string, $ini, $len);
     }
     
-
+   
 
 ?>

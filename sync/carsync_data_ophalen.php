@@ -58,6 +58,7 @@ if (curl_errno($ch)) {
     wp_mail( $to, $subject, $message );
 
     die('Couldn\'t send request: ' . curl_error($ch));
+   
     
 
 } else {
@@ -75,6 +76,7 @@ if (curl_errno($ch)) {
         fclose($fh);
         //posts maken
         carsync_posts_maken();
+    
     } else {
 
         $fhlog_error2 = fopen(WP_PLUGIN_DIR . $httperrorfilepath, "w+");
@@ -88,7 +90,7 @@ if (curl_errno($ch)) {
 
         die('Request failed: HTTP status code: ' . $resultStatus);
     
-    
+      
     }
 }
 

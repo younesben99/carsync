@@ -1,7 +1,9 @@
 (function($) {
 
     $(document).ready(function(){
-        
+    
+    $("#cardescription-input").trumbowyg();
+
     $("#publish").on("click",function(){
         if($("#carsync-input").val() == "NO" && $("#gallery-metabox-list").children().length === 0 ){
             
