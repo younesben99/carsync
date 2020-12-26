@@ -210,6 +210,7 @@
         $value_uniq = get_post_meta( $post->ID, '_car_uniq_key', true );
         $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
         $value_sync_images = get_post_meta( $post->ID, '_car_syncimages_key', true );
+        $value_vin = get_post_meta( $post->ID, '_car_vin_key', true );
 ?>          
             <style>.car_gegevens label {padding: 18px 0 5px;font-weight: 600;}</style>
 
@@ -217,6 +218,10 @@
             
             <label for="caruniq-input">Car unique id</label>
             <input type="text" name="caruniq-input" id="caruniq-input" value="<?php echo $value_uniq ?>" />
+
+             
+            <label for="carvin-input">Car VIN</label>
+            <input type="text" name="carvin-input" id="carvin-input" value="<?php echo $value_vin ?>" disabled/>
             
             <label for="carmodifieddate-input">Car modified date</label>
             <input type="text" name="carmodifieddate-input" id="carmodifieddate-input" value="<?php echo $value_modifieddate ?>" />
@@ -495,6 +500,8 @@
             update_post_meta($post->ID, '_car_emissieklasse_key', $_POST["caremissieklasse-input"]);        
         if(isset($_POST["carco-input"]))
             update_post_meta($post->ID, '_car_co_key', $_POST["carco-input"]);
+        if(isset($_POST["carvin-input"]))
+            update_post_meta($post->ID, '_car_vin_key', $_POST["carvin-input"]);
         if(isset($_POST["merkcf-input"]))
             update_post_meta($post->ID, '_car_merkcf_key', $_POST["carmerk-input"]);
         if(isset($_POST["modelcf-input"]))

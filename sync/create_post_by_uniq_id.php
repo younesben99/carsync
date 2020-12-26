@@ -53,7 +53,7 @@ function create_post_by_uniq_id($passed_id){
                 $bouwjaar = $car['details']['vehicle']['condition']['firstRegistrationDate']['raw'];
                 $staat = $car['details']['vehicle']['legalCategories'][0]['formatted'];
                 $aantaldeuren = $car['details']['vehicle']['numberOfDoors'];
-               
+                $vin = $car['details']['vehicle']['identifier']['vin'];
                 $internnr = $car['details']['identifier']['offerReference'];
                 $internnr = strtolower($internnr);
                 if (substr($internnr, -1) !== ',') {
@@ -204,7 +204,8 @@ function create_post_by_uniq_id($passed_id){
                  '_car_sync_key' => 'YES',
                  '_car_description_key' => $description,
                  '_car_merkcf_key' => $merk,
-                 '_car_modelcf_key' => $model
+                 '_car_modelcf_key' => $model,
+                 '_car_vin_key' => $vin
                  ),
              );
       
