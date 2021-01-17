@@ -22,7 +22,7 @@
     });
     $("#carmerk-input").select2({placeholder: "Selecteer Merk",disabled: true});
     $("#carmodel-input").select2({placeholder: "Selecteer Model",disabled: true}); 
-    
+ 
     var idvoormodel;
     $.get("https://bnyautocenter.be/wp-json/mm/mmc/",function( data ){
         $( data ).each(function( index ) {

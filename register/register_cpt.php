@@ -9,7 +9,8 @@ function autos_post_type() {
             ),
                 'public'      => true,
                 'has_archive' => true,
-                'supports' => array('title', )
+                'supports' => array('title', ),
+                'menu_icon' => 'dashicons-car'
         )
     );
 }
@@ -34,14 +35,15 @@ function merk_model_taxonomies() {
 }
 add_action( 'init', 'merk_model_taxonomies', 0 );
 
-// Add the custom columns to the book post type:
+// Add the custom columns to the autos post type:
 add_filter( 'manage_autos_posts_columns', 'set_custom_edit_autos_columns' );
 function set_custom_edit_autos_columns($columns) {
     unset( $columns['author'] );
     $columns['uitgelichtefoto'] = 'Uitgelichte foto';
-
+    $columns['wagenstatus'] = 'Wagen status';
     return $columns;
 }
+
 add_filter('manage_autos_posts_columns', 'column_order');
 function column_order($columns) {
   $n_columns = array();
@@ -72,9 +74,14 @@ function custom_autos_column( $column, $post_id ) {
                 echo "<img src='".wp_get_attachment_url($manual_fotos[0])."' style='max-width:150px;border-radius:5px;' />";
             }
             break;
+        case 'wagenstatus' :
+            $value_wagen_status = get_post_meta( $post_id, '_car_post_status_key', true );
+            echo $value_wagen_status;
+            break;
 
     }
 }
+
 add_action('admin_head', 'admin_width');
 
 function admin_width() {
@@ -110,7 +117,22 @@ function admin_width() {
     display: none;
 }
     }
+    
     </style>
+    <script>
+        jQuery(document).ready(function(){
+        
+            jQuery(".wagenstatus").each(function(){
+
+            if(jQuery(this).text() == "Archief"){
+                jQuery(this).closest("tr").css("opacity",'0.9');
+                jQuery(this).closest("tr").css("background",'#ffebd0');
+            }
+
+            });
+
+        });
+    </script>
     <?php
    
 }

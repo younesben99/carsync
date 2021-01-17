@@ -46,104 +46,135 @@
         if(empty($value_veiligheid)){
             $value_veiligheid = array();
         }
-    ?>          
-            <style>.select2{    width: 100% !important;}#car_gegevens label{padding:18px 0 5px;font-weight:600}.checkwrap,.fields{display:flex;flex-direction:column}.checkboxtitle{font-size:15px;font-weight:600;margin-top:10px;margin-bottom:10px}.fields label{margin-bottom:5px}.select2-selection__rendered{line-height:39px!important}.select2-container .select2-selection--single{height:42px!important}.select2-selection__arrow{height:42px!important}</style>
-            
-            <div class="checkwrap">
+    ?>
+<style>
+    .select2 {
+        width: 100% !important;
+    }
 
-            <div class="label checkboxtitle">Comfort en gemak</div>
-            
-            <div class="fields">
-            
-            <?php foreach ($opt_comfort as $opt) {
+    #car_gegevens label {
+        padding: 18px 0 5px;
+        font-weight: 600
+    }
+
+    .checkwrap,
+    .fields {
+        display: flex;
+        flex-direction: column
+    }
+
+    .checkboxtitle {
+        font-size: 15px;
+        font-weight: 600;
+        margin-top: 10px;
+        margin-bottom: 10px
+    }
+
+    .fields label {
+        margin-bottom: 5px
+    }
+
+    .select2-selection__rendered {
+        line-height: 39px !important
+    }
+
+    .select2-container .select2-selection--single {
+        height: 42px !important
+    }
+
+    .select2-selection__arrow {
+        height: 42px !important
+    }
+</style>
+
+<div class="checkwrap">
+
+    <div class="label checkboxtitle">Comfort en gemak</div>
+
+    <div class="fields">
+
+        <?php foreach ($opt_comfort as $opt) {
                ?>
-               <label><input type="checkbox" name="carcomfort[]" value="<?php echo $opt; ?>"
-               <?php foreach($value_comfort as $value){
+        <label><input type="checkbox" name="carcomfort[]" value="<?php echo $opt; ?>" <?php foreach($value_comfort as $value){
                    if($value == $opt){
                        echo("checked");
                    }
-               } ?>
-               /> <?php echo $opt; ?></label>
-               
-               <?php
+               } ?> /> <?php echo $opt; ?></label>
+
+        <?php
              } 
              ?>
-                
-             </div>
-             </div> 
-             <div class="checkwrap">
 
-            <div class="label checkboxtitle">Entertainment en media</div>
-            
-            <div class="fields">
-            
-            <?php foreach ($opt_enter_media as $opt) {
+    </div>
+</div>
+<div class="checkwrap">
+
+    <div class="label checkboxtitle">Entertainment en media</div>
+
+    <div class="fields">
+
+        <?php foreach ($opt_enter_media as $opt) {
                ?>
-               <label><input type="checkbox" name="carenter_media[]" value="<?php echo $opt; ?>"
-               <?php foreach($value_enter_media as $value){
+        <label><input type="checkbox" name="carenter_media[]" value="<?php echo $opt; ?>" <?php foreach($value_enter_media as $value){
                    if($value == $opt){
                        echo("checked");
                    }
-               } ?>
-               /> <?php echo $opt; ?></label>
-              
-               <?php
+               } ?> /> <?php echo $opt; ?></label>
+
+        <?php
              } 
              ?>
-                
-             </div>           
 
-            </div>
-             
-            <div class="checkwrap">
+    </div>
 
-            <div class="label checkboxtitle">Veiligheid</div>
-            
-            <div class="fields">
-            
-            <?php foreach ($opt_veiligheid as $opt) {
+</div>
+
+<div class="checkwrap">
+
+    <div class="label checkboxtitle">Veiligheid</div>
+
+    <div class="fields">
+
+        <?php foreach ($opt_veiligheid as $opt) {
                ?>
-               <label><input type="checkbox" name="carveiligheid[]" value="<?php echo $opt; ?>"
-               <?php foreach($value_veiligheid as $value){
+        <label><input type="checkbox" name="carveiligheid[]" value="<?php echo $opt; ?>" <?php foreach($value_veiligheid as $value){
                    if($value == $opt){
                        echo("checked");
                    }
-               } ?>
-               /> <?php echo $opt; ?></label>
-             
-               <?php
+               } ?> /> <?php echo $opt; ?></label>
+
+        <?php
              } 
              ?>
-                
-             </div>           
 
-            </div>
+    </div>
+
+</div>
 
 
-            <div class="checkwrap">
+<div class="checkwrap">
 
-            <div class="label checkboxtitle">Extra</div>
-            
-            <div class="fields">
-            
-            <?php foreach ($opt_extra as $opt) {
+    <div class="label checkboxtitle">Extra</div>
+
+    <div class="fields">
+
+        <?php foreach ($opt_extra as $opt) {
                ?>
-               <label style="font-weight:400;"><input type="checkbox" name="carextra[]" value="<?php echo $opt; ?>"
-               <?php foreach($value_extra as $value){
+        <label style="font-weight:400;"><input type="checkbox" name="carextra[]" value="<?php echo $opt; ?>" <?php foreach($value_extra as $value){
                    if($value == $opt){
                        echo("checked");
                    }
-               } ?>
-               /> <?php echo $opt; ?></label>
-             
-               <?php
+               } ?> /> <?php echo $opt; ?></label>
+
+        <?php
              } 
              ?>
-                
-                       
 
-            </div></div>
-    <?php    
+
+
+    </div>
+</div>
+<?php    
     }
 
 
@@ -153,54 +184,71 @@
 
         $value_sync = get_post_meta( $post->ID, '_car_sync_key', true );
         $value_status = get_post_meta( $post->ID, '_car_status_key', true );
-?>          
-            <style>.car_gegevens label {padding: 18px 0 5px;font-weight: 600;}</style>
+        $value_post_status = get_post_meta( $post->ID, '_car_post_status_key', true );
+        $post_statuses = ['Actief','Archief'];
+       
+        
+?>
+<style>
+    .car_gegevens label {
+        padding: 18px 0 5px;
+        font-weight: 600;
+    }
+</style>
 
-            <div style="display:flex;flex-direction:column;">
-            
-           
-            <div style="margin:10px 0;">
-            Behouden op de site?
-            <label class="toggle-switchy" for="sync_switch" data-size="lg">
-								<input 
-                                
-                                <?php
+<div style="display:flex;flex-direction:column;">
+    Post status:
+    <select name="car_post_status" id="car_post_status_id">
+        <?php foreach($post_statuses as $status){
+                     ?>
+        <option value="<?php echo $status ?>" <?php
+        if($status == $value_post_status){
+            echo " selected";
+        }
+        ?>><?php echo $status ?></option>
+
+        <?php
+                 } ?>
+
+    </select>
+
+    <div style="margin:10px 0;">
+        Behouden op de site?
+        <label class="toggle-switchy" for="sync_switch" data-size="lg">
+            <input <?php
                                     if($value_sync !== 'YES'){
                                         echo 'checked';
                                     }
-                                ?>
-                                type="checkbox" id="sync_switch">
-								<span class="toggle">
-									<span class="switch"></span>
-								</span>
-			</label>
-            </div>
-          
-            <label for="carsync-input" style="display:none">Car sync</label>
-            <input type="text" name="carsync-input" style="display:none" id="carsync-input" value="<?php echo $value_sync ?>" />
-           
-            <div style="margin:10px 0;">
-            Verkocht markeren? 
-            <label class="toggle-switchy" for="verkocht_switch" data-size="lg">
-								<input 
-                                
-                                <?php
+                                ?> type="checkbox" id="sync_switch">
+            <span class="toggle">
+                <span class="switch"></span>
+            </span>
+        </label>
+    </div>
+
+    <label for="carsync-input" style="display:none">Car sync</label>
+    <input type="text" name="carsync-input" style="display:none" id="carsync-input" value="<?php echo $value_sync ?>" />
+
+    <div style="margin:10px 0;">
+        Verkocht markeren?
+        <label class="toggle-switchy" for="verkocht_switch" data-size="lg">
+            <input <?php
                                     if($value_status == 'VERKOCHT'){
                                         echo 'checked';
                                     }
-                                ?>
-                                type="checkbox" id="verkocht_switch">
-								<span class="toggle">
-									<span class="switch"></span>
-								</span>
-			</label>
-            </div>
-            <label for="carstatus-input" style="display:none;">Car status</label>
-            <input type="text" name="carstatus-input" style="display:none;" id="carstatus-input" value="<?php echo $value_status ?>" />
+                                ?> type="checkbox" id="verkocht_switch">
+            <span class="toggle">
+                <span class="switch"></span>
+            </span>
+        </label>
+    </div>
+    <label for="carstatus-input" style="display:none;">Car status</label>
+    <input type="text" name="carstatus-input" style="display:none;" id="carstatus-input"
+        value="<?php echo $value_status ?>" />
 
-            
-           
-            </div>
+
+
+</div>
 <?php    
     }
     function car_meta_cb($post)
@@ -211,32 +259,39 @@
         $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
         $value_sync_images = get_post_meta( $post->ID, '_car_syncimages_key', true );
         $value_vin = get_post_meta( $post->ID, '_car_vin_key', true );
-?>          
-            <style>.car_gegevens label {padding: 18px 0 5px;font-weight: 600;}</style>
+?>
+<style>
+    .car_gegevens label {
+        padding: 18px 0 5px;
+        font-weight: 600;
+    }
+</style>
 
-            <div style="display:flex;flex-direction:column;">
-            
-            <label for="caruniq-input">Car unique id</label>
-            <input type="text" name="caruniq-input" id="caruniq-input" value="<?php echo $value_uniq ?>" />
+<div style="display:flex;flex-direction:column;">
 
-             
-            <label for="carvin-input">Car VIN</label>
-            <input type="text" name="carvin-input" id="carvin-input" value="<?php echo $value_vin ?>" disabled/>
-            
-            <label for="carmodifieddate-input">Car modified date</label>
-            <input type="text" name="carmodifieddate-input" id="carmodifieddate-input" value="<?php echo $value_modifieddate ?>" />
-            
+    <label for="caruniq-input">Car unique id</label>
+    <input type="text" name="caruniq-input" id="caruniq-input" value="<?php echo $value_uniq ?>" />
 
-            <label for="carsyncimages-input">Car syncimages</label>
-            <div style="display:flex;flex-wrap:wrap;">
-            <?php
+
+    <label for="carvin-input">Car VIN</label>
+    <input type="text" name="carvin-input" id="carvin-input" value="<?php echo $value_vin ?>" disabled />
+
+    <label for="carmodifieddate-input">Car modified date</label>
+    <input type="text" name="carmodifieddate-input" id="carmodifieddate-input"
+        value="<?php echo $value_modifieddate ?>" />
+
+
+    <label for="carsyncimages-input">Car syncimages</label>
+    <div style="display:flex;flex-wrap:wrap;">
+        <?php
+            if(!empty($value_sync_images)){
                 foreach($value_sync_images as $image){
                 echo("<img src='". $image."' width='150px' style='margin:5px;' />");
-                }
+                } }
             ?>
-            </div>
-           
-            </div>
+    </div>
+
+</div>
 <?php    
     }
 
@@ -299,92 +354,102 @@
         $value_co = get_post_meta( $post->ID, '_car_co_key', true );
         $value_description = get_post_meta( $post->ID, '_car_description_key', true );
         $gallery_data = get_post_meta( $post->ID, 'mgop_mb_galerij', true );
-?>          
-            
-            <input type="hidden" name="merkcf-input" id="merkcf-input" value="<?php echo $value_merkcf ?>" />
-            <input type="hidden" name="modelcf-input" id="modelcf-input" value="<?php echo $value_modelcf ?>" />
-            <div style="display:flex;flex-direction:column;">
-            <div><?php echo($gallery_data);?></div>
-            <label for="carmerk-input">Merk</label> 
-            <select name="carmerk-input" id="carmerk-input">
-            <option selected disabled><?php echo($value_merk); ?></option>
-            </select>
-            <label for="carmodel-input">Model</label> 
-            <select name="carmodel-input" id="carmodel-input" >
-            <option selected disabled><?php echo($value_model); ?></option> 
-            </select>
-            
-            <label for="carwagentitel-input">Car wagentitel</label>
-            <input type="text" name="carwagentitel-input" id="carwagentitel-input" value="<?php echo $value_wagentitel ?>" />
+?>
 
-            <label for="cardescription-input">Car description</label>
-            <textarea type="text" name="cardescription-input" rows="4" id="cardescription-input"><?php echo $value_description ?></textarea>
-            
-            <label for="carbadge-input">Badge</label>
-            <input type="text" name="carbadge-input" id="carbadge-input" value="<?php echo $value_badge ?>" />
+<input type="hidden" name="merkcf-input" id="merkcf-input" value="<?php echo $value_merkcf ?>" />
+<input type="hidden" name="modelcf-input" id="modelcf-input" value="<?php echo $value_modelcf ?>" />
+<div style="display:flex;flex-direction:column;">
+    <div><?php echo($gallery_data);?></div>
+    <label for="carmerk-input">Merk</label>
+    <select name="carmerk-input" id="carmerk-input">
+        <option selected disabled><?php echo($value_merk); ?></option>
+    </select>
+    <label for="carmodel-input">Model</label>
+    <select name="carmodel-input" id="carmodel-input">
+        <option selected disabled><?php echo($value_model); ?></option>
+    </select>
 
-            <label for="careersteinschrijving-input">Eersteinschrijving</label>
-            <input type="text" name="careersteinschrijving-input" id="careersteinschrijving-input" value="<?php echo $value_eersteinschrijving ?>" />
-            
-            <label for="carcarrosserievorm-input">Carrosserievorm</label>
-            <input type="text" name="carcarrosserievorm-input" id="carcarrosserievorm-input" value="<?php echo $value_carrosserievorm ?>" />
-            
-            <label for="carzitplaatsen-input">Zitplaatsen</label>
-            <input type="text" name="carzitplaatsen-input" id="carzitplaatsen-input" value="<?php echo $value_zitplaatsen ?>" />
-            
-            <label for="carbrandstof-input">Brandstof</label>
-            <input type="text" name="carbrandstof-input" id="carbrandstof-input" value="<?php echo $value_brandstof ?>" />
-            
-            <label for="caraantaldeuren-input">Aantaldeuren</label>
-            <input type="text" name="caraantaldeuren-input" id="caraantaldeuren-input" value="<?php echo $value_aantaldeuren ?>" />
-            
-            <label for="carstaat-input">staat</label>
-            <input type="text" name="carstaat-input" id="carstaat-input" value="<?php echo $value_staat ?>" />
-            
-            <label for="carkilometerstand-input">Kilometerstand</label>
-            <input type="text" name="carkilometerstand-input" id="carkilometerstand-input" value="<?php echo $value_kilometerstand ?>" />
-            
-            <label for="cartransmissie-input">Transmissie</label>
-            <input type="text" name="cartransmissie-input" id="cartransmissie-input" value="<?php echo $value_transmissie ?>" />
+    <label for="carwagentitel-input">Car wagentitel</label>
+    <input type="text" name="carwagentitel-input" id="carwagentitel-input" value="<?php echo $value_wagentitel ?>" />
 
-            <label for="carbouwjaar-input">Bouwjaar</label>
-            <input type="text" name="carbouwjaar-input" id="carbouwjaar-input" value="<?php echo $value_bouwjaar ?>" />
-           
-            <label for="carkw-input">Kw</label>
-            <input type="text" name="carkw-input" id="carkw-input" value="<?php echo $value_kw ?>" />
+    <label for="cardescription-input">Car description</label>
+    <textarea type="text" name="cardescription-input" rows="4"
+        id="cardescription-input"><?php echo $value_description ?></textarea>
 
-            <label for="carpk-input">Pk</label>
-            <input type="text" name="carpk-input" id="carpk-input" value="<?php echo $value_pk ?>" />
+    <label for="carbadge-input">Badge</label>
+    <input type="text" name="carbadge-input" id="carbadge-input" value="<?php echo $value_badge ?>" />
 
-            <label for="carcilinderinhoud-input">Cilinderinhoud</label>
-            <input type="text" name="carcilinderinhoud-input" id="carcilinderinhoud-input" value="<?php echo $value_cilinderinhoud ?>" />
-            
-            <label for="carkleurinterieur-input">Kleur interieur</label>
-            <input type="text" name="carkleurinterieur-input" id="carkleurinterieur-input" value="<?php echo $value_kleurinterieur ?>" />
-            
-            <label for="carkleurexterieur-input">Kleur exterieur</label>
-            <input type="text" name="carkleurexterieur-input" id="carkleurexterieur-input" value="<?php echo $value_kleurexterieur ?>" />
+    <label for="careersteinschrijving-input">Eersteinschrijving</label>
+    <input type="text" name="careersteinschrijving-input" id="careersteinschrijving-input"
+        value="<?php echo $value_eersteinschrijving ?>" />
 
-            <label for="caremissieklasse-input">Emissieklasse</label>
-            <input type="text" name="caremissieklasse-input" id="caremissieklasse-input" value="<?php echo $value_emissieklasse ?>" />
+    <label for="carcarrosserievorm-input">Carrosserievorm</label>
+    <input type="text" name="carcarrosserievorm-input" id="carcarrosserievorm-input"
+        value="<?php echo $value_carrosserievorm ?>" />
 
-            <label for="carco-input">Co</label>
-            <input type="text" name="carco-input" id="carco-input" value="<?php echo $value_co ?>" />
+    <label for="carzitplaatsen-input">Zitplaatsen</label>
+    <input type="text" name="carzitplaatsen-input" id="carzitplaatsen-input" value="<?php echo $value_zitplaatsen ?>" />
 
-            <label for="carprijs-input">Prijs</label>
-            <input type="text" name="carprijs-input" id="carprijs-input" value="<?php echo $value_prijs ?>" />
+    <label for="carbrandstof-input">Brandstof</label>
+    <input type="text" name="carbrandstof-input" id="carbrandstof-input" value="<?php echo $value_brandstof ?>" />
 
-            <label for="caroudeprijs-input">Oudeprijs</label>
-            <input type="text" name="caroudeprijs-input" id="caroudeprijs-input" value="<?php echo $value_oudeprijs ?>" />
+    <label for="caraantaldeuren-input">Aantaldeuren</label>
+    <input type="text" name="caraantaldeuren-input" id="caraantaldeuren-input"
+        value="<?php echo $value_aantaldeuren ?>" />
 
-            <label for="carbtwaftrekbaar-input">BTW aftrekbaar</label>
-            <input type="text" name="carbtwaftrekbaar-input" id="carbtwaftrekbaar-input" value="<?php echo $value_btwaftrekbaar ?>" />
+    <label for="carstaat-input">staat</label>
+    <input type="text" name="carstaat-input" id="carstaat-input" value="<?php echo $value_staat ?>" />
+
+    <label for="carkilometerstand-input">Kilometerstand</label>
+    <input type="text" name="carkilometerstand-input" id="carkilometerstand-input"
+        value="<?php echo $value_kilometerstand ?>" />
+
+    <label for="cartransmissie-input">Transmissie</label>
+    <input type="text" name="cartransmissie-input" id="cartransmissie-input" value="<?php echo $value_transmissie ?>" />
+
+    <label for="carbouwjaar-input">Bouwjaar</label>
+    <input type="text" name="carbouwjaar-input" id="carbouwjaar-input" value="<?php echo $value_bouwjaar ?>" />
+
+    <label for="carkw-input">Kw</label>
+    <input type="text" name="carkw-input" id="carkw-input" value="<?php echo $value_kw ?>" />
+
+    <label for="carpk-input">Pk</label>
+    <input type="text" name="carpk-input" id="carpk-input" value="<?php echo $value_pk ?>" />
+
+    <label for="carcilinderinhoud-input">Cilinderinhoud</label>
+    <input type="text" name="carcilinderinhoud-input" id="carcilinderinhoud-input"
+        value="<?php echo $value_cilinderinhoud ?>" />
+
+    <label for="carkleurinterieur-input">Kleur interieur</label>
+    <input type="text" name="carkleurinterieur-input" id="carkleurinterieur-input"
+        value="<?php echo $value_kleurinterieur ?>" />
+
+    <label for="carkleurexterieur-input">Kleur exterieur</label>
+    <input type="text" name="carkleurexterieur-input" id="carkleurexterieur-input"
+        value="<?php echo $value_kleurexterieur ?>" />
+
+    <label for="caremissieklasse-input">Emissieklasse</label>
+    <input type="text" name="caremissieklasse-input" id="caremissieklasse-input"
+        value="<?php echo $value_emissieklasse ?>" />
+
+    <label for="carco-input">Co</label>
+    <input type="text" name="carco-input" id="carco-input" value="<?php echo $value_co ?>" />
+
+    <label for="carprijs-input">Prijs</label>
+    <input type="text" name="carprijs-input" id="carprijs-input" value="<?php echo $value_prijs ?>" />
+
+    <label for="caroudeprijs-input">Oudeprijs</label>
+    <input type="text" name="caroudeprijs-input" id="caroudeprijs-input" value="<?php echo $value_oudeprijs ?>" />
+
+    <label for="carbtwaftrekbaar-input">BTW aftrekbaar</label>
+    <input type="text" name="carbtwaftrekbaar-input" id="carbtwaftrekbaar-input"
+        value="<?php echo $value_btwaftrekbaar ?>" />
 
 
-            
-            
 
-            </div>
+
+
+</div>
 <?php    
     }
     //saving the data
@@ -393,7 +458,7 @@
         
         global $post;
        
-     
+        
         if(isset($_POST['vdw_gallery_id'])) {
             update_post_meta($post->ID, 'vdw_gallery_id', $_POST['vdw_gallery_id']);
         }
@@ -413,6 +478,9 @@
                     include_once( ABSPATH . 'wp-admin/includes/image.php' );
                     $imageurl = $img;
                     $postitle = get_string_between($imageurl,"_",".jpg/");
+                    
+                    //$imageurl = str_replace('https://', 'http://', $imageurl); 
+
                     $imagetype = end(explode('/', getimagesize($imageurl)['mime']));
                     $uniq_name = date('dmY').''.(int) microtime(true); 
                     $filename = $uniq_name.'.'.$imagetype;
@@ -452,6 +520,8 @@
        
         if(isset($_POST["caruniq-input"]))
             update_post_meta($post->ID, '_car_uniq_key', $_POST["caruniq-input"]);
+        if(isset($_POST["car_post_status"]))
+            update_post_meta($post->ID, '_car_post_status_key', $_POST["car_post_status"]);
         if(isset($_POST["carstatus-input"]))
             update_post_meta($post->ID, '_car_status_key', $_POST["carstatus-input"]);
         if(isset($_POST["carbadge-input"]))

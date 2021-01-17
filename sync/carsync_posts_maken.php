@@ -67,8 +67,8 @@ function carsync_posts_maken(){
             else{
                 if($synctrue == 'YES'){
                     //is gesynct en uniqid is niet terug te vinden in de api
-                    //delete
-                    wp_delete_post($post->ID, true );
+                    //archiveren
+                    update_post_meta($post->ID, '_car_post_status_key', 'Archief');
                 }
 
                 

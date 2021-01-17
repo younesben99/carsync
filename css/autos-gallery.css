@@ -5,6 +5,9 @@
     margin: 9px;
     cursor: move;
   }
+  .misc-pub-post-status{
+   /*display:none;*/
+  }
   .gallerycontrols {
     background: white;
     color: black;

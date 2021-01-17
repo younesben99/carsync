@@ -1,7 +1,7 @@
 <?php
 
 
-//carsync_posts_maken();
+carsync_posts_maken();
 //carsync_data_ophalen();
 //do_action('carsync_data_ophalen_hook');
 echo get_post_type_archive_link("autos");

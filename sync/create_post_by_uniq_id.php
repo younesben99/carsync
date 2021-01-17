@@ -205,7 +205,9 @@ function create_post_by_uniq_id($passed_id){
                  '_car_description_key' => $description,
                  '_car_merkcf_key' => $merk,
                  '_car_modelcf_key' => $model,
-                 '_car_vin_key' => $vin
+                 '_car_vin_key' => $vin,
+                 '_car_post_status_key' => 'Actief',
+                 '_car_status_key' => 'TE KOOP',
                  ),
              );
       

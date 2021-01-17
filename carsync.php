@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
