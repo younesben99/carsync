@@ -274,7 +274,7 @@
 
 
     <label for="carvin-input">Car VIN</label>
-    <input type="text" name="carvin-input" id="carvin-input" value="<?php echo $value_vin ?>" disabled />
+    <input type="text" name="carvin-input" id="carvin-input" value="<?php echo $value_vin ?>" />
 
     <label for="carmodifieddate-input">Car modified date</label>
     <input type="text" name="carmodifieddate-input" id="carmodifieddate-input"
