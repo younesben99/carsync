@@ -20,8 +20,7 @@ require_once( __DIR__ . '/register/register_cron_job.php');
 require_once( __DIR__ . '/sync/carsync_data_ophalen.php');
 require_once( __DIR__ . '/sync/create_post_by_uniq_id.php');
 include_once( __DIR__ . '/register/register_admin_toolbar_links.php');
-//require_once( __DIR__ . '/templates/dashboard.php');
-//require_once( __DIR__ . '/templates/dashboard-card-aanmaken.php');
+
 
 function add_admin_scripts( $hook ) {
 

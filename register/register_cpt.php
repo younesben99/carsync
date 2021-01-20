@@ -6,6 +6,12 @@ function autos_post_type() {
             'labels'      => array(
                 'name'          => __('Auto\'s', 'textdomain'),
                 'singular_name' => __('Auto', 'textdomain'),
+                'all_items' => 'Alle wagens',
+                'menu_name' => "Wagens",
+                'edit_item' => 'Bewerk wagen',
+                'add_new' => 'Wagen toevoegen'
+
+
             ),
                 'public'      => true,
                 'has_archive' => true,
@@ -15,6 +21,7 @@ function autos_post_type() {
     );
 }
 
+     
 add_action('init', 'autos_post_type');
 
 function merk_model_taxonomies() {

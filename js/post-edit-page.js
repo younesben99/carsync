@@ -50,6 +50,16 @@
 
       });
       
+      $("#archief_switch").on("click",function(){
+        if($("#archief_switch").prop('checked')){
+            $("#car_post_status_id").val("Actief");
+        }
+        else{
+            $("#car_post_status_id").val("Archief");
+            $("#sync_switch").trigger("click");
+        }
+      });
+      
       $("#sync_switch").on("click",function(){
         if($("#sync_switch").prop('checked')){
             $("#carsync-input").val("NO");
@@ -58,7 +68,7 @@
             $("#carsync-input").val("YES");
         }
       });
-      
+
       $("#verkocht_switch").on("click",function(){
         if($("#verkocht_switch").prop('checked')){
             $("#carstatus-input").val("VERKOCHT");
