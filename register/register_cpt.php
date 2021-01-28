@@ -131,7 +131,7 @@ function admin_width() {
         
             jQuery(".wagenstatus").each(function(){
 
-            if(jQuery(this).text() == "Archief"){
+            if(jQuery(this).text() == "archief"){
                 jQuery(this).closest("tr").css("opacity",'0.9');
                 jQuery(this).closest("tr").css("background",'#ffebd0');
             }

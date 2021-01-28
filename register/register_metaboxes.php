@@ -183,9 +183,17 @@
         //data ophalen en in klaarmaken voor parsing
 
         $value_sync = get_post_meta( $post->ID, '_car_sync_key', true );
+        if(empty($value_sync)){
+            $value_sync = "NO";
+        }
         $value_status = get_post_meta( $post->ID, '_car_status_key', true );
+        if(empty($value_status)){
+            $value_status = "tekoop";
+        }
         $value_post_status = get_post_meta( $post->ID, '_car_post_status_key', true );
-        $post_statuses = ['Actief','Archief'];
+        if(empty($value_post_status)){
+            $value_post_status = "actief";
+        }
        
         
 ?>
@@ -196,72 +204,83 @@
     }
 </style>
 
-<div style="display:flex;flex-direction:column;">
+<div style="display:flex;flex-direction:row;justify-content: center;">
     
 
-    <div class="togglewrap">
-       <div>Wagen status:</div>
-        <label class="toggle-switchy archiefswitch" for="archief_switch" data-size="lg">
-            <input <?php
-                                    if($value_post_status !== 'Archief'){
-                                        echo 'checked';
-                                    }
-                                ?> type="checkbox" id="archief_switch">
-            <span class="toggle">
-                <span class="switch"></span>
-            </span>
-        </label>
-    </div>
-
-    <label for="car_post_status" style="display:none">Car archive</label>
-    <input type="text" name="car_post_status" style="display:none" id="car_post_status_id" value="<?php echo $value_post_status ?>" />
-
-
-
-
-
-
-
-
-
-    <div class="togglewrap">
-        
-        <div>Behouden op de site:</div>
-        <label class="toggle-switchy" for="sync_switch" data-size="lg">
-            <input <?php
-                                    if($value_sync !== 'YES'){
-                                        echo 'checked';
-                                    }
-                                ?> type="checkbox" id="sync_switch">
-            <span class="toggle">
-                <span class="switch"></span>
-            </span>
-        </label>
-    </div>
-
-    <label for="carsync-input" style="display:none">Car sync</label>
-    <input type="text" name="carsync-input" style="display:none" id="carsync-input" value="<?php echo $value_sync ?>" />
-
-    <div class="togglewrap">
-    <div>Verkocht Markeren:</div>
-        <label class="toggle-switchy" for="verkocht_switch" data-size="lg">
-            <input <?php
-                                    if($value_status == 'VERKOCHT'){
-                                        echo 'checked';
-                                    }
-                                ?> type="checkbox" id="verkocht_switch">
-            <span class="toggle">
-                <span class="switch"></span>
-            </span>
-        </label>
-    </div>
-    <label for="carstatus-input" style="display:none;">Car status</label>
-    <input type="text" name="carstatus-input" style="display:none;" id="carstatus-input"
-        value="<?php echo $value_status ?>" />
-
+<div class="selectwrapper">
+        <div class="dash-status-dot"><span class="<?php 
+        if(get_post_meta($post->ID, '_car_sync_key', true) == 'YES' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
+          echo "live";
+        }
+        if(get_post_meta($post->ID, '_car_sync_key', true) == 'NO' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
+          echo "nglive";
+        }
+        if(get_post_meta($post->ID, '_car_post_status_key', true) == 'archief'){
+          echo "archief";
+        }
+        if (get_post_meta($post->ID, '_car_post_status_key', true) == ''){
+            echo "nglive";
+        }  
+        ?>"></span></div>
+        <select id="dash-status">
+          <option class="dot live" data-post-id="<?php echo $post->ID; ?>" value="live" <?php
+        if(get_post_meta($post->ID, '_car_sync_key', true) == 'YES' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
+          echo "selected";
+        } ?>>Live</option>
+          <option class="dot nglive" data-post-id="<?php echo $post->ID; ?>" value="nglive" <?php
+        if(get_post_meta($post->ID, '_car_sync_key', true) == 'NO' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
+          echo "selected";
+        }
+        if(get_post_meta($post->ID, '_car_sync_key', true) == ''){
+            echo "selected";
+        }
+        ?>>Geen sync & live</option>
+          <optgroup label="--------------"></optgroup>
+          <option class="dot archief" data-post-id="<?php echo $post->ID; ?>" value="archief" <?php
+        if(get_post_meta($post->ID, '_car_post_status_key', true) == 'archief'){
+          echo "selected";
+        } ?>>Archief</option>
+        </select>
+      </div>
+      <div class="selectwrapper-post-status">
+        <div class="dash-post-status-dot"><span class="<?php 
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'tekoop'){
+          echo "tekoop";
+        }
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'gereserveerd'){
+          echo "gereserveerd";
+        }
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'verkocht'){
+          echo "verkocht";
+        }
+        if (get_post_meta($post->ID, '_car_status_key', true) == ''){
+            echo "tekoop";
+        }     
+        ?>"></span></div>
+        <select id="dash-post-status">
+          <option class="dot tekoop" data-post-id="<?php echo $post->ID; ?>" value="tekoop" <?php
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'tekoop'){
+          echo "selected";
+        } ?>>Te Koop</option>
+          <option class="dot gereserveerd" data-post-id="<?php echo $post->ID; ?>" value="gereserveerd" <?php
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'gereserveerd'){
+          echo "selected";
+        } ?>>Gereserveerd</option>
+          <optgroup label="--------------"></optgroup>
+          <option class="dot verkocht" data-post-id="<?php echo $post->ID; ?>" value="verkocht" <?php
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'verkocht'){
+          echo "selected";
+        } ?>>Verkocht</option>
+        </select>
+      </div>
 
 
 </div>
+
+<input type="text" name="carsync-input" id="carsync-input" style="display:none;" value="<?php echo $value_sync  ?>" />
+<input type="text" name="carstatus-input" id="carstatus-input" style="display:none;" value="<?php echo $value_status ?>" />
+<input type="text" name="car_post_status" id="car_post_status_id" style="display:none;" value="<?php echo $value_post_status ?>" />
+
 <?php    
     }
     function car_meta_cb($post)
@@ -773,7 +792,7 @@
             update_post_meta($post->ID, '_car_uniq_key', $_POST["caruniq-input"]);
         if(isset($_POST["car_post_status"]))
             update_post_meta($post->ID, '_car_post_status_key', $_POST["car_post_status"]);
-        if($_POST["car_post_status"] == "Archief"){
+        if($_POST["car_post_status"] == "archief"){
             update_post_meta($post->ID, '_car_sync_key', 'NO');
         }
         if(isset($_POST["carstatus-input"]))

@@ -2,6 +2,111 @@
 
     $(document).ready(function(){
     
+        $( "#dash-status" ).on( "change", function( event ) {
+            event.preventDefault();
+            console.log( $( this ).val() );
+            var opt = $( this ).val();
+            if(opt == "archief"){
+              $(this).prev(".dash-status-dot").find("span").removeClass();
+              $(this).prev(".dash-status-dot").find("span").addClass("archief");  
+              $("#carsync-input").val("NO");
+              $("#car_post_status_id").val("archief");
+              
+              $.post("/wp-content/plugins/dds-dashboard/templates/dash-ajax.php",
+              {
+                dashstatus: "archief",
+                postid: $(this).find("option").attr("data-post-id")
+              },
+              function(data,status){
+                console.log(data + status);
+              });
+    
+    
+            }
+            if(opt == "nglive"){
+              $(this).prev(".dash-status-dot").find("span").removeClass();
+              $(this).prev(".dash-status-dot").find("span").addClass("nglive");
+              $("#carsync-input").val("NO");
+              $("#car_post_status_id").val("actief");
+
+              $.post("/wp-content/plugins/dds-dashboard/templates/dash-ajax.php",
+              {
+                dashstatus: "nglive",
+                postid: $(this).find("option").attr("data-post-id")
+              },
+              function(data,status){
+                console.log(data + status);
+              });
+            }
+            if(opt == "live"){
+              $(this).prev(".dash-status-dot").find("span").removeClass();
+              $(this).prev(".dash-status-dot").find("span").addClass("live");
+              $("#carsync-input").val("YES");
+              $("#car_post_status_id").val("actief");
+
+              $.post("/wp-content/plugins/dds-dashboard/templates/dash-ajax.php",
+              {
+                dashstatus: "live",
+                postid: $(this).find("option").attr("data-post-id")
+              },
+              function(data,status){
+                console.log(data + status);
+              });
+            }
+        });
+    
+    
+        $( "#dash-post-status" ).on( "change", function( event ) {
+          event.preventDefault();
+          console.log( $( this ).val() );
+          var opt = $( this ).val();
+          if(opt == "tekoop"){
+            $(this).prev(".dash-post-status-dot").find("span").removeClass();
+            $(this).prev(".dash-post-status-dot").find("span").addClass("tekoop");  
+            $("#carstatus-input").val("tekoop");
+
+            $.post("/wp-content/plugins/dds-dashboard/templates/dash-ajax.php",
+            {
+              dashpoststatus: "tekoop",
+              postid: $(this).find("option").attr("data-post-id")
+            },
+            function(data,status){
+              console.log(data + status);
+            });
+    
+    
+          }
+          if(opt == "gereserveerd"){
+            $(this).prev(".dash-post-status-dot").find("span").removeClass();
+            $(this).prev(".dash-post-status-dot").find("span").addClass("gereserveerd");
+            $("#carstatus-input").val("gereserveerd");
+
+            $.post("/wp-content/plugins/dds-dashboard/templates/dash-ajax.php",
+            {
+              dashpoststatus: "gereserveerd",
+              postid: $(this).find("option").attr("data-post-id")
+            },
+            function(data,status){
+              console.log(data + status);
+            });
+          }
+          if(opt == "verkocht"){
+            $(this).prev(".dash-post-status-dot").find("span").removeClass();
+            $(this).prev(".dash-post-status-dot").find("span").addClass("verkocht");
+            $("#carstatus-input").val("verkocht");
+
+            $.post("/wp-content/plugins/dds-dashboard/templates/dash-ajax.php",
+            {
+              dashpoststatus: "verkocht",
+              postid: $(this).find("option").attr("data-post-id")
+            },
+            function(data,status){
+              console.log(data + status);
+            });
+          }
+      });
+
+    
     $("#cardescription-input").trumbowyg();
 
     $("#publish").on("click",function(){
@@ -50,38 +155,7 @@
 
       });
       
-      $("#archief_switch").on("click",function(){
-        if($("#archief_switch").prop('checked')){
-            $("#car_post_status_id").val("Actief");
-        }
-        else{
-            $("#car_post_status_id").val("Archief");
-            $("#sync_switch").trigger("click");
-        }
-      });
-      
-      $("#sync_switch").on("click",function(){
-        if($("#sync_switch").prop('checked')){
-            $("#carsync-input").val("NO");
-        }
-        else{
-            $("#carsync-input").val("YES");
-        }
-      });
 
-      $("#verkocht_switch").on("click",function(){
-        if($("#verkocht_switch").prop('checked')){
-            $("#carstatus-input").val("VERKOCHT");
-            if($("#sync_switch").prop('checked') == false){
-                $("#sync_switch").trigger("click");
-            }
-            
-           
-        }
-        else{
-            $("#carstatus-input").val("ACTIEF");
-        }
-      });
     
 });
 

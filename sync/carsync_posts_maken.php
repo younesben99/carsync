@@ -68,7 +68,7 @@ function carsync_posts_maken(){
                 if($synctrue == 'YES'){
                     //is gesynct en uniqid is niet terug te vinden in de api
                     //archiveren
-                    update_post_meta($post->ID, '_car_post_status_key', 'Archief');
+                    update_post_meta($post->ID, '_car_post_status_key', 'archief');
                     update_post_meta($post->ID, '_car_sync_key', 'NO');
                 }
 
