@@ -4,10 +4,10 @@
 CRON JOB CONFIGUREREN
 */
 function my_cron_schedules($schedules){
-    if(!isset($schedules["15min"])){
-        $schedules["15min"] = array(
-            'interval' => 1000*60,
-            'display' => __('Once every 15 minuten'));
+    if(!isset($schedules["30min"])){
+        $schedules["30min"] = array(
+            'interval' => 1800,
+            'display' => __('Once every 30 minuten'));
     }
     return $schedules;
 }
@@ -15,7 +15,7 @@ add_filter('cron_schedules','my_cron_schedules');
 
 
 if ( ! wp_next_scheduled( 'carsync_data_ophalen_hook' ) ) {
-    wp_schedule_event( time(), 'daily', 'carsync_data_ophalen_hook' );
+    wp_schedule_event( time(), '30min', 'carsync_data_ophalen_hook' );
 }
 
 

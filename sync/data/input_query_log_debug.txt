@@ -1,6 +1,7 @@
-*   Trying 2600:9000:21d7:4c00:12:eb30:2d80:93a1...
+* Hostname in DNS cache was stale, zapped
+*   Trying 2600:9000:21d7:a000:12:eb30:2d80:93a1...
 * TCP_NODELAY set
-* Connected to listing-search.api.autoscout24.com (2600:9000:21d7:4c00:12:eb30:2d80:93a1) port 443 (#0)
+* Connected to listing-search.api.autoscout24.com (2600:9000:21d7:a000:12:eb30:2d80:93a1) port 443 (#0)
 * ALPN, offering http/1.1
 * Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
 * successfully set certificate verify locations:
@@ -19,24 +20,24 @@ Host: listing-search.api.autoscout24.com
 Accept: */*
 Content-Type: application/json
 Authorization: Basic YmUtMjE0MjA4NzIxNTpsNjYwb3JMOWVUNHdLRUhKYUpMeXlYcjhadm1ZckI=
-Content-Length: 3319
+Content-Length: 3345
 Expect: 100-continue
 
 < HTTP/1.1 100 Continue
 * We are completely uploaded and fine
 < HTTP/1.1 200 OK
 < Content-Type: application/json
-< Content-Length: 425942
+< Content-Length: 386325
 < Connection: keep-alive
 < Vary: Accept-Encoding
-< Date: Thu, 28 Jan 2021 17:18:07 GMT
-< access-control-allow-origin: *
+< Date: Mon, 01 Feb 2021 18:27:28 GMT
+< Access-Control-Allow-Origin: *
 < costs: 299502
 < remaining: 500000
-< vary: Accept-Encoding
+< Vary: Accept-Encoding
 < X-Cache: Miss from cloudfront
-< Via: 1.1 d78b645a0212e56f1a04609bf83554e4.cloudfront.net (CloudFront)
+< Via: 1.1 78d8604061740cf37281a862360cef5d.cloudfront.net (CloudFront)
 < X-Amz-Cf-Pop: BRU50-C1
-< X-Amz-Cf-Id: Rh3wGSarSOHXhaqW6hBzMa4_4FVArKp3JZszsDvyBb1fdcmeC-zxPw==
+< X-Amz-Cf-Id: 4iI_4b_92TfC3ddiHaN787BK1MYLTn9TGjNY7OCdZ6Knh2ltYZEWzA==
 < 
 * Connection #0 to host listing-search.api.autoscout24.com left intact

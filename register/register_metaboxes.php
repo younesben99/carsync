@@ -204,7 +204,7 @@
     }
 </style>
 
-<div style="display:flex;flex-direction:row;justify-content: center;">
+<div class="statusflex">
     
 
 <div class="selectwrapper">
@@ -516,6 +516,9 @@
         $gallery_data = get_post_meta( $post->ID, 'mgop_mb_galerij', true );
 ?>
 
+<label for="carwagentitel-input">Wagentitel</label>
+<input type="text" name="carwagentitel-input" id="carwagentitel-input" value="<?php echo $value_wagentitel ?>" />
+
 <input type="hidden" name="merkcf-input" id="merkcf-input" value="<?php echo $value_merkcf ?>" />
 <input type="hidden" name="modelcf-input" id="modelcf-input" value="<?php echo $value_modelcf ?>" />
 <div style="display:flex;flex-direction:column;">
@@ -528,9 +531,6 @@
     <select name="carmodel-input" id="carmodel-input">
         <option selected disabled><?php echo($value_model); ?></option>
     </select>
-
-    <label for="carwagentitel-input">Wagentitel</label>
-    <input type="text" name="carwagentitel-input" id="carwagentitel-input" value="<?php echo $value_wagentitel ?>" />
 
     <label for="cardescription-input">Beschrijving</label>
     <textarea type="text" name="cardescription-input" rows="4"

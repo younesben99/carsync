@@ -3,7 +3,17 @@
 
 require_once( __DIR__ . '/carsync_posts_maken.php');
 
+
+
+
 function carsync_data_ophalen(){
+
+$AS_API_OPT = get_option("dds_settings_option_name");
+$AS_API = $AS_API_OPT['autoscout_graphql_api_key_0'];
+$AS_CUSTOMER_ID = $AS_API_OPT['autoscout_customer_id_1'];
+
+if(!empty($AS_API) && !empty($AS_CUSTOMER_ID)){
+
 //FILES
 $debugfile = "/carsync/sync/data/input_query_log_debug.txt";
 $errorfilepath = "/carsync/sync/data/input_query_log_error.txt";
@@ -13,9 +23,9 @@ $inputqueryfilepath = "/carsync/sync/data/input_query.json";
 $inputquerylog = "/carsync/sync/data/input_query_log.txt";
 //ENDFILES
 $endpoint = "https://listing-search.api.autoscout24.com/graphql";
-$authToken = "Basic YmUtMjE0MjA4NzIxNTpsNjYwb3JMOWVUNHdLRUhKYUpMeXlYcjhadm1ZckI=";
+$authToken = "Basic ".$AS_API;
 
-$qry = '{"query":"query ListingsSummaryQuery { search { listings(metadata: {page: 1, size: 100}) { metadata { totalCount: totalItems pageSize } listings { id details(locale: nl_BE) { publication { state changedTimestamp changedTimestampWithOffset createdTimestamp createdTimestampWithOffset } description vehicle { classification { make { raw formatted } model { raw formatted } modelVersionInput } environment { environmentLabels { norm label } } engine { power { kw { raw formatted } hp { raw formatted } } numberOfGears numberOfCylinders engineDisplacementInCCM { raw formatted } transmissionType { raw formatted } driveTrain { raw formatted } } fuels { primary { type { raw formatted } consumption { combined { raw } urban { raw } extraUrban { raw } } co2emissionInGramPerKm { raw formatted } } additional { type { raw formatted } consumption { combined { raw } urban { raw } extraUrban { raw } } co2emissionInGramPerKm { raw formatted } } allFuelTypes { raw formatted } fuelCategory { raw formatted } } numberOfDoors emptyWeight { raw formatted } bodyColorOriginal maintenance { nextVehicleSafetyInspection { raw formatted } lastBeltServiceDate { raw formatted } hasFullServiceHistory { raw formatted } lastTechnicalServiceDate { raw formatted } } condition { firstRegistrationDate { raw formatted } mileageInKm { raw formatted } carpassMileageUrl numberOfPreviousOwnersExtended { raw formatted } nonSmoking newInspection damage { accidentFree } } interior { numberOfSeats upholstery { raw formatted } upholsteryColor { raw formatted } } equipment { as24 { id { raw formatted } category { formatted } } dat { oem { id text type as24TaxonomyId } generic { id text type as24TaxonomyId } } eurotax { oem { id text type as24TaxonomyId } generic { id text type as24TaxonomyId } } userInput } identifier { vin licensePlate } manufacturerEquipment { raw formatted } usageState originalMarket { raw formatted } bodyColor { raw formatted } bodyType { raw formatted } paintType { raw formatted } legalCategories { raw formatted } } prices { pricepublic: public { amountInEUR { raw formatted } negotiable taxDeductible taxDeductibleNote category } } availability { fromDate { raw formatted } inDays } financing { rate { raw formatted } finalInstallment { raw formatted } debitInterestKind interest { raw formatted } netCreditAmount { raw formatted } serviceFee { raw formatted } duration { raw formatted } grossCreditAmount { raw formatted } debitInterest { raw formatted } bankId rateInsurance { raw formatted } bank deposit { raw formatted } } warranty { generic { durationInMonth { raw formatted } } warrantyExists } adProduct { title subTitle has360Image tier } media { basicUrl youtubeLink images { ... on StandardImage { formats { png { size60x45 size640x480 } jpg { size1280x960 } } } } } seals { id name culture thumbnail image info } location { countryCode zip city street } seller { id companyName contactName companyNameAddOn email sellId phones { phoneType formattedNumber callTo } addressTypeId addressId links { cars { href method } motorbikes { href method } imprint { href method } email { href method } infoPage { href method } } logo { big { href method } small { href method } } type } ratings { customerCulture urlName ratingsCount ratingsAverage ratingsEnabled } webPage identifier { offerReference } } } } } }"}';
+$qry = '{"query":"query ListingsSummaryQuery { search { listings(metadata: {page: 1, size: 100}, customer: {id: '.$AS_CUSTOMER_ID.'}) { metadata { totalCount: totalItems pageSize } listings { id details(locale: nl_BE) { publication { state changedTimestamp changedTimestampWithOffset createdTimestamp createdTimestampWithOffset } description vehicle { classification { make { raw formatted } model { raw formatted } modelVersionInput } environment { environmentLabels { norm label } } engine { power { kw { raw formatted } hp { raw formatted } } numberOfGears numberOfCylinders engineDisplacementInCCM { raw formatted } transmissionType { raw formatted } driveTrain { raw formatted } } fuels { primary { type { raw formatted } consumption { combined { raw } urban { raw } extraUrban { raw } } co2emissionInGramPerKm { raw formatted } } additional { type { raw formatted } consumption { combined { raw } urban { raw } extraUrban { raw } } co2emissionInGramPerKm { raw formatted } } allFuelTypes { raw formatted } fuelCategory { raw formatted } } numberOfDoors emptyWeight { raw formatted } bodyColorOriginal maintenance { nextVehicleSafetyInspection { raw formatted } lastBeltServiceDate { raw formatted } hasFullServiceHistory { raw formatted } lastTechnicalServiceDate { raw formatted } } condition { firstRegistrationDate { raw formatted } mileageInKm { raw formatted } carpassMileageUrl numberOfPreviousOwnersExtended { raw formatted } nonSmoking newInspection damage { accidentFree } } interior { numberOfSeats upholstery { raw formatted } upholsteryColor { raw formatted } } equipment { as24 { id { raw formatted } category { formatted } } dat { oem { id text type as24TaxonomyId } generic { id text type as24TaxonomyId } } eurotax { oem { id text type as24TaxonomyId } generic { id text type as24TaxonomyId } } userInput } identifier { vin licensePlate } manufacturerEquipment { raw formatted } usageState originalMarket { raw formatted } bodyColor { raw formatted } bodyType { raw formatted } paintType { raw formatted } legalCategories { raw formatted } } prices { pricepublic: public { amountInEUR { raw formatted } negotiable taxDeductible taxDeductibleNote category } } availability { fromDate { raw formatted } inDays } financing { rate { raw formatted } finalInstallment { raw formatted } debitInterestKind interest { raw formatted } netCreditAmount { raw formatted } serviceFee { raw formatted } duration { raw formatted } grossCreditAmount { raw formatted } debitInterest { raw formatted } bankId rateInsurance { raw formatted } bank deposit { raw formatted } } warranty { generic { durationInMonth { raw formatted } } warrantyExists } adProduct { title subTitle has360Image tier } media { basicUrl youtubeLink images { ... on StandardImage { formats { png { size60x45 size640x480 } jpg { size1280x960 } } } } } seals { id name culture thumbnail image info } location { countryCode zip city street } seller { id companyName contactName companyNameAddOn email sellId phones { phoneType formattedNumber callTo } addressTypeId addressId links { cars { href method } motorbikes { href method } imprint { href method } email { href method } infoPage { href method } } logo { big { href method } small { href method } } type } ratings { customerCulture urlName ratingsCount ratingsAverage ratingsEnabled } webPage identifier { offerReference } } } } } }"}';
 
 $headers = array();
 $headers[] = 'Content-Type: application/json';
@@ -36,7 +46,6 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 //DEBUG
 curl_setopt($ch, CURLOPT_VERBOSE, true);
 curl_setopt($ch, CURLOPT_STDERR, fopen(WP_PLUGIN_DIR . $debugfile, "w+"));
-
 
 
 
@@ -95,6 +104,8 @@ if (curl_errno($ch)) {
 }
 
 curl_close($ch);
+}
+
 
 }
 

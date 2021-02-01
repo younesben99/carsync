@@ -70,6 +70,7 @@ function carsync_posts_maken(){
                     //archiveren
                     update_post_meta($post->ID, '_car_post_status_key', 'archief');
                     update_post_meta($post->ID, '_car_sync_key', 'NO');
+                    update_post_meta($post->ID, '_car_status_key', 'verkocht');
                 }
 
                 
