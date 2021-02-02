@@ -1,6 +1,5 @@
 <?php
 /*
-
 CRON JOB CONFIGUREREN
 */
 function my_cron_schedules($schedules){
@@ -12,14 +11,8 @@ function my_cron_schedules($schedules){
     return $schedules;
 }
 add_filter('cron_schedules','my_cron_schedules');
-
 add_action( 'carsync_data_ophalen_hook', 'carsync_data_ophalen' ,1);
-
 if ( ! wp_next_scheduled( 'carsync_data_ophalen_hook' ) ) {
     wp_schedule_event( time(), '30min', 'carsync_data_ophalen_hook' );
 }
-
-
-
-
-?>  
+?>
