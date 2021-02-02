@@ -745,41 +745,66 @@
                 $syncimagesarray = get_post_meta( $post->ID, '_car_syncimages_key', true );
     
                 foreach($syncimagesarray as $img){
-                    include_once( ABSPATH . 'wp-admin/includes/image.php' );
-                    $imageurl = $img;
-                    $postitle = get_string_between($imageurl,"_",".jpg/");
+                    // include_once( ABSPATH . 'wp-admin/includes/image.php' );
+                    // $imageurl = $img;
+                    // $postitle = get_string_between($imageurl,"_",".jpg/");
                     
-                    //$imageurl = str_replace('https://', 'http://', $imageurl); 
+                    
 
-                    $imagetype = end(explode('/', getimagesize($imageurl)['mime']));
-                    $uniq_name = date('dmY').''.(int) microtime(true); 
-                    $filename = $uniq_name.'.'.$imagetype;
+                    // $imagetype = end(explode('/', getimagesize($imageurl)['mime']));
+                    // $uniq_name = date('dmY').''.(int) microtime(true); 
+                    // $filename = $uniq_name.'.'.$imagetype;
                 
-                    $uploaddir = wp_upload_dir();
-                    $uploadfile = $uploaddir['path'] . '/' . $filename;
-                    $contents= file_get_contents($imageurl);
-                    $savefile = fopen($uploadfile, 'w');
-                    fwrite($savefile, $contents);
-                    fclose($savefile);
+                    // $uploaddir = wp_upload_dir();
+                    // $uploadfile = $uploaddir['path'] . '/' . $filename;
+                    // $contents= file_get_contents($imageurl);
+                    // $savefile = fopen($uploadfile, 'w');
+                    // fwrite($savefile, $contents);
+                    // fclose($savefile);
                 
-                    $wp_filetype = wp_check_filetype(basename($filename), null );
-                    $attachment = array(
-                        'post_mime_type' => $wp_filetype['type'],
-                        'post_title' => $postitle,
-                        'post_content' => '',
-                        'post_status' => 'inherit'
-                    );
+                    // $wp_filetype = wp_check_filetype(basename($filename), null );
+                    // $attachment = array(
+                    //     'post_mime_type' => $wp_filetype['type'],
+                    //     'post_title' => $postitle,
+                    //     'post_content' => '',
+                    //     'post_status' => 'inherit'
+                    // );
                 
-                    $attach_id = wp_insert_attachment( $attachment, $uploadfile );
-                    $imagenew = get_post( $attach_id );
-                    $fullsizepath = get_attached_file( $imagenew->ID );
-                    $attach_data = wp_generate_attachment_metadata( $attach_id, $fullsizepath );
-                    wp_update_attachment_metadata( $attach_id, $attach_data ); 
-                    array_push($imgtoadd,$attach_id);
+                    // $attach_id = wp_insert_attachment( $attachment, $uploadfile );
+                    // $imagenew = get_post( $attach_id );
+                    // $fullsizepath = get_attached_file( $imagenew->ID );
+                    // $attach_data = wp_generate_attachment_metadata( $attach_id, $fullsizepath );
+                    // wp_update_attachment_metadata( $attach_id, $attach_data ); 
+                    // array_push($imgtoadd,$attach_id);
+                    $image = "";
+                    if($img != "") {
+                    
+                        $file = array();
+                        $file['name'] = $img;
+                        $file['tmp_name'] = download_url($img);
+                
+                        if (is_wp_error($file['tmp_name'])) {
+                            @unlink($file['tmp_name']);
+                            var_dump( $file['tmp_name']->get_error_messages( ) );
+                        } else {
+                            $attachmentId = media_handle_sideload($file, $post_id);
+                            
+                            if ( is_wp_error($attachmentId) ) {
+                                @unlink($file['tmp_name']);
+                                var_dump( $attachmentId->get_error_messages( ) );
+                            } else {                
+                                $image = wp_get_attachment_url( $attachmentId );
+                                array_push($imgtoadd,$attachmentId);
+                            }
+                        }
+                    }
+                
                 }
             }
         }
-        
+       
+            
+       
         if(isset($_POST["carsyncimages-input"])){
             update_post_meta($post->ID, '_car_syncimages_key', $_POST["carsyncimages-input"]);
         }
