@@ -1,6 +1,6 @@
-*   Trying 2600:9000:206f:ec00:12:eb30:2d80:93a1...
+*   Trying 2600:9000:21d7:8000:12:eb30:2d80:93a1...
 * TCP_NODELAY set
-* Connected to listing-search.api.autoscout24.com (2600:9000:206f:ec00:12:eb30:2d80:93a1) port 443 (#0)
+* Connected to listing-search.api.autoscout24.com (2600:9000:21d7:8000:12:eb30:2d80:93a1) port 443 (#0)
 * ALPN, offering http/1.1
 * Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
 * successfully set certificate verify locations:
@@ -26,17 +26,17 @@ Expect: 100-continue
 * We are completely uploaded and fine
 < HTTP/1.1 200 OK
 < Content-Type: application/json
-< Content-Length: 366545
+< Content-Length: 382801
 < Connection: keep-alive
 < Vary: Accept-Encoding
-< Date: Tue, 02 Feb 2021 20:58:38 GMT
+< Date: Thu, 04 Feb 2021 17:31:13 GMT
 < Access-Control-Allow-Origin: *
 < costs: 299502
 < remaining: 500000
 < Vary: Accept-Encoding
 < X-Cache: Miss from cloudfront
-< Via: 1.1 43c19aee1cbb38bf37ea4d5265ba1f54.cloudfront.net (CloudFront)
-< X-Amz-Cf-Pop: FRA56-C1
-< X-Amz-Cf-Id: B36g4IlHYpkxDVJ7jRcITBcH9UgInWzXfnLl8sf_KX0cGRu6niH2-g==
+< Via: 1.1 d04998a67c7a3fb6819bd5fdd0bbe125.cloudfront.net (CloudFront)
+< X-Amz-Cf-Pop: BRU50-C1
+< X-Amz-Cf-Id: jEpWQ9PznDXzcFQtTXuWPO_4wwovOk3cPN33dT-s2BOhXAhJt7pyJQ==
 < 
 * Connection #0 to host listing-search.api.autoscout24.com left intact
