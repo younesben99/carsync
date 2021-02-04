@@ -21,7 +21,7 @@ require_once( __DIR__ . '/sync/carsync_data_ophalen.php');
 require_once( __DIR__ . '/sync/create_post_by_uniq_id.php');
 include_once( __DIR__ . '/register/register_admin_toolbar_links.php');
 
-
+//s
 function add_admin_scripts( $hook ) {
 
     global $post;
