@@ -101,5 +101,7 @@ function get_string_between($string, $start, $end){
     }
     
    
-
+function pak_veld($key){
+    return get_post_meta(get_the_ID(),$key, TRUE);
+}
 ?>
