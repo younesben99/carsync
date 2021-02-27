@@ -4,11 +4,13 @@
     text-align: center;
     margin: 9px;
     cursor: move;
-  }
-  .misc-pub-post-status{
-   /*display:none;*/
-  }
-  .gallerycontrols {
+}
+
+.misc-pub-post-status {
+    /*display:none;*/
+}
+
+.gallerycontrols {
     background: white;
     color: black;
     position: absolute;
@@ -24,16 +26,18 @@
     font-weight: bold;
     box-shadow: 0px 1px 2px #0000005c;
 }
-.gallerycontrols .remove-image{
-    color:white;
-  
-        font-size:5px;
-       
-}.gallerycontrols .emoji{
-    font-size:10px;
-    }
-    .swal2-title {
-        font-size: 1.175em !important;
-    }
 
-   
+.gallerycontrols .remove-image {
+    color: white;
+
+    font-size: 5px;
+
+}
+
+.gallerycontrols .emoji {
+    font-size: 10px;
+}
+
+.swal2-title {
+    font-size: 1.175em !important;
+}

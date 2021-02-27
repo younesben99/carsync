@@ -1,0 +1,404 @@
+html{
+    scroll-behavior: smooth;
+}
+.sp_top_wrap {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 3%;
+}
+.breadcrumbs{
+display:none;
+}
+.posttitle h1 {
+    font-size: 25px;
+}
+.carpass_traxio_garantie_check li {
+    display: inline-block;
+    margin-right:10px;
+}
+.carpass_traxio_garantie_check ul {
+    margin:0;
+    padding:0;
+    margin-bottom:75px;
+}
+.carpass_traxio_garantie_check a {
+    color:black;
+    text-decoration:underline;
+}
+.carpass_traxio_garantie_check svg.feather.feather-check {
+    height: 15px;
+    width: 15px;
+    margin-right: 9px;
+    margin-bottom: -2px;   
+}
+svg.feather.feather-repeat,svg.feather.feather-calendar,svg.feather.feather-share {
+    height: 15px;
+    width: 15px;
+    margin-right: 9px;
+    margin-bottom: -2px;
+    
+}
+.opties svg.feather.feather-check {
+    height: 15px;
+    width: 15px;
+    margin-right: 9px;
+    margin-bottom: -2px;
+    stroke-width: 4px;
+}
+.sp_spec_wrap {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 5px;
+    border-bottom: 1px solid #e6e6e6;
+    width: 45%;
+}
+.sp_spec_label{
+    font-weight:600;
+}
+.sp_mid {
+    width: 60%;
+}
+.sp_specificaties {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom:75px;
+}
+.spechead h2{
+font-size:20px;
+}
+.opties h3 {
+    font-size: 16px;
+}
+.optie {
+    padding: 5px 0;
+}
+.toonmeer {
+    padding: 8px;
+    margin: 10px 0;
+    background: #ffffff;
+    color: #1f1f1f;
+    max-width: 150px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #b1b1b1;
+    cursor:pointer;
+}
+.hiddenoption{
+    display:none;
+}
+.optionwrap.opties {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.optcontrol {
+    width: 50%;
+}
+.optionwrap {
+    margin-bottom: 75px;
+}
+.sp_desc_wrap {
+    max-height: 300px;
+    overflow: hidden;
+}
+.fulldesc {
+    max-height: unset !important;
+    overflow: unset !important;
+    transition:0.4s;
+}
+.toondesc{
+    padding: 8px;
+    margin: 10px 0;
+    background: #ffffff;
+    color: #1f1f1f;
+    max-width: 150px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #b1b1b1;
+    cursor: pointer;
+}
+.rel_card_wrap {
+    overflow: hidden;
+    border-radius: 10px;
+    padding-bottom: 20px;
+    box-shadow: 0px 1px 2px gainsboro;
+    border: 1px solid #f3f3f3;
+    
+}
+.rel_card_wrap h2 {
+    font-size: 19px;
+    padding: 0px 15px;
+}
+.rel_card_wrap p {
+    padding: 0px 15px;
+}
+.rel_price {
+    padding: 0px 15px;
+    font-size: 15px;
+}
+.rel_list {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 15px;
+}
+
+.rel_bekijk {
+    padding: 8px 25px;
+    border: 0;
+    margin: 0 15px 0;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 30px;
+    
+}
+
+.sp_description {
+    margin-bottom: 75px;
+}
+.rel_list div {
+    background: #f9f9f9;
+    padding: 5px 15px;
+    border-radius: 7px;
+    color: #525252;
+    font-size: 13px;
+    margin: 0 5px 0 0;
+}
+.relhead {
+    margin-bottom: 35px;
+}
+.splide__list{
+    align-items: center;
+}
+.sp_sticky_nav{
+    width:40%;
+}
+.sp_mid_wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+.sp_sticky {
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgb(218 218 218);
+    box-shadow: rgb(0 0 0 / 11%) 0px 6px 16px;
+    width: 80%;
+    margin: auto;
+    position: sticky;
+    top: 100px;
+}
+.sp_sticky_beschikbaarheid {
+    padding: 15px 0;
+    margin: 15px 0;
+    color: white;
+    text-align: center;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor:pointer;
+}
+.sp_sticky_beschikbaarheid:hover {
+    opacity:0.8;
+    transition: all 0.3s ease;
+}
+
+.sp_sticky_prijs {
+    font-size: 36px;
+    color: black;
+    border-bottom: 1px solid #dadada;
+    margin-bottom: 20px;
+    padding-bottom:20px;
+}
+.sp_sticky_vergelijken {
+    margin: 10px 0;
+}
+
+.sp_sticky_prijs_status_wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom: 15px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #dadada;
+}
+.sp_sticky_status {
+    width: 200px;
+    text-align: center;
+    padding: 10px 0;
+    background: #00b362;
+    color: white;
+    border-radius: 7px;
+}
+.sp_sticky_beschikbaarheid {
+    width: 48%;
+}
+.sp_sticky_telefoneren {
+    padding: 13px 0;
+    background: #ffffff;
+    margin: 15px 0;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 48%;
+    text-align: center;
+}
+.sp_sticky_contact_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.sp_sub_nav{
+    margin:20px 0;display:flex;padding: 0 5px;justify-content:space-between;align-items:center;
+}
+.sp_delen{
+    display:flex;
+    align-items:center;
+}
+.sp_bottom_sticky_nav {
+    position: fixed;
+    top: 0;
+    background: white;
+    border-bottom: 1px solid #ececec; 
+    width: 100%;
+    z-index: 2;
+}
+.sp_sticky_nav_dekstop {
+    max-width: 1200px;
+    margin: 25px auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.sp_sticky_nav_dekstop div{
+    margin-right:30px;
+}
+.sp_bottom_sticky_nav{
+    display:none;
+}
+.splide__arrow,button.splide__pagination__page{
+    background-color: white !important;
+}
+.rel_bekijkstock {
+    text-align: center;
+    color: white !important;
+    width: 90% !important;
+    height: 45px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 0px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sp_sticky_top_nav_item{
+    color:rgb(56, 56, 56);
+    text-decoration:none;
+}
+.sp_sticky_top_nav_item:visited{
+    color:rgb(56, 56, 56);
+}
+.sp_sticky_oudeprijs {
+    text-decoration: line-through;
+    font-size: 21px;
+    color: #929292;
+}
+.deellijst {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid rgb(218 218 218);
+    box-shadow: rgb(0 0 0 / 11%) 0px 6px 16px;
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 160px;
+    
+}
+.deellijst_wrap {
+    display:none;
+}
+.sp_delen{
+    cursor:pointer;
+}
+.sp_bottom_sticky_nav {
+    padding: 0 3%;
+}
+.deellijst div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@media only screen and (max-width: 1150px) {
+    .sp_sticky_contact_wrap {
+        flex-direction: column;
+    }
+    .sp_sticky_beschikbaarheid, .sp_sticky_telefoneren {
+        width: 100%;
+    }
+    .sp_sticky_telefoneren {
+        margin: 0;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .sp_mid_wrap {
+        flex-direction: column;
+    }
+    .sp_mid {
+        width: 100%;
+    }
+    .sp_sticky_nav {
+        width: 100%;    
+        margin-bottom: 100px;
+    }
+    
+    .sp_bottom_sticky_nav{
+        display:none !important;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .sp_spec_wrap {
+        width: 100%;
+    }
+    .optcontrol {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.popin {
+    position: absolute;
+    animation: popin 0.2s ease;
+    -webkit-animation: popin 0.2s ease;
+    display:block;
+    z-index: 1;
+}
+@keyframes popin {
+    from{transform:scale(0)}
+    80%{transform:scale(1.2)}
+    to{transform:scale(1)}
+}
+@-webkit-keyframes popin {
+    from{-webkit-transform:scale(0)}
+    80%{-webkit-transform:scale(1.2)}
+    to{-webkit-transform:scale(1)}
+}
