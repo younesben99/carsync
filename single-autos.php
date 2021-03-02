@@ -28,10 +28,12 @@ include(__DIR__."/templates/template_sp_vars.php");
 
 include(__DIR__."/templates/template_sp_custom_css.php");
 
-include(__DIR__."/templates/template_sp_top_sticky_nav.php");
+include(__DIR__."/templates/template_sp_popups.php");
 
+include(__DIR__."/templates/template_sp_sticky_mobile_nav.php");
+
+include(__DIR__."/templates/template_sp_sticky_mobile_nav.php");
 ?>
-
 
 
 
@@ -100,6 +102,6 @@ if($sp_chosen_type == "grid"){
 
 
 <script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_single.js';?>"></script>
-
+<script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_contact.js';?>"></script>
 
 <?php get_footer(); ?>

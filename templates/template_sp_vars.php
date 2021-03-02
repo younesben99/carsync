@@ -41,7 +41,11 @@ $sp_hover_color = $dds_settings_options['hover_color'];
 $sp_shortcode_troeven = $dds_settings_options['troeven_shortcode'];
 
 $sp_locatie = $dds_settings_options['dealer_adres_9'];
+$sp_locatie_link = $dds_settings_options['sp_locatie_link'];
 $sp_telnr = $dds_settings_options['dealer_tel_1_10'];
+
+$sp_telnr_formatted = str_replace(' ', '', $sp_telnr);
+
 $sp_contactmail = $dds_settings_options['dealer_contact_mail'];
 
 

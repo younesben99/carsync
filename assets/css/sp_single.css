@@ -31,10 +31,10 @@ display:none;
     margin-right: 9px;
     margin-bottom: -2px;   
 }
-svg.feather.feather-repeat,svg.feather.feather-calendar,svg.feather.feather-share {
+svg.feather.feather-phone, svg.feather.feather-mail, svg.feather.feather-repeat,svg.feather.feather-calendar,svg.feather.feather-share,svg.feather.feather-map-pin {
     height: 15px;
     width: 15px;
-    margin-right: 9px;
+    margin-right: 3px;
     margin-bottom: -2px;
     
 }
@@ -129,13 +129,18 @@ font-size:20px;
 .rel_card_wrap h2 {
     font-size: 19px;
     padding: 0px 15px;
+    margin: 20px 0 5px 0;
 }
 .rel_card_wrap p {
     padding: 0px 15px;
 }
 .rel_price {
     padding: 0px 15px;
-    font-size: 15px;
+    font-size: 20px;
+    
+}
+.rel_card_wrap h2{
+    margin: 20px 0 5px 0;
 }
 .rel_list {
     display: flex;
@@ -144,12 +149,10 @@ font-size:20px;
 }
 
 .rel_bekijk {
-    padding: 8px 25px;
     border: 0;
     margin: 0 15px 0;
     border-radius: 5px;
     color: white;
-    padding: 10px 30px;
     
 }
 
@@ -193,7 +196,7 @@ font-size:20px;
     color: white;
     text-align: center;
     border-radius: 7px;
-    font-size: 16px;
+    font-size: 15px;
     cursor:pointer;
 }
 .sp_sticky_beschikbaarheid:hover {
@@ -236,7 +239,7 @@ font-size:20px;
     background: #ffffff;
     margin: 15px 0;
     border-radius: 7px;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     width: 48%;
     text-align: center;
@@ -284,10 +287,10 @@ font-size:20px;
     height: 45px;
     border-radius: 5px;
     text-decoration: none;
-    margin: 0px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20px 12px 0;
 }
 .sp_sticky_top_nav_item{
     color:rgb(56, 56, 56);
@@ -330,6 +333,134 @@ font-size:20px;
     justify-content: space-between;
     align-items: center;
 }
+.sp_locatie a {
+    text-decoration: none;
+    color:black;
+}
+.sp_sticky_mobile_nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    justify-content: space-between;
+}
+.smv_wrap {
+    text-align: center;
+    width: 33%;
+    margin: 10px;
+    color: black;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+}
+
+.sp_smv_mail {
+    background: rgb(13, 148, 42);
+    color: white;
+}
+.sp_contact_pop_wrap{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    
+    background: whitesmoke;
+    z-index: 100;
+    display: none;
+    opacity:0;
+    bottom: -100vh;
+    left: 0;
+}
+.sp_contact_pop {
+    width: 80%;
+    margin: auto;
+}
+.sp_contact_pop {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 80%;
+}
+.sp_contact_pop input[type="text"] {
+    width: 400px;
+    margin-bottom: 15px;
+    padding: 10px;
+    outline: 0;
+    border:0;
+    box-shadow:rgb(45 45 45 / 16%) 0px 1px 2px 0px, rgb(238 238 238) 0px 0px 0px 1px;
+    
+}
+.sp_contact_pop h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 35px;
+    font-weight: 400;
+}
+.sp_pop_wagentitel{
+    margin-bottom: 20px;
+    font-weight: 300;
+    color: #757575;
+}
+.sp_contact_pop textarea {
+    width: 400px;
+    max-width:400px;
+    min-width:400px;
+    margin-bottom: 15px;
+    padding: 10px;
+    resize: vertical; 
+    min-height:80px;
+max-height: 200px;
+border:0;
+box-shadow:rgb(45 45 45 / 16%) 0px 1px 2px 0px, rgb(238 238 238) 0px 0px 0px 1px;
+outline: 0;
+}
+button#sp_contact_versturen {
+    border: 0;
+    color: white;
+    width: 200px;
+    height: 45px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+}
+.contactsluiten{
+    position: absolute;
+    right: 50px;
+    top:25px
+}
+.sluiten {
+    padding: 10px 0px;
+    border-radius: 5px;
+    color: #151515;
+    border: 1px solid transparent;
+    background: white;
+    width: 160px;
+    display: flex;
+    align-items: center;
+    height: 35px;
+    justify-content: center;
+    background: white;
+    color: dimgrey;
+    font-size: 13px;
+    border: 1px solid #adadad;
+    width: 115px;
+    cursor:pointer;
+}
+.sp_sticky_telefoneren{
+    text-decoration: none !important;
+}
+
 @media only screen and (max-width: 1150px) {
     .sp_sticky_contact_wrap {
         flex-direction: column;
@@ -344,6 +475,9 @@ font-size:20px;
 
 
 @media only screen and (max-width: 800px) {
+    .sp_sticky_mobile_nav {
+        display: flex;
+    }
     .sp_mid_wrap {
         flex-direction: column;
     }
@@ -367,8 +501,42 @@ font-size:20px;
     .optcontrol {
         width: 100%;
     }
+    .sp_contact_pop textarea {
+      
+        margin-bottom: 15px;
+        padding: 10px;
+        width: 100%;
+    max-width:100%;
+    min-width:100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    resize: vertical; 
+    min-height:80px;
+max-height: 200px;
+    }
+    .sp_contact_pop input[type="text"]{
+      
+        width: 100%;
+    }
+    .sp_contact_pop {
+        height: 100%;
+    }
+    .sp_contact_pop h2 {
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+    button#sp_contact_versturen {
+        width: 100%;
+    }.contactsluiten {
+        right: 10%;
+    }
 }
 
+@media only screen and (max-width: 350px) {
+    .smv_text{
+        display:none;
+    }
+}
 
 
 

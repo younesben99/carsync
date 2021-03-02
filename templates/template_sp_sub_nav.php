@@ -9,9 +9,16 @@ echo $wagentitel;
     </h1>
     <div class="sp_sub_nav">
         <div class="sp_locatie">
+        <i data-feather="map-pin"></i>
+        <a href="
+        <?php
+            echo($sp_locatie_link);
+        ?>
+        " target="_blank">
             <?php
 echo($sp_locatie);
 ?>
+</a>
         </div>
 
         <div>

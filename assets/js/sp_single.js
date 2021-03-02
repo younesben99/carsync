@@ -80,5 +80,25 @@ jQuery(document).ready(function(){
         e.stopPropagation();
     });
 
+    jQuery(".contactpop,.sp_smv_mail").on("click",function(){
+        
+        jQuery(".sp_contact_pop_wrap").show();
+        jQuery(".sp_contact_pop_wrap").animate({
+                        'opacity': '1',
+                        'bottom': 0
+        }, 300);
+
+    });
+    jQuery(".sp_contact_pop_wrap,.contactsluiten").on('click', function (e) {
+        jQuery(".sp_contact_pop_wrap").animate({
+            'opacity': '0',
+            'bottom': '-100vh'
+        }, 300);
+        setTimeout(function () {
+            jQuery(".sp_contact_pop_wrap").hide();
+        }, 300);
+    }).on('click', 'div', function (e) {
+        e.stopPropagation();
+    });
 
 });
