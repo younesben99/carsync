@@ -61,7 +61,7 @@ if($_POST['sp_testrit'] == "sp_testrit"){
     
         $dds_settings_options = get_option( 'dds_settings_option_name' );
         
-        $sp_testritmail = $dds_settings_options['dealer_testrit_mail'];
+        $sp_contactmail = $dds_settings_options['dealer_contact_mail'];
      
         $name = $_POST['sp_testrit_name'];
         $email = $_POST['sp_testrit_mail'];
@@ -79,7 +79,7 @@ if($_POST['sp_testrit'] == "sp_testrit"){
         $message .= "Datum: ". $testrit_datum;
         $message .= "<br>Tijdstip: ".$testrit_tijdstip . " u";
 
-        $to = $sp_testritmail;
+        $to = $sp_contactmail;
         $subject = "Testrit: " . $wagen;
         $headers = 'From: '. $email . "\r\n" .
             'Reply-To: ' . $email . "\r\n";
