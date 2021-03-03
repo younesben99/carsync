@@ -413,6 +413,9 @@ form.sp_testrit_form {
     padding-top: 50px;
     padding-bottom: 50px;
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 .sp_testrit_pop {
     width: 80%;
@@ -515,14 +518,18 @@ button#sp_testrit_versturen {
     bottom: -100vh;
     left: 0;
 }
-.sp_contact_inner{
-    min-height:100%;
+.sp_contact_inner {
+    min-height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     padding-top: 100px;
     padding-bottom: 50px;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
 }
 .sp_contact_pop {
     width: 80%;
@@ -647,9 +654,7 @@ button#sp_contact_versturen {
     height: 25px;
 }
 @media only screen and (max-width: 1150px) {
-    .sp_contact_pop_wrap{
-        overflow-y: scroll;
-    }
+    
     .sp_sticky_contact_wrap {
         flex-direction: column;
     }
@@ -683,7 +688,17 @@ button#sp_contact_versturen {
     }
 }
 
+@media only screen and (max-height: 1100px) {
+    .sp_testrit_pop_wrap{
+        overflow-y: scroll;
+    }
+    .sp_contact_pop_wrap{
+        overflow-y: scroll;
+    }
+}
 @media only screen and (max-width: 800px) {
+    
+    
     .sp_contact_succes,.sp_testrit_succes{
         width:100%;
     }
