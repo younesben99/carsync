@@ -19,8 +19,8 @@
         ?> !important;
 }
 .sp_sticky_telefoneren {
-    border: 2px solid <?php echo $sp_color; ?>;
-    color: <?php echo $sp_color; ?>;
+    border: 2px solid <?php echo $sp_color; ?> !important;
+    color: <?php echo $sp_color; ?> !important;
 }
 .rel_bekijkstock{
     background-color: <?php echo $sp_color; ?>;
