@@ -24,10 +24,10 @@ echo($sp_locatie);
         <div>
         <div class="deellijst_wrap">
         <div class="deellijst">
-            <div><img src="<?php echo get_site_url(). "/wp-content/plugins/carsync/assets/img/fb.png" ?>" height="15" width="15" />Facebook</div>
-            <div><img src="<?php echo get_site_url(). "/wp-content/plugins/carsync/assets/img/twitter.png" ?>" height="15" width="15" />Twitter</div>
-            <div><img src="<?php echo get_site_url(). "/wp-content/plugins/carsync/assets/img/whatsapp.png" ?>" height="15" width="15" />Whatsapp</div>
-            <div><img src="<?php echo get_site_url(). "/wp-content/plugins/carsync/assets/img/mail.png" ?>" height="15" width="15" />E-mail</div>
+            <div class="deelitem fbshare"><img src="<?php echo get_site_url(). "/wp-content/plugins/carsync/assets/img/fb.png" ?>" height="15" width="15" />Facebook</div>
+            <div class="deelitem twittershare"><img src="<?php echo get_site_url(). "/wp-content/plugins/carsync/assets/img/twitter.png" ?>" height="15" width="15" />Twitter</div>
+            <div class="deelitem whatsappshare"><img src="<?php echo get_site_url(). "/wp-content/plugins/carsync/assets/img/whatsapp.png" ?>" height="15" width="15" />Whatsapp</div>
+            <div class="deelitem mailshare"><img src="<?php echo get_site_url(). "/wp-content/plugins/carsync/assets/img/mail.png" ?>" height="15" width="15" />E-mail</div>
         </div>
         </div>
         

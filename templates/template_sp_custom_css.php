@@ -35,13 +35,13 @@
     color: <?php echo $sp_color; ?>;
     border: 2px solid <?php echo $sp_color; ?>;
 }
-.sp_smv_mail,button#sp_contact_versturen {
+.sp_smv_mail,button#sp_contact_versturen,button#sp_testrit_versturen {
     background: <?php echo $sp_color; ?> !important;
     color: white;
     cursor:pointer;
     outline:0;
 }
-.sp_smv_mail:hover,button#sp_contact_versturen:hover {
+.sp_smv_mail:hover,button#sp_contact_versturen:hover,button#sp_testrit_versturen:hover {
     background: <?php echo($sp_hover_color);?>  !important;
     transition:all 0.4s ease;
 }
@@ -52,5 +52,13 @@
 .sp_smv_call{
     text-decoration: none !important;
     color: <?php echo $sp_color; ?> !important;
+}
+.sp_contact_loading:before,.sp_testrit_loading:before {
+    background: url(<?php echo(get_site_url()); ?>/wp-content/plugins/carsync/assets/img/loading.gif);
+    background-size: cover;
+}
+.sp_sticky_testrit:hover {
+    color: <?php echo $sp_color; ?> !important;
+    cursor: pointer;
 }
 </style>

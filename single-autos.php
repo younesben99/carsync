@@ -69,9 +69,9 @@ if($sp_chosen_type == "grid"){
 
             <div class="carpass_traxio_garantie_check">
                 <ul>
-                    <li><a href="#"><i data-feather="check"></i>Carpass</a></li>
-                    <li><a href="#"><i data-feather="check"></i>Traxio</a></li>
-                    <li><a href="#"><i data-feather="check"></i>Garantie</a></li>
+                    <li><a href="<?php echo $sp_carpass;?>" target="_blank"><i data-feather="check"></i>Carpass</a></li>
+                    <li><a href="https://www.traxio.be/" target="_blank"><i data-feather="check"></i>Traxio Lid</a></li>
+                    <li><a href=""><i data-feather="check"></i>12 maanden Garantie</a></li>
                 </ul>
             </div>
 
@@ -103,5 +103,5 @@ if($sp_chosen_type == "grid"){
 
 <script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_single.js';?>"></script>
 <script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_contact.js';?>"></script>
-
+<script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_testrit.js';?>"></script>
 <?php get_footer(); ?>

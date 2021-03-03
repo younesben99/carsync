@@ -291,6 +291,7 @@
         $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
         $value_sync_images = get_post_meta( $post->ID, '_car_syncimages_key', true );
         $value_vin = get_post_meta( $post->ID, '_car_vin_key', true );
+        $value_carpass = get_post_meta( $post->ID, '_car_carpass_key', true );
 ?>
 
 
@@ -302,6 +303,9 @@
 
     <label for="carvin-input">Chassisnummer</label>
     <input type="text" name="carvin-input" id="carvin-input" maxlength="17" value="<?php echo $value_vin ?>" />
+
+    <label for="carcarpass-input">Carpass link</label>
+    <input type="text" name="carcarpass-input" id="carcarpass-input" value="<?php echo $value_carpass ?>" />
 
     <label for="carmodifieddate-input" style="display:none;">Car modified date</label>
     <input type="text" name="carmodifieddate-input" id="carmodifieddate-input"
@@ -623,8 +627,8 @@
     
     ?>
     </select>
-    <label for="carbouwjaar-input">Bouwjaar</label>
-    <input type="date" name="carbouwjaar-input" id="carbouwjaar-input" value="<?php echo $value_bouwjaar ?>" />
+    <label for="carbouwjaar-input">BoSuwjaar</label>
+    <input type="number" name="carbouwjaar-input" id="carbouwjaar-input" value="<?php echo $value_bouwjaar ?>" />
 
     <label for="carkw-input">Kw</label>
     <input type="number" name="carkw-input" id="carkw-input" value="<?php echo $value_kw ?>" />
@@ -828,6 +832,8 @@
             update_post_meta($post->ID, '_car_wagentitel_key', $_POST["carwagentitel-input"]);        
         if(isset($_POST["carmodifieddate-input"]))
             update_post_meta($post->ID, '_car_modifieddate_key', $_POST["carmodifieddate-input"]);
+        if(isset($_POST["carcarpass-input"]))
+            update_post_meta($post->ID, '_car_carpass_key', $_POST["carcarpass-input"]);
         if(isset($_POST["careersteinschrijving-input"]))
             update_post_meta($post->ID, '_car_eersteinschrijving_key', $_POST["careersteinschrijving-input"]);
         if(isset($_POST["carcarrosserievorm-input"]))

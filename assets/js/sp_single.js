@@ -80,25 +80,32 @@ jQuery(document).ready(function(){
         e.stopPropagation();
     });
 
-    jQuery(".contactpop,.sp_smv_mail").on("click",function(){
-        
-        jQuery(".sp_contact_pop_wrap").show();
-        jQuery(".sp_contact_pop_wrap").animate({
-                        'opacity': '1',
-                        'bottom': 0
-        }, 300);
+
+
+    jQuery(".fbshare").on("click",function(e){
+        var url = window.location.href;
+        window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url)+ '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0',"_self");
 
     });
-    jQuery(".sp_contact_pop_wrap,.contactsluiten").on('click', function (e) {
-        jQuery(".sp_contact_pop_wrap").animate({
-            'opacity': '0',
-            'bottom': '-100vh'
-        }, 300);
-        setTimeout(function () {
-            jQuery(".sp_contact_pop_wrap").hide();
-        }, 300);
-    }).on('click', 'div', function (e) {
-        e.stopPropagation();
+    jQuery(".twittershare").on("click",function(e){
+        var url = window.location.href;
+        var text = jQuery(".wagentitel_h1").html().trim();
+        window.open('http://twitter.com/share?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    });
+    jQuery(".whatsappshare").on("click",function(e){
+        var url = window.location.href;
+        var tel = jQuery(".sp_sticky_telefoneren").html().trim();
+        var text = jQuery(".wagentitel_h1").html().trim();
+        window.open('https://api.whatsapp.com/send?phone='+tel+'&text='+url+"\n"+text,'_blank');
+    });
+    jQuery(".mailshare").on("click",function(e){
+        var email = "persoon@mail.com";
+        var subject = window.location.href;
+        var emailBody = jQuery(".wagentitel_h1").html().trim();
+        document.location = "mailto:"+email+"?subject="+subject+"&body="+emailBody;
+
     });
 
+ 
+    
 });

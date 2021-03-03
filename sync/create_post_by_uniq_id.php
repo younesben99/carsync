@@ -40,7 +40,8 @@ function create_post_by_uniq_id($passed_id){
                 $merkenmodel = esc_html($merk) . " ". esc_html($model);
                 $eerste_insch = $car['details']['vehicle']['classification']['model']['formatted'];
         
-                
+                $carpass_link = $car['details']['vehicle']['condition']['carpassMileageUrl'];
+
                 $wagentitel = $car['details']['adProduct']['title'];
                 $opmerkingen = $car['details']['description'];
                
@@ -184,7 +185,7 @@ function create_post_by_uniq_id($passed_id){
                  '_car_staat_key' => $staat,
                  '_car_kilometerstand_key' => $kmstand,
                  '_car_transmissie_key' => $transmissie,
-                 '_car_bouwjaar_key' => $bouwjaar,
+                 '_car_bouwjaar_key' => date('Y', strtotime($bouwjaar)),
                  '_car_kw_key' => $vermogenkw,
                  '_car_pk_key' => $vermogenpk,
                  '_car_cilinderinhoud_key' => $cilinderinhoud,
@@ -208,6 +209,7 @@ function create_post_by_uniq_id($passed_id){
                  '_car_vin_key' => $vin,
                  '_car_post_status_key' => 'actief',
                  '_car_status_key' => 'tekoop',
+                 '_car_carpass_key' => $carpass_link
                  ),
              );
       

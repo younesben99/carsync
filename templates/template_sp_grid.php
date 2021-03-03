@@ -25,7 +25,6 @@ $sync_images = pak_veld("_car_syncimages_key");
             flex-wrap: wrap;
         }
 
-
         .galerij_preview {
             display: flex;
         }

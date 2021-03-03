@@ -15,7 +15,7 @@
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Kilometerstand</div>
-    <div class="sp_spec_info"><?php echo($sp_kilometerstand); ?></div>
+    <div class="sp_spec_info"><?php echo($sp_kilometerstand); ?> km</div>
 </div>
 
 <div class="sp_spec_wrap">
@@ -35,7 +35,7 @@
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Aantal Pk's</div>
-    <div class="sp_spec_info"><?php echo($sp_pk); ?></div>
+    <div class="sp_spec_info"><?php echo($sp_pk); ?> pk</div>
 </div>
 
 <div class="sp_spec_wrap">
@@ -45,12 +45,12 @@
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Cilinderinhoud</div>
-    <div class="sp_spec_info"><?php echo($sp_cilinderinhoud); ?></div>
+    <div class="sp_spec_info"><?php echo($sp_cilinderinhoud); ?> cm³</div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Co</div>
-    <div class="sp_spec_info"><?php echo($sp_co); ?></div>
+    <div class="sp_spec_info"><?php echo($sp_co); ?> g CO2/km</div>
 </div>
 
 <div class="sp_spec_wrap">

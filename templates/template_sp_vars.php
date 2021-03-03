@@ -29,8 +29,8 @@ $sp_veiligheid = pak_veld('_car_veiligheid_key');
 $sp_extra = pak_veld('_car_extra_key');
 $sp_kleurinterieur = pak_veld('_car_kleurinterieur_key');
 $sp_kleurexterieur = pak_veld('_car_kleurexterieur_key');
-$sp_koopstatus = pak_veld('_car_post_status_key');
-
+$sp_koopstatus = pak_veld('_car_status_key');
+$sp_carpass = pak_veld('_car_carpass_key');
 
 //CONFIG
 $dds_settings_options = get_option( 'dds_settings_option_name' ); // Array of All Options
