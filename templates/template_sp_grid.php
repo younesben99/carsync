@@ -1,7 +1,45 @@
 <div class="galerij_wrap">
     <?php
 
-$sync_images = pak_veld("_car_syncimages_key");
+
+$carsync_fotos = pak_veld( '_car_syncimages_key');
+$manual_fotos = pak_veld( 'vdw_gallery_id');
+$value_sync = pak_veld('_car_sync_key');
+
+$img_links = array();
+
+
+if (!empty($carsync_fotos) && $value_sync == "YES") {
+    
+        foreach ($carsync_fotos as $img) {
+            
+            array_push($img_links,$img);
+            
+        }
+
+
+} else {
+
+    if (!empty($manual_fotos)) {
+
+         foreach ($manual_fotos as $img) {
+            
+            array_push($img_links,wp_get_attachment_url($img));
+            
+        }
+
+    } else {
+
+        foreach ($carsync_fotos as $img) {
+            
+            array_push($img_links,$img);
+            
+        }
+
+    }
+
+}
+
 
 ?>
 
@@ -131,17 +169,17 @@ $sync_images = pak_veld("_car_syncimages_key");
 
     <div class="galerij_preview">
         <div class="galerij_eerste_wrap">
-            <img class='galerij_item sp_eerste' data-foto-id="1" src='<?php echo $sync_images[0];?>' />
+            <img class='galerij_item sp_eerste' data-foto-id="1" src='<?php echo $img_links[0];?>' />
         </div>
         <div class="galerij_item_wrap">
 
-            <img class='galerij_item sp_tweede' data-foto-id="2" src='<?php echo $sync_images[1];?>' />
+            <img class='galerij_item sp_tweede' data-foto-id="2" src='<?php echo $img_links[1];?>' />
 
-            <img class='galerij_item sp_derde' data-foto-id="3" src='<?php echo $sync_images[2];?>' />
+            <img class='galerij_item sp_derde' data-foto-id="3" src='<?php echo $img_links[2];?>' />
 
-            <img class='galerij_item sp_vierde' data-foto-id="4" src='<?php echo $sync_images[3];?>' />
+            <img class='galerij_item sp_vierde' data-foto-id="4" src='<?php echo $img_links[3];?>' />
 
-            <img class='galerij_item sp_vijf' data-foto-id="5" src='<?php echo $sync_images[4];?>' />
+            <img class='galerij_item sp_vijf' data-foto-id="5" src='<?php echo $img_links[4];?>' />
 
         </div>
 
@@ -159,9 +197,9 @@ $sync_images = pak_veld("_car_syncimages_key");
             <div class="splide__track">
                 <ul class="splide__list">
                     <?php
-                for ($i = 0; $i < count($sync_images); $i++) {
+                for ($i = 0; $i < count($img_links); $i++) {
                     ?>
-                    <li class="splide__slide"><img src='<?php echo $sync_images[$i];?>' /></li>
+                    <li class="splide__slide"><img src='<?php echo $img_links[$i];?>' /></li>
                     <?php
                   }
             ?>

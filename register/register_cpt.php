@@ -78,7 +78,13 @@ function custom_autos_column( $column, $post_id ) {
                 echo "<img src='".$carsync_fotos[0]."' style='max-width:150px;border-radius:5px;' />";
             }
             else{
-                echo "<img src='".wp_get_attachment_url($manual_fotos[0])."' style='max-width:150px;border-radius:5px;' />";
+                if(!empty($manual_fotos)){
+                    echo "<img src='".wp_get_attachment_url($manual_fotos[0])."' style='max-width:150px;border-radius:5px;' />";
+                }
+                else{
+                    echo "<img src='".$carsync_fotos[0]."' style='max-width:150px;border-radius:5px;' />";
+                }
+                
             }
             break;
         case 'wagenstatus' :
