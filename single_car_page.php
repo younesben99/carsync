@@ -27,8 +27,6 @@ if(is_singular("autos")){
 
     include(__DIR__."/templates/template_sp_vars.php");
 
-    include(__DIR__."/templates/template_og_tags.php");
-
     include(__DIR__."/templates/template_sp_custom_css.php");
 
     include(__DIR__."/templates/template_sp_popups.php");

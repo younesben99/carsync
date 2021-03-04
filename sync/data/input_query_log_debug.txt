@@ -29,14 +29,14 @@ Expect: 100-continue
 < Content-Length: 355668
 < Connection: keep-alive
 < Vary: Accept-Encoding
-< Date: Thu, 04 Mar 2021 14:16:18 GMT
+< Date: Thu, 04 Mar 2021 14:58:25 GMT
 < Access-Control-Allow-Origin: *
 < costs: 299502
 < remaining: 500000
 < Vary: Accept-Encoding
 < X-Cache: Miss from cloudfront
-< Via: 1.1 b008895ea3b659b7dfd773d182993c35.cloudfront.net (CloudFront)
+< Via: 1.1 d78b645a0212e56f1a04609bf83554e4.cloudfront.net (CloudFront)
 < X-Amz-Cf-Pop: BRU50-C1
-< X-Amz-Cf-Id: K-fijpzQCUpD8xQTeF6n5JDaO9ySxwVgHRO0zEUr8z-EveCvsDuDZg==
+< X-Amz-Cf-Id: MLSYplbt5Udsskc7PHeXECqKCp2XJME3J7cCU6Hjnmqm2WLDm1dqHQ==
 < 
 * Connection #0 to host listing-search.api.autoscout24.com left intact
