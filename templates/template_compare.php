@@ -2,6 +2,10 @@
     main {
     padding: 0 25px;
 }
+.site-header, body:not([class*=elementor-page-]) .site-main {
+    max-width: 95%;
+    margin: 20px 0;
+}
 .compare_wrap{
     display:flex;
     flex-wrap: wrap;
@@ -15,6 +19,7 @@
     box-shadow: 0px 1px 5px #d2d2d2;
     border-radius: 5px;
     border: 1px solid #e0e0e0;
+    margin-bottom: 50px;
 }
 .compare_item .compare_item_wrap {
     height: 50px;
