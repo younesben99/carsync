@@ -37,3 +37,5 @@ if (!empty($og_carsync_fotos) && $og_value_sync == "YES") {
 <meta property="og:description" content="<?php echo strip_tags($sp_description); ?>">
 <meta property="og:type" content="product.item">
 <meta property="og:image" content="<?php echo $og_img_link; ?>">
+<meta property="og:image:secure" content="<?php echo $og_img_link; ?>">
+<meta property="og:image:secure_url" content="<?php echo $og_img_link; ?>">
