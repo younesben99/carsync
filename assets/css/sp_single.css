@@ -391,7 +391,7 @@ form.sp_testrit_form {
     color: white;
 }
 
-.sp_sticky_testrit svg.feather.feather-calendar {
+.sp_sticky_testrit svg.feather.feather-calendar,.sp_sticky_vergelijken svg.feather.feather-repeat{
     margin-right: 10px;
 }
 .sp_testrit_pop_wrap{
@@ -530,6 +530,9 @@ button#sp_testrit_versturen {
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
+}
+.sp_sticky_vergelijken{
+    cursor:pointer;
 }
 .sp_rel_wrap .splide__slide{
     cursor:pointer;

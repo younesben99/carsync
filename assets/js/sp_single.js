@@ -1,7 +1,23 @@
 feather.replace();
 
+Array.prototype.inArray = function(comparer) { 
+    for(var i=0; i < this.length; i++) { 
+        if(comparer(this[i])) return true; 
+    }
+    return false; 
+}; 
+
+Array.prototype.pushIfNotExist = function(element, comparer) { 
+    if (!this.inArray(comparer)) {
+        this.push(element);
+    }
+}; 
+
 jQuery(document).ready(function(){
-       
+    
+
+
+
     var splidex = new Splide( '.sp_grid_wrap',{
             type   : 'slide',
             width : '100%',
@@ -106,6 +122,38 @@ jQuery(document).ready(function(){
 
     });
 
- 
+    
+    jQuery(".sp_sticky_vergelijken").on("click",function(){
+
+        var postid = jQuery(this).attr("data-post-id");
+        var huidigecookies = [];
+
+        if(Cookies.get('vergelijk_ids')){
+            
+            huidigecookies = JSON.parse(Cookies.get('vergelijk_ids'));
+            if(huidigecookies.length < 4){
+            if(huidigecookies.indexOf(postid) == -1){
+               
+                    huidigecookies.push(postid);
+                
+            }
+        }
+            else{
+                alert("Je kan maximaal 4 wagens vegelijken.");
+            }
+
+        }
+        else{
+
+            huidigecookies.push(postid);
+
+        }
+
+
+        Cookies.set('vergelijk_ids', JSON.stringify(huidigecookies), { expires: 7 });
+
+        window.location.href = "/vergelijken/";
+
+    });
     
 });

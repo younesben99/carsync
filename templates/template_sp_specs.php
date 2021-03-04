@@ -40,7 +40,7 @@
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Aantal Kw's</div>
-    <div class="sp_spec_info"><?php echo($sp_kw); ?></div>
+    <div class="sp_spec_info"><?php echo($sp_kw); ?> Kw</div>
 </div>
 
 <div class="sp_spec_wrap">

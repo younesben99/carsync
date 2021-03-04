@@ -50,7 +50,10 @@ for ($i=0; $i < 30; $i++) {
 <?php
 
     foreach($datums as $date){
-        echo "<option value=".$date.">".nlDate(date("l d F Y",$date))."</option>";
+        $weekday = date('l', $date);
+        if ($weekday !== "Sunday") {
+            echo "<option value=".$date.">".nlDate(date("l d F Y", $date))."</option>";
+        }   
     }
 
 ?>

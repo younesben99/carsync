@@ -13,7 +13,7 @@
         </div>
         
 
-        <div class="sp_sticky_vergelijken" style="display:none;"><i data-feather="repeat"></i>Vergelijken</div>
+        <div class="sp_sticky_vergelijken" data-post-id="<?php echo $post->ID; ?>"><i data-feather="repeat"></i>Vergelijken</div>
         <div class="sp_sticky_testrit"><i data-feather="calendar"></i>Testrit boeken</div>
         <div class="sp_sticky_contact_wrap">
             <div class="sp_sticky_beschikbaarheid contactpop">Contact opnemen</div>

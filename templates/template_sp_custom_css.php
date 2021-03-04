@@ -57,7 +57,7 @@
     background: url(<?php echo(get_site_url()); ?>/wp-content/plugins/carsync/assets/img/loading.gif);
     background-size: cover;
 }
-.sp_sticky_testrit:hover {
+.sp_sticky_testrit:hover,.sp_sticky_vergelijken:hover {
     color: <?php echo $sp_color; ?> !important;
     cursor: pointer;
 }
