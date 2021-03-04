@@ -26,7 +26,7 @@ foreach($relatedposts as $wagen){
     
     ?>
 
-    <li class="splide__slide">
+    <li class="splide__slide" onclick="location.href='<?php echo $rel_link; ?>';">
     <div class="rel_card_wrap">
     <div><img src="<?php echo($rel_image[0]); ?>" alt="<?php echo $rel_title; ?>" /></div>
     

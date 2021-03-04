@@ -531,6 +531,9 @@ button#sp_testrit_versturen {
     align-items: center;
     justify-content: flex-start;
 }
+.sp_rel_wrap .splide__slide{
+    cursor:pointer;
+}
 .sp_contact_pop {
     width: 80%;
     margin: auto;
