@@ -1,7 +1,5 @@
 <?php
 
-
-
 //PREPARE VARS
 $sp_title = get_the_title();
 $sp_type = pak_veld('_car_carrosserievorm_key');
@@ -47,7 +45,7 @@ $sp_telnr = $dds_settings_options['dealer_tel_1_10'];
 $sp_telnr_formatted = str_replace(' ', '', $sp_telnr);
 
 $sp_contactmail = $dds_settings_options['dealer_contact_mail'];
-
+$sp_handelsnaam = $dds_settings_options['dealer_handelsnaam_8'];
 
 $sp_chosen_type = $dds_settings_options['slideshow_type'];
 

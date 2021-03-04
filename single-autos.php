@@ -1,6 +1,7 @@
 
 <?php
 
+
 get_header();
 
 // TODO'S!
@@ -26,6 +27,8 @@ get_header();
 
 include(__DIR__."/templates/template_sp_vars.php");
 
+include(__DIR__."/templates/template_og_tags.php");
+
 include(__DIR__."/templates/template_sp_custom_css.php");
 
 include(__DIR__."/templates/template_sp_popups.php");
@@ -34,7 +37,7 @@ include(__DIR__."/templates/template_sp_top_sticky_nav.php");
 
 include(__DIR__."/templates/template_sp_sticky_mobile_nav.php");
 
-include(__DIR__."/templates/template_sp_sticky_mobile_nav.php");
+
 ?>
 
 
