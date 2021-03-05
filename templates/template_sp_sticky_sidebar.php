@@ -1,8 +1,18 @@
 <div class="sp_sticky_nav">
 
     <div class="sp_sticky">
-
+<div class="sp_title">
+<h5 style="    font-size: 21px;
+    color: #3a3a3a;
+    margin: 0;
+    font-weight: 500;"><?php echo $sp_title; ?></h5>
+    <p style="font-size: 14px;
+    margin: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: grey;"><?php echo  $wagentitel; ?></p></div>
         <div class="sp_sticky_prijs">
+           
             <div style="font-size: 15px;">Prijs</div>
             <?php echo "€ ".number_format($sp_prijs,0,",",".") . ",-"; ?>
             <?php

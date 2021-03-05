@@ -57,10 +57,7 @@ include(__DIR__."/templates/template_sp_sub_nav.php");
             
             <?php include(__DIR__."/templates/template_sp_status.php"); ?>
 
-            
-            <div class="posttitle">
-                <h1><?php the_title(); ?></h1>
-            </div>
+            <br>
 
             <div class="carpass_traxio_garantie_check">
                 <ul>
