@@ -183,6 +183,7 @@ font-size:20px;
 }
 .sp_sticky_nav{
     width:40%;
+    
 }
 .sp_mid_wrap{
     display: flex;
@@ -196,7 +197,7 @@ font-size:20px;
     width: 80%;
     margin: auto;
     position: sticky;
-    top: 150px;
+    top: 100px;
 }
 .sp_sticky_beschikbaarheid {
     padding: 15px 0;
