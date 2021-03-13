@@ -15,16 +15,12 @@ function create_post_by_uniq_id($passed_id){
     }
     //uniq id arg zit niet in 1 van de huidige wp posts
     if(in_array($passed_id,$uniq_wp_wagen) == false){
-        
-
     if(file_exists(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json')) {
         $Vdata = file_get_contents(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json');
     }
     else{
         $Vdata = 0;
     }
-    
-    
     $array = json_decode($Vdata, true);
     $cars = $array['data']['search']['listings']['listings'];
     if(!empty($cars) && $cars !== 0 && $cars !== null){
@@ -222,7 +218,6 @@ function create_post_by_uniq_id($passed_id){
        
     }
     }
-    
     
     
 }

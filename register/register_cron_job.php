@@ -15,17 +15,12 @@ add_filter('cron_schedules','my_cron_schedules');
 
 
 
-//cron jobs
+//cron job(s)
 
 
 add_action( 'carsync_data_ophalen_hook', 'carsync_data_ophalen' ,1);
 if ( ! wp_next_scheduled( 'carsync_data_ophalen_hook' ) ) {
     wp_schedule_event( time(), '30min', 'carsync_data_ophalen_hook' );
-}
-
-add_action( 'carsync_merk_model_fix', 'merkenmodelcron' ,1);
-if ( ! wp_next_scheduled( 'carsync_merk_model_fix' ) ) {
-    wp_schedule_event( time(), '30min', 'carsync_merk_model_fix' );
 }
 
 
