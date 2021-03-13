@@ -1,6 +1,6 @@
-*   Trying 2600:9000:21d7:4000:12:eb30:2d80:93a1...
+*   Trying 2600:9000:21d7:9200:12:eb30:2d80:93a1...
 * TCP_NODELAY set
-* Connected to listing-search.api.autoscout24.com (2600:9000:21d7:4000:12:eb30:2d80:93a1) port 443 (#0)
+* Connected to listing-search.api.autoscout24.com (2600:9000:21d7:9200:12:eb30:2d80:93a1) port 443 (#0)
 * ALPN, offering http/1.1
 * Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
 * successfully set certificate verify locations:
@@ -29,14 +29,14 @@ Expect: 100-continue
 < Content-Length: 409159
 < Connection: keep-alive
 < Vary: Accept-Encoding
-< Date: Sat, 13 Mar 2021 13:51:22 GMT
+< Date: Sat, 13 Mar 2021 14:20:37 GMT
 < Access-Control-Allow-Origin: *
 < costs: 299502
 < remaining: 500000
 < Vary: Accept-Encoding
 < X-Cache: Miss from cloudfront
-< Via: 1.1 120b3c0f2e15a58ec71cef7658e3ef14.cloudfront.net (CloudFront)
+< Via: 1.1 753b5d9899259f7b8bd50e1338255e43.cloudfront.net (CloudFront)
 < X-Amz-Cf-Pop: BRU50-C1
-< X-Amz-Cf-Id: FPnPQCQBjxRWCuHagaoxjDwQIW2TL013lCS-cTkudBBQHDJwVRPIPg==
+< X-Amz-Cf-Id: 8KA9wshca8YQbFNBv-Fe1eBPYOP6qWo-sDg7cJRo4iJElHJZl-kl2Q==
 < 
 * Connection #0 to host listing-search.api.autoscout24.com left intact
