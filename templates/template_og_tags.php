@@ -1,6 +1,4 @@
-
 <?php
-
 add_action ( 'wp_head', 'og_tags_sp' );
 function og_tags_sp() {
     if(is_singular("autos")) {
