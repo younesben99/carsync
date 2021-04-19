@@ -89,12 +89,9 @@ include(__DIR__."/templates/template_sp_sub_nav.php");
 
 </div>
 
-
-
 <script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_single.js'; ?>"></script>
 <script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_contact.js'; ?>"></script>
 <script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_testrit.js'; ?>"></script>
 <?php get_footer();
-
 }
 ?>
