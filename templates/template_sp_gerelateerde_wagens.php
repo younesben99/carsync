@@ -28,7 +28,7 @@ foreach($relatedposts as $wagen){
 
     <li class="splide__slide" onclick="location.href='<?php echo $rel_link; ?>';">
     <div class="rel_card_wrap">
-    <div><img src="<?php echo($rel_image[0]); ?>" alt="<?php echo $rel_title; ?>" /></div>
+    <div><img src="<?php echo($rel_image[0]); ?>" alt="<?php echo $rel_title; ?>" style="width:100%" /></div>
     
     <h2><?php echo $rel_title; ?></h2>
     <div class="rel_price"><?php echo "€ ".number_format($rel_price,0,",",".") . ",-"; ?></div>
