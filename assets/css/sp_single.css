@@ -445,7 +445,7 @@ form.sp_testrit_form {
     outline: 0;
     border:0;
     box-shadow:rgb(45 45 45 / 16%) 0px 1px 2px 0px, rgb(238 238 238) 0px 0px 0px 1px;
-    
+    border-radius:5px;
 }
 .sp_testrit_pop h2 {
     margin: 0;
@@ -569,6 +569,7 @@ button#sp_testrit_versturen {
 }
 .testrit_select{
     border-radius: 5px;
+    background:white;
 }
 .sp_contact_pop h2 {
     margin: 0;
