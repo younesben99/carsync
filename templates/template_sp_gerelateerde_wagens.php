@@ -48,7 +48,7 @@ foreach($relatedposts as $wagen){
 
 <li class="splide__slide">
     <div class="rel_card_wrap">
-    <div><img src="<?php echo(get_site_url()); ?>/wp-content/plugins/carsync/assets/img/bekijkstock.png" alt="<?php echo $rel_title; ?>" /></div>
+    <div><img src="<?php echo(get_site_url()); ?>/wp-content/plugins/carsync/assets/img/bekijkstock.png" alt="<?php echo $rel_title; ?>" style="width:100%" /></div>
     <div>
     <h2>Bekijk onze hele stock</h2>
     <a href="<?php echo get_site_url().'/autos/';?>"class="rel_bekijkstock">Bekijk onze stock</a>
