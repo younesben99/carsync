@@ -4,7 +4,7 @@
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 4.9.3
+Version: 4.9.4
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -23,6 +23,8 @@ include_once( __DIR__ . '/register/register_admin_toolbar_links.php');
 include_once( __DIR__ . '/register/register_compare.php');
 include_once( __DIR__ . '/register/register_single_car_page.php');
 include(__DIR__."/templates/template_og_tags.php");
+/* 
+
 
 date_default_timezone_set("Europe/Brussels");
 setlocale(LC_TIME, 'NL_nl'); 
@@ -58,7 +60,8 @@ function add_admin_scripts( $hook ) {
 add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
 // disable gutenberg & comments
 add_filter('use_block_editor_for_post', '__return_false', 10);
-add_filter('use_block_editor_for_post_type', '__return_false', 10);
+add_filter('use_block_editor_for_post_type', '__return_false', 10); */
+
 add_action('admin_init', function () {
     // Redirect any user trying to access comments page
     global $pagenow;
@@ -80,19 +83,15 @@ add_action('admin_init', function () {
     }
 });
 
-// Close comments on the front-end
 add_filter('comments_open', '__return_false', 20, 2);
 add_filter('pings_open', '__return_false', 20, 2);
 
-// Hide existing comments
 add_filter('comments_array', '__return_empty_array', 10, 2); 
 
-// Remove comments page in menu
 add_action('admin_menu', function () {
     remove_menu_page('edit-comments.php');
 });
 
-// Remove comments links from admin bar
 add_action('init', function () {
     if (is_admin_bar_showing()) {
         remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
@@ -117,14 +116,7 @@ function pak_veld_id($key,$id){
 }
 
 function nlDate($datum){ 
-    /* 
-     // AM of PM doen we niet aan 
-     $parameters = str_replace("A", "", $parameters); 
-     $parameters = str_replace("a", "", $parameters); 
 
-    $datum = date($parameters); 
-   */ 
-     // Vervang de maand, klein 
     $datum = str_replace("january",     "januari",         $datum); 
      $datum = str_replace("february",     "februari",     $datum); 
     $datum = str_replace("march",         "maart",         $datum); 
@@ -152,7 +144,7 @@ function nlDate($datum){
      $datum = str_replace("November",     "November",     $datum); 
     $datum = str_replace("December",     "December",     $datum); 
 
-    // Vervang de maand, kort 
+   
      $datum = str_replace("Jan",         "Jan",             $datum); 
      $datum = str_replace("Feb",         "Feb",             $datum); 
      $datum = str_replace("Mar",         "Maa",             $datum); 
@@ -166,7 +158,7 @@ function nlDate($datum){
    $datum = str_replace("Nov",         "Nov",             $datum); 
      $datum = str_replace("Dec",         "Dec",             $datum); 
 
-    // Vervang de dag, klein 
+  
    $datum = str_replace("monday",         "maandag",         $datum); 
      $datum = str_replace("tuesday",     "dinsdag",         $datum); 
      $datum = str_replace("wednesday",     "woensdag",     $datum); 
@@ -175,7 +167,7 @@ function nlDate($datum){
      $datum = str_replace("saturday",     "zaterdag",     $datum); 
     $datum = str_replace("sunday",         "zondag",         $datum); 
 
-    // Vervang de dag, hoofdletters 
+
      $datum = str_replace("Monday",         "Maandag",         $datum); 
      $datum = str_replace("Tuesday",     "Dinsdag",         $datum); 
      $datum = str_replace("Wednesday",     "Woensdag",     $datum); 
@@ -184,7 +176,6 @@ function nlDate($datum){
      $datum = str_replace("Saturday",     "Zaterdag",     $datum); 
     $datum = str_replace("Sunday",         "Zondag",         $datum); 
 
-    // Vervang de verkorting van de dag, hoofdletters 
      $datum = str_replace("Mon",            "Maa",             $datum); 
      $datum = str_replace("Tue",         "Din",             $datum); 
      $datum = str_replace("Wed",         "Woe",             $datum); 
@@ -214,5 +205,5 @@ function vergelijk_pagina_maken()
         $post_id = wp_insert_post($new_post);
     }
 }
-add_action('init','vergelijk_pagina_maken');
+add_action('init','vergelijk_pagina_maken'); 
 ?>

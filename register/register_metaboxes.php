@@ -627,7 +627,7 @@
     
     ?>
     </select>
-    <label for="carbouwjaar-input">BoSuwjaar</label>
+    <label for="carbouwjaar-input">Bouwjaar</label>
     <input type="number" name="carbouwjaar-input" id="carbouwjaar-input" value="<?php echo $value_bouwjaar ?>" />
 
     <label for="carkw-input">Kw</label>
