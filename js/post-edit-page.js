@@ -1,7 +1,8 @@
 (function($) {
 
     $(document).ready(function(){
-    
+        //alert("hey");
+      
         $( "#dash-status" ).on( "change", function( event ) {
             event.preventDefault();
             console.log( $( this ).val() );

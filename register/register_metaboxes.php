@@ -8,6 +8,8 @@
     function metaboxes_list()
     {
         //informatie over de post hiddens
+        add_meta_box( 'car_meta_data_ophalen', 'Wagen identificatie', 'car_meta_ophalen_cb', 'autos' );
+        //informatie over de post hiddens
         add_meta_box( 'car_meta_data', 'Car meta data', 'car_meta_cb', 'autos' );
         //instellingen van de post
         add_meta_box( 'car_settings', 'Instellingen', 'car_settings_cb', 'autos' );
@@ -22,6 +24,23 @@
     
     //render the data
     
+
+    function car_meta_ophalen_cb($post){
+
+        $value_vin = get_post_meta( $post->ID, '_car_vin_key', true );
+        $foldericonpath = get_site_url().'/wp-content/plugins/carsync/assets/img/document.svg';
+        ?>
+       
+        <div style="display:flex;flex-direction:column;" class="labeldiv">
+            <label for="carvin-input">Chassisnummer</label>
+            <div style="display: flex;justify-content: space-between;align-items: flex-start;flex-direction: column;">
+            <input style="width: 60%;margin-bottom: 20px;" type="text" name="carvin-input" id="carvin-input" maxlength="17" value="<?php echo $value_vin ?>" />
+            <div style="display:none;" class="autodataophalen" id="cardatacall"><img src="<?php echo $foldericonpath; ?>" width="30" style="margin-right:10px;" /> Auto gegevens ophalen</div>
+            </div>
+        </div>
+
+        <?php
+    }
            
     function car_options_cb($post)
     {
@@ -47,45 +66,6 @@
             $value_veiligheid = array();
         }
     ?>
-<style>
-    .select2 {
-        width: 100% !important;
-    }
-
-    #car_gegevens label {
-        padding: 18px 0 5px;
-        font-weight: 600
-    }
-
-    .checkwrap,
-    .fields {
-        display: flex;
-        flex-direction: column
-    }
-
-    .checkboxtitle {
-        font-size: 15px;
-        font-weight: 600;
-        margin-top: 10px;
-        margin-bottom: 10px
-    }
-
-    .fields label {
-        margin-bottom: 5px
-    }
-
-    .select2-selection__rendered {
-        line-height: 39px !important
-    }
-
-    .select2-container .select2-selection--single {
-        height: 42px !important
-    }
-
-    .select2-selection__arrow {
-        height: 42px !important
-    }
-</style>
 
 <div class="checkwrap">
 
@@ -197,12 +177,6 @@
        
         
 ?>
-<style>
-    .car_gegevens label {
-        padding: 18px 0 5px;
-        font-weight: 600;
-    }
-</style>
 
 <div class="statusflex">
     
@@ -290,7 +264,6 @@
         $value_uniq = get_post_meta( $post->ID, '_car_uniq_key', true );
         $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
         $value_sync_images = get_post_meta( $post->ID, '_car_syncimages_key', true );
-        $value_vin = get_post_meta( $post->ID, '_car_vin_key', true );
         $value_carpass = get_post_meta( $post->ID, '_car_carpass_key', true );
 ?>
 
@@ -300,9 +273,6 @@
     <label for="caruniq-input" style="display:none;">Car unique id</label>
     <input type="text" name="caruniq-input" id="caruniq-input" value="<?php echo $value_uniq ?>" />
 
-
-    <label for="carvin-input">Chassisnummer</label>
-    <input type="text" name="carvin-input" id="carvin-input" maxlength="17" value="<?php echo $value_vin ?>" />
 
     <label for="carcarpass-input">Carpass link</label>
     <input type="text" name="carcarpass-input" id="carcarpass-input" value="<?php echo $value_carpass ?>" />
