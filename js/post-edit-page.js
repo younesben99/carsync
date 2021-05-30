@@ -1,7 +1,7 @@
 (function($) {
 
     $(document).ready(function(){
-        //alert("hey");
+        
       
         $( "#dash-status" ).on( "change", function( event ) {
             event.preventDefault();
@@ -157,7 +157,14 @@
       });
       
 
-    
+      $(".showmoreselectief").on("click",function(){
+        $(".showmoreselectief .dashicons-arrow-down-alt2").toggleClass("dashicons-arrow-up-alt2");
+        $(".secondary_ophaal_options").slideToggle();
+  
+  });
 });
+
+
+
 
 })(jQuery);    

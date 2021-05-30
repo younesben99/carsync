@@ -29,13 +29,30 @@
 
         $value_vin = get_post_meta( $post->ID, '_car_vin_key', true );
         $foldericonpath = get_site_url().'/wp-content/plugins/carsync/assets/img/document.svg';
+        $checkiconpath = get_site_url().'/wp-content/plugins/carsync/assets/img/check.svg';
         ?>
        
         <div style="display:flex;flex-direction:column;" class="labeldiv">
             <label for="carvin-input">Chassisnummer</label>
             <div style="display: flex;justify-content: space-between;align-items: flex-start;flex-direction: column;">
+            <div class="checkvinwrap"><img style="" width="20" src="<?php echo $checkiconpath; ?>" alt="VIN is correct" /></div>
             <input style="width: 60%;margin-bottom: 20px;" type="text" name="carvin-input" id="carvin-input" maxlength="17" value="<?php echo $value_vin ?>" />
-            <div style="display:none;" class="autodataophalen" id="cardatacall"><img src="<?php echo $foldericonpath; ?>" width="30" style="margin-right:10px;" /> Auto gegevens ophalen</div>
+            <div class="autodataophalen" id="cardatacall"><img src="<?php echo $foldericonpath; ?>" width="30" style="margin-right:10px;" /> Auto gegevens ophalen</div>
+            
+            <div class="showmoreselectief"><span class="dashicons dashicons-arrow-down-alt2 dashchev"></span> Selectief gegevens ophalen</div>
+            <div class="secondary_ophaal_options">
+            <button class="autodataophalen_sec" id="cardatacallB" data-codes="B">Basis gegevens</button>
+            <button class="autodataophalen_sec" id="cardatacallX" data-codes="X">Technische gegevens</button>
+            <hr>
+            <button class="autodataophalen_sec" id="cardatacallE" data-codes="E">Emissie gegevens</button>
+            <button class="autodataophalen_sec" id="cardatacallR" data-codes="R">Registratie gegevens</button>
+            <button class="autodataophalen_sec" id="cardatacallA" data-codes="BXERA">Fiscale gegevens</button>
+            <button class="autodataophalen_sec" id="cardatacallT" data-codes="T">Keuring gegevens</button>
+            <button class="autodataophalen_sec" id="cardatacallC" data-codes="C">Commerciële gegevens</button>
+            <hr>
+            <button class="autodataophalen_sec" id="cardatacallV" data-codes="CV">Restwaarde berekenen</button>
+            <button class="autodataophalen_sec" id="cardatacallF" data-codes="CF">Toekomstige restwaarde</button>
+            </div>
             </div>
         </div>
 

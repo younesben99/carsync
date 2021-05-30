@@ -210,8 +210,6 @@ function create_post_by_uniq_id($passed_id){
              );
       
                 wp_insert_post($post_arr);
-                wp_zapier_billit($post_arr);
-                wp_zapier_asana($post_arr);
             }
             
             

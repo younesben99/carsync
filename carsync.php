@@ -4,7 +4,7 @@
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 4.9.6
+Version: 4.9.7
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -32,6 +32,7 @@ setlocale(LC_TIME, 'NL_nl');
 setlocale(LC_ALL, 'nl_NL'); 
 */
 
+
 function add_admin_scripts( $hook ) {
 
     global $post;
@@ -50,10 +51,11 @@ function add_admin_scripts( $hook ) {
             //endgallery
             wp_enqueue_script(  'sweetalert2', 'https://cdn.jsdelivr.net/npm/sweetalert2@10.12.3/dist/sweetalert2.all.min.js' );
             wp_enqueue_script(  'editorjs', 'https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.23.0/trumbowyg.min.js' );
-            wp_enqueue_script(  'autos-cpt-js', plugin_dir_url( __FILE__ ).'/js/post-edit-page.js' );
+            wp_enqueue_script(  'autos-cpt-js', plugin_dir_url( __FILE__ ).'/js/post-edit-page.js?v='. uniqid() );
             wp_enqueue_script( 'select2js','https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js', array(), '1.0' );
             wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
             wp_enqueue_style( 'select2css' );
+            wp_enqueue_script(  'autos-data-ophalen-js', plugin_dir_url( __FILE__ ).'/js/external-data-ophalen.js?v='. uniqid() );
         }
        
     }
@@ -207,4 +209,44 @@ function vergelijk_pagina_maken()
     }
 }
 add_action('init','vergelijk_pagina_maken'); 
+
+
+function mungXML($xml)
+{
+    $obj = SimpleXML_Load_String($xml);
+    if ($obj === FALSE) return $xml;
+
+    // GET NAMESPACES, IF ANY
+    $nss = $obj->getNamespaces(TRUE);
+    if (empty($nss)) return $xml;
+
+    // CHANGE ns: INTO ns_
+    $nsm = array_keys($nss);
+    foreach ($nsm as $key)
+    {
+        // A REGULAR EXPRESSION TO MUNG THE XML
+        $rgx
+        = '#'               // REGEX DELIMITER
+        . '('               // GROUP PATTERN 1
+        . '\<'              // LOCATE A LEFT WICKET
+        . '/?'              // MAYBE FOLLOWED BY A SLASH
+        . preg_quote($key)  // THE NAMESPACE
+        . ')'               // END GROUP PATTERN
+        . '('               // GROUP PATTERN 2
+        . ':{1}'            // A COLON (EXACTLY ONE)
+        . ')'               // END GROUP PATTERN
+        . '#'               // REGEX DELIMITER
+        ;
+        // INSERT THE UNDERSCORE INTO THE TAG NAME
+        $rep
+        = '$1'          // BACKREFERENCE TO GROUP 1
+        . '_'           // LITERAL UNDERSCORE IN PLACE OF GROUP 2
+        ;
+        // PERFORM THE REPLACEMENT
+        $xml =  preg_replace($rgx, $rep, $xml);
+    }
+
+    return $xml;
+
+} 
 ?>
