@@ -8,7 +8,7 @@
     function metaboxes_list()
     {
         //informatie over de post hiddens
-        add_meta_box( 'car_meta_data_ophalen', 'Wagen identificatie', 'car_meta_ophalen_cb', 'autos' );
+       // add_meta_box( 'car_meta_data_ophalen', 'Wagen identificatie', 'car_meta_ophalen_cb', 'autos' );
         //informatie over de post hiddens
         add_meta_box( 'car_meta_data', 'Car meta data', 'car_meta_cb', 'autos' );
         //instellingen van de post
