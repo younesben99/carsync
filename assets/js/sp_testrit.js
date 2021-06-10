@@ -23,7 +23,7 @@ jQuery(document).ready(function(){
     
     jQuery(".sp_testrit_form").submit(function(event) {
 
-        
+        event.preventDefault();
 
         var sp_testrit_name = jQuery("input[name=sp_testrit_name]").val().trim();
         var sp_testrit_mail = jQuery("input[name=sp_testrit_mail]").val().trim();
@@ -84,7 +84,7 @@ jQuery(document).ready(function(){
         }
 
        
-        event.preventDefault();
+        
 
     });
 

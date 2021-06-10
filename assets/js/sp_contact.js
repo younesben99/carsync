@@ -23,12 +23,12 @@ jQuery(document).ready(function(){
 
     jQuery(".sp_contact_form").submit(function(event) {
 
-        
+        event.preventDefault();
 
         var sp_contact_name = jQuery("input[name=sp_contact_name]").val().trim();
         var sp_contact_mail = jQuery("input[name=sp_contact_mail]").val().trim();
         var sp_contact_tel = jQuery("input[name=sp_contact_tel]").val().trim();
-        var sp_contact_wagen = jQuery(".posttitle h1").html().trim();
+        var sp_contact_wagen = jQuery(".sp_title > h5").html().trim();
         var sp_contact_bericht = jQuery("textarea[name=sp_contact_bericht]").val().trim();
 
         if(sp_contact_name == "" || sp_contact_mail == "" || sp_contact_tel == "" || sp_contact_bericht == ""){
@@ -81,7 +81,7 @@ jQuery(document).ready(function(){
         }
 
        
-        event.preventDefault();
+        
 
     });
 
