@@ -25,8 +25,11 @@ if($_POST['sp_contact'] == "sp_contact"){
     
         $to = $sp_contactmail;
         $subject = "Contactbericht: ".$wagen;
+        
         $headers = 'From: '. $email . "\r\n" .
-            'Reply-To: ' . $email . "\r\n";
+            'Reply-To: ' . $email . "\r\n" .
+            'Content-Type: text/html' . "\r\n" .
+            'charset=UTF-8'"\r\n";
       
     
       
@@ -82,7 +85,10 @@ if($_POST['sp_testrit'] == "sp_testrit"){
         $to = $sp_contactmail;
         $subject = "Testrit: " . $wagen;
         $headers = 'From: '. $email . "\r\n" .
-            'Reply-To: ' . $email . "\r\n";
+            'Reply-To: ' . $email . "\r\n" .
+            'Content-Type: text/html' . "\r\n" .
+            'charset=UTF-8'"\r\n";
+            
       
     
       
