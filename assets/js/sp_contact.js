@@ -65,7 +65,7 @@ jQuery(document).ready(function(){
                         console.log("succes");
                         jQuery(".sp_contact_succes").show();
                         setTimeout(function(){
-                            window.location.replace("/bedankt");
+                            //window.location.replace("/bedankt");
                         },2000);
                     }
                     jQuery(".sp_contact_versturen").removeClass("sp_contact_loading");

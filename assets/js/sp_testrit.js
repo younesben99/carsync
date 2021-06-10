@@ -68,7 +68,7 @@ jQuery(document).ready(function(){
                         console.log("succes");
                         jQuery(".sp_testrit_succes").show();
                         setTimeout(function(){
-                            window.location.replace("/bedankt");
+                            //window.location.replace("/bedankt");
                         },2000);
                     }
                     jQuery(".sp_testrit_versturen").removeClass("sp_testrit_loading");
