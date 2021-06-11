@@ -298,8 +298,14 @@
     <input type="text" name="carmodifieddate-input" id="carmodifieddate-input"
         value="<?php echo $value_modifieddate ?>" />
 
-
-    <label for="carsyncimages-input">Autoscout afbeeldingen</label>
+        <?php
+        if(!empty($value_sync_images)){
+            ?>
+            <label for="carsyncimages-input">Autoscout afbeeldingen</label>
+            <?php
+        }
+        ?>
+    
     <div style="display:flex;flex-wrap:wrap;">
         <?php
             if(!empty($value_sync_images)){
