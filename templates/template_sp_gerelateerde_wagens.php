@@ -24,8 +24,8 @@ foreach($relatedposts as $wagen){
     $rel_transmissie = get_post_meta($wagen->ID, "_car_transmissie_key",true);
     $rel_bouwjaar = get_post_meta($wagen->ID, "_car_bouwjaar_key",true);
 
-    $carsync_images = get_post_meta($post->ID, '_car_syncimages_key', true);
-    $manual_images = get_post_meta($post->ID, 'vdw_gallery_id', true);
+    $carsync_images = get_post_meta($wagen->ID, '_car_syncimages_key', true);
+    $manual_images = get_post_meta($wagen->ID, 'vdw_gallery_id', true);
     if($manual_images == null){
         $selected_img = $carsync_images[0];
     }
