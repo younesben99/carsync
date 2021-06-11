@@ -130,14 +130,30 @@
     $("#carmodel-input").select2({placeholder: "Selecteer Model",disabled: true}); 
  
     var idvoormodel;
-    $.get("https://bnyautocenter.be/wp-json/mm/mmc/",function( data ){
+    console.log("succes");
+    $.ajax({
+      url: "https://bnyautocenter.be/wp-json/mm/mmc/",
+      headers: { "Access-Control-Allow-Origin": "*"}
+      , success: function(data){
+        
         $( data ).each(function( index ) {
-            var formattedmerk = data[index].name.replace(/[\. ,:-]+/g).toLowerCase();
-            idvoormodel = data[index].term_id;
-            $("#carmerk-input").append("<option termid="+idvoormodel+"  merktag="+formattedmerk+" >"+ data[index].name + "</option>");
-        });
-        $("#carmerk-input").removeAttr("disabled");
+          var formattedmerk = data[index].name.replace(/[\. ,:-]+/g).toLowerCase();
+          idvoormodel = data[index].term_id;
+          $("#carmerk-input").append("<option termid="+idvoormodel+"  merktag="+formattedmerk+" >"+ data[index].name + "</option>");
       });
+      $("#carmerk-input").removeAttr("disabled");
+    }});
+
+
+    // $.get("https://bnyautocenter.be/wp-json/mm/mmc/",function( data ){
+    //     $( data ).each(function( index ) {
+    //         var formattedmerk = data[index].name.replace(/[\. ,:-]+/g).toLowerCase();
+    //         idvoormodel = data[index].term_id;
+    //         $("#carmerk-input").append("<option termid="+idvoormodel+"  merktag="+formattedmerk+" >"+ data[index].name + "</option>");
+    //     });
+    //     $("#carmerk-input").removeAttr("disabled");
+    //   });
+
       $("#carmerk-input").on("change",function(){
         $("#carmodel-input").html("");
         

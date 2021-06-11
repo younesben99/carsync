@@ -377,6 +377,7 @@ form.sp_testrit_form {
     width: 100%;
     z-index: 10;
     justify-content: space-between;
+    left: 0;
 }
 .smv_wrap {
     text-align: center;

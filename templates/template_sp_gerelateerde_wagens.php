@@ -17,18 +17,28 @@ $relatedposts = get_posts($args);
 foreach($relatedposts as $wagen){
     $rel_title = get_the_title($wagen);
     $rel_link = get_permalink($wagen);
-    $rel_image = get_post_meta($wagen->ID, "_car_syncimages_key",true);
+    
     $rel_price = get_post_meta($wagen->ID, "_car_prijs_key",true);
     $rel_wagentitel = get_post_meta($wagen->ID, "_car_wagentitel_key",true);
     $rel_brandstof = get_post_meta($wagen->ID, "_car_brandstof_key",true);
     $rel_transmissie = get_post_meta($wagen->ID, "_car_transmissie_key",true);
     $rel_bouwjaar = get_post_meta($wagen->ID, "_car_bouwjaar_key",true);
+
+    $carsync_images = get_post_meta($post->ID, '_car_syncimages_key', true);
+    $manual_images = get_post_meta($post->ID, 'vdw_gallery_id', true);
+    if($manual_images == null){
+        $selected_img = $carsync_images[0];
+    }
+    else{
+        $selected_img_url = wp_get_attachment_image_src($manual_images[0],'medium');
+        $selected_img = $selected_img_url[0];
+    }
     
     ?>
 
     <li class="splide__slide" onclick="location.href='<?php echo $rel_link; ?>';">
     <div class="rel_card_wrap">
-    <div><img src="<?php echo($rel_image[0]); ?>" alt="<?php echo $rel_title; ?>" style="width:100%" /></div>
+    <div><img src="<?php echo($selected_img); ?>" alt="<?php echo $rel_title; ?>" style="width:100%" /></div>
     
     <h2><?php echo $rel_title; ?></h2>
     <div class="rel_price"><?php echo "€ ".number_format($rel_price,0,",",".") . ",-"; ?></div>
