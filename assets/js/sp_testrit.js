@@ -29,7 +29,7 @@ jQuery(document).ready(function(){
         var sp_testrit_mail = jQuery("input[name=sp_testrit_mail]").val().trim();
         var sp_testrit_tel = jQuery("input[name=sp_testrit_tel]").val().trim();
         var sp_testrit_bericht = jQuery("textarea[name=sp_testrit_bericht]").val().trim();
-        var sp_testrit_wagen = jQuery(".posttitle h1").html().trim();
+        var sp_testrit_wagen = jQuery(".sp_title > h5").html().trim();
 
         if(sp_testrit_name == "" || sp_testrit_mail == "" || sp_testrit_tel == "" || sp_testrit_bericht == ""){
             jQuery(".sp_testrit_pop .warning").html("");
