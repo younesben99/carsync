@@ -472,7 +472,8 @@
         'Paars',
         'Oranje',
         'Blauw',
-        'Brons'];
+        'Brons',
+    'Andere'];
         
         $value_kleurexterieur = get_post_meta( $post->ID, '_car_kleurexterieur_key', true );
         $opties_kleurexterieur = ['Zwart',
@@ -487,7 +488,8 @@
         'Rood',
         'Oranje',
         'Blauw',
-        'Brons'];
+        'Brons',
+    'Andere'];
 
 
         $value_prijs = get_post_meta( $post->ID, '_car_prijs_key', true );
