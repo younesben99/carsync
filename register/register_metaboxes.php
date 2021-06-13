@@ -465,6 +465,7 @@
         'Grijs',
         'Zilver',
         'Beige',
+        'Rood',
         'Bruin',
         'Geel',
         'Groen',
@@ -483,6 +484,7 @@
         'Geel',
         'Groen',
         'Paars',
+        'Rood',
         'Oranje',
         'Blauw',
         'Brons'];
