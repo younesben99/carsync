@@ -67,8 +67,10 @@ include(__DIR__."/templates/template_sp_sub_nav.php");
                 </ul>
             </div>
 
+            
 
             <?php
+            do_action( 'before_template_sp_specs' );  
 
             include(__DIR__."/templates/template_sp_specs.php");
 

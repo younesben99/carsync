@@ -8,6 +8,7 @@ echo $wagentitel;
 ?>
     </h1>
     <div class="sp_sub_nav">
+    <?php do_action( 'before_sp_locatie' ); ?>
         <div class="sp_locatie">
         <i data-feather="map-pin"></i>
         <a href="

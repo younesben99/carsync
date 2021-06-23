@@ -25,9 +25,12 @@
 
         <div class="sp_sticky_vergelijken" data-post-id="<?php echo $post->ID; ?>"><i data-feather="repeat"></i>Vergelijken</div>
         <div class="sp_sticky_testrit"><i data-feather="calendar"></i>Testrit boeken</div>
+        <?php do_action( 'after_testrit' ); ?>
         <div class="sp_sticky_contact_wrap">
             <div class="sp_sticky_beschikbaarheid contactpop">Contact opnemen</div>
+            <?php do_action( 'after_contact_mail' ); ?>
             <a href="tel:<?php echo($sp_telnr_formatted) ;?>" class="sp_sticky_telefoneren"><?php echo($sp_telnr) ;?></a>
+            <?php do_action( 'after_telnr' ); ?>
         </div>
         <div class="sp_sticky_troeven">
             <?php
