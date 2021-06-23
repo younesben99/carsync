@@ -3,16 +3,7 @@
 if(is_singular("autos")){
         
     get_header();
-
-    // TODO'S!
-
-    // vergelijken
-
-    // testrit
-
-    // beschikbaarheid controleren
-
-    // troeven ?>
+?>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>

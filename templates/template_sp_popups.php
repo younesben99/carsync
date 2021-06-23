@@ -25,6 +25,7 @@
 <div class="sp_testrit_inner">
 <div class="sluiten testritsluiten"><i data-feather="x"></i><span>Sluiten</span></div>
 <div class="sp_testrit_pop">
+<?php do_action( 'before_testrit_title' ); ?>
 <h2>Boek een testrit voor de <?php echo($sp_title); ?></h2>
 <span class="sp_pop_wagentitel">Kies een tijd en datum voor de testrit.
 </span>
