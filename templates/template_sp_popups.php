@@ -67,9 +67,15 @@ for ($i=0; $i < 30; $i++) {
 
     $timebuffer = mktime(9,0,0);
 
-    for ($i=0; $i < 9 * 4; $i++) { 
+    $interval_secs = apply_filters('custom_testrit_interval', 900);
+    $interval_remainer = 3600 / $interval_secs;
+    $time_max = 9 * $interval_remainer;
 
-        $timebuffer += 900;
+
+    for ($i=0; $i < $time_max; $i++) { 
+
+        
+        $timebuffer += $interval_secs;
 
         array_push($tijdstippen, date("H:i",$timebuffer));
         
