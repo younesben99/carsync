@@ -407,7 +407,7 @@ form.sp_testrit_form {
     width: 100%;
     min-height: 100%;
     background: whitesmoke;
-    z-index: 100;
+    z-index: 9999999;
     display: none;
     opacity:0;
     bottom: -100vh;
@@ -520,7 +520,7 @@ button#sp_testrit_versturen {
     width: 100%;
     min-height: 100%;
     background: whitesmoke;
-    z-index: 100;
+    z-index: 9999999;
     display: none;
     opacity:0;
     bottom: -100vh;

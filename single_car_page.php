@@ -10,7 +10,7 @@ if(is_singular("autos")){
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
-<link rel="stylesheet" href="<?php echo get_site_url() . "/wp-content/plugins/carsync/assets/css/sp_single.css" ?>">
+<link rel="stylesheet" href="<?php echo get_site_url() . "/wp-content/plugins/carsync/assets/css/sp_single.css?v=". uniqid() ?>">
 
 
 
