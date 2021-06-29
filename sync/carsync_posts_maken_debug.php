@@ -1,8 +1,6 @@
 <?php
 
 
-
-function carsync_posts_maken(){
     if(file_exists(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json')) {
         $Vdata = file_get_contents(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json');
     }
@@ -160,7 +158,7 @@ function carsync_posts_maken(){
      }
         
 
-   }
+   
 
 
 
