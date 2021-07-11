@@ -1,6 +1,6 @@
 <?php
-
-
+include(__DIR__."/../../../../wp-load.php");
+try {
     if(file_exists(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json')) {
         $Vdata = file_get_contents(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json');
     }
@@ -43,7 +43,7 @@
  
  
  
- 
+            echo("test");
  
          //alle posts nakijken en kijken of de modifieddate is veranderd, als dat het geval is, update die specifieke post
          $wpuniqidarray = array();
@@ -65,9 +65,10 @@
                  $array_tijd_verschil = array_diff($car_md_array_wp,$car_md_array);
                  if(!empty($array_tijd_verschil)){
                      foreach($array_tijd_verschil as $verschil){
-                         wp_delete_post($post->ID, true );
+                         echo "verwijderd: " . get_the_title($post->ID);
+                         //wp_delete_post($post->ID, true );
                      }
-                     carsync_posts_maken();
+                     //carsync_posts_maken();
                  }
                  
                  
@@ -156,6 +157,10 @@
         }
      
      }
+} catch (Exception $e) {
+    echo 'Message: ' .$e->getMessage();
+}
+   
         
 
    
