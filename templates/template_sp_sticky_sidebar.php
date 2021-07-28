@@ -13,11 +13,13 @@
     color: grey;"><?php echo  $wagentitel; ?></p></div>
         <div class="sp_sticky_prijs">
            
-            <div style="font-size: 15px;">Prijs</div>
+           
 
             
             <?php 
             if(!empty($sp_prijs)){
+
+                echo '<div style="font-size: 15px;">Prijs</div>';
                 echo "€ ".number_format($sp_prijs,0,",",".") . ",-";
             }
              ?>
