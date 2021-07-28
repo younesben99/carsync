@@ -14,7 +14,13 @@
         <div class="sp_sticky_prijs">
            
             <div style="font-size: 15px;">Prijs</div>
-            <?php echo "€ ".number_format($sp_prijs,0,",",".") . ",-"; ?>
+
+            
+            <?php 
+            if(!empty($sp_prijs)){
+                echo "€ ".number_format($sp_prijs,0,",",".") . ",-";
+            }
+             ?>
             <?php
             if(!empty($sp_oudeprijs)){
                 echo "<div class='sp_sticky_oudeprijs'>€ ".number_format($sp_oudeprijs,0,",",".") . ",-</div>";
