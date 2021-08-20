@@ -1,12 +1,13 @@
 html{
     scroll-behavior: smooth;
 }
-select{
-    background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat 95% 50%;
-	-moz-appearance: none; 
-	-webkit-appearance: none; 
-	appearance: none;
+.dds_form .select2-container {
+    width: 100% !important; 
 }
+.select2-dropdown{
+    z-index: 9999999 !important;
+}
+
 .sp_top_wrap {
     max-width: 1200px;
     margin: 50px auto;
@@ -213,6 +214,7 @@ form.sp_contact_form {
     flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
+    margin-top: 20px;
 }
 .sp_smv_testrit.smv_wrap {
     cursor: pointer;
@@ -439,15 +441,6 @@ form.sp_testrit_form {
     flex-wrap: wrap;
     height: 80%;
 }
-.sp_testrit_pop input[type="text"],.sp_testrit_pop input[type="tel"],.sp_testrit_pop input[type="email"],.testrit_select {
-    width: 400px;
-    margin-bottom: 15px;
-    padding: 10px;
-    outline: 0;
-    border:0;
-    box-shadow:rgb(45 45 45 / 16%) 0px 1px 2px 0px, rgb(238 238 238) 0px 0px 0px 1px;
-    border-radius:5px;
-}
 .sp_testrit_pop h2 {
     margin: 0;
     margin-bottom: 10px;
@@ -458,19 +451,6 @@ form.sp_testrit_form {
     margin-bottom: 20px;
     font-weight: 300;
     color: #757575;
-}
-.sp_testrit_pop textarea {
-    width: 400px;
-    max-width:400px;
-    min-width:400px;
-    margin-bottom: 15px;
-    padding: 10px;
-    resize: vertical; 
-    min-height:80px;
-max-height: 200px;
-border:0;
-box-shadow:rgb(45 45 45 / 16%) 0px 1px 2px 0px, rgb(238 238 238) 0px 0px 0px 1px;
-outline: 0;
 }
 .deelitem{
     cursor:pointer;
@@ -545,11 +525,10 @@ button#sp_testrit_versturen {
 .sp_rel_wrap .splide__slide{
     cursor:pointer;
 }
-.sp_contact_pop {
+ .sp_contact_pop {
     width: 80%;
     margin: auto;
-}
-.sp_contact_pop {
+}  .sp_contact_pop {
     width: 80%;
     margin: auto;
     display: flex;
@@ -558,19 +537,6 @@ button#sp_testrit_versturen {
     flex-direction: column;
     flex-wrap: wrap;
     height: 80%;
-}
-.sp_contact_pop input[type="text"],.sp_contact_pop input[type="tel"],.sp_contact_pop input[type="email"] {
-    width: 400px;
-    margin-bottom: 15px;
-    padding: 10px;
-    outline: 0;
-    border:0;
-    box-shadow:rgb(45 45 45 / 16%) 0px 1px 2px 0px, rgb(238 238 238) 0px 0px 0px 1px;
-    
-}
-.testrit_select{
-    border-radius: 5px;
-    background:white;
 }
 .sp_contact_pop h2 {
     margin: 0;
@@ -582,19 +548,6 @@ button#sp_testrit_versturen {
     margin-bottom: 20px;
     font-weight: 300;
     color: #757575;
-}
-.sp_contact_pop textarea {
-    width: 400px;
-    max-width:400px;
-    min-width:400px;
-    margin-bottom: 15px;
-    padding: 10px;
-    resize: vertical; 
-    min-height:80px;
-max-height: 200px;
-border:0;
-box-shadow:rgb(45 45 45 / 16%) 0px 1px 2px 0px, rgb(238 238 238) 0px 0px 0px 1px;
-outline: 0;
 }
 .deelitem{
     cursor:pointer;
@@ -723,33 +676,12 @@ button#sp_contact_versturen {
     .optcontrol {
         width: 100%;
     }
-    .sp_contact_pop textarea,.sp_testrit_pop textarea {
-      
-        margin-bottom: 15px;
-        padding: 10px;
-        width: 100%;
-    max-width:100%;
-    min-width:100%;
-    margin-bottom: 15px;
-    padding: 10px;
-    resize: vertical; 
-    min-height:80px;
-max-height: 200px;
-    }
-    .sp_contact_pop input[type="text"],.sp_contact_pop input[type="email"],.sp_contact_pop input[type="tel"]{
-      
-        width: 100%;
-    }
-    .sp_testrit_pop input[type="text"],.sp_testrit_pop input[type="email"],.sp_testrit_pop input[type="tel"],.testrit_select{
-      
-        width: 100%;
-    }
     .sp_contact_pop, .sp_testrit_pop  {
         height: 100%;
     }
     .sp_contact_pop h2,.sp_testrit_pop h2 {
         font-size: 20px;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
     }
     button#sp_contact_versturen, button#sp_testrit_versturen {
         width: 100%;

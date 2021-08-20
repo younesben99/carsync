@@ -3,18 +3,32 @@
 <div class="sluiten contactsluiten"><i data-feather="x"></i><span>Sluiten</span></div>
 <div class="sp_contact_pop">
 
-<h2>Contacteer ons voor de <?php echo($sp_title); ?></h2>
-<span class="sp_pop_wagentitel">Vul uw gegevens in. We nemen snel contact met u op.
-</span>
-<ul class="warning"></ul>
-<div class="sp_contact_succes">Bericht verstuurd. We nemen snel contact met u op.</div>
-<form class="sp_contact_form">
-<input type="text" name="sp_contact_name" placeholder="Naam" required>
-<input type="email" name="sp_contact_mail" placeholder="E-mailadres" required>
-<input type="tel" name="sp_contact_tel" placeholder="Telefoonnummer" required>
-<textarea name="sp_contact_bericht" placeholder="Bericht" rows="4"  required></textarea>
-<button type="submit" class="sp_contact_versturen" id="sp_contact_versturen">Versturen</button>
-</form>
+
+<?php
+
+$dds_settings_options = get_option( 'dds_settings_option_name' ); 
+
+$contact_shortcode_field = $dds_settings_options['sp_contact_shortcode'];
+if(empty($contact_shortcode_field)){
+    
+
+    echo "<h2>Contacteer ons voor de ".$sp_title."</h2>
+    <span class='sp_pop_wagentitel'>Vul uw gegevens in. We nemen snel contact met u op.
+    </span>";
+
+    echo do_shortcode('[dds_form style="modern" name="scpbeschikbaarheid" type="beschikbaarheid"]
+    [dds_input name="Volledige naam" lb="Volledige naam"]
+    [dds_input name="emailadres" lb="E-mailadres"]
+    [dds_input name="telefoonnummer" lb="Telefoonnummer"]
+    [dds_input ty="textarea" len="1000" name="bericht" ph="" lb="Bericht (optioneel)"]
+    [dds_submit]
+    [close_dds_form]');
+}
+else{
+    
+    echo do_shortcode($contact_shortcode_field);
+}
+?>
 
 
 </div>
@@ -25,86 +39,30 @@
 <div class="sp_testrit_inner">
 <div class="sluiten testritsluiten"><i data-feather="x"></i><span>Sluiten</span></div>
 <div class="sp_testrit_pop">
-<?php do_action( 'before_testrit_title' ); ?>
-<h2>Boek een testrit voor de <?php echo($sp_title); ?></h2>
-<span class="sp_pop_wagentitel">Kies een tijd en datum voor de testrit.
-</span>
-<ul class="warning"></ul>
-<div class="sp_testrit_succes">Uw afspraak is succesvol gepland. U ontvangt snel een bevestiging van ons.</div>
-<form class="sp_testrit_form">
 <?php
 
 
-$datums = array();
 
-$myDate = date("l d F Y");
+$testrit_shortcode_field = $dds_settings_options['sp_testrit_shortcode'];
+if(empty($testrit_shortcode_field)){
 
-for ($i=0; $i < 30; $i++) { 
-    array_push($datums, strtotime($myDate . '+ '.$i.'days'));
+    echo "<h2>Boek een testrit voor de " . $sp_title."</h2>
+    <span class='sp_pop_wagentitel'>Kies een tijd en datum voor de testrit.
+    </span>";
+
+    echo do_shortcode('[dds_form style="modern" name="scptestrit" type="afspraak"]
+    [dds_select name="datum" ph="Selecteer datum" lb="Datum"]
+    [dds_select name="tijd" ph="Selecteer tijd" lb="Tijd"]
+    [dds_input name="Volledige naam" lb="Volledige naam"]
+    [dds_input name="emailadres" lb="E-mailadres"]
+    [dds_input name="telefoonnummer" lb="Telefoonnummer"]
+    [dds_input ty="textarea" len="1000" name="bericht" ph="" lb="Bericht (optioneel)"]
+    [dds_submit] [close_dds_form]');
 }
-
-
-
+else{
+    echo do_shortcode($testrit_shortcode_field);
+}
 ?>
-<select class="testrit_select" id="testrit_datum" name="sp_testrit_datum" required>
-
-<?php
-
-    foreach($datums as $date){
-        $weekday = date('l', $date);
-        if ($weekday !== "Sunday") {
-            echo "<option value=".$date.">".nlDate(date("l d F Y", $date))."</option>";
-        }   
-    }
-
-?>
-
-</select>
-
-<?php
-
-    $tijdstippen = array();
-
-    $timebuffer = mktime(9,0,0);
-
-    $interval_secs = apply_filters('custom_testrit_interval', 900);
-    $interval_remainer = 3600 / $interval_secs;
-    $time_max = 9 * $interval_remainer;
-
-
-    for ($i=0; $i < $time_max; $i++) { 
-
-        
-        $timebuffer += $interval_secs;
-
-        array_push($tijdstippen, date("H:i",$timebuffer));
-        
-    }
-
-
-?>
-
-
-<select class="testrit_select" id="testrit_tijdstip" name="sp_testrit_tijdstip" required>
-
-<?php
-
-    foreach($tijdstippen as $tijd){
-        echo "<option value=".$tijd.">".$tijd."</option>";
-    }
-
-?>
-
-</select> 
-<span class="sp_pop_wagentitel">Hoe kunnen we u bereiken?
-</span>
-<input type="text" name="sp_testrit_name" placeholder="Naam" required>
-<input type="email" name="sp_testrit_mail" placeholder="E-mailadres" required>
-<input type="tel" name="sp_testrit_tel" placeholder="Telefoonnummer" required>
-<textarea name="sp_testrit_bericht" placeholder="Bericht" rows="4"  required></textarea>
-<button type="submit" class="sp_testrit_versturen" id="sp_testrit_versturen">Versturen</button>
-</form>
-
 
 </div>
 </div>

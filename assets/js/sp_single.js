@@ -16,7 +16,22 @@ Array.prototype.pushIfNotExist = function(element, comparer) {
 jQuery(document).ready(function(){
     
 
-
+    if (jQuery('input[name=merk_hidden]').length) {
+        var hiddenmerk = jQuery("#sp_merk_hidden").val();
+        
+        if(hiddenmerk !== ''){
+            jQuery('input[name=merk_hidden]').val(hiddenmerk);
+        }
+        
+    }
+    if (jQuery('input[name=model_hidden]').length) {
+        var hiddenmodel = jQuery("#sp_model_hidden").val();
+        
+        if(hiddenmodel !== ''){
+            jQuery('input[name=model_hidden]').val(hiddenmodel);
+        }
+        
+    }
 
     var splidex = new Splide( '.sp_grid_wrap',{
             type   : 'slide',

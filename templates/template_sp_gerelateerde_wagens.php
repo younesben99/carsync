@@ -9,7 +9,14 @@
 <?php
 $args = array(
     'numberposts' => 5,
-    'post_type'   => 'autos'
+    'post_type'   => 'autos',
+    'meta_query' => array(
+        array(
+            'key' => '_car_status_key',
+            'value' => 'tekoop',
+            'compare' => 'LIKE'
+        )
+    )
   );
 $relatedposts = get_posts($args);
 
