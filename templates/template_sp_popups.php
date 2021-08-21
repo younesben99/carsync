@@ -46,7 +46,7 @@ else{
 $testrit_shortcode_field = $dds_settings_options['sp_testrit_shortcode'];
 if(empty($testrit_shortcode_field)){
 
-    echo "<h2>Boek een testrit voor de " . $sp_title."</h2>
+    echo "<h2>Boek een testrit voor de " . $sp_title . "</h2>
     <span class='sp_pop_wagentitel'>Kies een tijd en datum voor de testrit.
     </span>";
 
@@ -58,6 +58,7 @@ if(empty($testrit_shortcode_field)){
     [dds_input name="telefoonnummer" lb="Telefoonnummer"]
     [dds_input ty="textarea" len="1000" name="bericht" ph="" lb="Bericht (optioneel)"]
     [dds_submit] [close_dds_form]');
+    
 }
 else{
     echo do_shortcode($testrit_shortcode_field);
