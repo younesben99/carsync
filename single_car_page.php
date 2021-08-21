@@ -83,7 +83,9 @@ include(__DIR__."/templates/template_sp_sub_nav.php");
 </div>
 <input style="display:none !important;" id="sp_merk_hidden" value="<?php echo $sp_merk ?>" />
 <input style="display:none !important;" id="sp_model_hidden" value="<?php echo $sp_model ?>" />
-<script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_single.js?v=4.009'; ?>"></script>
+<script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_single.js?v=5.557'; ?>"></script>
+<script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_contact.js?v=5.557'; ?>"></script>
+<script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_testrit.js?v=5.557'; ?>"></script>
 <?php get_footer();
 }
 ?>
