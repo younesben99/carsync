@@ -22,7 +22,7 @@ jQuery(document).ready(function(){
         if(hiddenmerk !== ''){
             jQuery('input[name=merk_hidden]').val(hiddenmerk);
         }
-       
+        
     }
     if (jQuery('input[name=model_hidden]').length) {
         var hiddenmodel = jQuery("#sp_model_hidden").val();
@@ -30,7 +30,7 @@ jQuery(document).ready(function(){
         if(hiddenmodel !== ''){
             jQuery('input[name=model_hidden]').val(hiddenmodel);
         }
-      
+        
     }
 
     var splidex = new Splide( '.sp_grid_wrap',{

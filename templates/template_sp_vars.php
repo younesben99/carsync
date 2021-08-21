@@ -49,4 +49,15 @@ $sp_handelsnaam = $dds_settings_options['dealer_handelsnaam_8'];
 
 $sp_chosen_type = $dds_settings_options['slideshow_type'];
 
+if(empty($sp_merk) && empty($sp_model)){
+
+ 
+    $sp_merk_model_arr = explode(' ',trim($sp_title));
+
+    $sp_merk = $sp_merk_model_arr[0];
+    $sp_model = $sp_merk_model_arr[1] . $sp_merk_model_arr[2];;
+
+}
+
+
 ?>
