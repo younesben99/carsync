@@ -12,6 +12,18 @@ function wagens_ophalen_toolbar($admin_bar){
     ));
 }
 
+add_action( 'admin_bar_menu', 'update_plugins_toolbar', 150 );
+function update_plugins_toolbar($admin_bar){
+    $admin_bar->add_menu( array(
+        'id'    => 'dds_update_plugins',
+        'title' => 'Update plugins',
+        'href'  => '#',
+        'meta'  => array(
+            'title' => __('Update plugins'),            
+        ),
+    ));
+}
+
 add_action( 'admin_footer', 'wagens_ophalen_toolbar_js' ); // Write our JS below here
 
 function wagens_ophalen_toolbar_js() { ?>
@@ -40,6 +52,25 @@ function wagens_ophalen_toolbar_js() { ?>
             reqtime++;
         
         });
+
+        jQuery("#wp-admin-bar-dds_update_plugins").on("click",function(){
+        
+            
+        var data = {
+			'action': 'ajax_wagens_fetch',
+			'update_plugins': true
+		};
+
+	
+		jQuery.post(ajaxurl, data, function(response) {
+            console.log('Got this from the server: ' + response);
+           
+		});
+           
+        
+        });
+
+
 		
 	});
 	</script> <?php
@@ -50,6 +81,17 @@ function ajax_wagens_fetch_callback() {
     
     if(isset($_POST["wagensladen"])){
         carsync_data_ophalen();
+    }
+    if(isset($_POST["update_plugins"])){
+        
+          try {
+            $output = shell_exec("wp plugin list");
+            echo "<pre>$output</pre>";
+
+          } catch (\Throwable $th) {
+             echo($th);
+          }
+        
     }
 
     die(); 
