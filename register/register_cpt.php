@@ -74,18 +74,18 @@ function custom_autos_column( $column, $post_id ) {
             $manual_fotos = get_post_meta( $post_id , 'vdw_gallery_id', true );
             $value_sync = get_post_meta( $post_id, '_car_sync_key', true );
 
-            if ( !empty($carsync_fotos) && $value_sync == "YES" ){
-                echo "<img src='".$carsync_fotos[0]."' style='max-width:150px;border-radius:5px;' />";
-            }
-            else{
-                if(!empty($manual_fotos)){
-                    echo "<img src='".wp_get_attachment_url($manual_fotos[0])."' style='max-width:150px;border-radius:5px;' />";
+            if(!empty($manual_fotos)){
+                if($manual_fotos[0] == 1){
+                    echo "<img src='https://digiflowroot.be/static/images/camera_image.jpg' style='max-width:150px;border-radius:5px;' />";
                 }
                 else{
-                    echo "<img src='".$carsync_fotos[0]."' style='max-width:150px;border-radius:5px;' />";
+                    echo "<img src='".wp_get_attachment_url($manual_fotos[0])."' style='max-width:150px;border-radius:5px;' />";
                 }
                 
+            }else{
+                echo "<img src='".$carsync_fotos[0]."' style='max-width:150px;border-radius:5px;' />";
             }
+            
             break;
         case 'wagenstatus' :
             $value_wagen_status = get_post_meta( $post_id, '_car_post_status_key', true );

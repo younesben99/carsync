@@ -111,11 +111,16 @@
     $carsync_fotos = pak_veld( '_car_syncimages_key');
     $manual_fotos = pak_veld( 'vdw_gallery_id');
     $value_sync = pak_veld('_car_sync_key');
+    $sync_status = pak_veld('_car_status_key');
+   
+    if(is_array($manual_fotos)){
+        $manual_fotos = array_unique($manual_fotos);
+    }
 
     $img_links = array();
 
 
-    if (!empty($carsync_fotos) && $value_sync == "YES") {
+    if (!empty($carsync_fotos) && empty($manual_fotos) || $manual_fotos[0] == null) {
         
             foreach ($carsync_fotos as $img) {
                 
@@ -126,21 +131,28 @@
 
     } else {
 
-        if (!empty($manual_fotos)) {
+        if (!empty($manual_fotos) || $manual_fotos[0] == null) {
 
              foreach ($manual_fotos as $img) {
                 
-                array_push($img_links,wp_get_attachment_url($img));
+                if($img !== 1){
+                    array_push($img_links,wp_get_attachment_url($img));
+                }
+                else{
+                    array_push($img_links,"https://digiflowroot.be/static/images/camera_image.jpg");
+                    
+                }
+                
                 
             }
 
         } else {
-
             foreach ($carsync_fotos as $img) {
                 
                 array_push($img_links,$img);
                 
             }
+            
 
         }
 

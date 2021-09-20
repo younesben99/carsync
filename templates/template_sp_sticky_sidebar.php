@@ -37,7 +37,14 @@
         <div class="sp_sticky_contact_wrap">
             <div class="sp_sticky_beschikbaarheid contactpop">Contact opnemen</div>
             <?php do_action( 'after_contact_mail' ); ?>
+            <?php
+            if(!empty($sp_telnr_formatted)){
+            ?>
             <a href="tel:<?php echo($sp_telnr_formatted) ;?>" class="sp_sticky_telefoneren"><?php echo($sp_telnr) ;?></a>
+            <?php
+            }
+            ?>
+            
             <?php do_action( 'after_telnr' ); ?>
         </div>
         <div class="sp_sticky_troeven">

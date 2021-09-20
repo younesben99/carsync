@@ -23,5 +23,14 @@ if ( ! wp_next_scheduled( 'carsync_data_ophalen_hook' ) ) {
     wp_schedule_event( time(), '30min', 'carsync_data_ophalen_hook' );
 }
 
+//foto's downloaden voor autos en missing links vervangen
+
+add_action( 'carsync_car_fotos_downloaden', 'dds_car_fotos_downloaden' ,1);
+if ( ! wp_next_scheduled( 'carsync_car_fotos_downloaden' ) ) {
+    wp_schedule_event( time(), '30min', 'carsync_car_fotos_downloaden' );
+}
+
+
+
 
 ?>

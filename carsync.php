@@ -4,7 +4,7 @@
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 7.8
+Version: 7.9
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -19,6 +19,7 @@ require_once( __DIR__ . '/register/register_single.php');
 require_once( __DIR__ . '/register/register_cron_job.php');
 require_once( __DIR__ . '/register/register_zapier.php');
 require_once( __DIR__ . '/sync/carsync_data_ophalen.php');
+require_once( __DIR__ . '/sync/carsync_image_handler.php');
 require_once( __DIR__ . '/sync/create_post_by_uniq_id.php');
 include_once( __DIR__ . '/register/register_admin_toolbar_links.php');
 include_once( __DIR__ . '/register/register_compare.php');
