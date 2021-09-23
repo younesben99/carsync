@@ -33,15 +33,20 @@ foreach($relatedposts as $wagen){
 
     $carsync_images = get_post_meta($wagen->ID, '_car_syncimages_key', true);
     $manual_images = get_post_meta($wagen->ID, 'vdw_gallery_id', true);
-    if($manual_images == null){
+    
+
+    if(empty($manual_images)){
         $selected_img = $carsync_images[0];
     }
     else{
+        
         if($manual_images[0] !== 1){
-            $selected_img_url = wp_get_attachment_image_src($manual_images[0],'medium');
+            $selected_img = wp_get_attachment_image_src($manual_images[0],'medium');
+            $selected_img = $selected_img[0];
         }
         else{
             $selected_img = "https://digiflowroot.be/static/images/camera_image.jpg";
+            
         }
     }
     
