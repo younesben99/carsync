@@ -14,13 +14,20 @@ $AS_CUSTOMER_ID = $AS_API_OPT['autoscout_customer_id_1'];
 
 if(!empty($AS_API) && !empty($AS_CUSTOMER_ID)){
 
+$savedir = ABSPATH."wp-content/uploads/dds_uploads/carsync/sync/data/";
+
+if (!file_exists($savedir)) {
+    mkdir($savedir, 0777, true);
+}
+
+
 //FILES
-$debugfile = "/carsync/sync/data/input_query_log_debug.txt";
-$errorfilepath = "/carsync/sync/data/input_query_log_error.txt";
-$httperrorfilepath = "/carsync/sync/data/input_query_log_http_error.txt" ;
-$httperrorfilepathformail = "/wp-content/plugins/carsync/sync/data/input_query_log_http_error.txt" ;
-$inputqueryfilepath = "/carsync/sync/data/input_query.json";
-$inputquerylog = "/carsync/sync/data/input_query_log.txt";
+$debugfile = $savedir."input_query_log_debug.txt";
+$errorfilepath = $savedir."input_query_log_error.txt";
+$httperrorfilepath = $savedir."input_query_log_http_error.txt" ;
+$httperrorfilepathformail = $savedir."input_query_log_http_error.txt" ;
+$inputqueryfilepath = $savedir."input_query.json";
+$inputquerylog = $savedir."input_query_log.txt";
 //ENDFILES
 $endpoint = "https://listing-search.api.autoscout24.com/graphql";
 $authToken = "Basic ".$AS_API;
@@ -45,7 +52,7 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 //DEBUG
 curl_setopt($ch, CURLOPT_VERBOSE, true);
-curl_setopt($ch, CURLOPT_STDERR, fopen(WP_PLUGIN_DIR . $debugfile, "w+"));
+curl_setopt($ch, CURLOPT_STDERR, fopen($debugfile, "w+"));
 
 
 
@@ -58,7 +65,7 @@ $tijd = "LAST RUN: ". date("d-m-Y H:i:s");
 
 if (curl_errno($ch)) {
     // this would be your first hint that something went wrong
-    $fhlog_error = fopen(WP_PLUGIN_DIR . $errorfilepath, "w+");
+    $fhlog_error = fopen($errorfilepath, "w+");
     fwrite($fhlog_error, $tijd . "\n" . "Couldn\'t send request: " . curl_error($ch)  . "\nRESULT:$result");
     fclose($fhlog_error);
     $to = "younesbenkheil@gmail.com";
@@ -75,11 +82,11 @@ if (curl_errno($ch)) {
     $resultStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     if ($resultStatus == 200) {
         
-        $fh_200_log = fopen(WP_PLUGIN_DIR . $inputquerylog, "w+");
+        $fh_200_log = fopen( $inputquerylog, "w+");
         fwrite($fh_200_log, $tijd . "\nHTTP CODE: " . $resultStatus);
         fclose($fh_200_log);
 
-        $file =  WP_PLUGIN_DIR . $inputqueryfilepath;
+        $file = $inputqueryfilepath;
         $fh = fopen($file, "w+");
         fwrite($fh, $result);
         fclose($fh);
@@ -88,13 +95,14 @@ if (curl_errno($ch)) {
     
     } else {
 
-        $fhlog_error2 = fopen(WP_PLUGIN_DIR . $httperrorfilepath, "w+");
+        $fhlog_error2 = fopen($httperrorfilepath, "w+");
         fwrite($fhlog_error2, $tijd . "\n" . "Request failed: HTTP status code: " . $resultStatus . "\nRESULT:$result");
         fclose($fhlog_error2);
 
         $to = "younesbenkheil@gmail.com";
         $subject = "Carsync HTTP problem: " . get_site_url();
-        $message .= "Request failed: HTTP status code: " . $resultStatus ."\n" . $tijd . "\nURL: ". get_site_url() . $httperrorfilepathformail . "\nURL: ". get_site_url() . "/wp-content/plugins" . $debugfile . "\nRESULT:$result";
+        $message .= "Request failed: HTTP status code: " . $resultStatus ."\n" . $tijd . "\nURL: ". get_site_url() . $httperrorfilepathformail . "\nURL: ". get_site_url() . "/wp-content/uploads/dds_uploads/carsync/sync/data/" . $debugfile . "\nRESULT:$result";
+        
         wp_mail( $to, $subject, $message );
 
         die('Request failed: HTTP status code: ' . $resultStatus);

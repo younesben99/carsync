@@ -15,8 +15,8 @@ function create_post_by_uniq_id($passed_id){
     }
     //uniq id arg zit niet in 1 van de huidige wp posts
     if(in_array($passed_id,$uniq_wp_wagen) == false){
-    if(file_exists(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json')) {
-        $Vdata = file_get_contents(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json');
+    if(file_exists(ABSPATH . 'wp-content/uploads/dds_uploads/carsync/sync/data/input_query.json')) {
+        $Vdata = file_get_contents(ABSPATH . 'wp-content/uploads/dds_uploads/carsync/sync/data/input_query.json');
     }
     else{
         $Vdata = 0;
@@ -28,8 +28,8 @@ function create_post_by_uniq_id($passed_id){
         foreach ($cars as $car)
         {
             
-            if($passed_id == $car['id']){
-                $uniqid = $car['id'];
+            if($passed_id == $car['details']['vehicle']['identifier']['vin']){
+                $uniqid = $car['details']['vehicle']['identifier']['vin'];
            
                 $merk = $car['details']['vehicle']['classification']['make']['formatted'];
                 $model = $car['details']['vehicle']['classification']['model']['formatted'];

@@ -3,8 +3,8 @@
 
 
 function carsync_posts_maken(){
-    if(file_exists(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json')) {
-        $Vdata = file_get_contents(WP_PLUGIN_DIR . '/carsync/sync/data/input_query.json');
+    if(file_exists(ABSPATH . 'wp-content/uploads/dds_uploads/carsync/sync/data/input_query.json')) {
+        $Vdata = file_get_contents(ABSPATH . 'wp-content/uploads/dds_uploads/carsync/sync/data/input_query.json');
     }
     else{
         $Vdata = 0;
@@ -22,7 +22,7 @@ function carsync_posts_maken(){
      $caridarray = array();
      $car_md_array = array();
          foreach($cars as $car){
-             $tempuniqid = $car['id'];
+             $tempuniqid = $car['details']['vehicle']['identifier']['vin'];
              array_push($caridarray,$tempuniqid);
              $tempmd = $car['details']['publication']['changedTimestamp'];
              array_push( $car_md_array,$tempmd);
@@ -36,7 +36,7 @@ function carsync_posts_maken(){
         foreach ($cars as $car)
         {
             
-              create_post_by_uniq_id($car['id']);
+              create_post_by_uniq_id($car['details']['vehicle']['identifier']['vin']);
         }
  
      }

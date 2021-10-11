@@ -1,8 +1,8 @@
 #gallery-metabox-list li {
     float: left;
-    width: 150px;
+    width: 110px;
     text-align: center;
-    margin: 9px;
+    margin: 0px 11px 11px 0;
     cursor: move;
 }
 
@@ -17,8 +17,8 @@
     width: 23px;
     text-align: center;
     height: 23px;
-    margin-top: -116px;
-    margin-left: 129px;
+    margin-top: -77px;
+    margin-left: 88px;
     cursor: pointer;
     padding-top: 1px;
     border-radius: 5px;
@@ -40,4 +40,40 @@
 
 .swal2-title {
     font-size: 1.175em !important;
+}
+.image-preview.change-image {
+    border-radius: 5px;
+}
+.remove-image{
+
+}
+
+.remove-image {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    padding: 3px;
+    
+  }
+  .remove-image:hover {
+    opacity: 0.9;
+  }
+  .remove-image:before, .remove-image:after {
+    position: absolute;
+   
+    content: ' ';
+    height: 12px;
+    width: 1px;
+    background-color: #333;
+    
+  }
+  .remove-image:before {
+    transform: rotate(45deg);
+  }
+  .remove-image:after {
+    transform: rotate(-45deg);
+  }
+  .form-table td {
+    padding: 15px 0px  !important;
 }

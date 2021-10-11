@@ -1,0 +1,25 @@
+.pushbutton {
+    margin-top: 10px !important;cursor:pointer;
+    margin-bottom: 10px !important;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    width: 165px;
+    text-align: center;
+}.pushbutton:hover{transition:0.3s;}
+.fbpush{margin-top:10px;}
+.socialwrap {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+.pushbutton span {
+    font-size: 15px;
+    padding-top: 6px;
+}
+.pushbutton {
+    width: 100%;
+    padding: 8px !important;
+}

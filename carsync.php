@@ -12,14 +12,13 @@ GitHub Plugin URI: https://github.com/younesben99/carsync
 */
 
 require_once( __DIR__ . '/register/register_cpt.php');
-require_once( __DIR__ . '/register/register_gallery.php');
 require_once( __DIR__ . '/register/register_metaboxes.php');
 require_once( __DIR__ . '/register/register_archive.php');
 require_once( __DIR__ . '/register/register_single.php');
+require_once( __DIR__ . '/sync/carsync_image_handler.php');
 require_once( __DIR__ . '/register/register_cron_job.php');
 require_once( __DIR__ . '/register/register_zapier.php');
 require_once( __DIR__ . '/sync/carsync_data_ophalen.php');
-require_once( __DIR__ . '/sync/carsync_image_handler.php');
 require_once( __DIR__ . '/sync/create_post_by_uniq_id.php');
 include_once( __DIR__ . '/register/register_admin_toolbar_links.php');
 include_once( __DIR__ . '/register/register_compare.php');
@@ -27,7 +26,55 @@ include_once( __DIR__ . '/register/register_single_car_page.php');
 include(__DIR__."/templates/template_og_tags.php");
 
 
+//carfeed
+require_once( __DIR__ . '/feed/facebook_feed_aanmaken.php');
+require_once( __DIR__ . '/register/register_cron_job.php');
+require_once( __DIR__ . '/socialpush/social_metaboxes.php');
 
+
+function socialpush_scripts( $hook ) {
+
+    global $post;
+    if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+        if ( 'autos' === $post->post_type ) {     
+            wp_enqueue_style('socialpushcss', plugin_dir_url( __FILE__ ).'/socialpush/css/socialpush.css');
+            wp_enqueue_script(  'socialpushjs', plugin_dir_url( __FILE__ ).'/socialpush/js/socialpush.js' );
+        }
+       
+    }
+  }
+  add_action( 'admin_enqueue_scripts', 'socialpush_scripts', 10, 1 );
+  function strip_html_tags( $text )
+  {
+      $text = preg_replace(
+          array(
+            // Remove invisible content
+              '@<head[^>]*?>.*?</head>@siu',
+              '@<style[^>]*?>.*?</style>@siu',
+              '@<script[^>]*?.*?</script>@siu',
+              '@<object[^>]*?.*?</object>@siu',
+              '@<embed[^>]*?.*?</embed>@siu',
+              '@<applet[^>]*?.*?</applet>@siu',
+              '@<noframes[^>]*?.*?</noframes>@siu',
+              '@<noscript[^>]*?.*?</noscript>@siu',
+              '@<noembed[^>]*?.*?</noembed>@siu',
+            // Add line breaks before and after blocks
+              '@</?((address)|(blockquote)|(center)|(del))@iu',
+              '@</?((div)|(h[1-9])|(ins)|(isindex)|(p)|(pre))@iu',
+              '@</?((dir)|(dl)|(dt)|(dd)|(li)|(menu)|(ol)|(ul))@iu',
+              '@</?((table)|(th)|(td)|(caption))@iu',
+              '@</?((form)|(button)|(fieldset)|(legend)|(input))@iu',
+              '@</?((label)|(select)|(optgroup)|(option)|(textarea))@iu',
+              '@</?((frameset)|(frame)|(iframe))@iu',
+          ),
+          array(
+              ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+              "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0",
+              "\n\$0", "\n\$0",
+          ),
+          $text );
+      return strip_tags( $text );
+  }
 function add_admin_scripts( $hook ) {
 
     global $post;
@@ -206,43 +253,31 @@ function vergelijk_pagina_maken()
 add_action('init','vergelijk_pagina_maken'); 
 
 
-function mungXML($xml)
-{
-    $obj = SimpleXML_Load_String($xml);
-    if ($obj === FALSE) return $xml;
+function is_edit_page($new_edit = null){
+    global $pagenow;
+   
+    if (!is_admin()) return false;
 
-    // GET NAMESPACES, IF ANY
-    $nss = $obj->getNamespaces(TRUE);
-    if (empty($nss)) return $xml;
+    
+    if($new_edit == "edit")
+        return in_array( $pagenow, array( 'post.php',  ) );
+    elseif($new_edit == "new") 
+        return in_array( $pagenow, array( 'post-new.php' ) );
+    else 
+        return in_array( $pagenow, array( 'post.php', 'post-new.php' ) );
+}
 
-    // CHANGE ns: INTO ns_
-    $nsm = array_keys($nss);
-    foreach ($nsm as $key)
-    {
-        // A REGULAR EXPRESSION TO MUNG THE XML
-        $rgx
-        = '#'               // REGEX DELIMITER
-        . '('               // GROUP PATTERN 1
-        . '\<'              // LOCATE A LEFT WICKET
-        . '/?'              // MAYBE FOLLOWED BY A SLASH
-        . preg_quote($key)  // THE NAMESPACE
-        . ')'               // END GROUP PATTERN
-        . '('               // GROUP PATTERN 2
-        . ':{1}'            // A COLON (EXACTLY ONE)
-        . ')'               // END GROUP PATTERN
-        . '#'               // REGEX DELIMITER
-        ;
-        // INSERT THE UNDERSCORE INTO THE TAG NAME
-        $rep
-        = '$1'          // BACKREFERENCE TO GROUP 1
-        . '_'           // LITERAL UNDERSCORE IN PLACE OF GROUP 2
-        ;
-        // PERFORM THE REPLACEMENT
-        $xml =  preg_replace($rgx, $rep, $xml);
+function array_flatten($array, $prefix = ''){
+    $return = [];
+    foreach ($array as $key => $value) {
+        if (is_array($value)) {
+            $return = array_merge($return, array_flatten($value, $prefix . $key . '_'));
+        } else {
+            $return[$prefix . $key] = $value;
+        }
     }
+    return $return;
+}
 
-    return $xml;
-
-} 
 
 ?>

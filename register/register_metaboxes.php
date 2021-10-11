@@ -7,17 +7,16 @@
     add_action( 'add_meta_boxes', 'metaboxes_list' );
     function metaboxes_list()
     {
-        //informatie over de post hiddens
-       // add_meta_box( 'car_meta_data_ophalen', 'Wagen identificatie', 'car_meta_ophalen_cb', 'autos' );
-        //informatie over de post hiddens
-        add_meta_box( 'car_meta_data', 'Car meta data', 'car_meta_cb', 'autos' );
-        //instellingen van de post
-        add_meta_box( 'car_settings', 'Instellingen', 'car_settings_cb', 'autos' );
-        //informatie over de wagen
-        add_meta_box( 'car_gegevens', 'Wagen gegevens', 'car_gegevens_cb', 'autos' );
-        //wagen opties
-        add_meta_box( 'car_options', 'Wagen opties', 'car_options_cb', 'autos' );
-        
+       
+       
+        $inmotiv_acties_allow = get_option("dds_settings_option_name");
+
+        $inmotiv_acties_allow = $inmotiv_acties_allow["inmotiv_allow"];
+
+        if (!empty($inmotiv_acties_allow)) {
+            add_meta_box( 'car_gegevensx', 'Acties', 'car_meta_ophalen_cb', 'autos' ,'side','high');
+        }
+        add_meta_box('car_gegevens', 'Wagen gegevens', 'car_gegevens_cb', 'autos');
     }
     
     
@@ -26,297 +25,107 @@
     
 
     function car_meta_ophalen_cb($post){
-
-        $value_vin = get_post_meta( $post->ID, '_car_vin_key', true );
-        $foldericonpath = get_site_url().'/wp-content/plugins/carsync/assets/img/document.svg';
-        $checkiconpath = get_site_url().'/wp-content/plugins/carsync/assets/img/check.svg';
-        ?>
-       
-        <div style="display:flex;flex-direction:column;" class="labeldiv">
-            <label for="carvin-input">Chassisnummer</label>
-            <div style="display: flex;justify-content: space-between;align-items: flex-start;flex-direction: column;">
-            <div class="checkvinwrap"><img style="" width="20" src="<?php echo $checkiconpath; ?>" alt="VIN is correct" /></div>
-            <input style="width: 60%;margin-bottom: 20px;" type="text" name="carvin-input" id="carvin-input" maxlength="17" value="<?php echo $value_vin ?>" />
-            <div class="autodataophalen" id="cardatacall"><img src="<?php echo $foldericonpath; ?>" width="30" style="margin-right:10px;" /> Auto gegevens ophalen</div>
+        $fbpushed = get_post_meta($post->ID,"fb_push_key",true);
+        $igpushed = get_post_meta($post->ID,"ig_push_key",true);
+    
+    
+        if($fbpushed == "1"){
+            $fbpushed = "disabled";
+        }
+        else{
+            $fbpushed = "0";
+        }
             
-            <div class="showmoreselectief"><span class="dashicons dashicons-arrow-down-alt2 dashchev"></span> Selectief gegevens ophalen</div>
-            <div class="secondary_ophaal_options">
-            <button class="autodataophalen_sec" id="cardatacallB" data-codes="B">Basis gegevens</button>
-            <button class="autodataophalen_sec" id="cardatacallX" data-codes="X">Technische gegevens</button>
-            <hr>
-            <button class="autodataophalen_sec" id="cardatacallE" data-codes="E">Emissie gegevens</button>
-            <button class="autodataophalen_sec" id="cardatacallR" data-codes="R">Registratie gegevens</button>
-            <button class="autodataophalen_sec" id="cardatacallA" data-codes="BXERA">Fiscale gegevens</button>
-            <button class="autodataophalen_sec" id="cardatacallT" data-codes="T">Keuring gegevens</button>
-            <button class="autodataophalen_sec" id="cardatacallC" data-codes="C">Commerciële gegevens</button>
-            <hr>
-            <button class="autodataophalen_sec" id="cardatacallV" data-codes="CV">Restwaarde berekenen</button>
-            <button class="autodataophalen_sec" id="cardatacallF" data-codes="CF">Toekomstige restwaarde</button>
-            </div>
-            </div>
-        </div>
-
-        <?php
-    }
-           
-    function car_options_cb($post)
-    {
-        $opt_comfort = array("Achterbank 1/3 - 2/3", "Airconditioning", "Armsteun", "Automatische klimaatregeling", "Cruise Control", "Electrische ruiten", "Electrische zetelverstelling", "Elektrisch verstelbare buitenspiegels", "Elektrische achterklep", "Getinte ramen", "Hill-Hold Control", "Lederen stuurwiel", "Lendensteun", "Lichtsensor", "Massagestoelen", "Multifunctioneel stuur", "Navigatiesysteem", "Open dak", "Parkeerhulp", "Parkeerhulp achter", "Parkeerhulp voor", "Regensensor", "Start/Stop systeem", "Zetelverwarming");
-        $opt_enter_media = array("Bluetooth", "Boordcomputer", "CD", "Digitale radio-ontvangst", "Handsfree", "MP3", "Radio", "Sound system", "USB");
-        $opt_extra = array("Aanraakscherm", "Bagagerek", "Lichtmetalen velgen", "Schakelpaddles", "Schuifdeur", "Skiluik", "Sneeuwbanden", "Sportzetels", "Spraakbediening", "Trekhaak");
-        $opt_veiligheid = array("ABS", "Achter airbag", "Airbag bestuurder", "Airbag passagier", "Alarm", "Automatische Tractie Controle", "Bandenspanningscontrolesysteem", "Centrale deurvergrendeling met afstandsbediening", "Centrale vergrendeling", "Dagrijlichten", "Dodehoekdetectie", "Electronic Stability Program", "Hoofd airbag", "Isofix", "LED verlichting", "Mistlampen", "Startonderbreker", "Stuurbekrachtiging", "Xenon Lichten", "Zij-airbags");
-
-        $value_enter_media = get_post_meta( $post->ID, '_car_enter_media_key', true );
-        if(empty($value_enter_media)){
-            $value_enter_media = array();
+        if($igpushed == "1"){
+            $igpushed = " disabled";
         }
-        $value_comfort = get_post_meta( $post->ID, '_car_comfort_key', true );
-        if(empty($value_comfort)){
-            $value_comfort = array();
-        }
-        $value_extra = get_post_meta( $post->ID, '_car_extra_key', true );
-        if(empty($value_extra)){
-            $value_extra = array();
-        }
-        $value_veiligheid = get_post_meta( $post->ID, '_car_veiligheid_key', true );
-        if(empty($value_veiligheid)){
-            $value_veiligheid = array();
-        }
-    ?>
-
-<div class="checkwrap">
-
-    <div class="label checkboxtitle">Comfort en gemak</div>
-
-    <div class="fields">
-
-        <?php foreach ($opt_comfort as $opt) {
-               ?>
-        <label><input type="checkbox" name="carcomfort[]" value="<?php echo $opt; ?>" <?php foreach($value_comfort as $value){
-                   if($value == $opt){
-                       echo("checked");
-                   }
-               } ?> /> <?php echo $opt; ?></label>
-
-        <?php
-             } 
-             ?>
-
-    </div>
-</div>
-<div class="checkwrap">
-
-    <div class="label checkboxtitle">Entertainment en media</div>
-
-    <div class="fields">
-
-        <?php foreach ($opt_enter_media as $opt) {
-               ?>
-        <label><input type="checkbox" name="carenter_media[]" value="<?php echo $opt; ?>" <?php foreach($value_enter_media as $value){
-                   if($value == $opt){
-                       echo("checked");
-                   }
-               } ?> /> <?php echo $opt; ?></label>
-
-        <?php
-             } 
-             ?>
-
-    </div>
-
-</div>
-
-<div class="checkwrap">
-
-    <div class="label checkboxtitle">Veiligheid</div>
-
-    <div class="fields">
-
-        <?php foreach ($opt_veiligheid as $opt) {
-               ?>
-        <label><input type="checkbox" name="carveiligheid[]" value="<?php echo $opt; ?>" <?php foreach($value_veiligheid as $value){
-                   if($value == $opt){
-                       echo("checked");
-                   }
-               } ?> /> <?php echo $opt; ?></label>
-
-        <?php
-             } 
-             ?>
-
-    </div>
-
-</div>
-
-
-<div class="checkwrap">
-
-    <div class="label checkboxtitle">Extra</div>
-
-    <div class="fields">
-
-        <?php foreach ($opt_extra as $opt) {
-               ?>
-        <label style="font-weight:400;"><input type="checkbox" name="carextra[]" value="<?php echo $opt; ?>" <?php foreach($value_extra as $value){
-                   if($value == $opt){
-                       echo("checked");
-                   }
-               } ?> /> <?php echo $opt; ?></label>
-
-        <?php
-             } 
-             ?>
-
-
-
-    </div>
-</div>
-<?php    
-    }
-
-
-    function car_settings_cb($post)
-    {
-        //data ophalen en in klaarmaken voor parsing
-
-        $value_sync = get_post_meta( $post->ID, '_car_sync_key', true );
-        if(empty($value_sync)){
-            $value_sync = "NO";
-        }
-        $value_status = get_post_meta( $post->ID, '_car_status_key', true );
-        if(empty($value_status)){
-            $value_status = "tekoop";
-        }
-        $value_post_status = get_post_meta( $post->ID, '_car_post_status_key', true );
-        if(empty($value_post_status)){
-            $value_post_status = "actief";
-        }
-       
+        else{
+            $igpushed = "0";
+        }   
+    
         
-?>
-
-<div class="statusflex">
+        $AS_API_OPT = get_option("dds_settings_option_name");
+        $fb_key = $AS_API_OPT['zapier_facebook_key_2'];
+        $ig_key = $AS_API_OPT['zapier_instagram_key_3'];
     
-
-<div class="selectwrapper">
-        <div class="dash-status-dot"><span class="<?php 
-        if(get_post_meta($post->ID, '_car_sync_key', true) == 'YES' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
-          echo "live";
+        if(empty($fb_key)){
+            $fb_status = "pushdisable";
         }
-        if(get_post_meta($post->ID, '_car_sync_key', true) == 'NO' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
-          echo "nglive";
+        else{
+            $fb_status = "fbpush";
         }
-        if(get_post_meta($post->ID, '_car_post_status_key', true) == 'archief'){
-          echo "archief";
+        if(empty($ig_key)){
+            $ig_status = "pushdisable";
         }
-        if (get_post_meta($post->ID, '_car_post_status_key', true) == ''){
-            echo "nglive";
-        }  
-        ?>"></span></div>
-        <select id="dash-status">
-          <option class="dot live" data-post-id="<?php echo $post->ID; ?>" value="live" <?php
-        if(get_post_meta($post->ID, '_car_sync_key', true) == 'YES' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
-          echo "selected";
-        } ?>>Live</option>
-          <option class="dot nglive" data-post-id="<?php echo $post->ID; ?>" value="nglive" <?php
-        if(get_post_meta($post->ID, '_car_sync_key', true) == 'NO' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
-          echo "selected";
+        else{
+            $ig_status = "igpush";
         }
-        if(get_post_meta($post->ID, '_car_sync_key', true) == ''){
-            echo "selected";
-        }
-        ?>>Geen sync & live</option>
-          <optgroup label="--------------"></optgroup>
-          <option class="dot archief" data-post-id="<?php echo $post->ID; ?>" value="archief" <?php
-        if(get_post_meta($post->ID, '_car_post_status_key', true) == 'archief'){
-          echo "selected";
-        } ?>>Archief</option>
-        </select>
-      </div>
-      <div class="selectwrapper-post-status">
-        <div class="dash-post-status-dot"><span class="<?php 
-        if(get_post_meta($post->ID, '_car_status_key', true) == 'tekoop'){
-          echo "tekoop";
-        }
-        if(get_post_meta($post->ID, '_car_status_key', true) == 'gereserveerd'){
-          echo "gereserveerd";
-        }
-        if(get_post_meta($post->ID, '_car_status_key', true) == 'verkocht'){
-          echo "verkocht";
-        }
-        if (get_post_meta($post->ID, '_car_status_key', true) == ''){
-            echo "tekoop";
-        }     
-        ?>"></span></div>
-        <select id="dash-post-status">
-          <option class="dot tekoop" data-post-id="<?php echo $post->ID; ?>" value="tekoop" <?php
-        if(get_post_meta($post->ID, '_car_status_key', true) == 'tekoop'){
-          echo "selected";
-        } ?>>Te Koop</option>
-          <option class="dot gereserveerd" data-post-id="<?php echo $post->ID; ?>" value="gereserveerd" <?php
-        if(get_post_meta($post->ID, '_car_status_key', true) == 'gereserveerd'){
-          echo "selected";
-        } ?>>Gereserveerd</option>
-          <optgroup label="--------------"></optgroup>
-          <option class="dot verkocht" data-post-id="<?php echo $post->ID; ?>" value="verkocht" <?php
-        if(get_post_meta($post->ID, '_car_status_key', true) == 'verkocht'){
-          echo "selected";
-        } ?>>Verkocht</option>
-        </select>
-      </div>
 
+        $inmotiv_acties_allow = get_option("dds_settings_option_name");
 
-</div>
+        $inmotiv_acties_allow = $inmotiv_acties_allow["inmotiv_allow"];
 
-<input type="text" name="carsync-input" id="carsync-input" style="display:none;" value="<?php echo $value_sync  ?>" />
-<input type="text" name="carstatus-input" id="carstatus-input" style="display:none;" value="<?php echo $value_status ?>" />
-<input type="text" name="car_post_status" id="car_post_status_id" style="display:none;" value="<?php echo $value_post_status ?>" />
+        if(!empty($inmotiv_acties_allow)){
 
-<?php    
-    }
-    function car_meta_cb($post)
-    {
-        //data ophalen en in klaarmaken voor parsing
-
-        $value_uniq = get_post_meta( $post->ID, '_car_uniq_key', true );
-        $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
-        $value_sync_images = get_post_meta( $post->ID, '_car_syncimages_key', true );
-        $value_carpass = get_post_meta( $post->ID, '_car_carpass_key', true );
-?>
-
-
-<div style="display:flex;flex-direction:column;">
-
-    <label for="caruniq-input" style="display:none;">Car unique id</label>
-    <input type="text" name="caruniq-input" id="caruniq-input" value="<?php echo $value_uniq ?>" />
-
-
-    <label for="carcarpass-input">Carpass link</label>
-    <input type="text" name="carcarpass-input" id="carcarpass-input" value="<?php echo $value_carpass ?>" />
-
-    <label for="carmodifieddate-input" style="display:none;">Car modified date</label>
-    <input type="text" name="carmodifieddate-input" id="carmodifieddate-input"
-        value="<?php echo $value_modifieddate ?>" />
-
-        <?php
-        if(!empty($value_sync_images)){
+            $value_vin = get_post_meta( $post->ID, '_car_vin_key', true );
+            $foldericonpath = get_site_url().'/wp-content/plugins/carsync/assets/img/download.svg';
+            $downloaddark = get_site_url().'/wp-content/plugins/carsync/assets/img/files.svg';
+            $overeenkomsticon = get_site_url().'/wp-content/plugins/carsync/assets/img/handshake222.svg';
+            $checkiconpath = get_site_url().'/wp-content/plugins/carsync/assets/img/check.svg';
+            $carpath = get_site_url().'/wp-content/plugins/carsync/assets/img/car.svg';
+            $magpath = get_site_url().'/wp-content/plugins/carsync/assets/img/magnifier-1.svg';
+            $pdfpath =get_site_url().'/wp-content/plugins/carsync/assets/img/pdf.svg';
+    
+            $inmotiv_opgehaald = get_post_meta( $post->ID, 'inmotiv_data_opgehaald', true );
+            $disabled_btn = "";
+            if($inmotiv_opgehaald == "YES"){
+                $inmotiv_ophaal_btn = '<button class="tooninmotivgegevens" id="cardatashow"><img src="'.$carpath.'" width="27" style="padding-right:10px;"  /> Auto gegevens (PDF)</button>';
+            }
+            else{
+                $inmotiv_ophaal_btn = '<button class="autodataophalen" id="cardatacall" data-codes="BXERSTPCAVF"><i class="icon-cloud-download" style="font-size:20px;"></i> Auto gegevens ophalen</button>';
+            }
+    
             ?>
-            <label for="carsyncimages-input">Autoscout afbeeldingen</label>
+    
+    
+            
+            <div style="display:flex;flex-direction:column;" class="labeldiv">
+                <label for="carvin-input">Chassisnummer</label>
+                <div style="display: flex;justify-content: space-between;align-items: flex-start;flex-direction: column;">
+                <div class="checkvinwrap"><img style="" width="20" src="<?php echo $checkiconpath; ?>" alt="VIN is correct" /></div>
+                <input style="width: 100%;margin-bottom:20px;" type="text" name="carvin-input" id="carvin-input" maxlength="17" value="<?php echo $value_vin ?>" />
+                <?php echo $inmotiv_ophaal_btn;?>
+                
+                <button class="tooninmotivgegevens" id="caraankoopovereenkomst"><img src="<?php echo $overeenkomsticon; ?>" width="27" style="padding-right:10px;"  /> Aankoopborderel (PDF)</button>
+                <div class="showmoreselectief"><span class="dashicons dashicons-arrow-down-alt2 dashchev"></span> Selectief gegevens ophalen</div>
+                <div class="secondary_ophaal_options">
+                <button class="autodataophalen_sec" id="cardatacallB" data-codes="B">Basis gegevens</button>
+                <button class="autodataophalen_sec" id="cardatacallX" data-codes="X">Technische gegevens</button>
+                <hr>
+                <button class="autodataophalen_sec" id="cardatacallE" data-codes="E">Emissie gegevens</button>
+                <button class="autodataophalen_sec" id="cardatacallR" data-codes="R">Registratie gegevens</button>
+                <button class="autodataophalen_sec" id="cardatacallA" data-codes="BXERA">Fiscale gegevens</button>
+                <button class="autodataophalen_sec" id="cardatacallT" data-codes="T">Keuring gegevens</button>
+                <button class="autodataophalen_sec" id="cardatacallC" data-codes="C">Commerciële gegevens</button>
+                <hr>
+                <button class="autodataophalen_sec" id="cardatacallV" data-codes="CV">Restwaarde berekenen</button>
+                <button class="autodataophalen_sec" id="cardatacallF" data-codes="CF">Toekomstige restwaarde</button>
+                </div>
+                </div>
+            </div>
+          
             <?php
-        }
-        ?>
-    
-    <div style="display:flex;flex-wrap:wrap;">
-        <?php
-            if(!empty($value_sync_images)){
-                foreach($value_sync_images as $image){
-                echo("<img src='". $image."' width='150px' style='margin:5px;' />");
-                } }
-            ?>
-    </div>
 
-</div>
-<?php    
+    
+        $socialecho;
+        $socialecho .= "<div class='socialwrap'>";
+        $socialecho .= "<div class='pushbutton button ".$fb_status. " " .$fbpushed."' id='".$fb_status."' postid='".$post->ID."' didpush='".$fbpushed."'><span class='dashicons dashicons-facebook'></span> Push naar Facebook</div>";
+        $socialecho .= "<div class='pushbutton button ".$ig_status. " " .$igpushed."' id='".$ig_status."' postid='".$post->ID."' didpush='".$igpushed."'><span class='dashicons dashicons-instagram'></span> Push naar Instagram</div>";
+        $socialecho .= "</div>";
+        echo($socialecho);
+        }
+
+
     }
 
 
@@ -331,7 +140,11 @@
             'parent' => 0
         ) );
         
-        
+        $value_uniq = get_post_meta( $post->ID, '_car_uniq_key', true );
+        $value_modifieddate = get_post_meta( $post->ID, '_car_modifieddate_key', true );
+        $value_sync_images = get_post_meta( $post->ID, '_car_syncimages_key', true );
+        $value_carpass = get_post_meta( $post->ID, '_car_carpass_key', true );
+
         $term_list_merk = wp_get_post_terms( $post->ID, 'merkenmodel', array( 'fields' => 'names','parent' => 0 ));
         $term_list_merk_ids = wp_get_post_terms( $post->ID, 'merkenmodel', array( 'fields' => 'ids','parent' => 0 ));	
         $merkophalen;
@@ -496,7 +309,7 @@
         $value_oudeprijs = get_post_meta( $post->ID, '_car_oudeprijs_key', true );
         $value_btwaftrekbaar = get_post_meta( $post->ID, '_car_btwaftrekbaar_key', true );
 
-        $opties_btw= ['Ja','Nee','NVT'];
+        $opties_btw = ['Ja','Nee','NVT'];
 
         $value_emissieklasse = get_post_meta( $post->ID, '_car_emissieklasse_key', true );
 
@@ -506,6 +319,7 @@
         'Euro 4',
         'Euro 5',
         'Euro 6',
+        'Euro 6b',
         'Euro 6c',
         'Euro 6d',
         'Euro 6d-TEMP'];
@@ -515,14 +329,128 @@
         $value_co = get_post_meta( $post->ID, '_car_co_key', true );
         $value_description = get_post_meta( $post->ID, '_car_description_key', true );
         $gallery_data = get_post_meta( $post->ID, 'mgop_mb_galerij', true );
+
+        $value_sync = get_post_meta( $post->ID, '_car_sync_key', true );
+        if(empty($value_sync)){
+            $value_sync = "NO";
+        }
+        $value_status = get_post_meta( $post->ID, '_car_status_key', true );
+        if(empty($value_status)){
+            $value_status = "tekoop";
+        }
+        $value_post_status = get_post_meta( $post->ID, '_car_post_status_key', true );
+        if(empty($value_post_status)){
+            $value_post_status = "actief";
+        }
+
+        $opt_comfort = array("Achterbank 1/3 - 2/3", "Airconditioning", "Armsteun", "Automatische klimaatregeling", "Cruise Control", "Electrische ruiten", "Electrische zetelverstelling", "Elektrisch verstelbare buitenspiegels", "Elektrische achterklep", "Getinte ramen", "Hill-Hold Control", "Lederen stuurwiel", "Lendensteun", "Lichtsensor", "Massagestoelen", "Multifunctioneel stuur", "Navigatiesysteem", "Open dak", "Parkeerhulp", "Parkeerhulp achter", "Parkeerhulp voor", "Regensensor", "Start/Stop systeem", "Zetelverwarming");
+        $opt_enter_media = array("Bluetooth", "Boordcomputer", "CD", "Digitale radio-ontvangst", "Handsfree", "MP3", "Radio", "Sound system", "USB");
+        $opt_extra = array("Aanraakscherm", "Bagagerek", "Lichtmetalen velgen", "Schakelpaddles", "Schuifdeur", "Skiluik", "Sneeuwbanden", "Sportzetels", "Spraakbediening", "Trekhaak");
+        $opt_veiligheid = array("ABS", "Achter airbag", "Airbag bestuurder", "Airbag passagier", "Alarm", "Automatische Tractie Controle", "Bandenspanningscontrolesysteem", "Centrale deurvergrendeling met afstandsbediening", "Centrale vergrendeling", "Dagrijlichten", "Dodehoekdetectie", "Electronic Stability Program", "Hoofd airbag", "Isofix", "LED verlichting", "Mistlampen", "Startonderbreker", "Stuurbekrachtiging", "Xenon Lichten", "Zij-airbags");
+        $value_enter_media = get_post_meta( $post->ID, '_car_enter_media_key', true );
+        if(empty($value_enter_media)){
+            $value_enter_media = array();
+        }
+        $value_comfort = get_post_meta( $post->ID, '_car_comfort_key', true );
+        if(empty($value_comfort)){
+            $value_comfort = array();
+        }
+        $value_extra = get_post_meta( $post->ID, '_car_extra_key', true );
+        if(empty($value_extra)){
+            $value_extra = array();
+        }
+        $value_veiligheid = get_post_meta( $post->ID, '_car_veiligheid_key', true );
+        if(empty($value_veiligheid)){
+            $value_veiligheid = array();
+        }
+        wp_nonce_field( basename(__FILE__), 'gallery_meta_nonce' );
+        $ids = get_post_meta($post->ID, 'vdw_gallery_id', true);
 ?>
 
+<div class="statusflex">
+    
+
+<div class="selectwrapper">
+        <div class="dash-status-dot"><span class="<?php 
+        if(get_post_meta($post->ID, '_car_sync_key', true) == 'YES' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
+          echo "live";
+        }
+        if(get_post_meta($post->ID, '_car_sync_key', true) == 'NO' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
+          echo "nglive";
+        }
+        if(get_post_meta($post->ID, '_car_post_status_key', true) == 'archief'){
+          echo "archief";
+        }
+        if (get_post_meta($post->ID, '_car_post_status_key', true) == ''){
+            echo "nglive";
+        }  
+        ?>"></span></div>
+        <select id="dash-status">
+          <option class="dot live" data-post-id="<?php echo $post->ID; ?>" value="live" <?php
+        if(get_post_meta($post->ID, '_car_sync_key', true) == 'YES' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
+          echo "selected";
+        } ?>>Live</option>
+          <option class="dot nglive" data-post-id="<?php echo $post->ID; ?>" value="nglive" <?php
+        if(get_post_meta($post->ID, '_car_sync_key', true) == 'NO' && get_post_meta($post->ID, '_car_post_status_key', true) == 'actief'){
+          echo "selected";
+        }
+        if(get_post_meta($post->ID, '_car_sync_key', true) == ''){
+            echo "selected";
+        }
+        ?>>Geen sync & live</option>
+          <optgroup label="--------------"></optgroup>
+          <option class="dot archief" data-post-id="<?php echo $post->ID; ?>" value="archief" <?php
+        if(get_post_meta($post->ID, '_car_post_status_key', true) == 'archief'){
+          echo "selected";
+        } ?>>Archief</option>
+        </select>
+      </div>
+      <div class="selectwrapper-post-status">
+        <div class="dash-post-status-dot"><span class="<?php 
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'tekoop'){
+          echo "tekoop";
+        }
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'gereserveerd'){
+          echo "gereserveerd";
+        }
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'verkocht'){
+          echo "verkocht";
+        }
+        if (get_post_meta($post->ID, '_car_status_key', true) == ''){
+            echo "tekoop";
+        }     
+        ?>"></span></div>
+        <select id="dash-post-status">
+          <option class="dot tekoop" data-post-id="<?php echo $post->ID; ?>" value="tekoop" <?php
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'tekoop'){
+          echo "selected";
+        } ?>>Te Koop</option>
+          <option class="dot gereserveerd" data-post-id="<?php echo $post->ID; ?>" value="gereserveerd" <?php
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'gereserveerd'){
+          echo "selected";
+        } ?>>Gereserveerd</option>
+          <optgroup label="--------------"></optgroup>
+          <option class="dot verkocht" data-post-id="<?php echo $post->ID; ?>" value="verkocht" <?php
+        if(get_post_meta($post->ID, '_car_status_key', true) == 'verkocht'){
+          echo "selected";
+        } ?>>Verkocht</option>
+        </select>
+      </div>
+
+
+</div>
+
+<input type="text" name="carsync-input" id="carsync-input" style="display:none;" value="<?php echo $value_sync  ?>" />
+<input type="text" name="carstatus-input" id="carstatus-input" style="display:none;" value="<?php echo $value_status ?>" />
+<input type="text" name="car_post_status" id="car_post_status_id" style="display:none;" value="<?php echo $value_post_status ?>" />
+
+<hr style="margin-bottom:12px;">
 <label for="carwagentitel-input">Wagentitel</label>
 <input type="text" name="carwagentitel-input" id="carwagentitel-input" value="<?php echo $value_wagentitel ?>" />
 
 <input type="hidden" name="merkcf-input" id="merkcf-input" value="<?php echo $value_merkcf ?>" />
 <input type="hidden" name="modelcf-input" id="modelcf-input" value="<?php echo $value_modelcf ?>" />
-<div style="display:flex;flex-direction:column;">
+<div style="display:flex;flex-direction:column;" class="carinputswrap">
     <div><?php echo($gallery_data);?></div>
     <label for="carmerk-input">Merk</label>
     <select name="carmerk-input" id="carmerk-input">
@@ -718,10 +646,226 @@
     ?>
     </select>
 
+    <label for="carcarpass-input">Carpass link</label>
+    <input type="text" name="carcarpass-input" id="carcarpass-input" value="<?php echo $value_carpass ?>" />
+
+    <label for="caruniq-input" style="display:none;">Car unique id</label>
+    <input type="text" name="caruniq-input" id="caruniq-input" value="<?php echo $value_uniq ?>" />
+
+    <label for="carmodifieddate-input" style="display:none;">Car modified date</label>
+    <input type="text" name="carmodifieddate-input" id="carmodifieddate-input"
+        value="<?php echo $value_modifieddate ?>" />
+
+       
+    
+
+</div>
+<div>
+    <br>
+<hr>    
+<div class="checkwrap">
+
+<div class="label checkboxtitle">Comfort en gemak</div>
+
+<div class="fields">
+
+    <?php foreach ($opt_comfort as $opt) {
+           ?>
+    <label><input type="checkbox" name="carcomfort[]" value="<?php echo $opt; ?>" <?php foreach($value_comfort as $value){
+               if($value == $opt){
+                   echo("checked");
+               }
+           } ?> /> <?php echo $opt; ?></label>
+
+    <?php
+         } 
+         ?>
+
+</div>
+</div>
+<div class="checkwrap">
+
+<div class="label checkboxtitle">Entertainment en media</div>
+
+<div class="fields">
+
+    <?php foreach ($opt_enter_media as $opt) {
+           ?>
+    <label><input type="checkbox" name="carenter_media[]" value="<?php echo $opt; ?>" <?php foreach($value_enter_media as $value){
+               if($value == $opt){
+                   echo("checked");
+               }
+           } ?> /> <?php echo $opt; ?></label>
+
+    <?php
+         } 
+         ?>
+
+</div>
+
+</div>
+
+<div class="checkwrap">
+
+<div class="label checkboxtitle">Veiligheid</div>
+
+<div class="fields">
+
+    <?php foreach ($opt_veiligheid as $opt) {
+           ?>
+    <label><input type="checkbox" name="carveiligheid[]" value="<?php echo $opt; ?>" <?php foreach($value_veiligheid as $value){
+               if($value == $opt){
+                   echo("checked");
+               }
+           } ?> /> <?php echo $opt; ?></label>
+
+    <?php
+         } 
+         ?>
+
+</div>
+
+</div>
+
+
+<div class="checkwrap">
+
+<div class="label checkboxtitle">Extra</div>
+
+<div class="fields">
+
+    <?php foreach ($opt_extra as $opt) {
+           ?>
+    <label style="font-weight:400;"><input type="checkbox" name="carextra[]" value="<?php echo $opt; ?>" <?php foreach($value_extra as $value){
+               if($value == $opt){
+                   echo("checked");
+               }
+           } ?> /> <?php echo $opt; ?></label>
+
+    <?php
+         } 
+         ?>
+
 
 
 </div>
-<?php    
+</div>
+<br>
+<hr>
+<div id="gallery-metabox">
+
+<table class="form-table">
+      <tr><td>
+        <a class="gallery-add button" href="#" data-uploader-title="Foto's toevoegen" data-uploader-button-text="Foto's toevoegen">Foto's toevoegen</a>
+
+        <ul id="gallery-metabox-list">
+        <?php $all_gallery_ids = array(); ?>
+        <?php if ($ids) : foreach ($ids as $key => $value) : $image = wp_get_attachment_image_src($value); ?>
+          <?php array_push($all_gallery_ids,$value);?>
+          <li>
+            <input type="hidden" name="vdw_gallery_id[<?php echo $key; ?>]" value="<?php echo $value; ?>">
+            <div class="image-preview change-image" style='width: 110px;height:80px;background:url("<?php echo $image[0]; ?>");background-size:cover;'></div>
+            <div class="gallerycontrols remove-image" style=""></div>
+          </li>
+
+        <?php endforeach; endif; ?>
+        </ul>
+        <input type="hidden" name="all_gallerys_ids" value="<?php foreach($all_gallery_ids as $id){
+          echo($id . ",");
+        }; ?>"/>
+      </td></tr>
+    </table>
+    </div>
+
+</div>
+<div class="aankoopborderel_popup_wrap">
+ <div class="aankoopborderel_popup">
+ <div id="aankoopborderel_pop_close">&#x2715</div>
+ <h2 style="padding: 0;">Aankoopborderel PDF aanmaken</h2>
+    <h4>Initiele velden</h4>
+
+     <label>Klant/ Firma naam</label>
+     <input type="text" id="klantnaam" name="klantnaam">
+     <label>Klant adres</label>
+     <input type="text" id="klantadres" name="klantadres">
+     <label>Klant telefoonnummer</label>
+     <input type="text" id="klanttel" name="klanttel">
+     <hr>
+     <label>Afgesproken prijs</label>
+     <input type="text" id="aankoop_boekhoudkundige" name="aankoop_boekhoudkundige">
+    <div class="toonhiddenfields">Toon meer</div>
+     <div class="hidefields">
+     <label>Premie invoerder</label>
+     <input type="text" id="premie_invoerder" name="premie_invoerder">
+     <label>Overdracht korting</label>
+     <input type="text" id="overdracht_korting" name="overdracht_korting">
+     </div>
+     <label>Rekeningnummer</label>
+     <input type="text" id="reknr" name="reknr">
+<hr>
+<?php
+
+
+
+$aankoopbd_add_fields = [
+    "_car_inschrijvingdocument_key" => get_post_meta($post->ID,"_car_inschrijvingdocument_key",true),
+    "_car_gelijkvormigheids_attest_key" => get_post_meta($post->ID,"_car_gelijkvormigheids_attest_key",true),
+    "_car_keuringsbewijs_key" => get_post_meta($post->ID,"_car_keuringsbewijs_key",true),
+    "_car_onderhoudsboekje_key" => get_post_meta($post->ID,"_car_onderhoudsboekje_key",true),
+    "_car_gebruikershandleiding_key" => get_post_meta($post->ID,"_car_gebruikershandleiding_key",true),
+    "_car_aankoopfactuur_key" => get_post_meta($post->ID,"_car_aankoopfactuur_key",true),
+    "_car_alarm_attest_key" => get_post_meta($post->ID,"_car_alarm_attest_key",true),
+    "_car_2_sleutels_key" => get_post_meta($post->ID,"_car_2_sleutels_key",true)
+];
+$bandendiepte_voor = get_post_meta($post->ID,"_car_bandenstaat_voor_key",true);
+$bandendiepte_achter = get_post_meta($post->ID,"_car_bandenstaat_achter_key",true);
+
+foreach($aankoopbd_add_fields as $key => $field){
+    $labelformatted = mb_substr($key, 5);
+    $labelformatted = mb_substr($labelformatted, 0, -4);
+    $labelformatted = ucwords($labelformatted);
+    $labelformatted = str_replace("_"," ",$labelformatted);
+?>
+<div class="ab_cb_group">
+    <label for="<?php echo $key; ?>"><?php echo $labelformatted; ?></label>
+    <input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="<?php echo $field; ?>" <?php
+            if($field == "yes"){ echo(" checked"); }        
+    ?>>
+    </div>
+
+
+<?php
+}
+
+
+
+
+?>
+    <hr>
+<div  style="width: 400px;">
+<label style="width: 183px;
+    padding-right: 20px;
+    display: inline-block;" for="_car_bandenstaat_voor_key">Voor banden diepte (mm)</label>
+<input type="number" id="_car_bandenstaat_voor_key" name="_car_bandenstaat_voor_key" min="0" max="6" value="<?php echo $bandendiepte_voor; ?>">
+<br><br>
+<label style="width: 183px;
+    padding-right: 20px;
+    display: inline-block;" for="_car_bandenstaat_achter_key">Achter banden diepte (mm)</label>
+<input type="number" id="_car_bandenstaat_achter_key" name="_car_bandenstaat_achter_key" min="0" max="6" value="<?php echo $bandendiepte_achter; ?>">
+</div>
+     <button id="ab_aanmaken" class="pdfbtn">Borderel aanmaken</button>
+     </div>
+ </div>
+<?php   
+if (is_edit_page('new')){
+    echo("<span class='typeofpage' style='display:none'>new</span>");
+ }
+ else{
+    echo("<div class='typeofpage' style='display:none'>notnew</div>");
+ }
+ echo("<input type='hidden' class='currentPID' value='".$post->ID."' />");
+
+
     }
     //saving the data
 
@@ -874,6 +1018,34 @@
             $_POST["carextra"] = array();
             update_post_meta($post->ID, '_car_extra_key', $_POST["carextra"]); 
         }
+
+        $aankoopbd_add_fields = [
+            "_car_inschrijvingdocument_key",
+            "_car_gelijkvormigheids_attest_key",
+            "_car_keuringsbewijs_key",
+            "_car_onderhoudsboekje_key",
+            "_car_gebruikershandleiding_key",
+            "_car_aankoopfactuur_key",
+            "_car_alarm_attest_key",
+            "_car_2_sleutels_key"
+        ];
+        foreach($aankoopbd_add_fields as $field){
+            if(isset($_POST[$field])){
+                echo("checked " . $_POST[$field]);
+                update_post_meta($post->ID, $field, "yes");     
+            }
+            else{
+                update_post_meta($post->ID, $field, "no");     
+            }
+        }
+
+        if(isset($_POST["_car_bandenstaat_voor_key"])){
+            update_post_meta($post->ID, '_car_bandenstaat_voor_key', $_POST["_car_bandenstaat_voor_key"]);      
+        }
+        if(isset($_POST["_car_bandenstaat_achter_key"])){
+            update_post_meta($post->ID, '_car_bandenstaat_achter_key', $_POST["_car_bandenstaat_achter_key"]);      
+        }
+
         if(isset($_POST["carmerk-input"])){
             $merkwaarde = $_POST["carmerk-input"];
             $modelwaarde = $_POST["carmodel-input"];

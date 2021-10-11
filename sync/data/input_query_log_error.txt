@@ -1,3 +1,0 @@
-LAST RUN: 27-05-2021 22:42:14
-Couldn\'t send request: Could not resolve host: listing-search.api.autoscout24.com
-RESULT:

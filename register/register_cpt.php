@@ -48,6 +48,7 @@ function set_custom_edit_autos_columns($columns) {
     unset( $columns['author'] );
     $columns['uitgelichtefoto'] = 'Uitgelichte foto';
     $columns['wagenstatus'] = 'Wagen status';
+    $columns['fotosgedownload'] = 'fotosgedownload';
     return $columns;
 }
 
@@ -90,6 +91,10 @@ function custom_autos_column( $column, $post_id ) {
         case 'wagenstatus' :
             $value_wagen_status = get_post_meta( $post_id, '_car_post_status_key', true );
             echo $value_wagen_status;
+            break;
+        case 'fotosgedownload' :
+            $value_wagen_fotos_gedownload = get_post_meta( $post_id, '_car_api_images_downloaded', true );
+            echo $value_wagen_fotos_gedownload;
             break;
 
     }

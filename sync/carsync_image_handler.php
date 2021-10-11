@@ -5,7 +5,11 @@ function slugify($string){
 
 
 function dds_car_fotos_downloaden(){
+    require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+    require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+    require_once(ABSPATH . "wp-admin" . '/includes/media.php');
 
+try {
 
     //vdw_gallery_id
 
@@ -38,7 +42,7 @@ function dds_car_fotos_downloaden(){
     $count = 0;
     foreach($posts_arr as $current_post){
 
-        if ($count < 10) {
+        if ($count < 5) {
             if (!empty($current_post)) {
                 //echo "id: " . $current_post;
             
@@ -87,10 +91,6 @@ function dds_car_fotos_downloaden(){
                 }
     
             
-    
-                // echo($current_post);
-            // echo("<br>");
-            // echo get_the_title($current_post);
             }
         }
         else{
@@ -99,7 +99,9 @@ function dds_car_fotos_downloaden(){
         $count++;
     }
 
-
+} catch (\Throwable $th) {
+    wp_mail("younesbenkheil@gmail.com","Error Cron job",$th);
+}
 
 }
 
