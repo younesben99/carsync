@@ -48,6 +48,7 @@ function carsync_posts_maken(){
                 create_post_by_uniq_id($car['id']);
             }
             else{
+               
                 create_post_by_uniq_id($car['details']['vehicle']['identifier']['vin']);
             }
               
