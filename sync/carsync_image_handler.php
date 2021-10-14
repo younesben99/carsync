@@ -44,15 +44,9 @@ try {
 
         if ($count < 5) {
             if (!empty($current_post)) {
-                //echo "id: " . $current_post;
-            
                 $local_gallery = get_post_meta($current_post, "vdw_gallery_id");
-                var_dump($local_gallery);
-            
                 $api_gallery = get_post_meta($current_post, "_car_syncimages_key");
-                var_dump($api_gallery);
                 $imgtoadd = array();
-    
                 if (!empty($api_gallery)) {
                     foreach ($api_gallery[0] as $img) {
                         $image = "";

@@ -146,6 +146,10 @@ function admin_width() {
                 jQuery(this).closest("tr").css("opacity",'0.9');
                 jQuery(this).closest("tr").css("background",'#ffebd0');
             }
+            if(jQuery(this).text() == "trash"){
+                jQuery(this).closest("tr").css("opacity",'0.9');
+                jQuery(this).closest("tr").css("background",'#ffe4db');
+            }
 
             });
 
