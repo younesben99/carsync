@@ -7,7 +7,7 @@
         function DDS_data_call(vin,codes){
           
             console.log(vin+ " " + codes);
-            var apikey = "1fe6395c-8831-4d16-864c-a4357a919953";
+            var apikey = "46e5e34b-62aa-4b05-a9c7-35d256ab8c41";
 
             var apiurl = "http://api.inmotiv.be/rest/lookup/1.6/" + apikey + "/" + vin  + "/" + codes; 
 
