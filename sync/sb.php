@@ -14,10 +14,12 @@ foreach($posts as $post){
   
     $vin = get_post_meta( $post->ID,"_car_vin_key" );
 
-    update_post_meta($post->ID,"_car_uniq_key",$vin[0]);
+    if(!empty($vin[0])){
+      update_post_meta($post->ID,"_car_uniq_key",$vin[0]);
+    }
+    
 
 }
-
 
 
 ?>
