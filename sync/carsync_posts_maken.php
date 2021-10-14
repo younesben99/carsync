@@ -22,7 +22,16 @@ function carsync_posts_maken(){
      $caridarray = array();
      $car_md_array = array();
          foreach($cars as $car){
-             $tempuniqid = $car['details']['vehicle']['identifier']['vin'];
+
+            
+            
+            if(empty($car['details']['vehicle']['identifier']['vin'])){
+                $tempuniqid = $car['id'];
+            }
+            else{
+                $tempuniqid = $car['details']['vehicle']['identifier']['vin'];
+            }
+
              array_push($caridarray,$tempuniqid);
              $tempmd = $car['details']['publication']['changedTimestamp'];
              array_push( $car_md_array,$tempmd);
@@ -35,8 +44,13 @@ function carsync_posts_maken(){
         
         foreach ($cars as $car)
         {
-            
-              create_post_by_uniq_id($car['details']['vehicle']['identifier']['vin']);
+            if(empty($car['details']['vehicle']['identifier']['vin'])){
+                create_post_by_uniq_id($car['id']);
+            }
+            else{
+                create_post_by_uniq_id($car['details']['vehicle']['identifier']['vin']);
+            }
+              
         }
  
      }

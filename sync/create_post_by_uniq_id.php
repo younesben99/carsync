@@ -27,10 +27,17 @@ function create_post_by_uniq_id($passed_id){
         
         foreach ($cars as $car)
         {
+            if(empty($car['details']['vehicle']['identifier']['vin'])){
+                $identifier = $car['id'];
+            }
+            else{
+                $identifier = $car['details']['vehicle']['identifier']['vin'];
+            }
             
-            if($passed_id == $car['details']['vehicle']['identifier']['vin']){
-                $uniqid = $car['details']['vehicle']['identifier']['vin'];
-           
+
+            if($passed_id == $identifier){
+                $uniqid = $identifier;
+                
                 $merk = $car['details']['vehicle']['classification']['make']['formatted'];
                 $model = $car['details']['vehicle']['classification']['model']['formatted'];
                 $merkenmodel = esc_html($merk) . " ". esc_html($model);
