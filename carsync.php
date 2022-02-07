@@ -26,7 +26,7 @@ include_once( __DIR__ . '/register/register_single_car_page.php');
 include(__DIR__."/templates/template_og_tags.php");
 
 
-//carfeed
+//carfeeds
 require_once( __DIR__ . '/feed/facebook_feed_aanmaken.php');
 require_once( __DIR__ . '/register/register_cron_job.php');
 require_once( __DIR__ . '/socialpush/social_metaboxes.php');
