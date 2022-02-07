@@ -54,6 +54,21 @@
                 console.log(data + status);
               });
             }
+            if(opt == "concept"){
+              $(this).prev(".dash-status-dot").find("span").removeClass();
+              $(this).prev(".dash-status-dot").find("span").addClass("concept");
+              $("#carsync-input").val("YES");
+              $("#car_post_status_id").val("concept");
+
+              $.post("/wp-content/plugins/dds-dashboard/templates/dash-ajax.php",
+              {
+                dashstatus: "concept",
+                postid: $(this).find("option").attr("data-post-id")
+              },
+              function(data,status){
+                console.log(data + status);
+              });
+            }
         });
     
     

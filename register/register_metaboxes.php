@@ -383,7 +383,10 @@
         }
         if (get_post_meta($post->ID, '_car_post_status_key', true) == ''){
             echo "nglive";
-        }  
+        }
+        if (get_post_meta($post->ID, '_car_post_status_key', true) == 'concept'){
+            echo "concept";
+        }    
         ?>"></span></div>
         <select id="dash-status">
           <option class="dot live" data-post-id="<?php echo $post->ID; ?>" value="live" <?php
@@ -403,6 +406,11 @@
         if(get_post_meta($post->ID, '_car_post_status_key', true) == 'archief'){
           echo "selected";
         } ?>>Archief</option>
+        <optgroup label="--------------"></optgroup>
+          <option class="dot concept" data-post-id="<?php echo $post->ID; ?>" value="concept" <?php
+        if(get_post_meta($post->ID, '_car_post_status_key', true) == 'concept'){
+          echo "selected";
+        } ?>>Concept</option>
         </select>
       </div>
       <div class="selectwrapper-post-status">
