@@ -126,7 +126,7 @@
     $("#cardescription-input").trumbowyg();
 
     $("#publish").on("click",function(){
-        if($("#carsync-input").val() == "NO" && $("#gallery-metabox-list").children().length === 0 ){
+        if($("#syncimages-input").val() == "YES" && $("#carsync-input").val() == "NO" && $("#gallery-metabox-list").children().length === 0){
             
               Swal.fire({
                 type: 'succes',
