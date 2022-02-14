@@ -1,3 +1,11 @@
+
+<?php 
+
+if(!empty($sp_description)){
+    ?>
+
+    
+
 <div class="sp_description" id="opmerkingen">
     <div class="spechead">
         <h2>Opmerkingen</h2>
@@ -14,3 +22,6 @@ echo($sp_description);
     </div>
     <div class="toondesc">Toon meer</div>
 </div>
+<?php
+}
+?>

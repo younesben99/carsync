@@ -26,13 +26,15 @@ if (!empty($og_carsync_fotos) && $og_value_sync == "YES") {
         $og_img_link = wp_get_attachment_url($og_manual_fotos[0]);
             
     } else {
-
-        foreach ($og_carsync_fotos as $og_img) {
+        if(!empty($og_carsync_fotos)){
+            foreach ($og_carsync_fotos as $og_img) {
             
-            $og_img_link = $og_carsync_fotos[0];
-            
+                $og_img_link = $og_carsync_fotos[0];
+                
+            }
+    
         }
-
+        
     }
 
 }

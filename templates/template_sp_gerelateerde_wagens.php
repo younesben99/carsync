@@ -57,7 +57,11 @@ foreach($relatedposts as $wagen){
     <div><img src="<?php echo($selected_img); ?>" alt="<?php echo $rel_title; ?>" style="width:100%" /></div>
     
     <h2><?php echo $rel_title; ?></h2>
+    <?php if(!empty($rel_price)){
+        ?>
+   
     <div class="rel_price"><?php echo "€ ".number_format($rel_price,0,",",".") . ",-"; ?></div>
+    <?php } ?>
     <div class="rel_list">
     <div class="rel_brandstof"><?php echo $rel_brandstof; ?></div>
     <div class="rel_transmissie"><?php echo $rel_transmissie; ?></div>

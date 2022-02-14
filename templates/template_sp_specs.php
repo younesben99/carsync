@@ -5,62 +5,62 @@
 <div class="sp_specificaties">
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Type</div>
-    <div class="sp_spec_info"><?php echo($sp_type); ?></div>
+    <div class="sp_spec_info"><?php dds_echo($sp_type); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Bouwjaar</div>
-    <div class="sp_spec_info"><?php echo($sp_bouwjaar); ?></div>
+    <div class="sp_spec_info"><?php dds_echo($sp_bouwjaar); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Kilometerstand</div>
-    <div class="sp_spec_info"><?php echo($sp_kilometerstand); ?> km</div>
+    <div class="sp_spec_info"><?php dds_echo($sp_kilometerstand," km"); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Transmissie</div>
-    <div class="sp_spec_info"><?php echo($sp_transmissie); ?></div>
+    <div class="sp_spec_info"><?php dds_echo($sp_transmissie); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Brandstof</div>
-    <div class="sp_spec_info"><?php echo($sp_brandstof); ?></div>
+    <div class="sp_spec_info"><?php dds_echo($sp_brandstof); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Emissieklasse</div>
-    <div class="sp_spec_info"><?php echo($sp_emissie); ?></div>
+    <div class="sp_spec_info"><?php dds_echo($sp_emissie); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Aantal Pk's</div>
-    <div class="sp_spec_info"><?php echo($sp_pk); ?> pk</div>
+    <div class="sp_spec_info"><?php dds_echo($sp_pk,"pk"); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Aantal Kw's</div>
-    <div class="sp_spec_info"><?php echo($sp_kw); ?> Kw</div>
+    <div class="sp_spec_info"><?php dds_echo($sp_kw,"Kw"); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Cilinderinhoud</div>
-    <div class="sp_spec_info"><?php echo($sp_cilinderinhoud); ?> cm³</div>
+    <div class="sp_spec_info"><?php dds_echo($sp_cilinderinhoud,"cm³"); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Co</div>
-    <div class="sp_spec_info"><?php echo($sp_co); ?> g CO2/km</div>
+    <div class="sp_spec_info"><?php dds_echo($sp_co,"g CO2/km"); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Kleur interieur</div>
-    <div class="sp_spec_info"><?php echo($sp_kleurinterieur); ?></div>
+    <div class="sp_spec_info"><?php dds_echo($sp_kleurinterieur); ?></div>
 </div>
 
 <div class="sp_spec_wrap">
     <div class="sp_spec_label">Kleur exterieur</div>
-    <div class="sp_spec_info"><?php echo($sp_kleurexterieur); ?></div>
+    <div class="sp_spec_info"><?php dds_echo($sp_kleurexterieur); ?></div>
 </div>
 
 

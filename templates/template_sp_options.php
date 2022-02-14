@@ -40,6 +40,9 @@ if(count($sp_media) > 4){
 <?php
 
 }
+if(empty($sp_media)){
+    echo ("-");
+}
 ?>
 
 </div>
@@ -79,6 +82,9 @@ if(count($sp_comfort) > 4){
 
 <?php
 
+}
+if(empty($sp_comfort)){
+    echo ("-");
 }
 ?>
 
@@ -123,6 +129,9 @@ if(count($sp_veiligheid) > 4){
 <?php
 
 }
+if(empty($sp_veiligheid)){
+    echo ("-");
+}
 ?>
 
 </div>
@@ -162,6 +171,10 @@ if(count($sp_extra) > 4){
 
 <?php
 
+}
+
+if(empty($sp_extra)){
+    echo ("-");
 }
 ?>
 

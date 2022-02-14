@@ -454,7 +454,7 @@
 
 <hr style="margin-bottom:12px;">
 <label for="carwagentitel-input">Wagentitel</label>
-<input type="text" name="carwagentitel-input" id="carwagentitel-input" value="<?php echo $value_wagentitel ?>" />
+<input type="text" name="carwagentitel-input" id="carwagentitel-input" value="<?php echo $value_wagentitel ?>" required />
 
 <input type="hidden" name="merkcf-input" id="merkcf-input" value="<?php echo $value_merkcf ?>" />
 <input type="hidden" name="modelcf-input" id="modelcf-input" value="<?php echo $value_modelcf ?>" />
@@ -466,7 +466,7 @@ if(!empty($value_sync_images)){
 <div style="display:flex;flex-direction:column;" class="carinputswrap">
     <div><?php echo($gallery_data);?></div>
     <label for="carmerk-input">Merk</label>
-    <select name="carmerk-input" id="carmerk-input">
+    <select name="carmerk-input" id="carmerk-input" required>
         <option selected disabled><?php echo($value_merk); ?></option>
     </select>
     <label for="carmodel-input">Model</label>
