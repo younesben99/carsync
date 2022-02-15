@@ -328,7 +328,7 @@ Ik verklaar dat dit voertuig niet onderworpen is aan bankbeslag en aan niemand i
 Ik herken dat de handtekening van dit document een eerste voorwaarde was voor het in bezit nemen van het voertuig<br>
 door de koper en beloof hem te vergoeden indien er schade is en interest eisen in verband met de onjuistheid van de
 vorige verklaring.<br><br><br>
-Gemaakt te <?php echo($dealer_city) ?> de <?php echo(date("d/m/Y")); ?><br><br><br>
+Gemaakt te <?php echo($dealer_city) ?> de <?php  echo($aankoopdatum); ?><br><br><br>
 Naam + handtekening met vermelding: gelezen en goedgekeurd<br><br>
  (1) Het onnodige wissen<br>
 
@@ -351,7 +351,7 @@ Chassis n°: <?php echo $vin; ?><br><br><br>
 Datum waar de wagen voor de eerste keer in circulatie kwam: <?php echo $eersteinsch; ?><br><br><br>
 Verklaar geen enkel recht op vermindering (of vergunning) van de BTW te hebben gehad. (Staking koop, in bezit nemen
 intra communautair of invoer van dit voertuig, evenals geen vrijstelling van de BTW.<br><br><br>
-Gemaakt te <?php echo $dealer_city; ?> de <?php echo(date("d/m/Y")); ?><br><br><br><br><br>
+Gemaakt te <?php echo $dealer_city; ?> de <?php echo($aankoopdatum); ?><br><br><br><br><br>
 Handtekening,<br><br><br><br><br><br>
 (art.44 = onderworpen vrijgesteld)<br>
 (art.56§2 = onderworpen aan franchise)<br>
@@ -380,7 +380,7 @@ Indien deze verklaring de realiteit tegenspreekt, accepteer ik dat de koper het 
 annuleren of een vermindering van de prijs toe te passen, vastgesteld op een minimum van ....% van de verkoopprijs
 van de wagen
 <br><br><br><br><br><br>
- op gemaakt in 2 exemplaren: <?php echo($dealer_city. " "); ?> <?php echo(date("d/m/Y")); ?><br><br><br><br>
+ op gemaakt in 2 exemplaren: <?php echo($dealer_city. " "); ?> <?php echo($aankoopdatum); ?><br><br><br><br>
  De verkoper *** De koper ***<br><br>
 *** : Naam + handtekening gevolgd door « gelezen en goedgekeurd ».<br><br>
     <?php
