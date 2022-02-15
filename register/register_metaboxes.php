@@ -797,7 +797,7 @@ if(!empty($value_sync_images)){
  <h2 style="padding: 0;">Aankoopborderel PDF aanmaken</h2>
     <h4>Initiele velden</h4>
 
-     <label>Klant/ Firma naam</label>
+     <label>Klant / Firma naam</label>
      <input type="text" id="klantnaam" name="klantnaam">
      <label>Klant adres</label>
      <input type="text" id="klantadres" name="klantadres">
@@ -815,6 +815,8 @@ if(!empty($value_sync_images)){
      </div>
      <label>Rekeningnummer</label>
      <input type="text" id="reknr" name="reknr">
+     <label>Datum aankoop</label><br>
+     <input style="width:100%;" type="date" id="aankoopdatum" name="aankoopdatum" pattern="\d{4}-\d{2}-\d{2}">
 <hr>
 <?php
 
@@ -866,6 +868,7 @@ foreach($aankoopbd_add_fields as $key => $field){
     display: inline-block;" for="_car_bandenstaat_achter_key">Achter banden diepte (mm)</label>
 <input type="number" id="_car_bandenstaat_achter_key" name="_car_bandenstaat_achter_key" min="0" max="6" value="<?php echo $bandendiepte_achter; ?>">
 </div>
+
      <button id="ab_aanmaken" class="pdfbtn">Borderel aanmaken</button>
      </div>
  </div>

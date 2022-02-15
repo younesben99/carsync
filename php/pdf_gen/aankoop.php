@@ -53,6 +53,13 @@ if(is_user_logged_in() && isset($_GET)){
     $overdracht_korting = !empty($_GET["overdracht_korting"]) ? $_GET["overdracht_korting"] : "0.00";
     $reknr = !empty($_GET["reknr"]) ? $_GET["reknr"] : "______________________";
 
+    if(!empty($_GET["aankoopdatum"])){
+      $aankoopdatum = date("d/m/Y",strtotime($_GET["aankoopdatum"]));
+    }
+    else{
+      $aankoopdatum =  "______/_______/_______";
+    }
+
     $dealer_FIRMANAAM = $dds_settings_options['dealer_handelsnaam_8'];
     $dealer_Adres = str_replace(",",",<br>",$dds_settings_options['dealer_adres_9']);
 
@@ -152,6 +159,7 @@ Cylinderinhoud: <?php echo $cylinderinhoud; ?> CC<br>
 KW / PK: <?php echo $kw; ?> / <?php echo $pk; ?> Ch<br>
 Kilometers: <?php echo $kilometers; ?> Km<br>
 Staat voorste banden: <?php echo $staatbanden_voor; ?> mm | Staat achterste banden: <?php echo $staatbanden_achter; ?> mm<br>
+<br>Datum van aankoop: <?php echo $aankoopdatum; ?><br>
 </div>
 
 <div style="width:100%;">
@@ -242,6 +250,7 @@ Cylinderinhoud: <?php echo $cylinderinhoud; ?> CC<br>
 KW / PK: <?php echo $kw; ?> / <?php echo $pk; ?> Ch<br>
 Kilometers: <?php echo $kilometers; ?> Km<br>
 Staat voorste banden: Goed <?php echo $staatbanden_voor; ?> mm | Staat achterste banden: Goed <?php echo $staatbanden_achter; ?> mm (Geleverd met Zomerset)<br>
+<br>Datum van aankoop: <?php echo $aankoopdatum; ?><br>
 </div>
 
 <div style="width:100%;">
