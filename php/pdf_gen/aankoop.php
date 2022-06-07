@@ -383,6 +383,7 @@ van de wagen
  op gemaakt in 2 exemplaren: <?php echo($dealer_city. " "); ?> <?php echo($aankoopdatum); ?><br><br><br><br>
  De verkoper *** De koper ***<br><br>
 *** : Naam + handtekening gevolgd door « gelezen en goedgekeurd ».<br><br>
+
     <?php
     $innerhtml = ob_get_clean();
 
@@ -416,7 +417,8 @@ $html .= "<html>
   </style>
 <body>
 <div id='header'>
-    <h1><img height='30' width='120' src='data:image/png;base64, ".$base64img." alt='Red dot' /></h1>
+    <h1><img height='30' width='120' src='data:image/png;charset=utf-8;base64, ".$base64img."' alt='' /></h1>
+   
   </div>
   <div class='content'>
 

@@ -70,7 +70,8 @@
             $value_vin = get_post_meta( $post->ID, '_car_vin_key', true );
             $foldericonpath = get_site_url().'/wp-content/plugins/carsync/assets/img/download.svg';
             $downloaddark = get_site_url().'/wp-content/plugins/carsync/assets/img/files.svg';
-            $overeenkomsticon = get_site_url().'/wp-content/plugins/carsync/assets/img/handshake222.svg';
+            $overeenkomsticon = get_site_url().'/wp-content/plugins/carsync/assets/img/pdf.svg';
+            $bestelbonicon = get_site_url().'/wp-content/plugins/carsync/assets/img/pdf.svg';
             $checkiconpath = get_site_url().'/wp-content/plugins/carsync/assets/img/check.svg';
             $carpath = get_site_url().'/wp-content/plugins/carsync/assets/img/car.svg';
             $magpath = get_site_url().'/wp-content/plugins/carsync/assets/img/magnifier-1.svg';
@@ -79,7 +80,7 @@
             $inmotiv_opgehaald = get_post_meta( $post->ID, 'inmotiv_data_opgehaald', true );
             $disabled_btn = "";
             if($inmotiv_opgehaald == "YES"){
-                $inmotiv_ophaal_btn = '<button class="tooninmotivgegevens" id="cardatashow"><img src="'.$carpath.'" width="27" style="padding-right:10px;"  /> Auto gegevens (PDF)</button>';
+                $inmotiv_ophaal_btn = '<button class="tooninmotivgegevens" id="cardatashow"><img src="'.$carpath.'" width="27" style="padding-right:10px;"  /> Auto gegevens</button>';
             }
             else{
                 $inmotiv_ophaal_btn = '<button class="autodataophalen" id="cardatacall" data-codes="BXERSTPCAVF"><i class="icon-cloud-download" style="font-size:20px;"></i> Auto gegevens ophalen</button>';
@@ -96,7 +97,8 @@
                 <input style="width: 100%;margin-bottom:20px;" type="text" name="carvin-input" id="carvin-input" maxlength="17" value="<?php echo $value_vin ?>" />
                 <?php echo $inmotiv_ophaal_btn;?>
                 
-                <button class="tooninmotivgegevens" id="caraankoopovereenkomst"><img src="<?php echo $overeenkomsticon; ?>" width="27" style="padding-right:10px;"  /> Aankoopborderel (PDF)</button>
+                <button class="tooninmotivgegevens" id="caraankoopovereenkomst"><img src="<?php echo $overeenkomsticon; ?>" width="27" style="padding-right:20px;"  /> Aankoopborderel</button>
+                <button class="tooninmotivgegevens" id="carbestelbon"><img src="<?php echo $bestelbonicon; ?>" width="27" style="padding-right:20px;"  /> Bestelbon</button>
                 <div class="showmoreselectief"><span class="dashicons dashicons-arrow-down-alt2 dashchev"></span> Selectief gegevens ophalen</div>
                 <div class="secondary_ophaal_options">
                 <button class="autodataophalen_sec" id="cardatacallB" data-codes="B">Basis gegevens</button>
@@ -791,9 +793,9 @@ if(!empty($value_sync_images)){
     </div>
 
 </div>
-<div class="aankoopborderel_popup_wrap">
- <div class="aankoopborderel_popup">
- <div id="aankoopborderel_pop_close">&#x2715</div>
+<div class="dds_popup_wrap aankoopborderel_popup_wrap">
+ <div class="dds_popup aankoopborderel_popup">
+ <div id="aankoopborderel_pop_close" class="pop_close">&#x2715</div>
  <h2 style="padding: 0;">Aankoopborderel PDF aanmaken</h2>
     <h4>Initiele velden</h4>
 
@@ -871,7 +873,77 @@ foreach($aankoopbd_add_fields as $key => $field){
 
      <button id="ab_aanmaken" class="pdfbtn">Borderel aanmaken</button>
      </div>
+     
  </div>
+<style>
+    .dds_popup input{
+        width:100%;
+    }
+    .toonhiddenfields {
+    margin-top: 10px;
+}
+    </style>
+
+
+ <div class="dds_popup_wrap bestelbon_popup_wrap">
+ <div class="dds_popup bestelbon_popup">
+ <div id="bestelbon_pop_close" class="pop_close">&#x2715</div>
+
+
+ <?php
+$klantnaam = get_post_meta( $post->ID, 'klantnaam', true );
+$klantennummer = get_post_meta( $post->ID, 'klantennummer', true );
+$klantadres = get_post_meta( $post->ID, 'klantadres', true );
+$klanttel = get_post_meta( $post->ID, 'klanttel', true );
+$aangepasteprijs = get_post_meta( $post->ID, 'aangepasteprijs', true );
+$btw_percentage = get_post_meta( $post->ID, 'btw_percentage', true );
+$bestelbonnummer = get_post_meta( $post->ID, 'bestelbonnummer', true );
+$datumbestelbon = get_post_meta( $post->ID, 'datumbestelbon', true );
+$datumlevering = get_post_meta( $post->ID, 'datumlevering', true );
+$datumvervaldag = get_post_meta( $post->ID, 'datumvervaldag', true );
+$bb_opmerkingen = get_post_meta( $post->ID, 'bb_opmerkingen', true );
+$bb_voorakkoord = get_post_meta( $post->ID, 'bb_voorakkoord', true );
+
+?>
+
+
+ <h2 style="padding: 0;">Bestelbon PDF aanmaken</h2>
+    <h4>Initiele velden</h4>
+
+     <label>Klant / Firma naam</label>
+     <input type="text" id="klantnaam" name="klantnaam" value="<?php echo($klantnaam); ?>">
+     <label>Klanten Nummer</label>
+     <input type="number" name="klantennummer" value="<?php echo($klantennummer) ?>">
+     <label>Klant adres</label>
+     <input type="text" id="klantadres" name="klantadres" value="<?php echo($klantadres) ?>">
+     <label>Klant telefoonnummer</label>
+     <input type="number" id="klanttel" name="klanttel" value="<?php echo($klanttel) ?>">
+     <hr>
+     <label>Prijs (optioneel)</label>
+     <input type="number" id="aangepasteprijs" name="aangepasteprijs" value="<?php echo($aangepasteprijs) ?>">
+     <div class="toonhiddenfields">Toon meer</div>
+     <div class="hidefields">
+     <label>BTW Percentage</label>
+     <input style="width:100%;" type="number" name="btw_percentage" value="0" value="<?php echo($btw_percentage) ?>">
+     </div> 
+     <label>Bestelbon Nummer</label>
+     <input type="text" name="bestelbonnummer" value="<?php echo($bestelbonnummer) ?>">
+     <label>Datum Bestelbon</label>
+     <input style="width:100%;" type="date" name="datumbestelbon" pattern="\d{4}-\d{2}-\d{2}" value="<?php echo($datumbestelbon) ?>">
+     <label>Datum Levering/Dienstprestatie</label>
+     <input style="width:100%;" type="date" name="datumlevering" pattern="\d{4}-\d{2}-\d{2}" value="<?php echo($datumlevering) ?>"> 
+     <label>Datum Vervaldag</label>
+     <input style="width:100%;" type="date" name="datumvervaldag" pattern="\d{4}-\d{2}-\d{2}" value="<?php echo($datumvervaldag) ?>">
+     <label>Opmerking</label>
+     <input type="text" name="bb_opmerkingen" value="<?php echo($bb_opmerkingen) ?>">
+     <label>Voor akkoord</label>
+     <input type="text" name="bb_voorakkoord" value="<?php echo($bb_voorakkoord) ?>">
+     <button id="bb_aanmaken" class="pdfbtn">Bestelbon aanmaken</button>
+     </div>
+     
+ </div>
+
+
 <?php   
 if (is_edit_page('new')){
     echo("<span class='typeofpage' style='display:none'>new</span>");

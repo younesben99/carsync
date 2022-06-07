@@ -118,6 +118,13 @@
   
         });
 
+        $("#carbestelbon").on("click",function(e){
+            e.preventDefault();
+            
+            $(".bestelbon_popup_wrap").css("display","flex");
+  
+        });
+
 
         $("#ab_aanmaken").on("click",function(e){
             e.preventDefault();     
@@ -154,13 +161,43 @@
 
         });
 
-        
-        $("#aankoopborderel_pop_close").on("click",function(e){
-            e.preventDefault();
+        $("#bb_aanmaken").on("click",function(e){
+            e.preventDefault();     
+
+            
+
+            var postid = $(".currentPID").val();
+
+            var fields = {};
+
+            $(".bestelbon_popup input").each(function(x,s){
+                var name = $(s).attr("name");
+                fields[name] = $(s).val();
+
+            });
+
+            $(".bestelbon_popup input[type=checkbox]").each(function(x,s){
+                var name = $(s).attr("name");
+                
+                if($(this).is(":checked")){
+                    fields[name] = "yes";
+                }
+                else{
+                    fields[name] = "no";
+                }
+
+            });
+            fields["pid"] = postid;
+
+            var url = "https://" + document.domain + "/wp-content/plugins/carsync/php/pdf_gen/bestelbon.php?"+ $.param(fields);
+            window.open(url, '_blank').focus();
 
             $(this).closest(".aankoopborderel_popup_wrap").fadeOut();
 
         });
+        
+
+      
 
         $(".toonhiddenfields").on("click",function(){
 
