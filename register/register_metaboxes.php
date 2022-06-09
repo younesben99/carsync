@@ -467,13 +467,45 @@ if(!empty($value_sync_images)){
 ?>" />
 <div style="display:flex;flex-direction:column;" class="carinputswrap">
     <div><?php echo($gallery_data);?></div>
-    <label for="carmerk-input">Merk</label>
-    <select name="carmerk-input" id="carmerk-input" required>
-        <option selected disabled><?php echo($value_merk); ?></option>
+
+
+
+    
+    <?php
+    $merken = merken_ophalen();
+    $modellen = modellen_ophalen();
+    
+    $merken = json_decode($merken,true);
+    $modellen = json_decode($modellen,true);
+
+    //merk en model klaarmaken voor jquery 
+    ?>
+
+    <div style="display:none" id="merkcfid"><?php echo $value_merk; ?></div>
+    <div style="display:none" id="modelcfid"><?php echo $value_model; ?></div>
+    <label>Merk</label>
+    <select class="car-merk" name='carmerk-input'>
+    <option selected disabled>Selecteer Merk</option>
+    
+    <?php
+    foreach($merken as $merk){
+    echo("<option value='".$merk["merk"]."' data-merkid='".$merk["merkid"]."'>".$merk["merk"]."</option>");
+    }
+    ?>
     </select>
-    <label for="carmodel-input">Model</label>
-    <select name="carmodel-input" id="carmodel-input">
-        <option selected disabled><?php echo($value_model); ?></option>
+
+    <label>Model</label>
+    <select class="car-model" name='carmodel-input'>
+    
+
+    <option selected class="selecteermodel">Selecteer Model</option>
+  
+    <?php
+    foreach($modellen as $model){
+    
+    echo("<option class='modeloption' value='".$model["model"]."' data-merkid='".$model["merkid"]."' data-modelid='".$model["modelid"]."'>".$model["model"]."</option>");
+    }
+    ?>
     </select>
 
     <label for="cardescription-input">Beschrijving</label>

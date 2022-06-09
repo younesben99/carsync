@@ -1,6 +1,8 @@
 (function($) {
 
     $(document).ready(function(){
+
+
         
       
         $( "#dash-status" ).on( "change", function( event ) {
@@ -141,11 +143,65 @@
         }
        
     });
+
+
     $("#carmerk-input").select2({placeholder: "Selecteer Merk",disabled: true});
     $("#carmodel-input").select2({placeholder: "Selecteer Model",disabled: true}); 
- 
+
+    //nieuw
+    $(".car-merk").select2({placeholder: "Selecteer Model",disabled: false}); 
+    $(".car-model").select2({placeholder: "Selecteer Model",disabled: false});
+    
+    //selecteer merk en model
+
+    currentmerk = $("#merkcfid").text();
+    currentmodel = $("#modelcfid").text();
+
+    $(".car-merk").val(currentmerk);
+    $('.car-merk').trigger('change');
+
+    $(".car-model").val(currentmodel);
+    $('.car-model').trigger('change');
+
+    $(".car-merk").on("change",function(){
+
+     
+
+
+      //hide alles
+      $(".modeloption").prop("disabled",true);
+
+
+      $(".currentmodel").prop("disabled",true);
+      $(".currentmodel").prop("selected",false);
+
+
+      
+
+      merkid = $(this).find('option:selected').attr("data-merkid");
+      console.log(merkid);
+      $( ".car-model > option" ).each(function( index ) {
+        
+            if($( this ).attr("data-merkid") == merkid){
+            
+              $( this ).prop("disabled",false);
+            }
+      });
+
+      
+      $(".selecteermodel").prop("disabled",true);
+      $(".selecteermodel").prop('selected', true);
+      $(".car-model").val("select");
+      $('.car-model').trigger('change');
+
+ });
+  
+
+
+ /*
     var idvoormodel;
     console.log("succes");
+    
     $.ajax({
       url: "https://bnyautocenter.be/wp-json/mm/mmc/",
       headers: { "Access-Control-Allow-Origin": "*"}
@@ -159,17 +215,9 @@
       $("#carmerk-input").removeAttr("disabled");
     }});
 
-
-    // $.get("https://bnyautocenter.be/wp-json/mm/mmc/",function( data ){
-    //     $( data ).each(function( index ) {
-    //         var formattedmerk = data[index].name.replace(/[\. ,:-]+/g).toLowerCase();
-    //         idvoormodel = data[index].term_id;
-    //         $("#carmerk-input").append("<option termid="+idvoormodel+"  merktag="+formattedmerk+" >"+ data[index].name + "</option>");
-    //     });
-    //     $("#carmerk-input").removeAttr("disabled");
-    //   });
-
-      $("#carmerk-input").on("change",function(){
+*/
+    
+     /* $("#carmerk-input").on("change",function(){
         $("#carmodel-input").html("");
         
         
@@ -186,6 +234,7 @@
           
 
       });
+      */
       
 
       $(".showmoreselectief").on("click",function(){

@@ -2,24 +2,27 @@
 include(__DIR__."/../../../../wp-load.php");
 //vin als uid gebruiken
 
+$merken = merken_ophalen();
+$modellen = modellen_ophalen();
 
-$posts = get_posts([
-    'post_type' => 'autos',
-    'post_status' => 'publish',
-    'numberposts' => -1
-  ]);
-
-
-foreach($posts as $post){
-  
-    $vin = get_post_meta( $post->ID,"_car_vin_key" );
-
-    if(!empty($vin[0])){
-      update_post_meta($post->ID,"_car_uniq_key",$vin[0]);
-    }
-    
-
-}
-
-
+$merken = json_decode($merken,true);
+$modellen = json_decode($modellen,true);
+var_dump($modellen);
 ?>
+
+<select class="car-merk">
+<?php
+foreach($merken as $merk){
+  echo("<option value='".$merk["merkid"]."'>".$merk["merk"]."</option>");
+}
+?>
+</select>
+
+<select class="car-model">
+<?php
+foreach($modellen as $model){
+  
+  echo("<option value='".$model["merkid"]."'>".$model["model"]."</option>");
+}
+?>
+</select>

@@ -290,6 +290,86 @@ function array_flatten($array, $prefix = ''){
     }
     return $return;
 }
+function merken_ophalen(){
 
+    try {
+      $mysqli = new mysqli("35.214.232.1", "uchrx69hijxdg", "1B%b13($21jn", "dbtpzhh0ozmbi4",3306);
+      $mysqli->select_db("dbtpzhh0ozmbi4") or die( "Unable to select database");
+      
+      // Check connection
+      if ($mysqli->connect_error) {
+          die("Connection failed: " . $mysqli->connect_error);
+      }
+      
+      
+    
+      
+      
+      $sql = "SELECT * FROM Merken";
+      $result = $mysqli->query($sql);
+    
+      $merken_array = [];
+      if ($result->num_rows > 0) {
+       
+        while($row = $result->fetch_assoc()) {
+          array_push($merken_array,["merkid" => $row["merkid"],"merk" => $row["merk"]]);
+        }
+      }
+    
+      $merken_json = json_encode($merken_array);
+      
+    
+      
+      
+      
+      $mysqli->close();
+  
+      return($merken_json);
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+    
+  }
+
+  function modellen_ophalen(){
+
+    try {
+      $mysqli = new mysqli("35.214.232.1", "uchrx69hijxdg", "1B%b13($21jn", "dbtpzhh0ozmbi4",3306);
+      $mysqli->select_db("dbtpzhh0ozmbi4") or die( "Unable to select database");
+      
+      // Check connection
+      if ($mysqli->connect_error) {
+          die("Connection failed: " . $mysqli->connect_error);
+      }
+      
+      
+    
+      
+      
+      $sql = "SELECT * FROM Modellen";
+      $result = $mysqli->query($sql);
+    
+      $modellen_array = [];
+      if ($result->num_rows > 0) {
+       
+        while($row = $result->fetch_assoc()) {
+          array_push($modellen_array,["merkid" => $row["merkid"],"model" => $row["model"],"modelid" => $row["modelid"]]);
+        }
+      }
+    
+      $modellen_json = json_encode($modellen_array);
+      
+    
+      
+      
+      
+      $mysqli->close();
+  
+      return($modellen_json);
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+    
+  }
 
 ?>
