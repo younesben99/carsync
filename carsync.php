@@ -24,6 +24,7 @@ require_once( __DIR__ . '/sync/create_post_by_uniq_id.php');
 include_once( __DIR__ . '/register/register_admin_toolbar_links.php');
 include_once( __DIR__ . '/register/register_compare.php');
 include_once( __DIR__ . '/register/register_single_car_page.php');
+include_once( __DIR__ . '/register/register_archive_car_page.php');
 include(__DIR__."/templates/template_og_tags.php");
 
 
@@ -370,6 +371,34 @@ function merken_ophalen(){
         //throw $th;
     }
     
+  }
+
+
+  function dds_thumbnail($id){
+
+    
+    $carsync_images = get_post_meta($id, '_car_syncimages_key', true);
+    $manual_images = get_post_meta($id, 'vdw_gallery_id', true);
+    if(empty($manual_images) && empty($carsync_images)){
+
+      $selected_img = "https://digiflowroot.be/static/images/camera_image.jpg";
+    } 
+    else{
+      if($manual_images == null){
+        $selected_img = $carsync_images[0];
+    }
+    else{
+      if ($manual_images[0] !== 1) {
+          $selected_img_url = wp_get_attachment_image_src($manual_images[0], 'medium');
+          $selected_img = $selected_img_url[0];
+      }else{
+        $selected_img = "https://digiflowroot.be/static/images/camera_image.jpg";
+      }
+    }
+    }
+    
+    return $selected_img;
+
   }
 
 ?>
