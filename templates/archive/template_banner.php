@@ -6,8 +6,8 @@
 <style>
 
 .archive_banner{
-    max-width: 1400px;
-    margin: 50px auto;
+    max-width: 2200px;
+    margin: 50px auto 0;
     padding: 0 3%;
     border-bottom:1px solid lightgrey;
     width:100%;
