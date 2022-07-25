@@ -1,10 +1,10 @@
 <?php
-
+$version = "8.5.1";
 /*
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 8.5
+Version: 8.5.1
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -14,6 +14,7 @@ GitHub Plugin URI: https://github.com/younesben99/carsync
 require_once( __DIR__ . '/register/register_cpt.php');
 require_once( __DIR__ . '/register/register_metaboxes.php');
 require_once(__DIR__ . '/register/register_global_vars.php');
+require_once(__DIR__ . '/register/register_popup.php');
 require_once( __DIR__ . '/register/register_archive.php');
 require_once( __DIR__ . '/register/register_single.php');
 require_once( __DIR__ . '/sync/carsync_image_handler.php');
@@ -33,6 +34,9 @@ require_once( __DIR__ . '/feed/facebook_feed_aanmaken.php');
 require_once( __DIR__ . '/register/register_cron_job.php');
 require_once( __DIR__ . '/socialpush/social_metaboxes.php');
 
+
+
+
 function dds_echo($var,$suffix = ""){
 
   
@@ -44,6 +48,7 @@ function dds_echo($var,$suffix = ""){
     }
 
 }
+
 function socialpush_scripts( $hook ) {
 
     global $post;
@@ -106,19 +111,50 @@ function add_admin_scripts( $hook ) {
             //endgallery
             wp_enqueue_script(  'sweetalert2', 'https://cdn.jsdelivr.net/npm/sweetalert2@10.12.3/dist/sweetalert2.all.min.js' );
             wp_enqueue_script(  'editorjs', 'https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.23.0/trumbowyg.min.js' );
-            wp_enqueue_script(  'autos-cpt-js', plugin_dir_url( __FILE__ ).'/js/post-edit-page.js?v='. uniqid() );
+            wp_enqueue_script(  'autos-cpt-js', plugin_dir_url( __FILE__ ).'/js/post-edit-page.js?v='. $version );
             wp_enqueue_script( 'select2js','https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js', array(), '1.0' );
             wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
             wp_enqueue_style( 'select2css' );
-            wp_enqueue_script(  'autos-data-ophalen-js', plugin_dir_url( __FILE__ ).'/js/external-data-ophalen.js?v='. uniqid() );
+            wp_enqueue_script(  'autos-data-ophalen-js', plugin_dir_url( __FILE__ ).'/js/external-data-ophalen.js?v='. $version );
         }
        
     }
+    
 }
 add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
+
+
+
+
+
+add_action( 'wp_head', 'single_archive_scripts',1 );
+
+function single_archive_scripts(){
+
+
+  if(get_post_type( get_the_ID() == "autos")){
+    wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
+    wp_enqueue_style( 'select2css' );
+    wp_enqueue_script( 'select2js','https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js', array(), '1.0' );    
+  }
+  
+  
+}
+ 
+
+
+
 // disable gutenberg & comments
 add_filter('use_block_editor_for_post', '__return_false', 10);
 add_filter('use_block_editor_for_post_type', '__return_false', 10); 
+
+
+//script op elke pagina welkom
+
+wp_enqueue_script(  'dds_popup', plugin_dir_url( __FILE__ ).'/assets/js/dds_popup.js?v='. $version ,array ( 'jquery' ));
+wp_enqueue_style('dds_popup', plugin_dir_url( __FILE__ ).'/assets/css/dds_popup.css?v='.$version);
+
+
 
 add_action('admin_init', function () {
     // Redirect any user trying to access comments page

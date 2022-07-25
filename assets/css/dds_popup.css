@@ -1,0 +1,134 @@
+.dds_pop_wrap {
+    position: fixed;
+    width: 100%;
+    min-height: 100%;
+    background: whitesmoke;
+    z-index: 5000;
+    display: none;
+    opacity: 0;
+    bottom: -100vh;
+    left: 0;
+}
+.dds_pop_inner {
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+.dds_pop_close {
+    padding: 10px 0px;
+    border-radius: 5px;
+    color: #151515;
+    border: 1px solid transparent;
+    background: white;
+    width: 160px;
+    display: flex;
+    align-items: center;
+    height: 35px;
+    justify-content: space-evenly;
+    background: white;
+    color: dimgrey;
+    font-size: 13px;
+    border: 1px solid #adadad;
+    width: 115px;
+    cursor: pointer;
+    position: absolute;
+    right: 50px;
+    top: 25px;
+}
+.dds_pop_content{
+    width: 57%;
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 80%;
+}
+.dds_pop_content h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 35px;
+    font-weight: 400;
+}
+.dds_pop_title {
+    margin-bottom: 20px;
+    font-weight: 300;
+    color: #757575;
+}
+.pop_chosenfacets {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+.pop_chosenfacets .ch_facet_item{
+   background-color: white;
+}
+
+.submit_close_wrap {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+button.dds_form_submit.submit_icon_wrap {
+    max-width: unset;
+    width: 47% !important;
+}
+button.pop_close {
+    width: 47%;
+    margin-top: 9px;
+    height: 54px;
+    border: 2px solid var( --e-global-color-primary ) !important;
+    background: transparent !important;
+    color: var( --e-global-color-primary ) !important;
+    font-weight: 500;
+}
+.dds_form_submit {
+  
+    width: 47%;
+}
+
+@media only screen and (max-height: 1100px){
+    .dds_pop_wrap {
+    overflow-y: scroll;
+}
+button.dds_form_submit.submit_icon_wrap {
+  
+    max-width: unset !important;
+}
+}
+@media only screen and (max-width: 800px){
+    .sort_bodh_wrap{
+        display:none !important;
+    }
+    button.dds_form_submit.submit_icon_wrap {
+        
+        width: 100% !important;
+    }
+    button.pop_close {
+        width: 100%;
+    }
+    .dds_pop_close {
+    right: 10%;
+}
+.dds_pop_wrap {
+    height: 100%;
+}
+.dds_pop_content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.dds_pop_content {
+    width: 80%;
+}
+}

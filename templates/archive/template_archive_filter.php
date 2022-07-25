@@ -13,6 +13,32 @@
     font-size:18px;
     font-weight:500;
 }
+.facet_list input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    border: 0;
+    border: 2px solid #aaaaaa;
+    border-radius: 4px;
+    cursor:pointer;
+    padding-left: 10px;
+    margin-top:2px;
+}
+
+
+.facet_list input[type=checkbox]:checked {
+    background:var( --e-global-color-primary );
+    border-color:var( --e-global-color-primary );
+    background-image:url("https://digiflowlocal.local/wp-content/uploads/2022/07/check-svgrepo-com-4.svg");
+    background-size: contain;
+}
+
+
+
+
+
 .facet_title{
     cursor:pointer;
     padding: 10px 0;
@@ -26,16 +52,16 @@
 .facet_item {
     display: flex;
     align-items: center;
-    padding: 7px 0;
     justify-content: flex-start;
     flex-wrap: nowrap;
     cursor:pointer;
 }
 .facet_item label{
     cursor:pointer;
-}
-.facet_item input {
-    margin: 2px 10px 0 0;
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 .facet_list {
     margin-top: 10px;
@@ -47,8 +73,7 @@
     border-radius: 100px;
     font-weight: 600;
     padding: 6px 35px 6px 16px;
-    background: transparent;
-    margin-top: 10px;
+    background: white;
     position: relative;
     border: 2px solid;
     border-color: #e6e6e6;
@@ -60,6 +85,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 35px;
+    margin-bottom:10px;
 }
 .ch_facet_item:hover {
     color:#d57c7c !important;
@@ -83,14 +110,118 @@
 .chosen_facets {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 .chosen_wrap {
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
    
    
     display:none;
 }
+.facet_item:hover{
+    opacity:0.9;
+    transition:0.3s;
+}
+.facet_item:hover > input[type=checkbox]:not(:checked){
+    background:#efefef;
+    transition:0.3s;
+}
+.filter_mobile_wrap{
+    display:none;
+    position: sticky;
+    width: 100%;
+    background: white;
+    justify-content: space-around;
+    height: 70px;
+    align-items: center;
+    z-index: 100;
+    top: 0;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+
+.displayflex{
+    display:flex !important;
+}
+.filter_mobile_close {
+    display: none;
+    position: fixed;
+    border: 0px solid var( --e-global-color-primary );
+    color: white;
+    padding: 7px 0;
+    width: 100%;
+    text-align: center;
+    border-radius: 6px;
+    outline: 0 !important;
+    bottom: 10px;
+    z-index: 100001;
+    align-items: center;
+justify-content: space-around;;
+    
+    
+}
+.filter_btn_close{
+    outline:0 !important;
+    color:white;
+    border-color:var( --e-global-color-primary );
+    width:70%;
+    height:55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    width:68%;
+}
+.filter_btn_mobile{
+    border: 2px solid var( --e-global-color-primary ) !important;
+    color:white !important;
+    padding: 7px 0 !important;
+    width: 27% !important;
+    text-align: center !important;
+    border-radius: 6px !important;
+    outline:0 !important;
+}
+.filter_btn_mobile{
+    outline:0 !important;
+}
+.bodh_btn_mobile{
+    border: 2px solid var( --e-global-color-primary ) !important;
+    color:var( --e-global-color-primary ) !important;
+    background-color:white !important;
+    padding: 7px 0 !important;
+    width: 38% !important;
+    text-align: center !important;
+    border-radius: 6px;
+}
+.sort_btn_mobile{
+    border: 2px solid var( --e-global-color-primary ) !important;
+    color:var( --e-global-color-primary ) !important;
+    background-color:white !important;
+    padding: 7px 0 !important;
+    width: 27% !important;
+    text-align: center !important;
+    border-radius: 6px;
+}
+.sort_btn_mobile,.bodh_btn_mobile {
+
+    color:var( --e-global-color-primary ) !important;
+    border-color:var( --e-global-color-primary ) !important;
+    outline: 0 !important;
+    opacity:0.9;
+
+}.filter_mobile_wrap button img {
+    margin-right: 10px;}
+    .outline_btn{
+        background: white !important;
+    color: var( --e-global-color-primary ) !important;
+    border-color: var( --e-global-color-primary ) !important;
+    outline: 0 !important;
+    border: 2px solid var( --e-global-color-primary ) !important;
+    }
+    .filter_mobile_close .outline_btn{
+        width:28%;
+    }
     </style>
 <script>
 
@@ -121,7 +252,7 @@ $args = array(
 );
 $cars = get_posts( $args );
 
-
+$carcount = 0;
 foreach ($cars as $key => $value) {
 
     $_car_id = $value->ID;
@@ -140,7 +271,7 @@ foreach ($cars as $key => $value) {
 
     array_push($grid_cars,[$_car_id,"bg"=>$bg,"wagentitel"=>$_car_wagentitel_key,"prijs"=>$_car_prijs_key,"merk"=>$_car_merkcf_key,"model"=>$_car_modelcf_key,"transmissie"=>$_car_transmissie_key,"bouwjaar"=>$_car_bouwjaar_key,"brandstof"=>$_car_brandstof_key,"carrosserievorm"=>$_car_carrosserievorm_key,"kilometerstand"=>$_car_kilometerstand_key,"euro"=>$_car_emissieklasse_key]);
 
-
+    $carcount++;
 
 }
 
@@ -169,14 +300,40 @@ foreach ($grid_cars as $car) {
 
 }
 
+
 ?>
 
 
 
 
 
+
+<div class="filter_mobile_close">
+    <button class="filter_btn_close">
+        
+    <img src="https://digiflowroot.be/static/images/icons/eye_1.svg" />
+    <span>
+    Toon resultaten</span>
+
+   
+</button>
+
+<button class="filter_btn_close outline_btn">
+        
+        <span>&#x2715</span>
+        <span>
+        Sluiten</span>
+    
+       
+    </button>
+
+</div>
+
+
+<!-- filter voor desk -->
 <div class="filterwrap">
-<h3 class="filter_h3">Gevonden wagens</h3>
+<h3 class="filter_h3">Gevonden wagens (<?php echo($carcount); ?>)</h3>
+
 
 
 

@@ -8,7 +8,9 @@
 <?php
 
     include(__DIR__."/templates/archive/template_banner.php");
-    
+
+   
+   
 
     ?>
 
@@ -16,10 +18,132 @@
     .filtergrid_wrap {
         display: flex;
     }
+    .sort_btn_group{
+        display:none;
+        position: absolute;
+        top: 79px;
+        background: white;
+        padding: 20px 30px;
+        border-radius: 5px;
+        box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px;
+         border: 1px solid whitesmoke;
+         width: 90%;
+    }
+    .sort_btn_group ul{
+        margin: 0;
+        padding:0;
+    list-style-type: none;
+    }
+    
+    .sort_btn_group li {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e2e2;
+    cursor:pointer;
+}
+.sort_btn_group li:hover {
+font-weight:500;
+
+}
+.sort_btn_group li:first-child {
+    border-top: 0px solid #e2e2e2;
+}
+.sort_btn_mobile{
+    cursor:pointer;
+}
+.sort_btn_group .active{
+    font-weight:bold;
+    color: var( --e-global-color-primary );
+}
 </style>
 
 <script>
     jQuery(document).ready(function ($) {
+
+        
+
+
+        $(".sort_select").select2(); 
+
+        function sort_grid(chosen){
+            switch (chosen) {
+                case "prijs_o":
+                    $grid.isotope({ sortBy : 'price',sortAscending: true });
+                    break;
+                case "prijs_a":
+                    $grid.isotope({ sortBy : 'price',sortAscending: false });
+                    break;
+                case "nieuwste":
+                    $grid.isotope({ sortBy : 'bouwjaar',sortAscending: false });
+                    break;
+                case "km_o":
+                    $grid.isotope({ sortBy : 'km',sortAscending: true });
+                    break;   
+                case "km_a":
+                    $grid.isotope({ sortBy : 'km',sortAscending: false });
+                    break;           
+                default:
+
+                $grid.isotope({ sortBy : 'original-order' });
+                    break;
+            }
+        }
+
+
+        $(".filter_btn_mobile,.selecteer_filter").on("click",function(e){
+            e.preventDefault();
+    jQuery(".filterwrap").show();
+
+    jQuery(".filterwrap").animate({
+                    'bottom': 0,
+                    'opacity':1
+    }, 300);
+
+  
+
+
+            
+            $(".filter_mobile_close").toggleClass("displayflex");
+        });
+
+        $(".sort_btn_mobile").on("click",function(){
+
+            $(".sort_btn_group").slideToggle();
+
+        });
+        $(".sort_btn_group li").on("click",function(){
+
+        $(".sort_btn_group li").each(function(){
+            $(this).removeClass("active");
+        });
+
+        $(this).addClass("active");
+
+        var sortval = $(this).attr("data-sort");
+
+        sort_grid(sortval);
+        $(".sort_btn_group").slideToggle();
+
+        });
+
+
+        $(".filter_btn_close").on("click",function(e){
+            jQuery(".filterwrap").animate({
+                'opacity': '0',
+                'bottom': '-100vh'
+            }, 300);
+
+            setTimeout(function () {
+                jQuery(".filterwrap").hide();
+            }, 300);
+            $(".filter_mobile_close").toggleClass("displayflex");
+
+        }).on('click', 'div', function (e) {
+            e.stopPropagation();
+        });
+            
+       
+
         function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
         }
@@ -29,9 +153,41 @@
             percentPosition: true,
             layoutMode: 'fitRows',
             fitRows: {
-                gutter: 15
+                gutter: 25
+            },
+            getSortData: {
+                km: function( itemElem ) {
+                var km = $( itemElem ).find('.sort_km').text();
+                
+                return parseFloat( km.replace( /[\(\)]/g, '') );
+
+                },
+                bouwjaar: function( itemElem ) {
+                var bouwjaar = $( itemElem ).find('.sort_bouwjaar').text();
+               
+                return parseFloat( bouwjaar.replace( /[\(\)]/g, '') );
+
+                },
+                price: function( itemElem ) {
+                var price = $( itemElem ).find('.sort_prijs').text();
+               
+                return parseFloat( price.replace( /[\(\)]/g, '') );
+
+                }
             }
         });
+
+
+        $(".sort_select").on("change",function(e){
+          
+          
+
+            var chosen = $(this).val();
+
+            sort_grid(chosen);
+        });
+
+
 
         var filters = {}; // should be outside the scope of the filtering function
         var chosenfilters = [];
@@ -85,30 +241,25 @@
             //console.log("full code: " +chosenfilters);
             var comboFilter = getComboFilter( filters );
 
-            
-           
-            
-           
         
             $(chosenfilters).each(function( index ) {
                 if(chosenfilters[index].slice(0, 4) !== "<div"){
                     chosenfilters[index] = "<div class='ch_facet_item' data-facet-item='"+chosenfilters[index].toLowerCase()+"'>" + chosenfilters[index] + "</div>";
                 }
-               
             });
 
-       
-
+           
+            $("#dds_bodh input[name=bodhlist]").val(JSON.stringify(filters));
             //console.log("modified code: " + chosenfilters);
             $(".chosen_facets").html(chosenfilters.join(""));
+            $(".pop_chosenfacets").html(chosenfilters.join(""));
+            
             $grid.isotope({ filter: comboFilter});
         })
 
         
-        $(".chosen_facets").on("click",".ch_facet_item",function(e){
-
+        $(".chosen_facets,.pop_chosenfacets").on("click",".ch_facet_item",function(e){
             
-           
             var clickedFacet = $(this).attr("data-facet-item");
 
             $(".facet_wrap input:checkbox").each(function() {
@@ -119,6 +270,7 @@
                 }
             });
         });
+
         //onderdeel van isotope ref:https://stackoverflow.com/questions/17553076/isotope-combination-filtering-multiple-selection
 
         function getComboFilter( filters ) {
@@ -172,15 +324,55 @@
             $grid.isotope({ filter: "*"});
             $(".chosen_wrap").hide();
         });
+        $(".car-item").on("click",function(){
 
+        var link = $(this).attr("data-link");
+        console.log(link);
+        window.location.href = link;
+
+        });
     });
+    
 </script>
+
+<!-- filter voor mobile -->
+
+<div class="filter_mobile_wrap">
+    <button class="filter_btn_mobile">
+        
+    <img src="https://digiflowroot.be/static/images/icons/filter_5.svg" />
+    <span>
+    Filter</span>
+
+   
+</button>
+<button class="sort_btn_mobile">
+    Sorteren
+</button>
+<div class="sort_btn_group">
+<ul>
+    <li data-sort="original-order" class="active">Standaard</li>
+    <li data-sort="prijs_o">Prijs oplopend</li>
+    <li data-sort="prijs_a">Prijs aflopend</li>
+    <li data-sort="nieuwste">Nieuwste eerst</li>
+    <li data-sort="km_o">Kilometerstand oplopend</li>
+    <li data-sort="km_a">Kilometerstand aflopend</li>
+</ul>
+</div>
+<button class="bodh_btn_mobile pop_open" data-popup="bodh_pop">
+    Blijf op de hoogte
+</button>
+
+</div>
+
 
 <div class="filtergrid_wrap">
 
     <?php
+    //include(__DIR__."/templates/archive/template_archive_filter_mobile.php");
     include(__DIR__."/templates/archive/template_archive_filter.php");
     include(__DIR__."/templates/archive/template_archive_grid.php");
+    include(__DIR__."/templates/archive/template_archive_pop.php");
     ?>
 
 </div>
@@ -192,6 +384,6 @@
 
 <?php
 
- //get_footer();
+ get_footer();
 
 ?>
