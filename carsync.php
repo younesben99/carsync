@@ -1,10 +1,10 @@
 <?php
-$version = "8.5.3";
+$version = "8.5.4";
 /*
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 8.5.3
+Version: 8.5.4
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -135,7 +135,13 @@ function single_archive_scripts(){
   if(get_post_type( get_the_ID() == "autos")){
     wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
     wp_enqueue_style( 'select2css' );
-    wp_enqueue_script( 'select2js','https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js', array(), '1.0' );    
+    wp_enqueue_script( 'select2js','https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js', array(), '1.0' );   
+
+    wp_enqueue_style('archive_main', plugin_dir_url( __FILE__ ).'/assets/css/archive_main.css'); 
+    wp_enqueue_style('archive_filter', plugin_dir_url( __FILE__ ).'/assets/css/archive_filter.css');
+    wp_enqueue_style('archive_grid', plugin_dir_url( __FILE__ ).'/assets/css/archive_grid.css');
+    wp_enqueue_script(  'archive_grid', plugin_dir_url( __FILE__ ).'/assets/js/archive_grid.js?v='. $version );
+
   }
   
   

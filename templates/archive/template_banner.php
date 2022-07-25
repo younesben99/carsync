@@ -13,9 +13,6 @@
     width:100%;
 
 }
-.archive_banner_inner{
-  
-}
 </style>
 <div class="archive_banner">
 <div class="archive_banner_inner">
