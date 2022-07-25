@@ -93,13 +93,17 @@ font-weight:500;
         $(".filter_btn_mobile,.selecteer_filter").on("click",function(e){
             e.preventDefault();
     jQuery(".filterwrap").show();
-
+        
     jQuery(".filterwrap").animate({
                     'bottom': 0,
                     'opacity':1
     }, 300);
 
-  
+    $(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
+        jQuery("#fb-root").toggle();
+        
+    });
+
 
 
             

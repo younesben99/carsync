@@ -1,10 +1,10 @@
 <?php
-$version = "8.5.2";
+$version = "8.5.3";
 /*
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 8.5.2
+Version: 8.5.3
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
