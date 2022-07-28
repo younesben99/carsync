@@ -39,6 +39,9 @@ jQuery(document).ready(function ($) {
     $(".filter_btn_mobile,.selecteer_filter").on("click",function(e){
         e.preventDefault();
 
+        if(typeof FB !== "undefined"){
+            FB.CustomerChat.hide();
+        }
         
         $(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
             $("#fb-root").toggleClass("hideimportant");
