@@ -1,79 +1,91 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 #gallery-metabox-list li {
-    float: left;
-    width: 110px;
-    text-align: center;
-    margin: 0px 11px 11px 0;
-    cursor: move;
+  float: left;
+  width: 110px;
+  text-align: center;
+  margin: 0px 11px 11px 0;
+  cursor: move;
 }
 
 .misc-pub-post-status {
-    /*display:none;*/
+  /*display:none;*/
 }
 
 .gallerycontrols {
-    background: white;
-    color: black;
-    position: absolute;
-    width: 23px;
-    text-align: center;
-    height: 23px;
-    margin-top: -77px;
-    margin-left: 88px;
-    cursor: pointer;
-    padding-top: 1px;
-    border-radius: 5px;
-    padding-right: 1Px;
-    font-weight: bold;
-    box-shadow: 0px 1px 2px #0000005c;
+  background: white;
+  color: black;
+  position: absolute;
+  width: 23px;
+  text-align: center;
+  height: 23px;
+  margin-top: -77px;
+  margin-left: 88px;
+  cursor: pointer;
+  padding-top: 1px;
+  border-radius: 5px;
+  padding-right: 1Px;
+  font-weight: bold;
+  -webkit-box-shadow: 0px 1px 2px #0000005c;
+          box-shadow: 0px 1px 2px #0000005c;
 }
 
 .gallerycontrols .remove-image {
-    color: white;
+  color: white;
 
-    font-size: 5px;
+  font-size: 5px;
 
 }
 
 .gallerycontrols .emoji {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 .swal2-title {
-    font-size: 1.175em !important;
+  font-size: 1.175em !important;
 }
 .image-preview.change-image {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 .remove-image{
 
 }
 
 .remove-image {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    opacity: 1;
-    padding: 3px;
-    
-  }
-  .remove-image:hover {
-    opacity: 0.9;
-  }
-  .remove-image:before, .remove-image:after {
-    position: absolute;
-   
-    content: ' ';
-    height: 12px;
-    width: 1px;
-    background-color: #333;
-    
-  }
-  .remove-image:before {
-    transform: rotate(45deg);
-  }
-  .remove-image:after {
-    transform: rotate(-45deg);
-  }
-  .form-table td {
-    padding: 15px 0px  !important;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+  padding: 3px;
+  
+}
+.remove-image:hover {
+  opacity: 0.9;
+}
+.remove-image:before, .remove-image:after {
+  position: absolute;
+ 
+  content: ' ';
+  height: 12px;
+  width: 1px;
+  background-color: #333;
+  
+}
+.remove-image:before {
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.remove-image:after {
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.form-table td {
+  padding: 15px 0px  !important;
 }

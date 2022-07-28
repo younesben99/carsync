@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 
 
 .filterwrap {
@@ -22,14 +29,22 @@
     background: var( --e-global-color-primary );
     position: absolute;
     height: 55px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     border-radius:5px;
     background-image: url(/wp-content/plugins/carsync/assets/img/loading.gif);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    -webkit-transition:0.3s;
+    -o-transition:0.3s;
     transition:0.3s;
 
 }
@@ -61,8 +76,13 @@
 
 .select_list div {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     margin-bottom:15px;
 }
 .select_list label{
@@ -75,15 +95,26 @@
     font-weight: 500;
     border-bottom: 1px solid #f3f3f3;
     font-variant: all-small-caps;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     margin-top: 30px;
 }
 .facet_item {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
     cursor:pointer;
 }
 .facet_item label{
@@ -97,7 +128,9 @@
     margin-top: 10px;
 }
 .rotate180{
-    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
 }
 .ch_facet_item {
     border-radius: 100px;
@@ -112,9 +145,15 @@
     margin-right: 10px;
     color: #5b5b5b;
     text-transform: capitalize;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     height: 35px;
     margin-bottom:10px;
 }
@@ -138,9 +177,14 @@
 }
 
 .chosen_facets {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .chosen_wrap {
     width: 100%;
@@ -151,10 +195,14 @@
 }
 .facet_item:hover{
     opacity:0.9;
+    -webkit-transition:0.3s;
+    -o-transition:0.3s;
     transition:0.3s;
 }
 .facet_item:hover > input[type=checkbox]:not(:checked){
     background:#efefef;
+    -webkit-transition:0.3s;
+    -o-transition:0.3s;
     transition:0.3s;
 }
 .filter_mobile_wrap{
@@ -162,9 +210,12 @@
     position: sticky;
     width: 100%;
     background: white;
-    justify-content: space-around;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
     height: 70px;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     z-index: 100;
     top: 0;
     border-bottom: 1px solid #e6e6e6;
@@ -172,6 +223,8 @@
 
 
 .displayflex{
+    display:-webkit-box !important;
+    display:-ms-flexbox !important;
     display:flex !important;
 }
 .filter_mobile_close {
@@ -185,8 +238,11 @@
     outline: 0 !important;
     bottom: 10px;
     z-index: 100001;
-    align-items: center;
-justify-content: space-around;;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+-ms-flex-pack: distribute;
+    justify-content: space-around;;
     
     
 }
@@ -196,10 +252,19 @@ justify-content: space-around;;
     border-color:var( --e-global-color-primary );
     width:70%;
     height:55px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row-reverse;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
     width:68%;
 }
 .filter_btn_mobile{
