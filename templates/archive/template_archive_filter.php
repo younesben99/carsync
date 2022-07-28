@@ -56,17 +56,38 @@ foreach ($grid_cars as $car) {
     array_push($transmissie_facet,$car["transmissie"]);
     array_push($carrosserievorm_facet,$car["carrosserievorm"]);
 
-    $merk_facet = array_unique($merk_facet);
-    $euro_facet = array_unique($euro_facet);
-    $brandstof_facet = array_unique($brandstof_facet);
-    $transmissie_facet = array_unique($transmissie_facet);
-    $carrosserievorm_facet = array_unique($carrosserievorm_facet);
 
+  
+    //euronormen 6 gelijk maken
+
+    if(!empty($euro_facet) && is_array($euro_facet)){
+        for ($i=0; $i < count($euro_facet); $i++) { 
+        
+            if($euro_facet[$i] == "euro 6d" || $euro_facet[$i] == "euro 6b" || $euro_facet[$i] == "euro 6c" || $euro_facet[$i] == "euro 6d-temp"){
+                $euro_facet[$i] = "euro 6";
+            }
+
+
+        }
+    }
+    
+    
+    $merk_facet = array_filter(array_unique($merk_facet));
+    $euro_facet = array_filter(array_unique($euro_facet));
+    $brandstof_facet = array_filter(array_unique($brandstof_facet));
+    $transmissie_facet = array_filter(array_unique($transmissie_facet));
+    $carrosserievorm_facet = array_filter(array_unique($carrosserievorm_facet));
+
+
+    
     sort($merk_facet);
     sort($euro_facet);
     sort($brandstof_facet);
     sort($transmissie_facet);
     sort($carrosserievorm_facet);
+
+
+
 
 }
 
@@ -79,7 +100,7 @@ foreach ($grid_cars as $car) {
 
 
 <div class="filter_mobile_close">
-    <button class="filter_btn_close">
+    <button class="filter_btn_close toonresult">
         
     <img src="https://digiflowroot.be/static/images/icons/eye_1.svg" />
     <span>
@@ -143,6 +164,140 @@ foreach ($merk_facet as $facet) {
 </div>
 </div>
 <!-- end facet -->
+
+
+<!-- begin prijs facet -->
+<div class="facet_wrap">
+<div class="facet_title ">Prijs<div><svg width="10px" height="10px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 5L7.5 12L1 5" stroke="black" stroke-linecap="square"/>
+</svg>
+</div></div>
+<div class="facet_inner">
+<div class="facet_list select_list dds_form_classic" data-filter-group="prijs">
+
+
+<?php
+
+
+$min_price = $_GET["min_price"];
+
+$max_price = $_GET["max_price"];
+
+
+if(empty($min_price)){
+    $min_price = 0;
+}
+
+if(empty($max_price)){
+    $max_price = 1000000;
+}
+
+
+$prijs_ranges = array(
+    2500,
+    5000,
+    7500
+    ,10000
+    ,12500
+    ,15000
+    ,17500
+    ,20000
+    ,22500
+    ,25000
+    ,27500,
+    30000
+);
+
+
+
+?>
+<div>
+<label>Minimum</label>
+<select class="prijs_min">
+   <?php
+
+
+    ?>
+
+    <option value="disabled"
+    
+    <?php 
+    
+    if($min_price == 0){ echo " selected";}
+    ?>
+    
+    >-</option>
+
+<?php
+
+
+
+foreach ($prijs_ranges as $key => $value) {
+    
+
+
+    ?>
+
+    <option value="<?php echo($value); ?>"  <?php
+    if($value == $min_price){
+        echo("selected");
+    }
+    ?>><?php echo($value); ?></option>
+
+<?php
+}
+
+?>
+</select>
+</div><div>
+<label>Maximum</label>
+<select class="prijs_max">
+<?php
+
+
+    ?>
+
+    <option   value="disabled"
+    
+    <?php 
+    
+    if($max_price == 1000000){ echo " selected";}
+    ?>
+    
+    >-</option>
+
+<?php
+
+
+
+foreach ($prijs_ranges as $key => $value) {
+    
+
+
+
+
+
+    ?>
+
+    <option value="<?php echo($value); ?>"  <?php
+    if($value == $max_price){
+        echo("selected");
+    }
+    ?>><?php echo($value); ?></option>
+
+<?php
+
+
+}
+
+?>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- end facet -->
+
 
 <!-- begin brandstof facet -->
 <div class="facet_wrap">
@@ -259,7 +414,12 @@ foreach ($carrosserievorm_facet as $facet) {
 
 
 <?php
+$counter = 0;
 foreach ($euro_facet as $facet) {
+
+
+
+
     
 
 

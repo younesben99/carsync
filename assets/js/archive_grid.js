@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
 
-        
+    
 
     $(".facet_title").on("click",function(){
     
@@ -8,6 +8,8 @@ jQuery(document).ready(function ($) {
         $(this).find("svg").toggleClass('rotate180');
     });
     $(".sort_select").select2(); 
+    $(".prijs_min").select2(); 
+    $(".prijs_max").select2(); 
 
     function sort_grid(chosen){
         switch (chosen) {
@@ -36,22 +38,31 @@ jQuery(document).ready(function ($) {
 
     $(".filter_btn_mobile,.selecteer_filter").on("click",function(e){
         e.preventDefault();
-jQuery(".filterwrap").show();
-    
-jQuery(".filterwrap").animate({
-                'bottom': 0,
-                'opacity':1
-}, 300);
-
-$(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
-    jQuery("#fb-root").toggleClass("hideimportant");
-    
-});
-
-
 
         
-        $(".filter_mobile_close").toggleClass("displayflex");
+        $(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
+            $("#fb-root").toggleClass("hideimportant");
+            
+        });
+
+        if($(window).width() <=770){
+           
+            
+            
+            $(".filterwrap").show();
+            
+            
+            $(".filterwrap").animate({
+                            'bottom': 0,
+                            'opacity':1
+            }, 300);
+            
+            $(".filter_mobile_close").toggleClass("displayflex");
+        }
+        else{
+          $(".dds_pop_close").trigger("click");
+        }
+       
     });
 
     $(".sort_btn_mobile").on("click",function(){
@@ -76,13 +87,14 @@ $(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
 
 
     $(".filter_btn_close").on("click",function(e){
-        jQuery(".filterwrap").animate({
+       
+        $(".filterwrap").animate({
             'opacity': '0',
             'bottom': '-100vh'
         }, 300);
 
         setTimeout(function () {
-            jQuery(".filterwrap").hide();
+            $(".filterwrap").hide();
         }, 300);
         $(".filter_mobile_close").toggleClass("displayflex");
 
@@ -139,8 +151,11 @@ $(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
 
     var filters = {}; // should be outside the scope of the filtering function
     var chosenfilters = [];
+
+
     //filtering function
     $(".checkbox_list").on("change","input",function(event) {    
+       
         $(".chosen_wrap").show();
         var checkbox = event.target;
 
@@ -152,17 +167,20 @@ $(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
 
        
         if ( checkbox.checked ) {
-            //console.log($(this).attr('data-filter').replace(/[^a-zA-Z0-9\.]/g, ''));
+          
+
+            //real filter
+
             filters[group].push($(this).attr('data-filter').replace(/[^a-zA-Z0-9\.]/g, ''));
 
-            //chosen
+            //chosen display
 
             var current_facet = $(this).attr('data-filter').substring(1);
 
             var index = chosenfilters.indexOf(current_facet);
 
             if (index === -1) {
-                console.warn("push: "+current_facet);
+                //console.warn("push: "+current_facet);
                 chosenfilters.push(current_facet);
             }
            
@@ -186,7 +204,7 @@ $(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
 
 
         }
-        //console.log("full code: " +chosenfilters);
+       
         var comboFilter = getComboFilter( filters );
 
     
@@ -198,11 +216,12 @@ $(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
 
        
         $("#dds_bodh input[name=bodhlist]").val(JSON.stringify(filters));
-        //console.log("modified code: " + chosenfilters);
+        
         $(".chosen_facets").html(chosenfilters.join(""));
         $(".pop_chosenfacets").html(chosenfilters.join(""));
         
         $grid.isotope({ filter: comboFilter});
+        console.log(comboFilter);
     })
 
     
@@ -213,11 +232,87 @@ $(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
         $(".facet_wrap input:checkbox").each(function() {
             
             if($(this).val() == clickedFacet){
-                console.log($(this));
+                //console.log($(this));
                 $(this).trigger("click");
             }
         });
     });
+
+    
+    $(".prijs_min").on("change",function(event) { 
+
+        var chosen_range = $(this).val();
+
+        if(chosen_range !== "disabled"){
+            var url = new URL(window.location.href);
+            url.searchParams.set('min_price',chosen_range);
+            window.location.href = url.href;
+        }else{
+            var url = window.location.href.split('?')[0];
+            window.location.href = url;
+        }
+        
+
+
+    });
+
+    $(".prijs_max").on("change",function(event) { 
+
+        var chosen_range = $(this).val();
+
+        if(chosen_range !== "disabled"){
+            var url = new URL(window.location.href);
+            url.searchParams.set('max_price',chosen_range);
+            window.location.href = url.href;
+        }else{
+            var url = window.location.href.split('?')[0];
+            window.location.href = url;
+        }
+
+    });
+    //prijs filter in combinatie met andere filters uitstellen
+
+    // $(".prijs_min").on("change",function(event) { 
+       
+    //     var prijs_ranges = [2500,5000,7500,10000,12500,15000,17500,20000,22500,25000,27500,30000];
+
+    //     var chosen_range = $(this).val();
+
+    //     var min_max = [];
+
+    //     filters["prijs"] = [];
+
+    //     $(prijs_ranges).each(function(index,element){
+
+    //         if(element >= chosen_range){
+    //             min_max.push(element);
+    //         }
+          
+            
+
+    //     });
+        
+    //     $(min_max).each(function(index,element){
+
+    //         min_max[index] = ".pr_"+element;
+
+    //     });
+       
+
+        
+
+    //     filters["prijs"].push(min_max);
+
+       
+    //     var comboFilter = getComboFilter( filters );
+        
+       
+    //     $grid.isotope({ filter: comboFilter});
+    //     console.log(comboFilter);
+
+
+    // });
+
 
     //onderdeel van isotope ref:https://stackoverflow.com/questions/17553076/isotope-combination-filtering-multiple-selection
 
@@ -261,22 +356,66 @@ $(".filter_btn_mobile,.bodh_btn_mobile").on("click",function(e){
 
     
 
+    
+
     $(".reset_btn").on("click",function(){
-        $(".facet_wrap input:checkbox").each(function() {
+         //door prijs full reset
+         //console.log("reset")
+        var url = window.location.href.split('?')[0];
+        window.location.href = url;
+
+        
+        // $(".facet_wrap input:checkbox").each(function() {
             
-            if($(this)[0].checked){
-                $(this).trigger("click");
+        //     if($(this)[0].checked){
+        //         $(this).trigger("click");
                 
-            }
-        });
-        $grid.isotope({ filter: "*"});
-        $(".chosen_wrap").hide();
+        //     }
+        // });
+        // $grid.isotope({ filter: "*"});
+        // $(".chosen_wrap").hide();
+
+
+       
+        
+
     });
     $(".car-item").on("click",function(){
 
     var link = $(this).attr("data-link");
-    console.log(link);
+    //console.log(link);
     window.location.href = link;
+
+
+    });
+
+
+    //css fix badge
+    $(".grid_badge").css("opacity",1);
+
+
+
+    //show chosenflex if price is active
+    $(".min_price_chosen,.max_price_chosen").on("click",function(){
+        var url = window.location.href.split('?')[0];
+        window.location.href = url;
+    });
+
+    if($(".chosen_facets").html().trim() !== ''){
+        console.log("active");
+        $(".chosen_wrap").show();
+    }
+
+    //loading toon result fake animation
+    $(".facet_item input").on("click",function(){
+
+        $(".toonresult").toggleClass("showloading");
+        setTimeout(function () {
+            $(".toonresult").toggleClass("showloading");
+        }, 500);
+     
+
+
 
     });
 });

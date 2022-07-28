@@ -1,4 +1,19 @@
 
+.elementor-kit-13 button{
+    background-color:var( --e-global-color-primary );
+    color:white;
+}
+.grid_badge {
+    opacity:0;
+    position: absolute;
+    top: 0;
+    background: var( --e-global-color-primary );
+    padding: 5px 14px;
+    font-size: 12px;
+    color: white;
+    border-radius: 0 0 5px 5px;
+    text-transform: uppercase;
+}
     .grid_wrap {
         width: 75%;
         margin:0 5%;
@@ -19,6 +34,24 @@
     .grid_inner{
         margin-top:30px;
     }
+   
+    
+    span.oudeprijs {
+        color: grey;
+        font-weight: 400;margin-right:15px;
+    }
+    span.current_prijs {
+        font-size: 18px;
+    }
+    span.oudeprijs:after {
+        position: absolute;
+        content: "";
+        width: 67px;
+        height: 1px;
+        background: #b5b5b587;
+        margin-left: -64px;
+        margin-top: 11px;
+    }
     .sort_bodh_wrap{
         display:flex;
         flex-wrap:wrap;
@@ -37,6 +70,7 @@
         border-radius: 0;
         border-left: 1px solid lightgrey;
         font-weight:600;
+        max-width: 200px;
     }
     .grid_item {
      
@@ -88,7 +122,7 @@
         width: 100%;
         justify-content: flex-start;
         margin-top: 10px;
-        color: #3d9cff;
+        color: var( --e-global-color-primary );
         font-weight:500;
     
     }
@@ -118,6 +152,7 @@
         padding: 10px 0;
         border-top: 1px solid #f0f0f0;
         border-bottom: 1px solid #f0f0f0;
+        align-items: center;
     }
     .grid_image{
         border-radius: 5px 5px 0 0;
@@ -180,10 +215,10 @@
         
     }
     .bodh_btn {
-        color: #3d9cff;
+        color: var( --e-global-color-primary );
       
         
-        border: 2px solid #3d9cff;
+        border: 2px solid var( --e-global-color-primary );
         box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px;
         width:100%;
         max-width:280px;
@@ -196,8 +231,8 @@
     }
     .bodh_btn:hover,.bodh_btn:focus {
         color: white;
-        background: #3d9cff;
-        border: 2px solid #3d9cff !important;
+        background: var( --e-global-color-primary );
+        border: 2px solid var( --e-global-color-primary ) !important;
         
     }
     .bodh_btn:hover > .bodh_icon path{
@@ -207,7 +242,7 @@
         fill:white;
     }
     .bodh_icon path{
-        fill:#3d9cff;
+        fill:var( --e-global-color-primary );
     }
     .bodh_btn_filter path{
         fill:#ffffff;
@@ -251,7 +286,7 @@
         margin-top: 15px;
     }button.selecteer_filter {
         border-radius: 100px;
-        border: 2px solid #489bf4;
+        border: 2px solid var( --e-global-color-primary );
         color: white;
         margin-bottom: 15px;
     }
@@ -274,6 +309,12 @@
         padding: 0 2%;
     }
     }@media only screen and (max-width: 770px) {
+        .chosen_wrap .facet_title{
+            display:none;
+        }
+        .select2-container{
+            z-index:100001 !important
+        }
         .sort_wrap{
             display: flex;
         align-items: center;

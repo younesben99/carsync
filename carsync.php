@@ -1,10 +1,10 @@
 <?php
-$version = "8.5.4";
+$version = "8.5.5";
 /*
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 8.5.4
+Version: 8.5.5
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -137,10 +137,16 @@ function single_archive_scripts(){
     wp_enqueue_style( 'select2css' );
     wp_enqueue_script( 'select2js','https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js', array(), '1.0' );   
 
+    if(!is_single()){
+      wp_enqueue_script(  'isotope', "https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" );
     wp_enqueue_style('archive_main', plugin_dir_url( __FILE__ ).'/assets/css/archive_main.css'); 
     wp_enqueue_style('archive_filter', plugin_dir_url( __FILE__ ).'/assets/css/archive_filter.css');
     wp_enqueue_style('archive_grid', plugin_dir_url( __FILE__ ).'/assets/css/archive_grid.css');
     wp_enqueue_script(  'archive_grid', plugin_dir_url( __FILE__ ).'/assets/js/archive_grid.js?v='. $version );
+    }
+   
+
+    
 
   }
   
@@ -442,5 +448,17 @@ function merken_ophalen(){
     return $selected_img;
 
   }
+
+  function getClosest($search, $arr,$round) {
+    $closest = null;
+    $search = floor($search / $round) * $round;
+
+    foreach ($arr as $item) {
+       if ($closest === null || abs($search - $closest) > abs($item - $search)) {
+          $closest = $item;
+       }
+    }
+    return $closest;
+ }
 
 ?>

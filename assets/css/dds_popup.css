@@ -107,7 +107,7 @@ button.dds_form_submit.submit_icon_wrap {
     max-width: unset !important;
 }
 }
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 770px){
     .sort_bodh_wrap{
         display:none !important;
     }

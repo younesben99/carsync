@@ -30,7 +30,7 @@ if(count($sp_media) > 3){
 <?php
 if(count($sp_media) > 4){
 ?>
-<div class="toonmeer">Toon meer</div>
+<button class="toonmeer">Toon meer</button>
 <?php
 }
 ?>
@@ -73,7 +73,7 @@ if(count($sp_comfort) > 3){
 <?php
 if(count($sp_comfort) > 4){
 ?>
-<div class="toonmeer">Toon meer</div>
+<button class="toonmeer">Toon meer</button>
 <?php
 }
 ?>
@@ -119,7 +119,7 @@ if(count($sp_veiligheid) > 3){
 <?php
 if(count($sp_veiligheid) > 4){
 ?>
-<div class="toonmeer">Toon meer</div>
+<button class="toonmeer">Toon meer</button>
 <?php
 }
 ?>
@@ -163,7 +163,7 @@ if(count($sp_extra) > 3){
 <?php
 if(count($sp_extra) > 4){
 ?>
-<div class="toonmeer">Toon meer</div>
+<button class="toonmeer">Toon meer</button>
 <?php
 }
 ?>

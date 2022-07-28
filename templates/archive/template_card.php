@@ -8,16 +8,57 @@ function stock_card($car){
 
     ?>
 
-    <div data-link="<?php echo $car["link"]; ?>" class="grid_item car-item element-item <?php echo  preg_replace('/[^a-zA-Z0-9]/', '',$car["merk"]) . " " . $car["prijs"] . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["brandstof"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["transmissie"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["carrosserievorm"]) . " " . $car["kilometerstand"] . " " . $car["bouwjaar"] . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["euro"]) ?>">
+    <div data-link="<?php echo $car["link"]; ?>" class="grid_item car-item element-item <?php echo  preg_replace('/[^a-zA-Z0-9]/', '',$car["merk"]) . " pr_" . preg_replace('/[^0-9]/', '',$_car_prijs_key) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["brandstof"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["transmissie"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["carrosserievorm"]) . " " . $car["kilometerstand"] . " " . $car["bouwjaar"] . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["euro"]) ?>">
     
     <div class="grid_image" style="background-image:url('<?php echo $car["bg"] ?>');">
         
     </div>
     <div class="grid_content">
+
+    <?php
+ if(!empty($car["badge"])){
+?>
+   <div class="grid_badge"><?php echo($car["badge"]); ?></div>
+
+<?php
+ }
+
+?>
+ 
     <div class="grid_title"><?php echo $car["merk"] . " " .$car["model"] ?> </div>
    
     <div class="grid_keys"><?php echo $car["brandstof"] ." | ". $car["emissieklasse"] ." | ". $car["transmissie"] ." | <span class='sort_bouwjaar'>". $car["bouwjaar"] ."</span> | <span class='sort_km'>". $car["kilometerstand"] . "</span> km"; ?></div>
-    <div class="grid_price"><span>Prijs</span>  <span>€ <span class="sort_prijs"><?php echo $car["prijs"] ?></span></span></div>
+   
+   
+    <div class="grid_price"><span class="prijs_label">Prijs</span>  <div>
+    
+    <?php 
+      if(!empty($car["oudeprijs"]) && is_numeric($car["oudeprijs"])){
+          ?> 
+
+<span class="oudeprijs">€ <span><?php echo $car["oudeprijs"] ?></span></span>
+<?php
+      }
+    ?>
+   <?php
+if(!empty($car["prijs"]) && is_numeric($car["prijs"])){
+
+
+   ?>
+    <span class="current_prijs">€ <span class="sort_prijs"><?php echo $car["prijs"] ?></span></span>
+    <?php
+}else{
+  ?>
+ <span class="">Prijs op aanvraag</span>
+
+<?php
+}
+
+?>
+    </div>
+  </div>
+
+
 <div class="grid_bottom_btns">
     <a href="<?php echo $car["link"]; ?>" class="grid_btn"><svg style="margin-right: 10px;" width="25px" height="25px" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M754.752 480H160a32 32 0 100 64h594.752L521.344 777.344a32 32 0 0045.312 45.312l288-288a32 32 0 000-45.312l-288-288a32 32 0 10-45.312 45.312L754.752 480z"/></svg>
  Bekijk deze auto</a></div>

@@ -1,6 +1,4 @@
-<div class="sp_sticky_nav">
-
-    <div class="sp_sticky">
+<div class="sp_sticky_mobile" style="display:none;">
 <div class="sp_title">
 <h5 style="    font-size: 21px;
     color: #3a3a3a;
@@ -58,5 +56,3 @@ if(!empty($sp_shortcode_troeven)){
         </div>
 
     </div>
-
-</div>

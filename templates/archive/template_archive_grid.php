@@ -7,6 +7,9 @@ include_once( __DIR__ . '/template_card.php');
 $grid_cars = [];
 
 
+
+
+
 $args = array(
     'post_type'        => 'autos',
     'posts_per_page'   => -1,
@@ -15,6 +18,10 @@ $args = array(
             'order' => 'DESC'
 );
 $cars = get_posts( $args );
+
+
+
+
 
 $carcount = 0;
 foreach ($cars as $key => $value) {
@@ -28,11 +35,26 @@ foreach ($cars as $key => $value) {
     $_car_bouwjaar_key = strtolower(get_post_meta($value->ID,"_car_bouwjaar_key",true));
     $_car_brandstof_key = strtolower(get_post_meta($value->ID,"_car_brandstof_key",true));
     $_car_carrosserievorm_key = strtolower(get_post_meta($value->ID,"_car_carrosserievorm_key",true));
+    $_car_oudeprijs_key = get_post_meta($value->ID,"_car_oudeprijs_key",true);
+    $_car_badge_key = get_post_meta($value->ID,"_car_badge_key",true);
+   
+    
+
 
     $_car_kilometerstand_key = strtolower(get_post_meta($value->ID,"_car_kilometerstand_key",true));
     $_car_emissieklasse_key = strtolower(get_post_meta($value->ID,"_car_emissieklasse_key",true));
 
     
+    //euronormen 6 gelijk maken
+
+    if(!empty($_car_emissieklasse_key)){
+        if($_car_emissieklasse_key == "euro 6d" || $_car_emissieklasse_key == "euro 6b" || $_car_emissieklasse_key == "euro 6c" || $_car_emissieklasse_key == "euro 6d-temp" || $_car_emissieklasse_key == "euro 6dtemp"){
+            $_car_emissieklasse_key = "euro 6";
+        }
+    }
+   
+
+
     $bg = dds_thumbnail($_car_id);
     $car_link = get_permalink($value->ID);
 
@@ -46,8 +68,8 @@ foreach ($cars as $key => $value) {
 
     if($_car_post_status_key == "actief" ){
         array_push($grid_cars,["id" =>$_car_id,"link"=> $car_link,"bg"=>$bg,"wagentitel"=>$_car_wagentitel_key,"prijs"=>$_car_prijs_key,"merk"=>$_car_merkcf_key,
-    "model"=>$_car_modelcf_key,"transmissie"=>$_car_transmissie_key,"bouwjaar"=>$_car_bouwjaar_key,"brandstof"=>$_car_brandstof_key,
-    "carrosserievorm"=>$_car_carrosserievorm_key,"kilometerstand"=>$_car_kilometerstand_key,"bouwjaar"=>$_car_bouwjaar_key,"euro"=>$_car_emissieklasse_key]);
+    "model"=>$_car_modelcf_key,"prijsrange"=>$_car_prijs_range_key,"badge"=>$_car_badge_key,"transmissie"=>$_car_transmissie_key,"bouwjaar"=>$_car_bouwjaar_key,"brandstof"=>$_car_brandstof_key,
+    "carrosserievorm"=>$_car_carrosserievorm_key,"kilometerstand"=>$_car_kilometerstand_key,"oudeprijs"=>$_car_oudeprijs_key,"bouwjaar"=>$_car_bouwjaar_key,"euro"=>$_car_emissieklasse_key]);
     }
 
     
@@ -91,9 +113,35 @@ foreach ($cars as $key => $value) {
 
 <div class="facet_title" style="margin-top:0px;">Gekozen Filters</div>
 
+
+
+
 <div class="chosen_flex">
 <a href="#" class="reset_btn"><svg class="reset_icon" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 2)"><path d="m4.5 1.5c-2.4138473 1.37729434-4 4.02194088-4 7 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8"/><path d="m4.5 5.5v-4h-4"/></g></svg></a>
 <div class="chosen_facets">
+
+<?php
+
+if(!empty($_GET["min_price"])){
+    
+    
+    ?>
+    
+    <div class='ch_facet_item min_price_chosen'>Minimum: € <?php echo($_GET["min_price"]); ?>,-</div>
+
+    <?php
+}
+if(!empty($_GET["max_price"])){
+    
+    
+    ?>
+    
+    <div class='ch_facet_item max_price_chosen'>Maximum: € <?php echo($_GET["max_price"]); ?>,-</div>
+
+    <?php
+}
+?>
+
 
 </div>
 </div>
@@ -105,18 +153,15 @@ foreach ($cars as $key => $value) {
         
        
 <?php
-//bodh tijdelijk uit
-// $counter = 0;
+
     foreach ($grid_cars as $car) {
-    
 
-        // if($counter == 6 || $counter == 24){
-        //     bodh_card();
-        // }
+        //prijs filtering php versie
 
-        stock_card($car);
-    
-    // $counter++;
+        if($car["prijs"] > $min_price && $car["prijs"] < $max_price){
+            stock_card($car);
+        }
+
     }
         
    

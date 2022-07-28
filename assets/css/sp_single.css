@@ -1,6 +1,11 @@
 html{
     scroll-behavior: smooth;
 }
+
+.elementor-kit-13 button{
+    background-color:var( --e-global-color-primary );
+    color:white;
+}
 .dds_form .select2-container {
     width: 100% !important; 
 }
@@ -12,6 +17,11 @@ html{
     max-width: 1200px;
     margin: 50px auto;
     padding: 0 3%;
+}
+.sp_sticky_mobile {
+    padding: 0 25px;
+    width: 100%;
+    margin-bottom: 100px;
 }
 .breadcrumbs{
 display:none;
@@ -83,12 +93,11 @@ font-size:20px;
 .toonmeer {
     padding: 8px;
     margin: 10px 0;
-    background: #ffffff;
-    color: #1f1f1f;
+    background-color: #ffffff !important;
+    color: #1f1f1f !important;
     max-width: 150px;
     text-align: center;
-    border-radius: 8px;
-    border: 1px solid #b1b1b1;
+    border: 1px solid #b1b1b1 !important;
     cursor:pointer;
 }
 .hiddenoption{
@@ -117,13 +126,13 @@ font-size:20px;
 .toondesc{
     padding: 8px;
     margin: 10px 0;
-    background: #ffffff;
-    color: #1f1f1f;
+    background-color: #ffffff !important;
+    color: #1f1f1f !important;
     max-width: 150px;
     text-align: center;
-    border-radius: 8px;
-    border: 1px solid #b1b1b1;
-    cursor: pointer;
+    border: 1px solid #b1b1b1 !important;
+    cursor:pointer;
+    
 }
 .rel_card_wrap {
     overflow: hidden;
@@ -205,7 +214,7 @@ font-size:20px;
     margin: 15px 0;
     color: white;
     text-align: center;
-    border-radius: 7px;
+    /* border-radius: 7px; */
     font-size: 15px;
     cursor:pointer;
 }
@@ -254,7 +263,7 @@ form.sp_testrit_form {
     text-align: center;
     padding: 10px 0;
     color: white;
-    border-radius: 7px;
+    border-radius: 3px; 
 }
 .sp_beschikbaar{
     background: #00b362;
@@ -272,7 +281,7 @@ form.sp_testrit_form {
     padding: 13px 0;
     background: #ffffff;
     margin: 0;
-    border-radius: 7px;
+    /* border-radius: 7px; */
     font-size: 15px;
     cursor: pointer;
     width: 100%;
@@ -320,7 +329,7 @@ form.sp_testrit_form {
     color: white !important;
     width: 90% !important;
     height: 45px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -386,7 +395,7 @@ form.sp_testrit_form {
     width: 33%;
     margin: 10px 5px;
     color: black;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     background: white;
     box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
     display: flex;
@@ -621,6 +630,67 @@ button#sp_contact_versturen {
     width: 25px;
     height: 25px;
 }
+.opties svg.feather.feather-check {
+    color: var( --e-global-color-primary );
+}
+
+.rel_bekijk {
+    color:var( --e-global-color-primary ) !important;
+    text-decoration:none;
+    margin-left: 18px;
+}
+/* .sp_sticky_beschikbaarheid {
+    background: var( --e-global-color-primary );
+    background: linear-gradient(30deg, var( --e-global-color-primary ), var( --e-global-color-primary ));
+} */
+.splide__pagination__page.is-active{
+    background: var( --e-global-color-primary );
+}
+.sp_sticky_telefoneren {
+    background-color:white !important;
+border: 2px solid var( --e-global-color-primary ) !important;
+color: var( --e-global-color-primary ) !important;
+}
+.rel_bekijkstock{
+background-color: var( --e-global-color-primary );
+
+}
+.rel_bekijkstock:hover{
+background-color: var( --e-global-color-secondary );
+transition:all 0.4s ease;
+
+}
+/* .smv_wrap {
+color: var( --e-global-color-primary );
+border: 2px solid var( --e-global-color-primary );
+} */
+.sp_smv_mail,button#sp_contact_versturen,button#sp_testrit_versturen {
+/* background: var( --e-global-color-primary ) !important;
+color: white; */
+cursor:pointer;
+outline:0;
+}
+.sp_smv_mail:hover,button#sp_contact_versturen:hover,button#sp_testrit_versturen:hover {
+/* background: var( --e-global-color-secondary ) !important; */
+transition:all 0.4s ease;
+}
+.sp_sticky_telefoneren:hover{
+color: var( --e-global-color-secondary ) !important;
+}
+
+.sp_smv_call{
+text-decoration: none !important;
+/* color: var( --e-global-color-primary ) !important; */
+}
+.sp_contact_loading:before,.sp_testrit_loading:before {
+background: url("/wp-content/plugins/carsync/assets/img/loading.gif");
+background-size: cover;
+}
+.sp_sticky_testrit:hover,.sp_sticky_vergelijken:hover {
+/* color: var( --e-global-color-primary ) !important; */
+cursor: pointer;
+}
+
 @media only screen and (max-width: 1150px) {
     
     .sp_sticky_contact_wrap {
@@ -636,12 +706,18 @@ button#sp_contact_versturen {
 
 
 @media only screen and (max-width: 800px) {
-    
+    .sp_sticky_mobile{
+        display:block !important;
+    }
     .sp_sticky_mobile_nav {
         display: flex;
     }
     .sp_mid_wrap {
         flex-direction: column;
+        
+    }
+    .sp_sticky{
+        display:none;
     }
     .sp_mid {
         width: 100%;

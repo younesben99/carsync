@@ -20,7 +20,7 @@ echo($sp_description);
         </p>
 
     </div>
-    <div class="toondesc">Toon meer</div>
+    <button class="toondesc">Toon meer</button>
 </div>
 <?php
 }

@@ -18,7 +18,7 @@ if(is_singular("autos")){
 
     include(__DIR__."/templates/template_sp_vars.php");
 
-    include(__DIR__."/templates/template_sp_custom_css.php");
+    
 
     include(__DIR__."/templates/template_sp_popups.php");
 
@@ -62,6 +62,9 @@ include(__DIR__."/templates/template_sp_sub_nav.php");
 
             <?php
             do_action( 'before_template_sp_specs' );  
+
+
+            include(__DIR__."/templates/template_sticky_mobile.php");
 
             include(__DIR__."/templates/template_sp_specs.php");
 
