@@ -4,13 +4,7 @@ if(is_singular("autos")){
         
     get_header();
 ?>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/feather-icons"></script>
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
-<link rel="stylesheet" href="<?php echo get_site_url() . "/wp-content/plugins/carsync/assets/css/sp_single.css?v=". uniqid() ?>">
 
 
 
@@ -86,9 +80,7 @@ include(__DIR__."/templates/template_sp_sub_nav.php");
 </div>
 <input style="display:none !important;" id="sp_merk_hidden" value="<?php echo $sp_merk ?>" />
 <input style="display:none !important;" id="sp_model_hidden" value="<?php echo $sp_model ?>" />
-<script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_single.js?v=5.557'; ?>"></script>
-<script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_contact.js?v=5.557'; ?>"></script>
-<script src="<?php echo get_site_url() . '/wp-content/plugins/carsync/assets/js/sp_testrit.js?v=5.557'; ?>"></script>
+
 <?php get_footer();
 }
 ?>

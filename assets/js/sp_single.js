@@ -13,7 +13,15 @@ Array.prototype.pushIfNotExist = function(element, comparer) {
     }
 }; 
 
-jQuery(document).ready(function(){
+jQuery(document).ready(function($){
+
+    $(".sp_sticky_telefoneren,.sp_smv_call").on("click",function(e){
+            e.preventDefault();
+
+            var nr = $(this).attr("href");
+            window.location.href = nr;
+
+    })
     
 
     if (jQuery('input[name=merk_hidden]').length) {

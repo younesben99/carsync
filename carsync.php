@@ -144,6 +144,15 @@ function single_archive_scripts(){
     wp_enqueue_style('archive_grid', plugin_dir_url( __FILE__ ).'/assets/css/archive_grid.css');
     wp_enqueue_script(  'archive_grid', plugin_dir_url( __FILE__ ).'/assets/js/archive_grid.js?v='. $version );
     }
+    else{
+      wp_enqueue_script(  "jquery", "https://code.jquery.com/jquery-3.5.1.js" );
+      wp_enqueue_script(  "feather", "https://unpkg.com/feather-icons" );
+      wp_enqueue_script(  "splide", "https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js" );
+      wp_enqueue_script(  "cookies", "https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" );
+
+      wp_enqueue_style('splide', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css'); 
+      wp_enqueue_style('sp_single',  plugin_dir_url( __FILE__ ).'/assets/css/sp_single.css'."?v=". uniqid()); 
+    }
    
 
     
@@ -152,7 +161,26 @@ function single_archive_scripts(){
   
   
 }
+function single_archive_scripts_footer(){
+
+
+  if(get_post_type( get_the_ID() == "autos")){
  
+    if(is_single()){
+    
+      wp_enqueue_script("spsingle",plugin_dir_url( __FILE__ ).'/assets/js/sp_single.js?v='. $version );
+      wp_enqueue_script("spcontact",plugin_dir_url( __FILE__ ).'/assets/js/sp_contact.js?v='. $version );
+      wp_enqueue_script("sptestrit",plugin_dir_url( __FILE__ ).'/assets/js/sp_testrit.js?v='. $version );
+
+    }
+
+    
+
+  }
+  
+  
+}
+add_action('wp_footer', 'single_archive_scripts_footer', 1);
 
 
 
