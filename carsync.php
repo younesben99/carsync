@@ -1,5 +1,5 @@
 <?php
-$version = "8.5.6";
+
 /*
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
@@ -111,11 +111,11 @@ function add_admin_scripts( $hook ) {
             //endgallery
             wp_enqueue_script(  'sweetalert2', 'https://cdn.jsdelivr.net/npm/sweetalert2@10.12.3/dist/sweetalert2.all.min.js' );
             wp_enqueue_script(  'editorjs', 'https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.23.0/trumbowyg.min.js' );
-            wp_enqueue_script(  'autos-cpt-js', plugin_dir_url( __FILE__ ).'/js/post-edit-page.js?v='. $version );
+            wp_enqueue_script(  'autos-cpt-js', plugin_dir_url( __FILE__ ).'/js/post-edit-page.js','',uniqid() );
             wp_enqueue_script( 'select2js','https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js', array(), '1.0' );
             wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
             wp_enqueue_style( 'select2css' );
-            wp_enqueue_script(  'autos-data-ophalen-js', plugin_dir_url( __FILE__ ).'/js/external-data-ophalen.js?v='. $version );
+            wp_enqueue_script(  'autos-data-ophalen-js', plugin_dir_url( __FILE__ ).'/js/external-data-ophalen.js','',uniqid());
         }
        
     }
@@ -131,7 +131,7 @@ add_action( 'wp_head', 'single_archive_scripts',1 );
 
 function single_archive_scripts(){
 
-
+ 
   if(get_post_type( get_the_ID() == "autos")){
     wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
     wp_enqueue_style( 'select2css' );
@@ -142,7 +142,7 @@ function single_archive_scripts(){
     wp_enqueue_style('archive_main', plugin_dir_url( __FILE__ ).'/assets/css/archive_main.css'); 
     wp_enqueue_style('archive_filter', plugin_dir_url( __FILE__ ).'/assets/css/archive_filter.css');
     wp_enqueue_style('archive_grid', plugin_dir_url( __FILE__ ).'/assets/css/archive_grid.css');
-    wp_enqueue_script(  'archive_grid', plugin_dir_url( __FILE__ ).'/assets/js/archive_grid.js?v='. $version );
+    wp_enqueue_script(  'archive_grid', plugin_dir_url( __FILE__ ).'/assets/js/archive_grid.js',"",uniqid());
     }
     else{
       wp_enqueue_script(  "jquery", "https://code.jquery.com/jquery-3.5.1.js" );
@@ -168,9 +168,9 @@ function single_archive_scripts_footer(){
  
     if(is_single()){
     
-      wp_enqueue_script("spsingle",plugin_dir_url( __FILE__ ).'/assets/js/sp_single.js?v='. $version );
-      wp_enqueue_script("spcontact",plugin_dir_url( __FILE__ ).'/assets/js/sp_contact.js?v='. $version );
-      wp_enqueue_script("sptestrit",plugin_dir_url( __FILE__ ).'/assets/js/sp_testrit.js?v='. $version );
+      wp_enqueue_script("spsingle",plugin_dir_url( __FILE__ ).'/assets/js/sp_single.js',"",uniqid());
+      wp_enqueue_script("spcontact",plugin_dir_url( __FILE__ ).'/assets/js/sp_contact.js',"",uniqid());
+      wp_enqueue_script("sptestrit",plugin_dir_url( __FILE__ ).'/assets/js/sp_testrit.js',"",uniqid());
 
     }
 
@@ -191,8 +191,8 @@ add_filter('use_block_editor_for_post_type', '__return_false', 10);
 
 //script op elke pagina welkom
 
-wp_enqueue_script(  'dds_popup', plugin_dir_url( __FILE__ ).'/assets/js/dds_popup.js?v='. $version ,array ( 'jquery' ));
-wp_enqueue_style('dds_popup', plugin_dir_url( __FILE__ ).'/assets/css/dds_popup.css?v='.$version);
+wp_enqueue_script(  'dds_popup', plugin_dir_url( __FILE__ ).'/assets/js/dds_popup.js' ,array ( 'jquery' ),uniqid());
+wp_enqueue_style('dds_popup', plugin_dir_url( __FILE__ ).'/assets/css/dds_popup.css','',uniqid());
 
 
 
