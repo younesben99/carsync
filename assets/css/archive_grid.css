@@ -385,6 +385,9 @@
         padding: 0 2%;
     }
     }@media only screen and (max-width: 770px) {
+        .select_list select {
+            width:80% !important;
+        }
         .chosen_wrap .facet_title{
             display:none;
         }
