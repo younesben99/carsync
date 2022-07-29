@@ -104,7 +104,9 @@ foreach ($grid_cars as $car) {
         
     <img src="https://digiflowroot.be/static/images/icons/eye_1.svg" />
     <span>
-    Toon resultaten</span>
+    Toon resultaten (<span class="gevonden_count"><?php echo($carcount); ?></span>)
+
+</span>
 
    
 </button>
@@ -123,7 +125,7 @@ foreach ($grid_cars as $car) {
 
 <!-- filter voor desk -->
 <div class="filterwrap">
-<h3 class="filter_h3">Gevonden wagens (<?php echo($carcount); ?>)</h3>
+<h3 class="filter_h3">Gevonden wagens (<span class="gevonden_count"><?php echo($carcount); ?></span>)</h3>
 
 
 

@@ -10,6 +10,24 @@
     background-color:var( --e-global-color-primary );
     color:white;
 }
+.splide__arrow{
+    border-radius: 3px !important;
+    padding: 0 !important;
+    background-color: white !important;
+    border:1px solid #dddddd !important;
+    
+
+}
+.splide__slide{
+    margin:0 20px;
+}
+button.splide__pagination__page {
+    border-radius: unset !important;
+    padding: 0 !important;
+    background-color: white !important;
+    background: #303030 !important;
+    border-radius:100px !important;
+}
 .grid_badge {
     opacity:0;
     position: absolute;
@@ -20,6 +38,18 @@
     color: white;
     border-radius: 0 0 5px 5px;
     text-transform: uppercase;
+}.carousel_wrap .grid_item {
+    position: relative;
+}
+.carousel_wrap .rel_wrap{
+    width:100%;
+}
+.carousel_wrap{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+    width: 100%;
+
 }
     .grid_wrap {
         width: 75%;
@@ -525,7 +555,12 @@
     }
     }
     @media only screen and (max-width: 435px) {
-      
+
+        .splide__track .grid_image {
+            height: 150px;
+            background-position: center center;
+        }
+
         .grid_title {
         font-size: 18px;
     }

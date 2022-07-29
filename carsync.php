@@ -4,7 +4,7 @@
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 8.6.1
+Version: 8.6.2
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -15,7 +15,12 @@ require_once( __DIR__ . '/register/register_cpt.php');
 require_once( __DIR__ . '/register/register_metaboxes.php');
 require_once(__DIR__ . '/register/register_global_vars.php');
 require_once(__DIR__ . '/register/register_popup.php');
+
+
+include_once( __DIR__ . '/templates/archive/template_card.php');
 require_once( __DIR__ . '/register/register_archive.php');
+
+
 require_once( __DIR__ . '/register/register_single.php');
 require_once( __DIR__ . '/sync/carsync_image_handler.php');
 require_once( __DIR__ . '/register/register_cron_job.php');
@@ -26,6 +31,7 @@ include_once( __DIR__ . '/register/register_admin_toolbar_links.php');
 include_once( __DIR__ . '/register/register_compare.php');
 include_once( __DIR__ . '/register/register_single_car_page.php');
 include_once( __DIR__ . '/register/register_archive_car_page.php');
+include_once( __DIR__ . '/register/register_rel_cars.php');
 include(__DIR__."/templates/template_og_tags.php");
 
 
@@ -130,7 +136,10 @@ add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
 add_action( 'wp_head', 'single_archive_scripts',1 );
 
 function single_archive_scripts(){
+  wp_enqueue_script(  "splide", "https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js" );
 
+
+  wp_enqueue_style('splide', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css'); 
  
   if(get_post_type( get_the_ID() == "autos")){
     wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
@@ -147,14 +156,11 @@ function single_archive_scripts(){
     else{
       wp_enqueue_script(  "jquery", "https://code.jquery.com/jquery-3.5.1.js" );
       wp_enqueue_script(  "feather", "https://unpkg.com/feather-icons" );
-      wp_enqueue_script(  "splide", "https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js" );
       wp_enqueue_script(  "cookies", "https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" );
-
-      wp_enqueue_style('splide', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css'); 
       wp_enqueue_style('sp_single',  plugin_dir_url( __FILE__ ).'/assets/css/sp_single.css'."?v=". uniqid()); 
     }
    
-
+    wp_enqueue_script( 'main_dds', plugin_dir_url( __FILE__ ).'/assets/js/dds_main.js',"",uniqid());   
     
 
   }
@@ -479,7 +485,7 @@ function merken_ophalen(){
 
   function getClosest($search, $arr,$round) {
     $closest = null;
-    $search = floor($search / $round) * $round;
+    $search = $round * ceil($search / $round);
 
     foreach ($arr as $item) {
        if ($closest === null || abs($search - $closest) > abs($item - $search)) {

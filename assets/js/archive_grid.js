@@ -217,6 +217,8 @@ jQuery(document).ready(function ($) {
             }
         });
 
+       // console.log(chosenfilters);
+
        
         $("#dds_bodh input[name=bodhlist]").val(JSON.stringify(filters));
         
@@ -224,13 +226,25 @@ jQuery(document).ready(function ($) {
         $(".pop_chosenfacets").html(chosenfilters.join(""));
         
         $grid.isotope({ filter: comboFilter});
-        console.log(comboFilter);
+        //console.log(comboFilter);
     })
 
     
     $(".chosen_facets,.pop_chosenfacets").on("click",".ch_facet_item",function(e){
         
         var clickedFacet = $(this).attr("data-facet-item");
+
+        console.log(clickedFacet);
+
+        if(clickedFacet == "minprijs"){
+            $(".prijs_min").val("disabled");
+            $(".prijs_min").trigger("change");
+        }
+        if(clickedFacet == "maxprijs"){
+            $(".prijs_max").val("disabled");
+            $(".prijs_max").trigger("change");
+        }
+
 
         $(".facet_wrap input:checkbox").each(function() {
             
@@ -242,80 +256,211 @@ jQuery(document).ready(function ($) {
     });
 
     
+    
+   
+    $grid.on( 'layoutComplete', function( event, laidOutItems ) {
+        $(".gevonden_count").html(laidOutItems.length);
+    
+    });
+    
+    var grid_price_range = [];
+        $(".grid_item").each(function(index,element){
+            
+            
+            var dataprice = parseInt($(this).attr("data-price"));
+
+            if (typeof dataprice === 'number' && !Number.isNaN(dataprice)) {
+                grid_price_range.push(parseInt(dataprice));
+              }
+            
+
+
+        });
+        //console.log(grid_price_range);
+
+
+    var min_price_default = 0;
     $(".prijs_min").on("change",function(event) { 
+        filters["prijs"] = [];
 
-        var chosen_range = $(this).val();
-
-        if(chosen_range !== "disabled"){
-            var url = new URL(window.location.href);
-            url.searchParams.set('min_price',chosen_range);
-            window.location.href = url.href;
-        }else{
-            var url = window.location.href.split('?')[0];
-            window.location.href = url;
-        }
+        var prijs_ranges = [2500,5000,7500,10000,12500,15000,17500,20000,22500,25000,27500,30000];
         
-
-
-    });
-
-    $(".prijs_max").on("change",function(event) { 
-
         var chosen_range = $(this).val();
+        min_price_default = $(this).val();
 
-        if(chosen_range !== "disabled"){
-            var url = new URL(window.location.href);
-            url.searchParams.set('max_price',chosen_range);
-            window.location.href = url.href;
-        }else{
-            var url = window.location.href.split('?')[0];
-            window.location.href = url;
-        }
 
-    });
-    //prijs filter in combinatie met andere filters uitstellen
+        // select prijzen aanpassen
+        // $(".prijs_max option").each(function(index,element){
+        //     console.log($(element).val() );
+            
+        //     if($(element).val() <= chosen_range ){
+        //         $(element).prop("disabled",true); 
+        //     }
+            
+        // });
 
-    // $(".prijs_min").on("change",function(event) { 
-       
-    //     var prijs_ranges = [2500,5000,7500,10000,12500,15000,17500,20000,22500,25000,27500,30000];
+        
+        var min_max = [];
+        
+        $(grid_price_range).each(function(index,element){
 
-    //     var chosen_range = $(this).val();
-
-    //     var min_max = [];
-
-    //     filters["prijs"] = [];
-
-    //     $(prijs_ranges).each(function(index,element){
-
-    //         if(element >= chosen_range){
-    //             min_max.push(element);
-    //         }
+            if(element >= chosen_range){
+                min_max.push(element);
+            }
           
             
 
-    //     });
-        
-    //     $(min_max).each(function(index,element){
+        });        
+        $(min_max).each(function(index,element){
 
-    //         min_max[index] = ".pr_"+element;
+            min_max[index] = ".pr_"+element;
 
-    //     });
+        });
+        $(min_max).each(function(index,element){
+            filters["prijs"].push(element);
+        });
+        console.log(filters);
+        var comboFilter = getComboFilter( filters );
+        $grid.isotope({ filter: comboFilter});
        
+        $grid.isotope({ sortBy : 'price',sortAscending: true });
+        $('.sort_select').val('prijs_o'); 
+        $('.sort_select').trigger('change'); 
+
+
+        //chosen display
+        $(".chosen_wrap").show();
+
+        //verwijder chosen
+
+        
+        $(chosenfilters).each(function(index,element){
+            if(element.slice(0, 34) == "<div class='ch_facet_item minprijs"){
+              
+               chosenfilters.splice(index,1);
+            }
+        });
+
+
+
+        //voeg chosen toe
+        var current_facet = chosen_range;
+
+        var index = chosenfilters.indexOf(current_facet);
+
+        if (index === -1  && current_facet !== "disabled") {
+           
+            chosenfilters.push(current_facet);
+        }
+
+       
+        $(chosenfilters).each(function( index ) {
+            if(chosenfilters[index].slice(0, 4) !== "<div" && chosenfilters[index] !== "disabled"){
+                //console.log(chosenfilters[index]);
+                chosenfilters[index] = "<div class='ch_facet_item minprijs' data-facet-item='minprijs'>Minimum: € " + chosenfilters[index] + ",-</div>";
+            }
+        }); 
+        
+        //console.log(chosenfilters);
+
+        if(chosenfilters == 0){
+            $(".chosen_wrap").hide();
+           
+        }
+       
+       
+        $("#dds_bodh input[name=bodhlist]").val(JSON.stringify(filters));
+        
+        $(".chosen_facets").html(chosenfilters.join(""));
+        $(".pop_chosenfacets").html(chosenfilters.join(""));
+
+
+        console.log(min_price_default);
+
+    });
+
+
+    $(".prijs_max").on("change",function(event) { 
+        filters["prijs"] = [];
+
+        var prijs_ranges = [2500,5000,7500,10000,12500,15000,17500,20000,22500,25000,27500,30000];
+
+        var chosen_range = $(this).val();
+
+        var min_max = [];
 
         
 
-    //     filters["prijs"].push(min_max);
+        $(grid_price_range).each(function(index,element){
 
-       
-    //     var comboFilter = getComboFilter( filters );
+            if(element <= chosen_range && element >= min_price_default){
+                min_max.push(element);
+            }
+          
+            
+
+        });        
+        $(min_max).each(function(index,element){
+
+            min_max[index] = ".pr_"+element;
+
+        });
+        $(min_max).each(function(index,element){
+            filters["prijs"].push(element);
+        });
+
+        console.log(filters);
+        var comboFilter = getComboFilter( filters );
+
+        $grid.isotope({ filter: comboFilter});
         
+        $grid.isotope({ sortBy : 'price',sortAscending: true });
+
+
+        //max chosen
+
+        $(chosenfilters).each(function(index,element){
+            if(element.slice(0, 34) == "<div class='ch_facet_item maxprijs"){
+              
+               chosenfilters.splice(index,1);
+            }
+        });
+
+
+        $(".chosen_wrap").show();
+
+
+        //voeg chosen toe
+        var current_facet = chosen_range;
+
+        var index = chosenfilters.indexOf(current_facet);
+
+        if (index === -1  && current_facet !== "disabled") {
+            
+            chosenfilters.push(current_facet);
+        }
+
        
-    //     $grid.isotope({ filter: comboFilter});
-    //     console.log(comboFilter);
+        $(chosenfilters).each(function( index ) {
+            if(chosenfilters[index].slice(0, 4) !== "<div" && chosenfilters[index] !== "disabled"){
+                //console.log(chosenfilters[index]);
+                chosenfilters[index] = "<div class='ch_facet_item maxprijs' data-facet-item='maxprijs'>Maximum: € " + chosenfilters[index] + ",-</div>";
+            }
+        }); 
+        
+        
 
+        if(chosenfilters == 0){
+            $(".chosen_wrap").hide();
+        }
+       
+        $("#dds_bodh input[name=bodhlist]").val(JSON.stringify(filters));
+        
+        $(".chosen_facets").html(chosenfilters.join(""));
+        $(".pop_chosenfacets").html(chosenfilters.join(""));
+        console.log(min_price_default);
 
-    // });
-
+    });
 
     //onderdeel van isotope ref:https://stackoverflow.com/questions/17553076/isotope-combination-filtering-multiple-selection
 
@@ -361,22 +506,22 @@ jQuery(document).ready(function ($) {
 
     
 
-    $(".reset_btn").on("click",function(){
-         //door prijs full reset
-         //console.log("reset")
-        var url = window.location.href.split('?')[0];
-        window.location.href = url;
-
-        
-        // $(".facet_wrap input:checkbox").each(function() {
+    $(".reset_btn").on("click",function(e){
+        e.preventDefault();
+         
+        $(".prijs_min").val("disabled");
+        $(".prijs_min").trigger("change");
+        $(".prijs_max").val("disabled");
+        $(".prijs_max").trigger("change");
+        $(".facet_wrap input:checkbox").each(function() {
             
-        //     if($(this)[0].checked){
-        //         $(this).trigger("click");
+            if($(this)[0].checked){
+                $(this).trigger("click");
                 
-        //     }
-        // });
-        // $grid.isotope({ filter: "*"});
-        // $(".chosen_wrap").hide();
+            }
+        });
+        $grid.isotope({ filter: "*"});
+        $(".chosen_wrap").hide();
 
 
        
@@ -398,19 +543,9 @@ jQuery(document).ready(function ($) {
 
 
 
-    //show chosenflex if price is active
-    $(".min_price_chosen,.max_price_chosen").on("click",function(){
-        var url = window.location.href.split('?')[0];
-        window.location.href = url;
-    });
-
-    if($(".chosen_facets").html().trim() !== ''){
-        console.log("active");
-        $(".chosen_wrap").show();
-    }
-
+ 
     //loading toon result fake animation
-    $(".facet_item input").on("click",function(){
+    $(".facet_item input,.select_list option").on("click",function(){
 
         $(".toonresult").toggleClass("showloading");
         setTimeout(function () {
