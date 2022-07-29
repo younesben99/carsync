@@ -797,10 +797,11 @@ button#sp_contact_versturen {
     text-decoration:none;
     margin-left: 18px;
 }
-/* .sp_sticky_beschikbaarheid {
-    background: var( --e-global-color-primary );
+.sp_sticky_beschikbaarheid {
+    background-color: var( --e-global-color-primary );
     background: linear-gradient(30deg, var( --e-global-color-primary ), var( --e-global-color-primary ));
-} */
+    color:white;
+} 
 .splide__pagination__page.is-active{
     background: var( --e-global-color-primary );
 }
