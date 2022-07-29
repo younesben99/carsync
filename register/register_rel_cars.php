@@ -1,9 +1,4 @@
-
-
-<?php
-
-
-
+<?php 
 function dds_rel_cars(){
     $grid_cars = [];
 
