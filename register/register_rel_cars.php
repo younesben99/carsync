@@ -75,7 +75,7 @@ foreach ($cars as $key => $value) {
 
 ?> 
 
-<div class="carousel_wrap splide">
+<div class="carousel_wrap rel_splide splide">
     <div class="splide__track">
     <div class="splide__list">
 

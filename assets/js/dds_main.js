@@ -1,13 +1,17 @@
 jQuery(document).ready(function($){
 
 
-    var splide = new Splide( '.splide', {
-        perPage: 3,
+    if($(".rel_splide").length !== 0){
+      
+      var rel_splide = new Splide( '.splide', {
+        perPage: 4,
         perMove: 1,
         rewind : true,
       } );
       
-      splide.mount();
+      rel_splide.mount();
 
+    }
+   
 
 });
