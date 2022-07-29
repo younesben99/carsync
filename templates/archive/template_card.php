@@ -1,12 +1,5 @@
-
-
-
-<?php
-
-function stock_card($car){
-
-
-    ?>
+<?php function stock_card($car){
+  ?>
 
     <div data-price="<?php echo preg_replace('/[^0-9]/', '',$car["prijs"]); ?>" data-link="<?php echo $car["link"]; ?>" class="splide__slide grid_item car-item element-item <?php echo  preg_replace('/[^a-zA-Z0-9]/', '',$car["merk"]) . " pr_" . preg_replace('/[^0-9]/', '',$car["prijs"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["brandstof"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["transmissie"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["carrosserievorm"]) . " " . $car["kilometerstand"] . " " . $car["bouwjaar"] . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["euro"]) ?>">
     
@@ -93,6 +86,4 @@ function bodh_card(){
 
 <?php
 }
-
-
 ?>
