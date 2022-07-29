@@ -1,7 +1,9 @@
-<?php function stock_card($car){
+<?php function stock_card($car,$splide = false){
+
+  
   ?>
 
-    <div data-price="<?php echo preg_replace('/[^0-9]/', '',$car["prijs"]); ?>" data-link="<?php echo $car["link"]; ?>" class="splide__slide grid_item car-item element-item <?php echo  preg_replace('/[^a-zA-Z0-9]/', '',$car["merk"]) . " pr_" . preg_replace('/[^0-9]/', '',$car["prijs"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["brandstof"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["transmissie"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["carrosserievorm"]) . " " . $car["kilometerstand"] . " " . $car["bouwjaar"] . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["euro"]) ?>">
+    <div data-price="<?php echo preg_replace('/[^0-9]/', '',$car["prijs"]); ?>" data-link="<?php echo $car["link"]; ?>" class="<?php if($splide){ echo "splide__slide " } ?>grid_item car-item element-item <?php echo  preg_replace('/[^a-zA-Z0-9]/', '',$car["merk"]) . " pr_" . preg_replace('/[^0-9]/', '',$car["prijs"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["brandstof"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["transmissie"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["carrosserievorm"]) . " " . $car["kilometerstand"] . " " . $car["bouwjaar"] . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["euro"]) ?>">
     
     <div class="grid_image" style="background-image:url('<?php echo $car["bg"] ?>');">
         

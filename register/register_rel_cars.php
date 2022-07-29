@@ -81,7 +81,7 @@ foreach ($cars as $key => $value) {
          
        <?php
 
-            stock_card($car);
+            stock_card($car,true);
     
             ?>
       
