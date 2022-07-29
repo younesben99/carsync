@@ -139,7 +139,7 @@ foreach ($cars as $key => $value) {
 <div class="chosen_flex">
 <a href="#" class="reset_btn"><svg class="reset_icon" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 2)"><path d="m4.5 1.5c-2.4138473 1.37729434-4 4.02194088-4 7 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8"/><path d="m4.5 5.5v-4h-4"/></g></svg></a>
 <div class="chosen_facets">
-
+<div class='ch_facet_item filter_open'>Selecteer filter</div>
 
 </div>
 </div>

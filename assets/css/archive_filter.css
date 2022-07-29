@@ -21,6 +21,17 @@
 .toonresult.showloading:after{
     visibility: visible;
 }
+.filter_open:after {
+    width: 15px;
+    height: 15px;
+    right: 10px;
+    top: 9px;
+    transform: rotate(45deg);
+}
+.filter_open:hover{
+    border-color: var( --e-global-color-primary );
+    color: var( --e-global-color-primary );
+}
 .toonresult:after {
     visibility: hidden;
     left: 9px;

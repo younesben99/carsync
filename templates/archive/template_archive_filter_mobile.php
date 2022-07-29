@@ -1,5 +1,5 @@
 
-<div class="filter_mobile_wrap">
+<div class="filter_mobile_wrap" id="filter_mobile_wrap">
     <button class="filter_btn_mobile">
         
     <img src="https://digiflowroot.be/static/images/icons/filter_5.svg" />

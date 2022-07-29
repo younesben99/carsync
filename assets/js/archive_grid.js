@@ -36,7 +36,7 @@ jQuery(document).ready(function ($) {
     }
 
 
-    $(".filter_btn_mobile,.selecteer_filter").on("click",function(e){
+    $(".filter_btn_mobile,.selecteer_filter,.filter_open").on("click",function(e){
         e.preventDefault();
 
         if(typeof FB !== "undefined"){
@@ -89,6 +89,8 @@ jQuery(document).ready(function ($) {
     });
 
 
+
+
     $(".filter_btn_close").on("click",function(e){
        
         $(".filterwrap").animate({
@@ -100,6 +102,9 @@ jQuery(document).ready(function ($) {
             $(".filterwrap").hide();
         }, 300);
         $(".filter_mobile_close").toggleClass("displayflex");
+        window.scrollTo({ top: 100, behavior: 'smooth' });
+
+
 
     }).on('click', 'div', function (e) {
         e.stopPropagation();
@@ -556,4 +561,26 @@ jQuery(document).ready(function ($) {
 
 
     });
+
+
+    //chosenflex hiden on scroll mobile
+
+    $(document).scroll(function() {
+
+        var element = document.getElementById('filter_mobile_wrap');
+        var position = element.getBoundingClientRect();
+   
+        var filter_y = position.top;
+
+
+        if($(window).width() < 770){
+            var y = $(this).scrollTop();
+            if (y > filter_y + 150) {
+              $('.chosen_wrap').slideDown();
+            } else {
+              $('.chosen_wrap').hide();
+            }
+        }
+        
+      });
 });

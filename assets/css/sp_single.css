@@ -8,10 +8,73 @@
 html{
     scroll-behavior: smooth;
 }
+.btn_outline {
+    background: white !important;
+    color: var( --e-global-color-primary ) !important;
+    border: 2px solid var( --e-global-color-primary ) !important;
+}
+.bodh_btn_filter {
+    color: white;
+    border: 0;
+    -webkit-box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px;
+            box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px;
+   
+    display:-webkit-box;
+   
+    display:-ms-flexbox;
+   
+    display:flex;
+    -webkit-box-pack:justify;
+        -ms-flex-pack:justify;
+            justify-content:space-between;
+    -webkit-box-align:center;
+        -ms-flex-align:center;
+            align-items:center;
+    width:100%;
+    height:45.5px;
+   
+}
+
+.bodh_btn:hover > .bodh_icon path{
+    fill:white;
+}
+.bodh_btn:focus > .bodh_icon path{
+    fill:white;
+}
+.bodh_icon path{
+    fill:var( --e-global-color-primary );
+}
+.bodh_btn_filter path{
+    fill:#ffffff;
+}
+
+.bodh_icon{
+    width:20px;
+    height:20px;
+}
+.bodh_btn_filter:hover {
+    color: white;
+ 
+    
+}
+.sp_koopstatus_badge {
+    position: absolute;
+    top: 0;
+    right: 31px;
+    text-transform: capitalize;
+    background-color: var(--e-global-color-primary);
+    color: white;
+    padding: 3px 13px;
+    border-radius: 0 0 5px 5px;
+}
 
 .elementor-kit-13 button{
     background-color:var( --e-global-color-primary );
     color:white;
+}
+
+.sp_sticky_bodh{
+    width:100%;
 }
 .dds_form .select2-container {
     width: 100% !important; 
@@ -323,10 +386,10 @@ form.sp_testrit_form {
     background: #00b362;
 }
 .sp_gereserveerd {
-    background: #f58d17;
+    background: #e77524;
 }
 .sp_verkocht{
-    background: #777777;
+    background: #de2c4a;
 }
 .sp_sticky_beschikbaarheid {
     width: 100%;
