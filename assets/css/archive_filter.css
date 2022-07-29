@@ -39,7 +39,7 @@
         -ms-flex-pack: center;
             justify-content: center;
     border-radius:5px;
-    background-image: url(/wp-content/plugins/carsync/assets/img/loading.gif);
+    background-image: url("https://digiflowroot.be/static/images/icons/loading.gif");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
@@ -66,7 +66,7 @@
 .facet_list input[type=checkbox]:checked {
     background:var( --e-global-color-primary );
     border-color:var( --e-global-color-primary );
-    background-image:url("https://digiflowlocal.local/wp-content/uploads/2022/07/check-svgrepo-com-4.svg");
+    background-image:url("https://digiflowroot.be/static/images/icons/check-svgrepo-com-4.svg");
     background-size: contain;
 }
 

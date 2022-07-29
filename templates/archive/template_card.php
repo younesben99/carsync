@@ -19,6 +19,31 @@
  }
 
 ?>
+
+<?php
+ if(!empty($car["carstatus"])){
+?>
+   <div class="grid_carstatus" <?php
+   switch ($car["carstatus"]) {
+    case 'tekoop':
+      echo "style='display:none;'";
+      break;
+    case 'gereserveerd':
+      echo "style='background-color:#e77524;'";
+      break;
+    case 'verkocht':
+        echo "style='background-color:#de2c4a;'";
+        break;
+    default:
+      # code...
+      break;
+   }
+   ?>><?php echo($car["carstatus"]); ?></div>
+
+<?php
+ }
+
+?>
  
     <div class="grid_title"><?php echo $car["merk"] . " " .$car["model"] ?> </div>
     <div class="grid_keys"><?php echo $car["brandstof"] ." | ". $car["emissieklasse"] ." | ". $car["transmissie"] ." | <span class='sort_bouwjaar'>". $car["bouwjaar"] ."</span> | <span class='sort_km'>". $car["kilometerstand"] . "</span> km"; ?></div>

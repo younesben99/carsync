@@ -846,7 +846,7 @@ text-decoration: none !important;
 /* color: var( --e-global-color-primary ) !important; */
 }
 .sp_contact_loading:before,.sp_testrit_loading:before {
-background: url("/wp-content/plugins/carsync/assets/img/loading.gif");
+background: url("https://digiflowroot.be/static/images/icons/loading.gif");
 background-size: cover;
 }
 .sp_sticky_testrit:hover,.sp_sticky_vergelijken:hover {
