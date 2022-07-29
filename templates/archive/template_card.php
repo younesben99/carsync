@@ -1,7 +1,7 @@
 
 
-<?php
 
+<?php
 
 function stock_card($car){
 
