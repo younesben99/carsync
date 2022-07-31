@@ -5,11 +5,33 @@ function dds_rel_cars(){
 
     $args = array(
         'post_type'        => 'autos',
-        'posts_per_page'   => 6
+        'posts_per_page'   => -1
     );
     $cars = get_posts( $args );
 
 
+
+
+    $uitgelichte_opt = get_option("uitgelichtewagens");
+
+
+    $activecars = array();
+
+
+    if(is_array($uitgelichte_opt)){
+
+        foreach ($uitgelichte_opt as $value) {
+           
+            if ( get_post_status( $value )  ) {
+                array_push($activecars,$value);
+              }
+           
+        }
+
+    }
+
+
+    update_option("uitgelichtewagens",$activecars);
 
 $carcount = 0;
 foreach ($cars as $key => $value) {
@@ -55,7 +77,7 @@ foreach ($cars as $key => $value) {
     $_car_status_key = get_post_meta($value->ID,"_car_status_key",true);
 
 
-    if($_car_post_status_key == "actief" ){
+    if($_car_post_status_key == "actief"){
         array_push($grid_cars,["id" =>$_car_id,"link"=> $car_link,"bg"=>$bg,"wagentitel"=>$_car_wagentitel_key,"prijs"=>$_car_prijs_key,"merk"=>$_car_merkcf_key,
     "model"=>$_car_modelcf_key,"prijsrange"=>$_car_prijs_range_key,"badge"=>$_car_badge_key,"transmissie"=>$_car_transmissie_key,"bouwjaar"=>$_car_bouwjaar_key,"brandstof"=>$_car_brandstof_key,
     "carrosserievorm"=>$_car_carrosserievorm_key,"kilometerstand"=>$_car_kilometerstand_key,"oudeprijs"=>$_car_oudeprijs_key,"bouwjaar"=>$_car_bouwjaar_key,"euro"=>$_car_emissieklasse_key]);
@@ -75,17 +97,40 @@ foreach ($cars as $key => $value) {
     <div class="splide__list">
 
     <?php
+    $count = 0;
     foreach ($grid_cars as $car) {
 
        ?>
          
        <?php
+   
+       if(in_array($car["id"],$activecars)){
+        stock_card($car,true);
+        $count++;
+     
+       }
 
-            stock_card($car,true);
+          
     
             ?>
       
         <?php
+    }
+
+    if($count == 0){
+        $count_max_8 = 0;
+        foreach ($grid_cars as $car) {
+
+        
+            if($count_max_8 <= 7){
+                stock_card($car,true);
+                $count_max_8++;
+            }
+            
+        
+            
+         }
+    
     }
     ?>
     </div> 

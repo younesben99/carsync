@@ -46,6 +46,7 @@
 ?>
  
     <div class="grid_title"><?php echo $car["merk"] . " " .$car["model"] ?> </div>
+
     <div class="grid_keys"><?php echo $car["brandstof"] ." | ". $car["emissieklasse"] ." | ". $car["transmissie"] ." | <span class='sort_bouwjaar'>". $car["bouwjaar"] ."</span> | <span class='sort_km'>". $car["kilometerstand"] . "</span> km"; ?></div>
    
    
@@ -64,7 +65,7 @@ if(!empty($car["prijs"]) && is_numeric($car["prijs"])){
 
 
    ?>
-    <span class="current_prijs">€ <span class="sort_prijs"><?php echo number_format($car["prijs"],0,"",".") ?>,-</span></span>
+    <span class="current_prijs">€ <span class="sort_prijs"><?php echo number_format($car["prijs"],0,"",".") ?></span></span>
     <?php
 }else{
   ?>

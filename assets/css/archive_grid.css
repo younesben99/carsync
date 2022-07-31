@@ -18,9 +18,9 @@
     
 
 }
-.carousel_wrap .splide__slide{
-    margin:0 20px;
-}
+ .carousel_wrap .grid_item{
+    min-width:unset !important;
+} 
  button.splide__pagination__page {
     border-radius: unset !important;
     padding: 0 !important;
@@ -138,7 +138,7 @@
         max-width: 200px;
     }
     .grid_item {
-     
+
        cursor:pointer;
        width: 31.5%;
        max-width:330px;
