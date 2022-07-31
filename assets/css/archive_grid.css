@@ -19,7 +19,7 @@
 
 }
  .carousel_wrap .grid_item{
-    min-width:unset !important;
+    min-width:250px;
 } 
  button.splide__pagination__page {
     border-radius: unset !important;
@@ -163,6 +163,9 @@
     }
     }
     @media only screen and (max-width: 1150px) {
+        .carousel_wrap .grid_item{
+            min-width:205px;
+        } 
         .grid_item {
      width: 280px;
      max-width:unset;

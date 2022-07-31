@@ -9,6 +9,9 @@ jQuery(document).ready(function($){
         gap: 20,
         rewind : true,
         breakpoints: {
+          1150:{
+            perPage: 3,
+          },
           770: {
             perPage: 2,
           },
