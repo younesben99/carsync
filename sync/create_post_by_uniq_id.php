@@ -215,7 +215,44 @@ function create_post_by_uniq_id($passed_id){
                  '_car_carpass_key' => $carpass_link
                  ),
              );
-               
+                // wp_zapier_billit(array(
+                //     '_car_uniq_key' => $uniqid,
+                //     '_car_wagentitel_key' => $wagentitel,
+                //     '_car_modifieddate_key' => $changedTimestap,
+                //     '_car_eersteinschrijving_key' => $eersteinschrijving,
+                //     '_car_carrosserievorm_key' => $carrosserievorm,
+                //     '_car_zitplaatsen_key' => $zitplaatsen,
+                //     '_car_brandstof_key' => $brandstof,
+                //     '_car_aantaldeuren_key' => $aantaldeuren,
+                //     '_car_staat_key' => $staat,
+                //     '_car_kilometerstand_key' => $kmstand,
+                //     '_car_transmissie_key' => $transmissie,
+                //     '_car_bouwjaar_key' => date('Y', strtotime($bouwjaar)),
+                //     '_car_kw_key' => $vermogenkw,
+                //     '_car_pk_key' => $vermogenpk,
+                //     '_car_cilinderinhoud_key' => $cilinderinhoud,
+                //     '_car_kleurinterieur_key' => $kleurinterieur,
+                //     '_car_kleurexterieur_key' => $kleurexterieur,
+                //     '_car_prijs_key' => $price,
+                //     '_car_oudeprijs_key' => $oudeprijs,
+                //     '_car_badge_key' => $badge,
+                //     '_car_btwaftrekbaar_key' => $btwaftrekbaar,
+                //     '_car_emissieklasse_key' => $emissieklasse,
+                //     '_car_co_key' => $co,
+                //     '_car_enter_media_key' => $entertainmentenmedia,
+                //     '_car_comfort_key' => $comfortengemak,
+                //     '_car_veiligheid_key' => $veiligheid,
+                //     '_car_extra_key' => $extraopties,
+                //     '_car_syncimages_key' => $syncimages,
+                //     '_car_sync_key' => 'YES',
+                //     '_car_description_key' => $description,
+                //     '_car_merkcf_key' => $merk,
+                //     '_car_modelcf_key' => $model,
+                //     '_car_vin_key' => $vin,
+                //     '_car_post_status_key' => 'actief',
+                //     '_car_status_key' => 'tekoop',
+                //     '_car_carpass_key' => $carpass_link
+                //     ));
                 wp_insert_post($post_arr);
             }
             

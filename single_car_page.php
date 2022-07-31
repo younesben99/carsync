@@ -39,7 +39,7 @@ include(__DIR__."/templates/template_sp_sub_nav.php");
                 if ($sp_chosen_type == "slideshow") {
                     include(__DIR__."/templates/template_sp_slideshow.php");
                 } ?>
-            
+            <?php include(__DIR__."/templates/template_sp_snelle_specs.php"); ?>
             <?php include(__DIR__."/templates/template_sp_status.php"); ?>
 
             <br>

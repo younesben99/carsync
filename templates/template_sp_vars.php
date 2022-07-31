@@ -30,6 +30,11 @@ $sp_kleurexterieur = pak_veld('_car_kleurexterieur_key');
 $sp_koopstatus = pak_veld('_car_status_key');
 $sp_carpass = pak_veld('_car_carpass_key');
 
+
+if(!empty($sp_kilometerstand) & is_numeric($sp_kilometerstand)){
+    $sp_kilometerstand = number_format($sp_kilometerstand,0,"",".");
+}
+
 //CONFIG
 $dds_settings_options = get_option( 'dds_settings_option_name' ); // Array of All Options
 
