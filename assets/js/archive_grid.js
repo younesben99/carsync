@@ -568,19 +568,22 @@ jQuery(document).ready(function ($) {
     $(document).scroll(function() {
 
         var element = document.getElementById('filter_mobile_wrap');
-        var position = element.getBoundingClientRect();
+        if(element !== null){
+            var position = element.getBoundingClientRect();
    
-        var filter_y = position.top;
-
-
-        if($(window).width() < 770){
-            var y = $(this).scrollTop();
-            if (y > filter_y + 150) {
-              $('.chosen_wrap').slideDown();
-            } else {
-              $('.chosen_wrap').hide();
+            var filter_y = position.top;
+    
+    
+            if($(window).width() < 770){
+                var y = $(this).scrollTop();
+                if (y > filter_y + 150) {
+                  $('.chosen_wrap').slideDown();
+                } else {
+                  $('.chosen_wrap').hide();
+                }
             }
         }
+       
         
       });
 });

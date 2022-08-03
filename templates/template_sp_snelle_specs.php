@@ -85,6 +85,7 @@ $snelle_specs = array(
         "label" => "Bouwjaar",
         "value" => $sp_bouwjaar
     )
+    
 
 );
 
@@ -110,7 +111,13 @@ foreach ($snelle_specs as $value) {
 }
 
 ?>
-
+<div class="spec_box snelle_spec_vermogen" style="display:none;"> 
+    <div class="spec_icon"><img src='https://digiflowroot.be/static/images/icons/milage.svg' /></div>
+    <div class="spec_label_val_wrap">
+    <div class="spec_label">Vermogen</div>
+    <div class="spec_val"><?php echo($sp_pk); ?> pk</div>
+    </div>
+</div>
 <a  class="bekijk_alle_specs" href="#specificaties" style="display:none;">Bekijk alle specificaties</a>
 
 </div>

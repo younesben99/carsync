@@ -23,8 +23,8 @@ jQuery(function($) {
         selection.map(function(attachment, i) {
           attachment = attachment.toJSON(),
           index      = listIndex + (i + 1);
-  
-          $('#gallery-metabox-list').append('<li><input type="hidden" name="vdw_gallery_id[' + index + ']" value="' + attachment.id + '"><img class="image-preview change-image" src="' + attachment.sizes.thumbnail.url + '"><div class="gallerycontrols remove-image">x</div></li>');
+          
+          $('#gallery-metabox-list').append('<li><input type="hidden" name="vdw_gallery_id[' + index + ']" value="' + attachment.id + '"><img class="image-preview change-image" src="' + attachment.sizes.medium.url + '"><div class="gallerycontrols remove-image"></div></li>');
         });
       });
   

@@ -30,10 +30,10 @@
         
 
         <div class="sp_sticky_vergelijken" data-post-id="<?php echo $post->ID; ?>"><i data-feather="repeat"></i>Vergelijken</div>
-        <div class="sp_sticky_testrit"><i data-feather="calendar"></i>Testrit boeken</div>
+        <div class="sp_sticky_testrit pop_open" data-popup="testrit_pop"><i data-feather="calendar"></i>Testrit boeken</div>
         <?php do_action( 'after_testrit' ); ?>
         <div class="sp_sticky_contact_wrap">
-            <button class="sp_sticky_beschikbaarheid contactpop">Contact opnemen</button>
+            <button class="sp_sticky_beschikbaarheid pop_open" data-popup="contact_pop">Contact opnemen</button>
             <?php do_action( 'after_contact_mail' ); ?>
             <?php
             if(!empty($sp_telnr_formatted)){

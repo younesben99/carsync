@@ -811,7 +811,7 @@ if(!empty($value_sync_images)){
           <?php array_push($all_gallery_ids,$value);?>
           <li>
             <input type="hidden" name="vdw_gallery_id[<?php echo $key; ?>]" value="<?php echo $value; ?>">
-            <div class="image-preview change-image" style='width: 110px;height:80px;background:url("<?php echo $image[0]; ?>");background-size:cover;'></div>
+            <div class="image-preview change-image" style='width: 120px;height:90px;background:url("<?php echo $image[0]; ?>");background-size:cover;'></div>
             <div class="gallerycontrols remove-image" style=""></div>
           </li>
 

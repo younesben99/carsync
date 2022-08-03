@@ -16,7 +16,7 @@ if(empty($bodh_shortcode_field)){
     </div>
     ";
 
-    echo do_shortcode('[dds_form style="classic_big" name="dds_bodh" type="bodh"]
+    echo do_shortcode('[dds_form style="modern" name="dds_bodh" type="bodh"]
 
     [dds_input name="naam" ph="Volledige naam"]
     [dds_input name="emailadres" ph="E-mailadres" *]

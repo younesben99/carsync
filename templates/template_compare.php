@@ -1,17 +1,18 @@
 <style>
-    main {
+    /* main {
     padding: 0 25px;
 }
 .site-header, body:not([class*=elementor-page-]) .site-main {
     max-width: 95%;
     margin: 20px 0;
-}
+} */
 .compare_wrap{
     display:flex;
     flex-wrap: wrap;
+    width:100%;
 }
 .compare_item {
-    width: 300px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-right: 25px;
@@ -26,20 +27,62 @@
     border-bottom: 1px solid whitesmoke;
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+.compare_item .compare_item_wrap span:last-child {
+    font-weight:600;
 }
 .compare_item .compare_item_img img,.compare_item .compare_item_img{
 border-radius:5px 5px 0 0;
+height: 150px;
+width:100%;
+    object-fit: cover;
+}
+.add_comp_item{
+    padding:100px 30px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    border:1px dashed lightgrey;
+    color: grey;
+    font-weight: 600;
+
+}
+.add_comp_item img{
+    width:150px;
+    height:150px;
+
+}
+.add_comp_item:active{
+    border:2px solid #f9f9f9;
+    background:#f9f9f9;
+}
+@media only screen and (max-width: 770px) {
+.compare_item .compare_item_wrap {
+    padding: 0 10px;
+    height:40px;
+    font-size:12px;
+}
 }
 </style>
-<div class="compare_wrap">
+
 <?php
 
-$compare_ids = json_decode( html_entity_decode( stripslashes ($_COOKIE["vergelijk_ids"] ) ) );
+$compare_ids = json_decode( html_entity_decode( stripslashes ($_COOKIE["vergelijk_ids"]) ) );
 
 if (!empty($compare_ids)) {
+
+    ?>
+<div class="compare_splide splide">
+    <div class="splide__track">
+    <div class="splide__list">
+
+<?php
     foreach ($compare_ids as $id) {
         
+        if ( get_post_status( $id )  ) {
+  
         $carsync_fotos = pak_veld_id('_car_syncimages_key', $id);
         $manual_fotos = pak_veld_id('vdw_gallery_id', $id);
         $value_sync = pak_veld_id('_car_sync_key', $id);
@@ -85,30 +128,39 @@ if (!empty($compare_ids)) {
         $sp_kleurexterieur = pak_veld_id('_car_kleurexterieur_key', $id);
         $sp_koopstatus = pak_veld_id('_car_status_key', $id);
         $sp_carpass = pak_veld_id('_car_carpass_key', $id); ?>
-    
-    <div class='compare_item'>
+     
+    <div class='compare_item splide__slide'>
 
             <div class="compare_item_img"><img src="<?php echo $img_links; ?>" /></div>
-            <div class="compare_item_wrap"><b><?php echo $sp_title; ?></b></div>
-            <div class="compare_item_wrap">€ <?php echo $sp_prijs; ?>,-</div>
-            <div class="compare_item_wrap"><?php echo $sp_merk . " ".  $sp_model; ?></div>
-            <div class="compare_item_wrap"><?php echo $sp_bouwjaar; ?></div>
-            <div class="compare_item_wrap"><?php echo $sp_transmissie; ?></div>
-            <div class="compare_item_wrap"><?php echo $sp_brandstof; ?></div>
-            <div class="compare_item_wrap"><?php echo $sp_type; ?></div>
-            <div class="compare_item_wrap"><?php echo $sp_cilinderinhoud; ?> cm³</div>
-            <div class="compare_item_wrap"><?php echo $sp_pk; ?> Pk</div>
-            <div class="compare_item_wrap"><?php echo $sp_kw; ?> Kw</div>
-            <div class="compare_item_wrap"><?php echo $sp_co; ?> g CO2/km</div>
-            <div class="compare_item_wrap"><?php echo $sp_emissie; ?></div>
-            <div class="compare_item_wrap"><?php echo $sp_staat; ?></div>
-            <div class="compare_item_wrap"><?php echo $sp_kleurexterieur; ?></div>
+            <div class="compare_item_wrap"><span><?php echo $sp_title; ?></span></div>
+            <div class="compare_item_wrap"><span>Prijs:</span> <span>€ <?php echo $sp_prijs; ?>,-</span></div>
+            <div class="compare_item_wrap"><span>Bouwjaar:</span> <span><?php echo $sp_bouwjaar; ?></span></div>
+            <div class="compare_item_wrap"><span>Transmissie:</span> <span><?php echo $sp_transmissie; ?></span></div>
+            <div class="compare_item_wrap"><span>Brandstof:</span> <span><?php echo $sp_brandstof; ?></span></div>
+            <div class="compare_item_wrap"><span>Type:</span> <span><?php echo $sp_type; ?></span></div>
+            <div class="compare_item_wrap"><span>Cilinderinhoud:</span> <span><?php echo $sp_cilinderinhoud; ?> cm³</span></div>
+            <div class="compare_item_wrap"><span>Vermogen Pk:</span> <span><?php echo $sp_pk; ?> Pk</span></div>
+            <div class="compare_item_wrap"><span>Vermogen Kw:</span> <span><?php echo $sp_kw; ?> Kw</span></div>
+            <div class="compare_item_wrap"><span>Verbruik:</span> <span><?php echo $sp_co; ?> g CO2/km</span></div>
+            <div class="compare_item_wrap"><span>Emissienorm:</span> <span><?php echo $sp_emissie; ?></span></div>
+            <div class="compare_item_wrap"><span>Staat:</span> <span><?php echo $sp_staat; ?></span></div>
+            <div class="compare_item_wrap"><span>Kleur:</span> <span><?php echo $sp_kleurexterieur; ?></span></div>
 
+  
     </div>
-    
-    
     <?php
+      }
+
+
     }
 }
 ?>
+<div class='compare_item splide__slide add_comp_item'>
+
+<img src="https://digiflowroot.be/static/images/icons/plus.svg" alt="+">
+<span>Auto toevoegen</span>
+
 </div>
+</div>
+    </div>
+    </div>

@@ -13,6 +13,17 @@ html{
     color: var( --e-global-color-primary ) !important;
     border: 2px solid var( --e-global-color-primary ) !important;
 }
+.splide__arrow {
+    border-radius: 50% !important;
+    padding: 0 !important;
+}
+.splide__pagination__page {
+    border-radius: 50% !important;
+    padding: 0 !important;
+}
+.dds_pop_wrap .dds_form_submit{
+    width:50%;
+}
 .bodh_btn_filter {
     color: white;
     border: 0;
@@ -89,7 +100,6 @@ html{
     padding: 0 3%;
 }
 .sp_sticky_mobile {
-    padding: 0 25px;
     width: 100%;
     margin-bottom: 100px;
 }
@@ -381,6 +391,7 @@ form.sp_testrit_form {
     padding: 10px 0;
     color: white;
     border-radius: 3px; 
+    max-width:350px;
 }
 .sp_beschikbaar{
     background: #00b362;
@@ -393,6 +404,7 @@ form.sp_testrit_form {
 }
 .sp_sticky_beschikbaarheid {
     width: 100%;
+    max-width:400px;
 }
 .sp_sticky_telefoneren {
     padding: 13px 0;
@@ -403,14 +415,15 @@ form.sp_testrit_form {
     cursor: pointer;
     width: 100%;
     text-align: center;
+    max-width:400px;
 }
 .sp_sticky_contact_wrap{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -webkit-box-align: flex-start;
+        -ms-flex-align: flex-start;
+            align-items: flex-start;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
@@ -974,9 +987,13 @@ cursor: pointer;
         overflow-y: scroll;
     }
 }
-@media only screen and (max-width: 800px) {
-    
-    
+@media only screen and (max-width: 770px) {
+    .dds_pop_wrap .dds_form_submit{
+        width:100%;
+    }
+    .snelle_spec_vermogen{
+        display:flex !important;
+    }
     .sp_contact_succes,.sp_testrit_succes{
         width:100%;
     }
