@@ -43,17 +43,19 @@ foreach ($cars as $key => $value) {
         $modelophalen = $term;
         
     }
-    if(empty($_car_merkcf_key)){
-
-if(!empty($merkophalen)){
     update_post_meta( $value->ID,"_car_merkcf_key", $merkophalen );
-}
-if(!empty($modelophalen)){
-    update_post_meta( $value->ID,"_car_merkcf_key", $modelophalen );
-}
+    update_post_meta( $value->ID,"_car_modelcf_key", $modelophalen );
+//     if(empty($_car_merkcf_key)){
+
+// if(!empty($merkophalen)){
+//    
+// }
+// if(!empty($modelophalen)){
+//    
+// }
 
 
-    }
+//     }
     
 
 }
