@@ -166,7 +166,7 @@
             
         }
         
-        $value_merk = $merkophalen ;
+        $value_merk = $merkophalen;
         $value_model = $modelophalen;
         $value_merkcf = get_post_meta( $post->ID, '_car_merkcf_key', true );
         $value_modelcf = get_post_meta( $post->ID, '_car_modelcf_key', true );
