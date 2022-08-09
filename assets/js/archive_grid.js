@@ -1,5 +1,15 @@
 jQuery(document).ready(function ($) {
 
+    $(".grid_bodh_badge").on("click",function(){
+
+        var merk = $(this).attr("data-merk");
+        $(".bodh_merk").html(merk);
+        var model = $(this).attr("data-model");
+        $(".bodh_model").html(model);
+        $(".bodh_single_pop .merk_hidden").val(merk);
+        $(".bodh_single_pop .model_hidden").val(model);
+    });
+
     
 
     $(".facet_title").on("click",function(){
@@ -533,11 +543,15 @@ jQuery(document).ready(function ($) {
         
 
     });
-    $(".car-item").on("click",function(){
-
+    $(".grid_bodh_badge").on("click",function(event){
+        event.stopPropagation();
+    });
+    $(".car-item").on("click",function(event){
+ 
+       
     var link = $(this).attr("data-link");
-    //console.log(link);
-    window.location.href = link;
+   
+ window.location.href = link;
 
 
     });

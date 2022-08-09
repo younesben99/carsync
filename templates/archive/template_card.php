@@ -34,20 +34,38 @@
     case 'verkocht':
         echo "style='background-color:#de2c4a;'";
         break;
-    default:
-      # code...
-      break;
    }
    ?>><?php echo($car["carstatus"]); ?></div>
+
+
+<?php
+ if($car["carstatus"] == "verkocht"){
+ echo '<div class="grid_bodh_badge pop_open" data-popup="bodh_single_pop" data-merk="'.$car["merk"].'" data-model="'.$car["model"].'">Blijf op de hoogte</div>';
+}
+   ?>
+
 
 <?php
  }
 
+ $filtered_wt = str_replace("- "," - ",$car["wagentitel"]);
+ $filtered_wt = str_replace(" -"," - ", $filtered_wt);
+ $filtered_wt = str_replace("("," - ", $filtered_wt);
+ $filtered_wt = str_replace(")"," - ", $filtered_wt);
+ $filtered_wt = str_replace("**"," - ", $filtered_wt);
+ $filtered_wt = str_replace("km"," km", $filtered_wt);
+ $stripped_wt = preg_replace('/<img[^>]+>/', ' - ', $filtered_wt);
+ $stripped_wt = trim( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', 
+ mb_convert_encoding( $stripped_wt, "UTF-8" ) ) );
+
+ if(is_numeric($car["kilometerstand"])){
+  $formatted_km = number_format($car["kilometerstand"],0,"",".");
+ }
 ?>
  
     <div class="grid_title"><?php echo $car["merk"] . " " .$car["model"] ?> </div>
-
-    <div class="grid_keys"><?php echo $car["brandstof"] ." | ". $car["emissieklasse"] ." | ". $car["transmissie"] ." | <span class='sort_bouwjaar'>". $car["bouwjaar"] ."</span> | <span class='sort_km'>". $car["kilometerstand"] . "</span> km"; ?></div>
+    <div class="grid_wagentitel"><?php echo $stripped_wt; ?> </div>
+    <div class="grid_keys"><?php echo $car["brandstof"] ." | ". $car["emissieklasse"] ." | ". $car["transmissie"] ." | <span class='sort_bouwjaar'>". $car["bouwjaar"] ."</span> | <span class='sort_km'>". $formatted_km . "</span> <span class='km_label'>km</span>"; ?></div>
    
    
     <div class="grid_price"><span class="prijs_label">Prijs</span>  <div>
@@ -65,7 +83,11 @@ if(!empty($car["prijs"]) && is_numeric($car["prijs"])){
 
 
    ?>
-    <span class="current_prijs">€ <span class="sort_prijs"><?php echo number_format($car["prijs"],0,"",".") ?></span></span>
+    <span class="current_prijs">€ <span class="sort_prijs"><?php
+    if(is_numeric($car["prijs"])){
+      echo number_format($car["prijs"],0,"",".");
+    }
+     ?></span></span>
     <?php
 }else{
   ?>

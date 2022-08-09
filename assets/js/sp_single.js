@@ -41,34 +41,34 @@ jQuery(document).ready(function($){
         
     }
 
-    var splidex = new Splide( '.sp_grid_wrap',{
-            type   : 'slide',
-            width : '100%',
-            start: 0,
-            perPage: 4,
-            perMove: 2,
-            gap:"2rem",
-            pagination:false,
-            breakpoints: {
-                '1100': {
-                    perPage: 3,
-                    gap    : '1rem',
-                    perMove: 1
-                },
-                '800': {
-                    perPage: 2,
-                    gap    : '1rem',
-                    perMove: 1
-                },
-                '500': {
-                    perPage: 1,
-                    gap    : '1rem',
-                    perMove: 1
+    // var splidex = new Splide( '.sp_grid_wrap',{
+    //         type   : 'slide',
+    //         width : '100%',
+    //         start: 0,
+    //         perPage: 4,
+    //         perMove: 2,
+    //         gap:"2rem",
+    //         pagination:false,
+    //         breakpoints: {
+    //             '1100': {
+    //                 perPage: 3,
+    //                 gap    : '1rem',
+    //                 perMove: 1
+    //             },
+    //             '800': {
+    //                 perPage: 2,
+    //                 gap    : '1rem',
+    //                 perMove: 1
+    //             },
+    //             '500': {
+    //                 perPage: 1,
+    //                 gap    : '1rem',
+    //                 perMove: 1
 
-                },
-            }
+    //             },
+    //         }
            
-        } ).mount();
+    //     } ).mount();
 
     jQuery(".toonmeer").on("click",function(){
         jQuery(this).prev(".hiddenoption").slideToggle();

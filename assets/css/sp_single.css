@@ -25,6 +25,7 @@ html{
     width:50%;
 }
 .bodh_btn_filter {
+    max-width: 400px;
     color: white;
     border: 0;
     -webkit-box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px;

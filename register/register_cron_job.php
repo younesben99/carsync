@@ -34,6 +34,15 @@ if ( ! wp_next_scheduled( 'carsync_car_fotos_downloaden' ) ) {
     wp_schedule_event( time(), '10min', 'carsync_car_fotos_downloaden' );
 }
 
+//lege merk en model custom fields nakijken
+
+add_action( 'merk_model_cf_check', 'merk_model_cf_check' ,1);
+if ( ! wp_next_scheduled( 'merk_model_cf_check' ) ) {
+    wp_schedule_event( time(), '30min', 'merk_model_cf_check' );
+}
+
+//carfeed aanmaken
+
 if ( ! wp_next_scheduled( 'carfeed_feed_aanmaken_hook' ) ) {
     wp_schedule_event( time(), 'daily', 'carfeed_feed_aanmaken_hook' );
 }

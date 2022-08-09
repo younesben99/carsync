@@ -1,5 +1,9 @@
 <?php 
-function dds_rel_cars(){
+function dds_rel_cars($atts){
+
+    if(!empty($atts["type"])){
+        $rel_type = $atts["type"];
+    }
     $grid_cars = [];
 
 
@@ -15,7 +19,7 @@ function dds_rel_cars(){
     $uitgelichte_opt = get_option("uitgelichtewagens");
 
 
-    $activecars = array();
+    $active_uitgelicht = array();
 
 
     if(is_array($uitgelichte_opt)){
@@ -23,7 +27,7 @@ function dds_rel_cars(){
         foreach ($uitgelichte_opt as $value) {
            
             if ( get_post_status( $value )  ) {
-                array_push($activecars,$value);
+                array_push($active_uitgelicht,$value);
               }
            
         }
@@ -31,7 +35,7 @@ function dds_rel_cars(){
     }
 
 
-    update_option("uitgelichtewagens",$activecars);
+    update_option("uitgelichtewagens",$active_uitgelicht);
 
 $carcount = 0;
 foreach ($cars as $key => $value) {
@@ -97,41 +101,64 @@ foreach ($cars as $key => $value) {
     <div class="splide__list">
 
     <?php
-    $count = 0;
-    foreach ($grid_cars as $car) {
-
-       ?>
-         
-       <?php
-   
-       if(in_array($car["id"],$activecars)){
-        stock_card($car,true);
-        $count++;
-     
-       }
-
-          
-    
-            ?>
-      
-        <?php
-    }
-
-    if($count == 0){
-        $count_max_8 = 0;
+  
+    if(empty($rel_type)){
+        $count = 0;
         foreach ($grid_cars as $car) {
 
+            ?>
+              
+            <?php
         
-            if($count_max_8 <= 7){
-                stock_card($car,true);
-                $count_max_8++;
+            if(in_array($car["id"],$active_uitgelicht)){
+     
+     
+             stock_card($car,true);
+                 $count++;
+            
+           
+          
             }
-            
-        
-            
+     
+               
+         
+                 ?>
+           
+             <?php
          }
-    
+       
+         if($count == 0){
+             $count_max_8 = 0;
+             foreach ($grid_cars as $car) {
+     
+             
+                 if($count_max_8 <= 7){
+                     stock_card($car,true);
+                     $count_max_8++;
+                    
+                 }
+                 
+     
+     
+             
+                 
+              }
+         
+         }
     }
+    else{
+        $count_max_16 = 0;
+        foreach ($grid_cars as $car) {
+        if($car["carrosserievorm"] == strtolower($rel_type)){
+            if($count_max_16 <= 15){
+            stock_card($car,true);
+            $count_max_16++;
+        }
+        }
+       
+    }
+    }
+    
     ?>
     </div> 
 </div>

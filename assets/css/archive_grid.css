@@ -18,8 +18,32 @@
     
 
 }
+.grid_bodh_badge {
+    width: fit-content;
+    text-align: center;
+    padding: 5px 13px;
+    color: #333333;
+    background: #ffffff;
+    position: absolute;
+    top: 157px;
+    right:10px;
+    border-radius: 5px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #999999;
+}
+.grid_bodh_badge:hover {
+    opacity: 0.9;
+    transition:0.3s;
+}
+.km_label{
+    text-transform: lowercase !important;
+}
  .carousel_wrap .grid_item{
     min-width:250px;
+
 } 
  button.splide__pagination__page {
     border-radius: unset !important;
@@ -36,7 +60,7 @@
     padding: 5px 14px;
     font-size: 12px;
     color: white;
-    border-radius: 0 0 0px 5px;
+    border-radius: 0 5px 0px 5px;
     text-transform: uppercase;
 }
 .grid_badge {
@@ -48,7 +72,7 @@
     padding: 5px 14px;
     font-size: 12px;
     color: white;
-    border-radius: 0 0 5px 0px;
+    border-radius:5px 0px 5px 0px;
     text-transform: uppercase;
 }.carousel_wrap .grid_item {
     position: relative;
@@ -138,7 +162,7 @@
         max-width: 200px;
     }
     .grid_item {
-
+    height: 435px;
        cursor:pointer;
        width: 31.5%;
        max-width:330px;
@@ -232,12 +256,19 @@
     }
     .grid_keys{
         font-size: 12px;
-        color: #adadad;
+        color: #212121;
         text-transform: capitalize;
         margin-bottom: 10px;
         height: 30px;
+        font-weight:300;
     }
-    
+    .grid_wagentitel{
+        color: #969696;
+        text-transform: capitalize;
+        font-size: 12px;
+        font-weight: 300;
+        margin-bottom: 10px;
+    }
     .grid_price {
         font-weight: 500;
         font-size: 15px;
@@ -300,6 +331,8 @@
         padding: 15px 15px 0px 15px;
     }
     .bodh_btn_filter {
+
+      
         color: white;
         border: 0;
         -webkit-box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px;
@@ -318,6 +351,7 @@
                 align-items:center;
         width:300px;
         height:55px;
+ 
        
     }
     .bodh_btn_filter:hover {
