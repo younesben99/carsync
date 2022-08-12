@@ -62,8 +62,11 @@ foreach ($cars as $key => $value) {
 
 
     $_car_kilometerstand_key = strtolower(get_post_meta($value->ID,"_car_kilometerstand_key",true));
-    $_car_emissieklasse_key = strtolower(get_post_meta($value->ID,"_car_emissieklasse_key",true));
-
+    
+    if(is_string(get_post_meta($value->ID,"_car_emissieklasse_key",true))){
+        $_car_emissieklasse_key = strtolower(get_post_meta($value->ID,"_car_emissieklasse_key",true));
+    }
+   
     
     //euronormen 6 gelijk maken
 

@@ -27,7 +27,10 @@ foreach ($cars as $key => $value) {
     $_car_brandstof_key = strtolower(get_post_meta($value->ID,"_car_brandstof_key",true));
     $_car_carrosserievorm_key = strtolower(get_post_meta($value->ID,"_car_carrosserievorm_key",true));
     $_car_kilometerstand_key = strtolower(get_post_meta($value->ID,"_car_kilometerstand_key",true));
-    $_car_emissieklasse_key = strtolower(get_post_meta($value->ID,"_car_emissieklasse_key",true));
+    if(is_string(get_post_meta($value->ID,"_car_emissieklasse_key",true))){
+        $_car_emissieklasse_key = strtolower(get_post_meta($value->ID,"_car_emissieklasse_key",true));
+    }
+   
     $bg = dds_thumbnail($_car_id);
 
 
