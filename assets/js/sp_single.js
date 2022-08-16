@@ -178,5 +178,13 @@ jQuery(document).ready(function($){
         window.location.href = "/vergelijken/";
 
     });
-    
+    $(".grid_bodh_badge").on("click",function(){
+
+        var merk = $(this).attr("data-merk");
+        $(".bodh_merk").html(merk);
+        var model = $(this).attr("data-model");
+        $(".bodh_model").html(model);
+        $(".bodh_single_pop .merk_hidden").val(merk);
+        $(".bodh_single_pop .model_hidden").val(model);
+    });
 });
