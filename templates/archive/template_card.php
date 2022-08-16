@@ -58,6 +58,15 @@
  $stripped_wt = trim( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', 
  mb_convert_encoding( $stripped_wt, "UTF-8" ) ) );
 
+ $stripped_wt_length = mb_strlen($stripped_wt);
+
+ if($stripped_wt_length > 76){
+  $stripped_wt = mb_substr($stripped_wt, 0, 76) . "...";
+ }
+
+
+
+
  if(is_numeric($car["kilometerstand"])){
   $formatted_km = number_format($car["kilometerstand"],0,"",".");
  }
