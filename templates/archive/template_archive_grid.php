@@ -159,9 +159,10 @@ foreach ($cars as $key => $value) {
 
         //prijs filtering php versie
 
-        if($car["prijs"] > $min_price && $car["prijs"] < $max_price){
-            stock_card($car);
-        }
+        // if($car["prijs"] > $min_price && $car["prijs"] < $max_price){
+        //     stock_card($car);
+        // }
+        stock_card($car);
 
     }
         
