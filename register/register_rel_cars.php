@@ -85,7 +85,7 @@ foreach ($cars as $key => $value) {
 
 
     if($_car_post_status_key == "actief"){
-        array_push($grid_cars,["id" =>$_car_id,"link"=> $car_link,"bg"=>$bg,"wagentitel"=>$_car_wagentitel_key,"prijs"=>$_car_prijs_key,"merk"=>$_car_merkcf_key,
+        array_push($grid_cars,["id" =>$_car_id,"carstatus"=>$_car_status_key,"link"=> $car_link,"bg"=>$bg,"wagentitel"=>$_car_wagentitel_key,"prijs"=>$_car_prijs_key,"merk"=>$_car_merkcf_key,
     "model"=>$_car_modelcf_key,"prijsrange"=>$_car_prijs_range_key,"badge"=>$_car_badge_key,"transmissie"=>$_car_transmissie_key,"bouwjaar"=>$_car_bouwjaar_key,"brandstof"=>$_car_brandstof_key,
     "carrosserievorm"=>$_car_carrosserievorm_key,"kilometerstand"=>$_car_kilometerstand_key,"oudeprijs"=>$_car_oudeprijs_key,"bouwjaar"=>$_car_bouwjaar_key,"euro"=>$_car_emissieklasse_key]);
     }

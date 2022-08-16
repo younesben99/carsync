@@ -18,9 +18,26 @@ if(is_singular("autos")){
 
     include(__DIR__."/templates/template_sp_top_sticky_nav.php");
 
-    include(__DIR__."/templates/template_sp_sticky_mobile_nav.php"); ?>
+    include(__DIR__."/templates/template_sp_sticky_mobile_nav.php"); 
+
+    $sp_margin = get_option( 'dds_settings_option_name' );
+        
+    $sp_margin = $sp_margin['sp_margin'];
 
 
+    if(!empty($sp_margin)){
+?>
+
+<style>
+    .sp_top_wrap{
+        margin-top:<?php echo $sp_margin; ?>px !important;
+    }
+</style>
+
+<?php
+    }
+
+    ?>
 
 <div class="sp_top_wrap">
 <?php
