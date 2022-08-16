@@ -60,8 +60,8 @@
 
  $stripped_wt_length = mb_strlen($stripped_wt);
 
- if($stripped_wt_length > 76){
-  $stripped_wt = mb_substr($stripped_wt, 0, 76) . "...";
+ if($stripped_wt_length > 61){
+  $stripped_wt = mb_substr($stripped_wt, 0, 61) . "...";
  }
 
 
