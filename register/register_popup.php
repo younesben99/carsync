@@ -16,12 +16,8 @@ function popup_close(){
     </div>
     <?php
 }
-?>
-
-<?php
 function dialog_popup_open($popup_name){
 ?>
-
 <div class="dds_dialog_pop_wrap <?php echo $popup_name; ?>">
 <div class="dds_dialog_pop_inner">
 
