@@ -111,6 +111,17 @@
          
         });
 
+        $("#cardatacsv").on("click",function(e){
+            e.preventDefault();
+            $(".ddsloadingwrap").show();
+            var postid = $(".currentPID").val();
+           
+            var url = "https://" + document.domain + "/wp-content/plugins/carsync/php/pdf_gen/cardata_csv.php?pid="+postid;
+            window.open(url, '_blank').focus();
+            $(".ddsloadingwrap").hide();
+            
+        });
+
         $("#caraankoopovereenkomst").on("click",function(e){
             e.preventDefault();
             

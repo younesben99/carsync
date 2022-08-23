@@ -80,7 +80,7 @@
             $inmotiv_opgehaald = get_post_meta( $post->ID, 'inmotiv_data_opgehaald', true );
             $disabled_btn = "";
             if($inmotiv_opgehaald == "YES"){
-                $inmotiv_ophaal_btn = '<button class="tooninmotivgegevens" id="cardatashow"><img src="'.$carpath.'" width="27" style="padding-right:10px;"  /> Auto gegevens</button>';
+                $inmotiv_ophaal_btn = '<button class="tooninmotivgegevens pop_open" data-popup="auto_gegevens_pop" id="cardatashow"><img src="'.$carpath.'" width="27" style="padding-right:10px;"  /> Auto gegevens</button>';
             }
             else{
                 $inmotiv_ophaal_btn = '<button class="autodataophalen" id="cardatacall" data-codes="BXERSTPCAVF"><i class="icon-cloud-download" style="font-size:20px;"></i> Auto gegevens ophalen</button>';
@@ -126,6 +126,9 @@
         $socialecho .= "</div>";
         echo($socialecho);
         }
+
+  
+
 
 
     }

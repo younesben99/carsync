@@ -1,0 +1,219 @@
+@attributes_name,"Basic vehicle data"
+@attributes_id,BlockB
+MakeTypeDescr,VOLVO
+CommercialName,XC90
+WVTA,e4*2007/46*0929*10
+Version,LF68UC0
+Variant,LF68
+ColourCode,I
+Colour,Blauw
+FuelCode,02
+FuelType,Diesel
+@attributes_name,"Extended vehicle data"
+@attributes_id,BlockX
+Revision,0
+Type,L
+CategoryCode,M1
+Category,"VOERTUIGEN BESTEMD VOOR PERSONENVERVOER-TEN HOOGSTE 8 ZITPLAATSEN-BESTUURDER NIET MEEGEREKEND"
+BodyworkType,AF
+BodyworkTypeLabel,"AF - VOERTUIG MEERDERE DOELEINDEN"
+KindCode,AF
+Kind,"VOERTUIG MEERDERE DOELEINDEN"
+MakeDiv,9170
+TypeDiv,00068
+EuroNorm,6
+Status,Normaal
+StatusCode,NOR
+AdministrativeStatus,Normaal
+AdministrativeStatusCode,NOR
+OffRoad,G
+TankContent,0
+TotalAxles,2
+PoweredAxles,2
+NumberOfSeats,7
+NumberOfStandingPlaces,0
+NumberOfFrontPlaces,0
+NumberOfRearPlaces,0
+NumberOfTotalPlaces,7
+Length,4950
+Width,1931
+Height,1766
+Tare,0
+MassOnCoupling,0
+MassInRunningOrder,2050
+MaxMassOnAxles,0
+MaxMassTrailerCombination,0
+TechnicPermissibleMass,2750
+MmaNational,0
+Suspension,"Niet pneumatische ophanging"
+TotalCylinderCapacity,1969
+MaximumNetPowerRPM,0
+WeightPowerRatio,0
+MaxNetPower,173
+MaxSpeed,220
+HandicCarFlag,false
+TachoFlag,false
+CustomsStickerCode,3
+@attributes_name,"Vehicle Emission data"
+@attributes_id,BlockE
+CoEngineTest,0.0000
+NoxEngineTest,0.0000
+NmhcEngineTest,0.0000
+ThcEngineTest,0.0000
+Ch4EngineTest,0.0
+ParticulatesNumberEngineTest,0.0
+ParticulatesMassEngineTest,0.0
+CoBenchTest,2.2220
+NoxBenchTest,0.0551
+NmhcBenchTest,0.0000
+HcBenchTest,0.0000
+HcNoxBenchTest,0.1047
+SmokeCorrectCoeficientBenchTest,0.3
+ParticulatesNumberBenchTest,770.0
+ParticulatesMassBenchTest,0.0
+Co2Combined,205
+Co2Urban,0
+Co2ExtraUrban,0
+Co2NEDCCombined,158
+Co2WLTPCombined,205
+FuelConsumptionCombined,6.0
+FuelConsumptionUrban,6.7
+FuelConsumptionExtraUrban,5.6
+SoundLevelStationary,74.0
+SoundLevelDriveBy,71.0
+MeasurementUnitEmission_0," "
+ExhaustEmissionLevelEuro,6d-TEMP
+@attributes_name,"Registration data"
+@attributes_id,BlockR
+PreRegistrationDate,15/04/2019
+FirstRegistrationDate,27/05/2019
+LastRegistrationDate,27/05/2019
+Completion,"Het voertuig is compleet."
+FiscalStatus,"Fiscaal OK"
+@attributes_name,Precheck
+@attributes_id,BlockS
+DataAvailable,Y
+@attributes_name,"Technical control data"
+@attributes_id,BlockT
+DistanceType,1
+PreviousDistance,0
+CurrentDistance,0
+@attributes_name,"Commercial data"
+@attributes_id,BlockC
+Version_0_@attributes_version_id,15113336
+Version_0_@attributes_score,116
+Version_0_modelName,XC90
+Version_0_ModelYear,2020
+Version_0_VersionName,"B5 R-Design Geartronic AWD (5pl)"
+Version_0_VersionBodyworkType,4x4
+Version_0_VersionCatalogPrice,59462.81
+Version_0_GearBoxType,A
+Version_1_@attributes_version_id,15113334
+Version_1_@attributes_score,116
+Version_1_modelName,XC90
+Version_1_ModelYear,2020
+Version_1_VersionName,"B5 Inscription Geartronic AWD (5pl)"
+Version_1_VersionBodyworkType,4x4
+Version_1_VersionCatalogPrice,60041.32
+Version_1_GearBoxType,A
+Version_2_@attributes_version_id,15113332
+Version_2_@attributes_score,116
+Version_2_modelName,XC90
+Version_2_ModelYear,2020
+Version_2_VersionName,"B5 Momentum Pro Geartronic AWD (5pl)"
+Version_2_VersionBodyworkType,4x4
+Version_2_VersionCatalogPrice,55578.51
+Version_2_GearBoxType,A
+Version_3_@attributes_version_id,15113342
+Version_3_@attributes_score,111
+Version_3_modelName,XC90
+Version_3_ModelYear,2020
+Version_3_VersionName,"B5 R-Design Geartronic AWD (7pl)"
+Version_3_VersionBodyworkType,4x4
+Version_3_VersionCatalogPrice,60702.48
+Version_3_GearBoxType,A
+Version_4_@attributes_version_id,15113340
+Version_4_@attributes_score,111
+Version_4_modelName,XC90
+Version_4_ModelYear,2020
+Version_4_VersionName,"B5 Inscription Geartronic AWD (7pl)"
+Version_4_VersionBodyworkType,4x4
+Version_4_VersionCatalogPrice,61280.99
+Version_4_GearBoxType,A
+Version_5_@attributes_version_id,15113338
+Version_5_@attributes_score,111
+Version_5_modelName,XC90
+Version_5_ModelYear,2020
+Version_5_VersionName,"B5 Momentum Pro Geartronic AWD (7pl)"
+Version_5_VersionBodyworkType,4x4
+Version_5_VersionCatalogPrice,56818.18
+Version_5_GearBoxType,A
+Version_6_@attributes_version_id,15116409
+Version_6_@attributes_score,104
+Version_6_modelName,XC90
+Version_6_ModelYear,2020
+Version_6_VersionName,"B5 R-Design Geartronic AWD (5pl)"
+Version_6_VersionBodyworkType,4x4
+Version_6_VersionCatalogPrice,59462.81
+Version_6_GearBoxType,A
+Version_7_@attributes_version_id,15116407
+Version_7_@attributes_score,104
+Version_7_modelName,XC90
+Version_7_ModelYear,2020
+Version_7_VersionName,"B5 Inscription Geartronic AWD (5pl)"
+Version_7_VersionBodyworkType,4x4
+Version_7_VersionCatalogPrice,60041.32
+Version_7_GearBoxType,A
+Version_8_@attributes_version_id,15116405
+Version_8_@attributes_score,104
+Version_8_modelName,XC90
+Version_8_ModelYear,2020
+Version_8_VersionName,"B5 Momentum Pro Geartronic AWD (5pl)"
+Version_8_VersionBodyworkType,4x4
+Version_8_VersionCatalogPrice,56355.37
+Version_8_GearBoxType,A
+Version_9_@attributes_version_id,15116415
+Version_9_@attributes_score,103
+Version_9_modelName,XC90
+Version_9_ModelYear,2020
+Version_9_VersionName,"B5 R-Design Geartronic AWD (7pl)"
+Version_9_VersionBodyworkType,4x4
+Version_9_VersionCatalogPrice,61479.34
+Version_9_GearBoxType,A
+Version_10_@attributes_version_id,15116413
+Version_10_@attributes_score,103
+Version_10_modelName,XC90
+Version_10_ModelYear,2020
+Version_10_VersionName,"B5 Inscription Geartronic AWD (7pl)"
+Version_10_VersionBodyworkType,4x4
+Version_10_VersionCatalogPrice,63206.61
+Version_10_GearBoxType,A
+Version_11_@attributes_version_id,15116411
+Version_11_@attributes_score,103
+Version_11_modelName,XC90
+Version_11_ModelYear,2020
+Version_11_VersionName,"B5 Momentum Pro Geartronic AWD (7pl)"
+Version_11_VersionBodyworkType,4x4
+Version_11_VersionCatalogPrice,57595.04
+Version_11_GearBoxType,A
+@attributes_name,"Fiscal Data Block"
+@attributes_id,BlockA
+Disclaimer_NL,"De resultaten van de simulatie zijn louter informatief en hebben geen juridische bewijskracht. Onjuist gebruik van de toepassing of de invoer van verkeerde gegevens kunnen zorgen voor een resultaat dat verschilt van het bedrag op het aanslagbiljet."
+Disclaimer_FR,"Les résultats de cette simulation sont seulement à titre d'information et n'ont pas de valeur juridique. Une utilisation figuré de l'application ou l'introduction de données fautives peuvent mener à un résultat différent de celui calculé sur votre avertissement d'impot."
+Disclaimer_EN,"The results of the simulation are purely informative and have no evidentiary value. Improper use of the application or the input of wrong data may provide a result that is different from the amount on the tax bill."
+BenefitInKind_Amount,5307.82
+BenefitInKind_Url,http://financien.belgium.be/nl/particulieren/vervoer/bedrijfswagens
+RoadTaxFlanders_Amount,550.31
+RoadTaxFlanders_Url,https://belastingen.fenb.be/vfp-portal-pub2-web/simulatieVerkeersbelasting.html
+RoadTaxBrussels_Amount,421.74
+RoadTaxBrussels_Url,http://www.belgium.be/nl/mobiliteit/Voertuigen/verkeersbelasting_en_verzekering/verkeersbelasting
+RoadTaxWalloon_Amount,429.40
+RoadTaxWalloon_Url," http://www.wallonie.be/fr/taxe-de-circulation"
+RegistrationTaxFlanders_Amount,1338.02
+RegistrationTaxFlanders_Url,https://belastingen.vlaanderen.be/BIV_tarief-niet-leasing-personenwagens%2C-auto-voor-dubbel-gebruik-en-minibussen
+RegistrationTaxBrussels_Amount,3469.90
+RegistrationTaxBrussels_Url,http://financien.belgium.be/nl/particulieren/vervoer/inschrijving_en_belastingen/belasting_op_de_inverkeerstelling
+RegistrationTaxWalloon_Amount,3644.90
+RegistrationTaxWalloon_Url,http://www.wallonie.be/fr/taxe-de-mise-en-circulation
+FiscalHorsePower_Amount,11.00
+EcoScore_Amount,56.81

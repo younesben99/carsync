@@ -4,7 +4,7 @@
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 8.9.5
+Version: 9.0
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -108,10 +108,21 @@ function add_admin_scripts( $hook ) {
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
         if ( 'autos' === $post->post_type ) {     
 
-            //gallery
 
+          dialog_popup_open("auto_gegevens_pop");
+
+          $pdficon = get_site_url().'/wp-content/plugins/carsync/assets/img/pdf.svg';
+          $excelicon =  get_site_url().'/wp-content/plugins/carsync/assets/img/excel.svg';
+          echo "<div class='auto_gegevens_wrap'>";
+          echo "<button class='admin_btn' id='cardatashow'><img src='".$pdficon."' width='27' style='padding-right:20px;' />Open PDF</button><button class='admin_btn' id='cardatacsv'><img src='".$excelicon."' width='27' style='padding-right:20px;' />Download .CSV</button>";
+          echo "</div>";
+      
+          popup_close();
+
+
+            //gallery
             wp_enqueue_script('jquery-ui-core');
-	        wp_enqueue_script('jquery-ui-widget');
+	          wp_enqueue_script('jquery-ui-widget');
             wp_enqueue_script('jquery-ui-sortable');
             wp_enqueue_script(  'gallery-cpt-js', plugin_dir_url( __FILE__ ).'/js/autos-gallery.js' , array('jquery', 'jquery-ui-sortable'),uniqid());
             wp_enqueue_style('gallery-metabox', plugin_dir_url(__FILE__ ).'/css/autos-gallery.css',"",uniqid());

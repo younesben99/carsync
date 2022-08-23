@@ -73,7 +73,7 @@ jQuery(document).ready(function ($) {
             $(".filter_mobile_close").toggleClass("displayflex");
         }
         else{
-          $(".dds_pop_close").trigger("click");
+          $(".dds_pop_close,.dds_dialog_pop_close").trigger("click");
         }
        
     });

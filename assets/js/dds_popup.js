@@ -14,7 +14,7 @@ jQuery( document ).ready(function() {
 
 });
 
-jQuery(".dds_pop_close,.pop_close").on('click', function (e) {
+jQuery(".dds_pop_close,.pop_close,.dds_dialog_pop_close").on('click', function (e) {
     e.preventDefault();
     jQuery(popup).animate({
         'opacity': '0',

@@ -17,3 +17,15 @@ function popup_close(){
     <?php
 }
 ?>
+
+<?php
+function dialog_popup_open($popup_name){
+?>
+
+<div class="dds_dialog_pop_wrap <?php echo $popup_name; ?>">
+<div class="dds_dialog_pop_inner">
+
+<div class="dds_dialog_pop_content">
+<div class="dds_dialog_pop_close"><span>&#x2715</span></div>
+<?php
+}
