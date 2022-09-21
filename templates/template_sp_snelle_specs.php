@@ -70,18 +70,18 @@
 $snelle_specs = array(
 
     0 => array(
-        "icon_url" => "https://digiflowroot.be/static/images/icons/road-solid-svgrepo-com.svg",
+        "icon_url" => "https://digiflowroot.be/static/images/icons/road-solid-svgrepo-com.png",
         "label" => "Kilometerstand",
         "value" => $sp_kilometerstand. " km"
     ),
     1 => array(
-        "icon_url" => "https://digiflowroot.be/static/images/icons/transmissie.svg",
+        "icon_url" => "https://digiflowroot.be/static/images/icons/transmissie.png",
         "label" => "Transmissie",
         "value" => $sp_transmissie
     )
     ,
     2 => array(
-        "icon_url" => "https://digiflowroot.be/static/images/icons/calendar-empty-page-outline-svgrepo-com.svg",
+        "icon_url" => "https://digiflowroot.be/static/images/icons/calendar-empty-page-outline-svgrepo-com.png",
         "label" => "Bouwjaar",
         "value" => $sp_bouwjaar
     )
@@ -112,7 +112,7 @@ foreach ($snelle_specs as $value) {
 
 ?>
 <div class="spec_box snelle_spec_vermogen" style="display:none;"> 
-    <div class="spec_icon"><img src='https://digiflowroot.be/static/images/icons/milage.svg' /></div>
+    <div class="spec_icon"><img src='https://digiflowroot.be/static/images/icons/milage.png' /></div>
     <div class="spec_label_val_wrap">
     <div class="spec_label">Vermogen</div>
     <div class="spec_val"><?php echo($sp_pk); ?> pk</div>
