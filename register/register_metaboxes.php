@@ -911,13 +911,12 @@ foreach($aankoopbd_add_fields as $key => $field){
      
  </div>
 <style>
-    .dds_popup input{
-        width:100%;
-    }
-    .toonhiddenfields {
+  
+  .toonhiddenfields {
     margin-top: 10px;
-}
-    </style>
+    }
+
+</style>
 
 
  <div class="dds_popup_wrap bestelbon_popup_wrap">
