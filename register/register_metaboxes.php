@@ -850,11 +850,12 @@ if(!empty($value_sync_images)){
      <label>Overdracht korting</label>
      <input type="text" id="overdracht_korting" name="overdracht_korting">
      </div>
+
      <label>Rekeningnummer</label>
      <input type="text" id="reknr" name="reknr">
      <label>Datum aankoop</label><br>
      <input style="width:100%;" type="date" id="aankoopdatum" name="aankoopdatum" pattern="\d{4}-\d{2}-\d{2}">
-<hr>
+ <h4>In bezit van</h4>
 <?php
 
 
@@ -943,7 +944,7 @@ $bb_voorakkoord = get_post_meta( $post->ID, 'bb_voorakkoord', true );
 
  <h2 style="padding: 0;">Bestelbon PDF aanmaken</h2>
     <h4>Initiele velden</h4>
-
+ 
      <label>Klant / Firma naam</label>
      <input type="text" id="klantnaam" name="klantnaam" value="<?php echo($klantnaam); ?>">
      <label>Klanten Nummer</label>

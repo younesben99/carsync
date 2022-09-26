@@ -33,10 +33,11 @@ function wp_zapier_asana($data){
 
 function wp_zapier_billit($data){
 
-
+  $dds_settings_options = get_option( 'dds_settings_option_name' );
+  $zapier_billit_key = $dds_settings_options['zapier_billit_key']; 
     $data = json_encode($data);
      $curl = curl_init();
-     $url = "https://hooks.zapier.com/hooks/catch/9038548/bomo3ib/";
+     $url = $zapier_billit_key;
 
      if(!empty($url)){
       curl_setopt_array($curl, [
@@ -58,8 +59,8 @@ function wp_zapier_billit($data){
     }
     
     curl_close($curl);
-    $response = json_decode($response, true);
-    var_dump($response);
+   // $response = json_decode($response, true);
+    //var_dump($response);
 
      }
 }
