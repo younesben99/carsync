@@ -1,6 +1,5 @@
-
-
 <?php
+
 include(__DIR__."/../../../../../wp-load.php");
 ?>
 <html>
@@ -19,10 +18,9 @@ include(__DIR__."/../../../../../wp-load.php");
  $postid = $_GET["postid"];
 
  $offerteurl = get_post_meta($postid,"_offerte_url",true);
- var_dump($offerteurl);
- if(!empty( $offerteurl)){
+ 
+if(!empty( $offerteurl)){
     header("Location: ". $offerteurl);
-    die();
 }
  
 //check of offerte url is aangekomen ja of nee
