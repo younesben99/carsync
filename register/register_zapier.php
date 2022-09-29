@@ -31,10 +31,12 @@ function wp_zapier_asana($data){
      }
 }
 
-function wp_zapier_billit($data){
-
+function wp_zapier_billit($data, $response = false){
+//error reporting fallback moet hier NOG inkomen
   $dds_settings_options = get_option( 'dds_settings_option_name' );
   $zapier_billit_key = $dds_settings_options['zapier_billit_key']; 
+  $data["zapier_res_post_url"] = get_site_url()."/wp-content/plugins/carsync/php/ajax_zapier.php";
+
     $data = json_encode($data);
      $curl = curl_init();
      $url = $zapier_billit_key;
@@ -59,8 +61,12 @@ function wp_zapier_billit($data){
     }
     
     curl_close($curl);
-   // $response = json_decode($response, true);
-    //var_dump($response);
+
+    if($response){
+      $response = json_decode($response, true);
+      return $response;
+    }
+  
 
      }
 }

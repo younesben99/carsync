@@ -242,6 +242,68 @@
         $(".secondary_ophaal_options").slideToggle();
   
   });
+  $("#offerteopenen").on("click",function(e){
+    e.preventDefault();
+    var offerteurl = $("#offerte_url").val();
+    window.open(offerteurl, '_blank');
+
+  });
+
+  $("#offerteaanmaken").on("click",function(e){
+    e.preventDefault();
+
+
+    //error reporting fallback moet hier NOG inkomen
+
+    $("#vraag_offerte_aanmaken").val("MAKEN");
+    $("#publish").trigger("click");
+
+    // Swal.fire({
+    //   type: 'succes',
+    //   title: 'De offerte wordt aangemaakt',
+    //   text: 'Een ogenblik geduld...',
+    //   showConfirmButton: false,
+    //   allowOutsideClick: true,
+    //   onBeforeOpen: () => {
+    //       Swal.showLoading()
+    //   },
+    // })
+
+     
+    // $.post("/wp-content/plugins/dds-dashboard/templates/dash-ajax.php",
+    // {
+    //   actie: "offerte_aanmaken",
+    //   postid: $(this).attr("data-post-id")
+    // },
+    // function(data,status){
+    //   console.log("data: "+data);
+    //   Swal.close();
+
+    //   if(data == "succes"){
+    //     Swal.fire({
+    //       icon: 'succes',
+    //       title: 'De Offerte is aangemaakt',
+    //       text: 'link: '+data,
+    //       showConfirmButton: true,
+    //       allowOutsideClick: true
+    //     });
+    //   }
+    //   else{
+    //     Swal.fire({
+    //       icon: 'error',
+    //       title: 'Er is een fout opgetreden',
+    //       text: '',
+    //       showConfirmButton: true,
+    //       allowOutsideClick: true
+    //     });
+    //   }
+      
+    // });
+
+
+  });
+
+  
 });
 
 

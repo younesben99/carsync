@@ -70,22 +70,26 @@
             $value_vin = get_post_meta( $post->ID, '_car_vin_key', true );
             $foldericonpath = get_site_url().'/wp-content/plugins/carsync/assets/img/download.svg';
             $downloaddark = get_site_url().'/wp-content/plugins/carsync/assets/img/files.svg';
-            $overeenkomsticon = get_site_url().'/wp-content/plugins/carsync/assets/img/pdf.svg';
-            $bestelbonicon = get_site_url().'/wp-content/plugins/carsync/assets/img/pdf.svg';
+            $overeenkomsticon = get_site_url().'/wp-content/plugins/carsync/assets/img/pdf_3.svg';
+            $bestelbonicon = get_site_url().'/wp-content/plugins/carsync/assets/img/pdf_3.svg';
             $checkiconpath = get_site_url().'/wp-content/plugins/carsync/assets/img/check.svg';
             $carpath = get_site_url().'/wp-content/plugins/carsync/assets/img/car.svg';
             $magpath = get_site_url().'/wp-content/plugins/carsync/assets/img/magnifier-1.svg';
             $pdfpath =get_site_url().'/wp-content/plugins/carsync/assets/img/pdf.svg';
-    
+            $fbpath =get_site_url().'/wp-content/plugins/carsync/assets/img/fb_favi_3.svg';
+            $igpath =get_site_url().'/wp-content/plugins/carsync/assets/img/ig_favi.svg';
+            $apiicon =get_site_url().'/wp-content/plugins/carsync/assets/img/pdfb.svg';
+
             $inmotiv_opgehaald = get_post_meta( $post->ID, 'inmotiv_data_opgehaald', true );
             $disabled_btn = "";
             if($inmotiv_opgehaald == "YES"){
-                $inmotiv_ophaal_btn = '<button class="tooninmotivgegevens pop_open" data-popup="auto_gegevens_pop" id="cardatashow"><img src="'.$carpath.'" width="27" style="padding-right:10px;"  /> Auto gegevens</button>';
+                $inmotiv_ophaal_btn = '<button class="edit_btn tooninmotivgegevens pop_open" data-popup="auto_gegevens_pop" id="cardatashow"><img src="'.$carpath.'" width="27" style="padding-right:10px;"  /> Auto gegevens</button>';
             }
             else{
                 $inmotiv_ophaal_btn = '<button class="autodataophalen" id="cardatacall" data-codes="BXERSTPCAVF"><i class="icon-cloud-download" style="font-size:20px;"></i> Auto gegevens ophalen</button>';
             }
     
+            
             ?>
     
     
@@ -97,22 +101,38 @@
                 <input style="width: 100%;margin-bottom:20px;" type="text" name="carvin-input" id="carvin-input" maxlength="17" value="<?php echo $value_vin ?>" />
                 <?php echo $inmotiv_ophaal_btn;?>
                 
-                <button class="tooninmotivgegevens" id="caraankoopovereenkomst"><img src="<?php echo $overeenkomsticon; ?>" width="27" style="padding-right:20px;"  /> Aankoopborderel</button>
-                <button class="tooninmotivgegevens" id="carbestelbon"><img src="<?php echo $bestelbonicon; ?>" width="27" style="padding-right:20px;"  /> Bestelbon</button>
-                <div class="showmoreselectief"><span class="dashicons dashicons-arrow-down-alt2 dashchev"></span> Selectief gegevens ophalen</div>
-                <div class="secondary_ophaal_options">
-                <button class="autodataophalen_sec" id="cardatacallB" data-codes="B">Basis gegevens</button>
-                <button class="autodataophalen_sec" id="cardatacallX" data-codes="X">Technische gegevens</button>
-                <hr>
-                <button class="autodataophalen_sec" id="cardatacallE" data-codes="E">Emissie gegevens</button>
-                <button class="autodataophalen_sec" id="cardatacallR" data-codes="R">Registratie gegevens</button>
-                <button class="autodataophalen_sec" id="cardatacallA" data-codes="BXERA">Fiscale gegevens</button>
-                <button class="autodataophalen_sec" id="cardatacallT" data-codes="T">Keuring gegevens</button>
-                <button class="autodataophalen_sec" id="cardatacallC" data-codes="C">Commerciële gegevens</button>
-                <hr>
-                <button class="autodataophalen_sec" id="cardatacallV" data-codes="CV">Restwaarde berekenen</button>
-                <button class="autodataophalen_sec" id="cardatacallF" data-codes="CF">Toekomstige restwaarde</button>
-                </div>
+                <button class="edit_btn tooninmotivgegevens" id="caraankoopovereenkomst" style="margin-top: 0px;"><img src="<?php echo $overeenkomsticon; ?>" width="30" style="padding-right:20px;"  /> Aankoopborderel</button>
+                <button class="edit_btn tooninmotivgegevens" id="carbestelbon"><img src="<?php echo $bestelbonicon; ?>" width="30" style="padding-right:20px;"  /> Bestelbon</button>
+
+
+
+
+                <?php
+
+                $offerte_aangemaakt = get_post_meta( $post->ID, '_offerte_aangemaakt', true );
+                $offerte_url = get_post_meta( $post->ID, '_offerte_url', true );
+
+                if($offerte_aangemaakt == "YES"){
+                    $offerte_aangemaakt = "YES";
+                    ?>
+                <button class="edit_btn offerteopenen" id="offerteopenen" data-post-id="<?php echo($post->ID); ?>"><img src="<?php echo $bestelbonicon; ?>" width="30" style="padding-right:20px;"  /> Offerte Openen</button>
+                    <?php
+
+                }
+                else{
+                    $offerte_aangemaakt = "NO";
+                    ?>
+                <button class="edit_btn offerteaanmaken" id="offerteaanmaken" data-post-id="<?php echo($post->ID); ?>"><img src="<?php echo $bestelbonicon; ?>" width="30" style="padding-right:20px;"  /> Offerte aanmaken</button>
+                        <?php
+                }
+
+                ?>
+
+                <input type="hidden" id="vraag_offerte_aanmaken" name="offerte_aanmaken" value="<?php echo($offerte_aangemaakt); ?>"  />
+                <input type="hidden" id="offerte_url" name="offerte_url" value="<?php echo($offerte_url); ?>"  />
+             
+
+
                 </div>
             </div>
           
@@ -121,8 +141,8 @@
     
         $socialecho;
         $socialecho .= "<div class='socialwrap'>";
-        $socialecho .= "<div class='pushbutton button ".$fb_status. " " .$fbpushed."' id='".$fb_status."' postid='".$post->ID."' didpush='".$fbpushed."'><span class='dashicons dashicons-facebook'></span> Push naar Facebook</div>";
-        $socialecho .= "<div class='pushbutton button ".$ig_status. " " .$igpushed."' id='".$ig_status."' postid='".$post->ID."' didpush='".$igpushed."'><span class='dashicons dashicons-instagram'></span> Push naar Instagram</div>";
+        $socialecho .= "<button class='edit_btn pushbutton ".$fb_status. " " .$fbpushed."' id='".$fb_status."' postid='".$post->ID."' didpush='".$fbpushed."'><img src='".$fbpath."' style='padding-right:20px;'  /> Delen op Facebook</button>";
+        $socialecho .= "<button class='edit_btn pushbutton ".$ig_status. " " .$igpushed."' id='".$ig_status."' postid='".$post->ID."' didpush='".$igpushed."'><img src='".$igpath."' style='padding-right:20px;'  /> Delen op Instagram</button>";
         $socialecho .= "</div>";
         echo($socialecho);
         }
@@ -177,7 +197,7 @@
         $value_wagentitel = get_post_meta( $post->ID, '_car_wagentitel_key', true );
         $value_eersteinschrijving = get_post_meta( $post->ID, '_car_eersteinschrijving_key', true );
         $value_carrosserievorm = get_post_meta( $post->ID, '_car_carrosserievorm_key', true );
-
+       
         $carrosserie_opties = ['Stadswagen',
         'Cabriolet',
         'Coupé',
@@ -1170,6 +1190,21 @@ if (is_edit_page('new')){
         }
         if(isset($_POST["_car_bandenstaat_achter_key"])){
             update_post_meta($post->ID, '_car_bandenstaat_achter_key', $_POST["_car_bandenstaat_achter_key"]);      
+        }
+        
+        if(isset($_POST["offerte_aanmaken"])){
+            if($_POST["offerte_aanmaken"] == "MAKEN"){
+                //error reporting fallback moet hier NOG inkomen
+                $car_fields = get_post_meta($post->ID);
+                $zapier_offerte = wp_zapier_billit($car_fields,true);
+                if($zapier_offerte["status"] == "success"){
+                    update_post_meta($post->ID, '_offerte_aangemaakt', "YES");   
+                }
+                else{
+                    update_post_meta($post->ID, '_offerte_aangemaakt', "NO");   
+                }
+                
+            }
         }
 
         if(isset($_POST["carmerk-input"])){
