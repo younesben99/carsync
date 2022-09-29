@@ -1,13 +1,12 @@
 <?php
-
 include(__DIR__."/../../../../../wp-load.php");
+ob_start();
 ?>
-<html>
 
+<html>
 <head><title>Loading...</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-
 <body>
     <div style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;background-image:url(<?php echo(get_site_url()); ?>/wp-content/plugins/carsync/assets/img/load.gif);    background-size: 40%;
     background-repeat: no-repeat;
