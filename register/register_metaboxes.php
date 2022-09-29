@@ -115,7 +115,7 @@
                 if($offerte_aangemaakt == "YES"){
                     $offerte_aangemaakt = "YES";
                     ?>
-                <button class="edit_btn offerteopenen" id="offerteopenen" data-post-id="<?php echo($post->ID); ?>"><img src="<?php echo $bestelbonicon; ?>" width="30" style="padding-right:20px;"  /> Offerte Openen</button>
+                <button class="edit_btn offerteopenen" id="offerteopenen" data-site-url="<?php echo(get_site_url()); ?>" data-post-id="<?php echo($post->ID); ?>"><img src="<?php echo $bestelbonicon; ?>" width="30" style="padding-right:20px;"  /> Offerte Openen</button>
                     <?php
 
                 }

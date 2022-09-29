@@ -3,14 +3,16 @@ include(__DIR__."/../../../../wp-load.php");
 
 
 
-$car_fields = get_post_meta(14697);
-$zapier_offerte = wp_zapier_billit($car_fields,true);
-var_dump($zapier_offerte);
-if($zapier_offerte["status"] == "success"){
-    echo("YES");
-}
-else{
-   echo("NO");
-}
+
 
 ?>
+
+
+<form action="https://digiflowlocal.local/wp-content/plugins/carsync/php/ajax_zapier.php" method="post">
+
+<input type="text" name="offerte_url" value="testurl">
+<input type="text" name="offerte_id" value="testid">
+<input type="text" name="vin" value="WVWZZZ3CZCE708301">
+
+<input type="submit">
+</form>

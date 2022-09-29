@@ -13,6 +13,7 @@ $offerte_url = $_POST['offerte_url'];
 $offerte_id = $_POST['offerte_id'];
 $offerte_vin = $_POST['vin'];
 
+var_dump($_POST);
 
 $allposts = get_posts( array('post_type'=>'autos','numberposts'=>-1) );
 if(!empty($allposts)){

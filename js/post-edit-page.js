@@ -244,8 +244,10 @@
   });
   $("#offerteopenen").on("click",function(e){
     e.preventDefault();
-    var offerteurl = $("#offerte_url").val();
-    window.open(offerteurl, '_blank');
+
+    var postid = $(this).attr("data-post-id");
+    var siteurl = $(this).attr("data-site-url") + "/wp-content/plugins/carsync/php/zapier/zapier_delay.php" + "?postid="+postid;
+    window.open(siteurl, '_blank');
 
   });
 
