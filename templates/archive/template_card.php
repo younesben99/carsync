@@ -129,7 +129,7 @@ function bodh_card(){
 
    <div>
    <div class="bodh_title">Jouw auto niet gevonden?</div>
-   <p style="font-size:14px;margin-top:5px; margin-bottom:20px;">Dagelijks worden er nieuwe auto's toegevoegd. We kunnen je een bodh geven wanneer er een auto die overeenkomt met jouw interesses beschikbaar komt.</p>
+   <p style="font-size:14px;margin-top:5px; margin-bottom:20px;">Dagelijks worden er nieuwe auto's toegevoegd. We kunnen je een seintje geven wanneer er een auto die overeenkomt met jouw interesses beschikbaar komt.</p>
 
    <button  class="bodh_btn_filter pop_open" data-popup="bodh_pop"><span style="padding-right:10px;">Blijf op de hoogte</span><svg  class="bodh_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512">
  <g>

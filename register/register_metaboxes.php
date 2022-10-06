@@ -98,7 +98,7 @@
                 <label for="carvin-input">Chassisnummer</label>
                 <div style="display: flex;justify-content: space-between;align-items: flex-start;flex-direction: column;">
                 <div class="checkvinwrap"><img style="" width="20" src="<?php echo $checkiconpath; ?>" alt="VIN is correct" /></div>
-                <input style="width: 100%;margin-bottom:20px;" type="text" name="carvin-input" id="carvin-input" maxlength="17" value="<?php echo $value_vin ?>" />
+                <input style="width: 100%;margin-bottom:20px;" type="text" name="carvin-input" id="carvin-input" maxlength="17" value="<?php echo $value_vin ?>" required />
                 <?php echo $inmotiv_ophaal_btn;?>
                 
                 <button class="edit_btn tooninmotivgegevens" id="caraankoopovereenkomst" style="margin-top: 0px;"><img src="<?php echo $overeenkomsticon; ?>" width="30" style="padding-right:20px;"  /> Aankoopborderel</button>
