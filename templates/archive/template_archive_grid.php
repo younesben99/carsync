@@ -13,8 +13,7 @@ $grid_cars = [];
 $args = array(
     'post_type'        => 'autos',
     'posts_per_page'   => -1,
-    'orderby' => 'meta_value_num',
-            'meta_key' => '_car_bouwjaar_key',
+    'orderby' => 'date',
             'order' => 'DESC'
 );
 $cars = get_posts( $args );

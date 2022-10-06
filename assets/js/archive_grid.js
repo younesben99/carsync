@@ -30,7 +30,7 @@ jQuery(document).ready(function ($) {
                 $grid.isotope({ sortBy : 'price',sortAscending: false });
                 break;
             case "nieuwste":
-                $grid.isotope({ sortBy : 'bouwjaar',sortAscending: false });
+                $grid.isotope({ sortBy : 'original-order',sortAscending: true });
                 break;
             case "km_o":
                 $grid.isotope({ sortBy : 'km',sortAscending: true });
