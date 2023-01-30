@@ -49,7 +49,7 @@ foreach ($cars as $key => $value) {
     $_car_carrosserievorm_key = strtolower(get_post_meta($value->ID,"_car_carrosserievorm_key",true));
     $_car_oudeprijs_key = get_post_meta($value->ID,"_car_oudeprijs_key",true);
     $_car_badge_key = get_post_meta($value->ID,"_car_badge_key",true);
-   
+    $cartitle = get_the_title($value);
     $_car_prijs_range_key = 0;
 
     
@@ -89,7 +89,7 @@ foreach ($cars as $key => $value) {
 
 
     if($_car_post_status_key == "actief" ){
-        array_push($grid_cars,["id" =>$_car_id,"carstatus"=>$_car_status_key,"link"=> $car_link,"bg"=>$bg,"wagentitel"=>$_car_wagentitel_key,"prijs"=>$_car_prijs_key,"merk"=>$_car_merkcf_key,
+        array_push($grid_cars,["id" =>$_car_id,"title"=>$cartitle,"carstatus"=>$_car_status_key,"link"=> $car_link,"bg"=>$bg,"wagentitel"=>$_car_wagentitel_key,"prijs"=>$_car_prijs_key,"merk"=>$_car_merkcf_key,
     "model"=>$_car_modelcf_key,"prijsrange"=>$_car_prijs_range_key,"badge"=>$_car_badge_key,"transmissie"=>$_car_transmissie_key,"bouwjaar"=>$_car_bouwjaar_key,"brandstof"=>$_car_brandstof_key,
     "carrosserievorm"=>$_car_carrosserievorm_key,"kilometerstand"=>$_car_kilometerstand_key,"oudeprijs"=>$_car_oudeprijs_key,"bouwjaar"=>$_car_bouwjaar_key,"euro"=>$_car_emissieklasse_key]);
     }
@@ -156,12 +156,9 @@ foreach ($cars as $key => $value) {
 
     foreach ($grid_cars as $car) {
 
-        //prijs filtering php versie
-
-        // if($car["prijs"] > $min_price && $car["prijs"] < $max_price){
-        //     stock_card($car);
-        // }
+  
         stock_card($car);
+      
 
     }
         

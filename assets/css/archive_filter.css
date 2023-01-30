@@ -6,11 +6,13 @@
 */
 
 
-
+.facet_wrap{
+    position: relative;
+}
 .filterwrap {
     background: #ffffff;
-    width: 330px;
-    padding: 60px 20px;
+    width: 25%;
+    padding: 45px 25px;
     border-right: 1px solid whitesmoke;
 }
 .filter_h3{

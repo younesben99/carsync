@@ -8,6 +8,11 @@
 <h3>Media</h2>
 <?php
 
+
+if(empty($sp_media)){
+    echo ("-");
+}
+else{
 if(count($sp_media) > 4){
     for ($i=0; $i < 4; $i++) {
         echo("<div class='optie'><i data-feather='check'></i>".$sp_media[$i]."</div>");
@@ -40,9 +45,8 @@ if(count($sp_media) > 4){
 <?php
 
 }
-if(empty($sp_media)){
-    echo ("-");
 }
+
 ?>
 
 </div>
@@ -50,7 +54,10 @@ if(empty($sp_media)){
 <div class="comfort optcontrol">
 <h3>Comfort</h2>
 <?php
-
+if(empty($sp_comfort)){
+    echo ("-");
+}
+else{
 if(count($sp_comfort) > 4){
     for ($i=0; $i < 4; $i++) {
         echo("<div class='optie'><i data-feather='check'></i>".$sp_comfort[$i]."</div>");
@@ -83,9 +90,8 @@ if(count($sp_comfort) > 4){
 <?php
 
 }
-if(empty($sp_comfort)){
-    echo ("-");
 }
+
 ?>
 
 </div>
@@ -93,8 +99,10 @@ if(empty($sp_comfort)){
 <div class="veiligheid optcontrol">
 <h3>Veiligheid</h2>
 <?php
-
-
+if(empty($sp_veiligheid)){
+    echo ("-");
+}
+else{
 if(count($sp_veiligheid) > 4){
     for ($i=0; $i < 4; $i++) {
         echo("<div class='optie'><i data-feather='check'></i>".$sp_veiligheid[$i]."</div>");
@@ -129,8 +137,6 @@ if(count($sp_veiligheid) > 4){
 <?php
 
 }
-if(empty($sp_veiligheid)){
-    echo ("-");
 }
 ?>
 
@@ -139,7 +145,10 @@ if(empty($sp_veiligheid)){
 <div class="extra optcontrol">
 <h3>Extra</h2>
 <?php
-
+if(empty($sp_extra)){
+    echo ("-");
+}
+else{
 if(count($sp_extra) > 4){
     for ($i=0; $i < 4; $i++) {
         echo("<div class='optie'><i data-feather='check'></i>".$sp_extra[$i]."</div>");
@@ -172,10 +181,8 @@ if(count($sp_extra) > 4){
 <?php
 
 }
-
-if(empty($sp_extra)){
-    echo ("-");
 }
+
 ?>
 
 </div>

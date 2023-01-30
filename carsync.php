@@ -4,7 +4,7 @@
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 9.1.1
+Version: 9.4
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -392,7 +392,7 @@ function array_flatten($array, $prefix = ''){
 function merken_ophalen(){
 
     try {
-      $mysqli = new mysqli("35.214.232.1", "uchrx69hijxdg", "1B%b13($21jn", "dbtpzhh0ozmbi4",3306);
+      $mysqli = new mysqli("35.214.174.30", "uchrx69hijxdg", "1B%b13($21jn", "dbtpzhh0ozmbi4",3306);
       $mysqli->select_db("dbtpzhh0ozmbi4") or die( "Unable to select database");
       
       // Check connection
@@ -433,7 +433,7 @@ function merken_ophalen(){
   function modellen_ophalen(){
 
     try {
-      $mysqli = new mysqli("35.214.232.1", "uchrx69hijxdg", "1B%b13($21jn", "dbtpzhh0ozmbi4",3306);
+      $mysqli = new mysqli("35.214.174.30", "uchrx69hijxdg", "1B%b13($21jn", "dbtpzhh0ozmbi4",3306);
       $mysqli->select_db("dbtpzhh0ozmbi4") or die( "Unable to select database");
       
       // Check connection
@@ -477,9 +477,16 @@ function merken_ophalen(){
     
     $carsync_images = get_post_meta($id, '_car_syncimages_key', true);
     $manual_images = get_post_meta($id, 'vdw_gallery_id', true);
+    $dds_settings_options = get_option( 'dds_settings_option_name' ); 
+    $coming_soon_img = $dds_settings_options['coming_soon_img'];
+
+    if(empty($coming_soon_img)){
+      $coming_soon_img = "https://digiflowroot.be/static/images/coming_soon_text.jpg";
+    }
+
     if(empty($manual_images) && empty($carsync_images)){
 
-      $selected_img = "https://digiflowroot.be/static/images/camera_image.jpg";
+      $selected_img = $coming_soon_img;
     } 
     else{
       if($manual_images == null){
@@ -490,7 +497,7 @@ function merken_ophalen(){
           $selected_img_url = wp_get_attachment_image_src($manual_images[0], 'medium');
           $selected_img = $selected_img_url[0];
       }else{
-        $selected_img = "https://digiflowroot.be/static/images/camera_image.jpg";
+        $selected_img = $coming_soon_img;
       }
     }
     }

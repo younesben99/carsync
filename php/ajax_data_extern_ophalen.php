@@ -189,6 +189,7 @@ if(isset($_POST)){
             
             }
 
+        $car_sync_key =  get_post_meta($post_id, '_car_sync_key', true );
 
         if($car_sync_key !== "YES"){
             $dds_fields = [
@@ -220,14 +221,16 @@ if(isset($_POST)){
             $blocks = array_flatten($blocks);
         }
         else{
-            array_push($blocks,array('inmotiv_data_opgehaald' => 'YES'));
+            
+            update_post_meta( $post_id, "inmotiv_data_opgehaald", "YES" );
             $merk = ucwords(strtolower($blocks['BlockB']['MakeTypeDescr']));
             $model = ucwords(strtolower($blocks['BlockB']['CommercialName']));
             $blocks = array_flatten($blocks);
+          
         }
         
 
-      
+        
 
        foreach($blocks as $key => $meta){
 
@@ -240,6 +243,14 @@ if(isset($_POST)){
         $modelpush = get_term_by('name', $model, 'merkenmodel');
 
         wp_set_object_terms( $post_id, array($merk,$model), 'merkenmodel',false);
+
+        $updateTitle = array(   
+            'ID' => $post_id, 
+            'post_title'    => $merk . " " . $model, 
+            'post_content'  => ""
+        );
+    
+        wp_update_post( $updateTitle );
 
         $res = ['notnew',$post_id];
         echo(json_encode($res));

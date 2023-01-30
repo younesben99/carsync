@@ -96,9 +96,9 @@ html{
 }
 
 .sp_top_wrap {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 50px auto;
-    padding: 0 3%;
+    padding: 0 20px;
 }
 .sp_sticky_mobile {
     width: 100%;
@@ -316,6 +316,7 @@ font-size:20px;
     margin: auto;
     position: sticky;
     top: 100px;
+    background: white;
 }
 .sp_sticky_beschikbaarheid {
     padding: 15px 0;

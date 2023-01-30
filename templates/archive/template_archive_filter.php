@@ -154,8 +154,8 @@ foreach ($merk_facet as $facet) {
     ?>
     
     <div class="facet_item">
-    <input type="checkbox" id="<?php echo $facet."_id"; ?>" name="merk_facet" value="<?php echo $facet; ?>" data-filter=".<?php echo  $facet; ?>">
-    <label for="<?php echo $facet."_id"; ?>"><?php echo ucfirst($facet); ?></label>
+    <input type="checkbox" id="<?php echo slugify($facet)."_id"; ?>" name="merk_facet" value="<?php echo slugify($facet); ?>" data-filter=".<?php echo slugify($facet); ?>">
+    <label for="<?php echo slugify($facet)."_id"; ?>"><?php echo ucfirst($facet); ?></label>
     </div>
     
     

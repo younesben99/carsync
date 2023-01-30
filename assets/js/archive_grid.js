@@ -1,4 +1,16 @@
 jQuery(document).ready(function ($) {
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null) {
+           return null;
+        }
+        return decodeURI(results[1]) || 0;
+    }
+    
+
+
+  
+
 
     $(".grid_bodh_badge").on("click",function(){
 
@@ -131,7 +143,7 @@ jQuery(document).ready(function ($) {
         percentPosition: true,
         layoutMode: 'fitRows',
         fitRows: {
-            gutter: 25
+            gutter:35
         },
         getSortData: {
             km: function( itemElem ) {
@@ -600,4 +612,26 @@ jQuery(document).ready(function ($) {
        
         
       });
+
+
+      //zoekmodule link
+      var gekozen_merk = "";
+      if($.urlParam('merk') !== null){
+        gekozen_merk = $.urlParam('merk');
+        $("input[name=merk_facet]").each(function(){
+  
+          if($(this).val() == gekozen_merk){
+              $(this).trigger("click");
+
+          }
+         
+      });
+      
+      }
+
+      if($.urlParam('model') !== null){
+        $grid.isotope({ filter: "."+$.urlParam('model')});
+    }
+
+      
 });

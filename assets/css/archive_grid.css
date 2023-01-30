@@ -22,17 +22,16 @@
     width: fit-content;
     text-align: center;
     padding: 5px 13px;
-    color: #333333;
-    background: #ffffff;
+    color: #626262;
+    background: #ffffffdb;
     position: absolute;
     top: 157px;
-    right:10px;
+    right: 10px;
     border-radius: 5px;
     font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #999999;
 }
 .grid_bodh_badge:hover {
     opacity: 0.9;
@@ -89,7 +88,7 @@
 }
     .grid_wrap {
         width: 75%;
-        margin:0 5%;
+        margin: 0 25px 0 25px;
         padding-top: 50px;
     }
     .dds_btn_icon {
@@ -164,7 +163,7 @@
     .grid_item {
     height: 435px;
        cursor:pointer;
-       width: 31.5%;
+       width:30.5%;
        max-width:330px;
       
         border-radius: 5px;
@@ -172,7 +171,7 @@
         -webkit-box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px;
                 box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px;
         border: 1px solid whitesmoke;
-        margin-bottom:25px;
+        margin-bottom:35px;
         -webkit-transition: -webkit-box-shadow 0.15s ease-in-out 0s;
         transition: -webkit-box-shadow 0.15s ease-in-out 0s;
         -o-transition: box-shadow 0.15s ease-in-out 0s;
@@ -314,10 +313,11 @@
     font-weight:500;
     font-size:22px;
     }
-    .filtergrid_wrap{
-        max-width: 2400px;
-        margin: 0px auto 0 0;
-        padding:0 0 0 0;
+    .filtergrid_wrap {
+        max-width: 1400px;
+        padding: 0 0 0 0;
+      margin:auto;
+      justify-content: space-between;
     }
     .bodh {
         min-width: 100%;
@@ -567,7 +567,7 @@
     }
     .filterwrap {
         display:none;
-        width: 100%;
+        width: 79%;
         position: fixed;
         z-index: 100000;
         height: 100%;
@@ -576,6 +576,7 @@
         overflow-y: scroll;
         padding-bottom:100px;
         opacity:0;
+        
     }
     
         .grid_item{

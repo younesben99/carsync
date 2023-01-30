@@ -41,6 +41,13 @@ if ( ! wp_next_scheduled( 'merk_model_cf_check' ) ) {
     wp_schedule_event( time(), '30min', 'merk_model_cf_check' );
 }
 
+//interne fotos die niet bestaan nakijken
+
+add_action( 'vdw_gallery_id_nakijken', 'vdw_gallery_id_nakijken' ,1);
+if ( ! wp_next_scheduled( 'vdw_gallery_id_nakijken' ) ) {
+    wp_schedule_event( time(), '30min', 'vdw_gallery_id_nakijken' );
+}
+
 //carfeed aanmaken
 
 if ( ! wp_next_scheduled( 'carfeed_feed_aanmaken_hook' ) ) {

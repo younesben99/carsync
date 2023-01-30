@@ -112,6 +112,13 @@
     $manual_fotos = pak_veld( 'vdw_gallery_id');
     $value_sync = pak_veld('_car_sync_key');
     $sync_status = pak_veld('_car_status_key');
+    $dds_settings_options = get_option( 'dds_settings_option_name' ); 
+    $coming_soon_img = $dds_settings_options['coming_soon_img'];
+
+    if(empty($coming_soon_img)){
+      $coming_soon_img = "https://digiflowroot.be/static/images/coming_soon_text.jpg";
+    }
+
    
     if(is_array($manual_fotos)){
         $manual_fotos = array_unique($manual_fotos);
@@ -122,11 +129,14 @@
 
     if (!empty($carsync_fotos) && empty($manual_fotos) || $manual_fotos[0] == null) {
         
-            foreach ($carsync_fotos as $img) {
+     if(is_array($carsync_fotos)){
+        foreach ($carsync_fotos as $img) {
                 
-                array_push($img_links,$img);
-                
-            }
+            array_push($img_links,$img);
+            
+        }
+     }
+          
 
 
     } else {
@@ -139,7 +149,7 @@
                     array_push($img_links,wp_get_attachment_url($img));
                 }
                 else{
-                    array_push($img_links,"https://digiflowroot.be/static/images/camera_image.jpg");
+                    array_push($img_links,$coming_soon_img);
                     
                 }
                 
@@ -147,6 +157,8 @@
             }
 
         } else {
+
+            
             foreach ($carsync_fotos as $img) {
                 
                 array_push($img_links,$img);
@@ -156,14 +168,19 @@
 
         }
 
+       
+
+    }
+
+
+    if(empty($img_links)){
+        array_push($img_links,$coming_soon_img);
     }
 
 
 
-
-
-
 ?>
+
     <div class="splide" id="primary-slider">
         <div class="splide__track">
             <ul class="splide__list">
@@ -178,6 +195,9 @@
             </ul>
         </div>
     </div>
+  
+
+
     <div class="splide" id="secondary-slider">
         <div class="splide__track">
             <ul class="splide__list">
@@ -191,6 +211,9 @@
             </ul>
         </div>
     </div>
+
+   
+    
     <div class="splide_wrap">
         <div class="sluitwrap">
             <div class="fotosluiten" id="fotosluiten"><i data-feather="x"></i><span>Sluiten</span></div>

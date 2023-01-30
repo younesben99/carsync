@@ -3,7 +3,7 @@
   
   ?>
 
-    <div data-price="<?php echo preg_replace('/[^0-9]/', '',$car["prijs"]); ?>" data-link="<?php echo $car["link"]; ?>" class="<?php if($splide){ echo "splide__slide "; } ?>grid_item car-item element-item <?php echo  preg_replace('/[^a-zA-Z0-9]/', '',$car["merk"]) . " pr_" . preg_replace('/[^0-9]/', '',$car["prijs"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["brandstof"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["transmissie"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["carrosserievorm"]) . " " . $car["kilometerstand"] . " " . $car["bouwjaar"] . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["euro"]) ?>">
+    <div data-price="<?php echo preg_replace('/[^0-9]/', '',$car["prijs"]); ?>" data-link="<?php echo $car["link"]; ?>" class="<?php if($splide){ echo "splide__slide "; } ?>grid_item car-item element-item <?php echo preg_replace('/[^a-zA-Z0-9]/', '',$car["merk"]) . " " . slugify($car["model"]) ." pr_" . preg_replace('/[^0-9]/', '',$car["prijs"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["brandstof"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["transmissie"]) . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["carrosserievorm"]) . " " . $car["kilometerstand"] . " " . $car["bouwjaar"] . " " .  preg_replace('/[^a-zA-Z0-9]/', '',$car["euro"]) ?>">
     
     <div class="grid_image" style="background-image:url('<?php echo $car["bg"] ?>');">
         
@@ -68,13 +68,17 @@
 
 
  if(is_numeric($car["kilometerstand"])){
-  $formatted_km = number_format($car["kilometerstand"],0,"",".");
+  $formatted_km ="<span class='sort_km'>". number_format($car["kilometerstand"],0,"",".") . "</span><span class='km_label'> km</span>";
  }
+
+
+ $grid_keys = array_filter(array($car["brandstof"],$car["emissieklasse"],$car["transmissie"],"<span class='sort_bouwjaar'>". $car["bouwjaar"] ."</span>",$formatted_km));
+
 ?>
  
-    <div class="grid_title"><?php echo $car["merk"] . " " .$car["model"] ?> </div>
+    <div class="grid_title"><?php echo $car["title"]; ?> </div>
     <div class="grid_wagentitel"><?php echo $stripped_wt; ?> </div>
-    <div class="grid_keys"><?php echo $car["brandstof"] ." | ". $car["emissieklasse"] ." | ". $car["transmissie"] ." | <span class='sort_bouwjaar'>". $car["bouwjaar"] ."</span> | <span class='sort_km'>". $formatted_km . "</span> <span class='km_label'>km</span>"; ?></div>
+    <div class="grid_keys"><?php echo implode(" | ",$grid_keys); ?></div>
    
    
     <div class="grid_price"><span class="prijs_label">Prijs</span>  <div>
@@ -117,6 +121,8 @@ if(!empty($car["prijs"]) && is_numeric($car["prijs"])){
     </div>
 
 <?php
+
+
 }
 
 

@@ -103,6 +103,102 @@ try {
 
 }
 
+function img_array_flatten($array){
+    $flatten = array();
+    array_walk_recursive($array, function($value) use(&$flatten) {
+        $flatten[] = $value;
+    });
 
+    return $flatten;
+}
+
+function clean_attachment_array( $attachment_ids ) {
+    // Make sure the attachment IDs are an array
+    if ( ! is_array( $attachment_ids ) ) {
+        return array();
+    }
+
+    echo("before<hr>");
+    //flatten array
+    $attachment_ids = img_array_flatten($attachment_ids);
+    var_dump($attachment_ids);
+    // Loop through the attachment IDs
+    foreach ( $attachment_ids as $attachment_id ) {
+        // Convert the attachment ID to an integer
+        $attachment_id = intval( $attachment_id );
+
+        // Check if the attachment exists
+        if ( ! get_post( $attachment_id ) ) {
+            // If the attachment does not exist, remove it from the array
+            echo $attachment_id . " NOT exists<br>";
+
+            $key = array_search( $attachment_id, $attachment_ids );
+            // Remove the value from the array
+            unset( $attachment_ids[ $key ] );
+
+        }
+        else{
+            echo $attachment_id . " exists<br>";
+        }
+    }
+    echo("after<hr>");
+    var_dump(array_values($attachment_ids));
+    
+    // Return the cleaned array of attachment IDs
+    return array_values($attachment_ids);
+}
+
+function vdw_gallery_id_nakijken(){
+
+
+try {
+
+    //vdw_gallery_id
+
+    $posts = get_posts([
+        'post_type' => 'autos',
+        'post_status' => 'publish',
+        'numberposts' => -1
+      ]);
+
+
+    $posts_arr = array();
+
+    foreach($posts as $post){
+      
+        // wp_delete_post( $post->ID, true );
+        $local_gallery = get_post_meta( $post->ID,"vdw_gallery_id" );
+        if(!empty($local_gallery)){
+       
+
+            $cleaned_attachment_ids = clean_attachment_array( $local_gallery );
+           
+   
+
+            if(empty($cleaned_attachment_ids)){
+                delete_post_meta(  $post->ID, "vdw_gallery_id" );
+            }
+            else{
+                update_post_meta( $post->ID, 'vdw_gallery_id',$cleaned_attachment_ids );
+
+            }
+
+
+        }
+        else{
+            delete_post_meta(  $post->ID, "vdw_gallery_id" );
+
+        }
+    
+       
+
+    }
+
+   
+} catch (\Throwable $th) {
+    wp_mail("younesbenkheil@gmail.com","Error Cron job lege image vervangen",$th);
+}
+
+}
 
 ?>
