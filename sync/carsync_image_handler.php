@@ -201,4 +201,55 @@ try {
 
 }
 
+
+
+function photo_cleaning_archive_only_leave_first(){
+
+    $ids = get_posts( 
+        array(
+            'post_type'      => 'autos', 
+            'post_status'    => 'any', 
+            'posts_per_page' => -1,
+        ) 
+    );
+    $images = array();
+    // $counter1 = 0;
+    
+    foreach ( $ids as $id ){
+        $post_status = get_post_meta( $id->ID, '_car_post_status_key', true );
+        $gal = get_post_meta( $id->ID, 'vdw_gallery_id', true );
+    
+        if($post_status == "archief"){
+            
+         
+            update_post_meta($id->ID,'vdw_gallery_id', array($gal[0]));
+    
+            if(is_array($gal)){
+                for ($i=1; $i < count($gal); $i++) { 
+            
+                    $file_path = get_attached_file($gal[$i]);
+                    if (file_exists($file_path)) {
+                        unlink($file_path);
+                    }
+                    wp_delete_attachment($gal[$i]);
+             
+                    // $counter1++;
+                  
+                }
+            }
+            
+         
+           
+        }
+      
+     
+    
+       
+    }
+    
+    // echo("totaal: ".$counter1." verwijderd<br>");
+    
+    //verwijder van archief autos alle fotos behalve de eerste
+}
+
 ?>

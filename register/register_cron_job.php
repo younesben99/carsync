@@ -48,6 +48,13 @@ if ( ! wp_next_scheduled( 'vdw_gallery_id_nakijken' ) ) {
     wp_schedule_event( time(), '30min', 'vdw_gallery_id_nakijken' );
 }
 
+//opschoenen fotos van archief autos voor ruimte, laat eerste over
+
+add_action( 'photo_cleaning_archive_only_leave_first', 'photo_cleaning_archive_only_leave_first' ,1);
+if ( ! wp_next_scheduled( 'photo_cleaning_archive_only_leave_first' ) ) {
+    wp_schedule_event( time(), '30min', 'photo_cleaning_archive_only_leave_first' );
+}
+
 //carfeed aanmaken
 
 if ( ! wp_next_scheduled( 'carfeed_feed_aanmaken_hook' ) ) {
