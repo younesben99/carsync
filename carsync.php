@@ -4,7 +4,7 @@
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 9.4.1
+Version: 9.4.2
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -15,11 +15,8 @@ require_once( __DIR__ . '/register/register_cpt.php');
 require_once( __DIR__ . '/register/register_metaboxes.php');
 require_once(__DIR__ . '/register/register_global_vars.php');
 require_once(__DIR__ . '/register/register_popup.php');
-
-
 include_once( __DIR__ . '/templates/archive/template_card.php');
 require_once( __DIR__ . '/register/register_archive.php');
-
 require_once( __DIR__ . '/register/register_single.php');
 require_once( __DIR__ . '/sync/carsync_image_handler.php');
 require_once( __DIR__ . '/sync/carsync_additional_functions.php');
@@ -33,8 +30,6 @@ include_once( __DIR__ . '/register/register_single_car_page.php');
 include_once( __DIR__ . '/register/register_archive_car_page.php');
 include_once( __DIR__ . '/register/register_rel_cars.php');
 include(__DIR__."/templates/template_og_tags.php");
-
-//carfeeds
 require_once( __DIR__ . '/feed/facebook_feed_aanmaken.php');
 require_once( __DIR__ . '/register/register_cron_job.php');
 require_once( __DIR__ . '/socialpush/social_metaboxes.php');
@@ -145,7 +140,7 @@ add_action( 'wp_head', 'single_archive_scripts',1 );
 
 function single_archive_scripts(){
   wp_enqueue_script(  "splide", "https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js" );
-
+  wp_enqueue_style( 'simple-line-icons', 'https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css' );
 
   wp_enqueue_style('splide', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css'); 
  
@@ -272,25 +267,25 @@ function pak_veld_id($key,$id){
 function nlDate($datum){ 
 
     $datum = str_replace("january",     "januari",         $datum); 
-     $datum = str_replace("february",     "februari",     $datum); 
+    $datum = str_replace("february",     "februari",     $datum); 
     $datum = str_replace("march",         "maart",         $datum); 
-     $datum = str_replace("april",         "april",         $datum); 
-     $datum = str_replace("may",         "mei",             $datum); 
-     $datum = str_replace("june",         "juni",         $datum); 
+    $datum = str_replace("april",         "april",         $datum); 
+    $datum = str_replace("may",         "mei",             $datum); 
+    $datum = str_replace("june",         "juni",         $datum); 
     $datum = str_replace("july",         "juli",         $datum); 
     $datum = str_replace("august",         "augustus",     $datum); 
-     $datum = str_replace("september",     "september",     $datum); 
-     $datum = str_replace("october",     "oktober",         $datum); 
-     $datum = str_replace("november",     "november",     $datum); 
+    $datum = str_replace("september",     "september",     $datum); 
+    $datum = str_replace("october",     "oktober",         $datum); 
+    $datum = str_replace("november",     "november",     $datum); 
     $datum = str_replace("december",     "december",     $datum); 
 
     // Vervang de maand, hoofdletters 
    $datum = str_replace("January",     "Januari",         $datum); 
-     $datum = str_replace("February",     "Februari",     $datum); 
-    $datum = str_replace("March",         "Maart",         $datum); 
-     $datum = str_replace("April",         "April",         $datum); 
-     $datum = str_replace("May",         "Mei",             $datum); 
-     $datum = str_replace("June",         "Juni",         $datum); 
+   $datum = str_replace("February",     "Februari",     $datum); 
+   $datum = str_replace("March",         "Maart",         $datum); 
+   $datum = str_replace("April",         "April",         $datum); 
+   $datum = str_replace("May",         "Mei",             $datum); 
+   $datum = str_replace("June",         "Juni",         $datum); 
     $datum = str_replace("July",         "Juli",         $datum); 
     $datum = str_replace("August",         "Augustus",     $datum); 
      $datum = str_replace("September",     "September",     $datum); 
@@ -309,7 +304,7 @@ function nlDate($datum){
      $datum = str_replace("Aug",         "Aug",             $datum); 
      $datum = str_replace("Sep",         "Sep",             $datum); 
      $datum = str_replace("Oct",         "Ok",             $datum); 
-   $datum = str_replace("Nov",         "Nov",             $datum); 
+     $datum = str_replace("Nov",         "Nov",             $datum); 
      $datum = str_replace("Dec",         "Dec",             $datum); 
 
   
@@ -494,7 +489,7 @@ function merken_ophalen(){
     }
     else{
       if ($manual_images[0] !== 1) {
-          $selected_img_url = wp_get_attachment_image_src($manual_images[0], 'medium');
+          $selected_img_url = wp_get_attachment_image_src($manual_images[0], 'full');
           $selected_img = $selected_img_url[0];
       }else{
         $selected_img = $coming_soon_img;
