@@ -41,7 +41,7 @@ if ( is_singular( 'autos' ) ) { ?>
         <?php 
             $post_id = get_the_ID();
             $dashboard_url = site_url('/dashboard/edit/?id=' . $post_id);
-            printf( '<i class="icon-pencil"></i><a href="%s">%s</a>', esc_url( $dashboard_url ), __( 'Auto Bewerken', 'textdomain' ) ); 
+         //   printf( '<i class="icon-pencil"></i><a href="%s">%s</a>', esc_url( $dashboard_url ), __( 'Auto Bewerken', 'textdomain' ) ); 
         ?>
     </div>
 
