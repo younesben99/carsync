@@ -15,7 +15,7 @@ add_action( 'wp_enqueue_scripts', 'enqueue_simple_line_icons' );
 if ( is_singular( 'autos' ) ) { ?>
 
 <style>
-    .edit-post {
+    /* .edit-post {
         color: #20aee3;
     background: #f0f5f7;
     text-decoration: none;
@@ -31,19 +31,19 @@ if ( is_singular( 'autos' ) ) { ?>
     width: 25%;
     min-width: 110px;
     max-width: 130px;
-}
+} */
 
 
 
 
 </style>
-<div class="edit-post">
+<!-- <div class="edit-post"> -->
         <?php 
-            $post_id = get_the_ID();
-            $dashboard_url = site_url('/dashboard/edit/?id=' . $post_id);
+            // $post_id = get_the_ID();
+            // $dashboard_url = site_url('/dashboard/edit/?id=' . $post_id);
          //   printf( '<i class="icon-pencil"></i><a href="%s">%s</a>', esc_url( $dashboard_url ), __( 'Auto Bewerken', 'textdomain' ) ); 
         ?>
-    </div>
+    <!-- </div> -->
 
 
 <?php } ?>
