@@ -54,12 +54,12 @@
 .grid_carstatus {
     position: absolute;
     top: 0;
-    right: 0;
-    background-color: var( --e-global-color-primary );
+    left: 0;
+    background-color: var(--e-global-color-primary );
     padding: 5px 14px;
     font-size: 12px;
     color: white;
-    border-radius: 0 5px 0px 5px;
+    border-radius: 0 0 5px 0;
     text-transform: uppercase;
 }
 .grid_badge {

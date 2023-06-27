@@ -11,7 +11,7 @@
     <div class="grid_content">
 
     <?php
- if(!empty($car["badge"])){
+ if($car["carstatus"] == "tekoop"){
 ?>
    <div class="grid_badge"><?php echo($car["badge"]); ?></div>
 
