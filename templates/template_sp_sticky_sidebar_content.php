@@ -40,6 +40,13 @@
     
   
     <?php echo  $wagentitel; ?></p></div>
+
+    <?php
+
+if($sp_koopstatus !== "verkocht"){
+
+
+    ?>
         <div class="sp_sticky_prijs">
            
            
@@ -58,8 +65,11 @@
             }
         ?>
         </div>
-        <?php
 
+  
+
+        <?php
+  }
 
             if($sp_koopstatus == "tekoop" ){
 ?>
