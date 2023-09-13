@@ -80,8 +80,17 @@
     <div class="grid_wagentitel"><?php echo $stripped_wt; ?> </div>
     <div class="grid_keys"><?php echo implode(" | ",$grid_keys); ?></div>
    
-   
-    <div class="grid_price"><span class="prijs_label">Prijs</span>  <div>
+ 
+
+    <div class="grid_price"><span class="prijs_label">  <?php
+    if($car["carstatus"] !== "verkocht"){
+      echo "Prijs";
+    }
+    else{
+      echo "Verkocht";
+    }
+    
+    ?></span>  <div>
     
     <?php 
       if(!empty($car["oudeprijs"]) && is_numeric($car["oudeprijs"])){
@@ -92,6 +101,10 @@
       }
     ?>
    <?php
+
+
+if($car["carstatus"] !== "verkocht"){
+
 if(!empty($car["prijs"]) && is_numeric($car["prijs"])){
 
 
@@ -107,6 +120,8 @@ if(!empty($car["prijs"]) && is_numeric($car["prijs"])){
  <span class="">Prijs op aanvraag</span>
 
 <?php
+}
+
 }
 
 ?>
