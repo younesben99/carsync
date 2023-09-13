@@ -12,10 +12,16 @@
 
     <?php
  if($car["carstatus"] == "tekoop"){
+
+if(!empty($car["badge"])){
+
+
 ?>
    <div class="grid_badge"><?php echo($car["badge"]); ?></div>
 
 <?php
+}
+
  }
 
 ?>
