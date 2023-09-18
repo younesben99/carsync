@@ -483,7 +483,7 @@
             display:none;
         }
         .select2-container{
-            z-index:100001 !important
+            z-index:98!important
         }
         .sort_wrap{
             display: -webkit-box;
