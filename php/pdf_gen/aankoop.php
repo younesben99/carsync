@@ -125,6 +125,9 @@ if(is_user_logged_in() && isset($_GET)){
 }
 
 </style>
+<!-- <div style="background:blue;width:120%;position:absolute; height:80px;left:-50px;top:-75px;">
+  
+</div> -->
 <div style="text-align:center;">
 <h2>Interne aankoopborderel</h2>
 </div>
@@ -389,12 +392,16 @@ van de wagen
 
 
 $base64img = $dds_settings_options['pdf_logo_base64'];
+$bg_img = file_get_contents('./img/PDF_KADER.png');
+$bg_img_base64 = 'data:image/png;charset=utf-8;base64,' . base64_encode($bg_img);
+
 
 $html .= "<html>
 <head>
   <style>
   body {  
     font-family: 'Helvetica' !important;
+    background-image: url(" . $bg_img_base64 . ");
 }
     @page { margin:75px 50px 50px;font-size:14px; }
    
@@ -413,6 +420,9 @@ $html .= "<html>
         right:50px;
         bottom:10px;
     }.page_break { page-break-before: always; }
+    
+
+
 
   </style>
 <body>

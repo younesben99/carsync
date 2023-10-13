@@ -24,6 +24,46 @@ function autos_post_type() {
      
 add_action('init', 'autos_post_type');
 
+function ad_spend_auto_types_taxonomy() {
+    $labels = array(
+        'name' => 'Ad Spend',
+        'singular_name' => 'Ad Spend Category',
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'hierarchical' => true,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'rewrite' => array('slug' => 'autos/ad_spend')
+
+    );
+
+    register_taxonomy('ad_spend', 'autos', $args);
+
+    // Add the three terms (Low, Mid, High)
+    wp_insert_term('Low', 'ad_spend');
+    wp_insert_term('Mid', 'ad_spend');
+    wp_insert_term('High', 'ad_spend');
+
+
+    add_filter('template_include', 'custom_taxonomy_template');
+
+    function custom_taxonomy_template($template) {
+        if (is_tax('ad_spend')) {
+            $new_template = locate_template(array('adspend-taxonomy-template.php'));
+            if (file_exists($new_template)) {
+                return $new_template;
+            }
+        }
+        return $template;
+    }
+    
+    
+    
+}
+add_action('init', 'ad_spend_auto_types_taxonomy',0);
+
 function merk_model_taxonomies() {
     register_taxonomy(
         'merkenmodel',
@@ -41,6 +81,10 @@ function merk_model_taxonomies() {
     );
 }
 add_action( 'init', 'merk_model_taxonomies', 0 );
+
+
+
+
 
 // Add the custom columns to the autos post type:
 add_filter( 'manage_autos_posts_columns', 'set_custom_edit_autos_columns' );

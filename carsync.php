@@ -4,7 +4,7 @@
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 9.5.0
+Version: 9.5.1
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -144,12 +144,12 @@ function single_archive_scripts(){
 
   wp_enqueue_style('splide', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css'); 
  
-  if(get_post_type( get_the_ID() == "autos")){
+  if(get_post_type( get_the_ID() == "autos")|| is_tax('ad_spend')){
     wp_register_style( 'select2css', 'https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css', false, '1.0.0' );
     wp_enqueue_style( 'select2css' );
     wp_enqueue_script( 'select2js','https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js', array(), '1.0' );   
 
-    if(!is_single()){
+    if(!is_single() || is_tax('ad_spend')){
       wp_enqueue_script(  'isotope', "https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" );
     wp_enqueue_style('archive_main', plugin_dir_url( __FILE__ ).'/assets/css/archive_main.css',"",uniqid()); 
     wp_enqueue_style('archive_filter', plugin_dir_url( __FILE__ ).'/assets/css/archive_filter.css',"",uniqid());
@@ -512,5 +512,55 @@ function merken_ophalen(){
     }
     return $closest;
  }
+ 
+
+
+
+
+
+ function add_default_ad_spend_term() {
+  // Check if 'low' term exists
+  if (!term_exists('low', 'ad_spend')) {
+      wp_insert_term('low', 'ad_spend');
+  }
+
+  $args = array(
+      'post_type' => 'autos',
+      'posts_per_page' => -1,
+  );
+  
+  $query = new WP_Query($args);
+  
+  if ($query->have_posts()) {
+      while ($query->have_posts()) {
+          $query->the_post();
+          $post_id = get_the_ID();
+          
+          $terms = wp_get_post_terms($post_id, 'ad_spend', array("fields" => "ids"));
+          
+          if (empty($terms)) {
+              // Get term object for 'low'
+              $term = get_term_by('name', 'low', 'ad_spend');
+              
+              // Set to 'low'
+              wp_set_post_terms($post_id, array($term->term_id), 'ad_spend');
+          }
+      }
+      wp_reset_postdata();
+  }
+}
+add_action('init', 'add_default_ad_spend_term');
+
+function noindex_taxonomy_pages() {
+  if (is_tax('ad_spend')) {  // Replace 'ad_spend' with your taxonomy name
+      echo '<meta name="robots" content="noindex, follow" />';
+  }
+}
+add_action('wp_head', 'noindex_taxonomy_pages');
+
+
+
+ 
+
 
 ?>
