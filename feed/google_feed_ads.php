@@ -1,6 +1,19 @@
 <?php
+require_once( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php' );
 
 function generate_page_feed_low() {
+    // Headers for forcing download and preventing caching
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="ad_spend_low.csv"');
+    header('Cache-Control: no-cache, no-store, must-revalidate');
+    header('Pragma: no-cache');
+
+    // Open output stream
+    $output = fopen('php://output', 'w');
+
+    // Write header row
+    fputcsv($output, array('Page URL', 'Custom Label'));
+
     $args = array(
         'post_type'      => 'autos',
         'posts_per_page' => -1,
@@ -10,45 +23,35 @@ function generate_page_feed_low() {
                 'taxonomy' => 'ad_spend',
                 'field'    => 'slug',
                 'terms'    => 'low',
-            ),
-        ),
-        'meta_query'     => array(
-            'relation' => 'AND', // Add this relation to combine meta queries
-            array(
-                'key'     => '_car_status_key',
-                'value'   => 'tekoop',
-                'compare' => '=',
-            ),
-            array(
-                'key'     => '_car_post_status_key',
-                'value'   => 'actief',
-                'compare' => '=',
-            ),
+            )
         ),
     );
-    
+
     $query = new WP_Query($args);
-    
-    $feed_data = "Page URL, Custom Label\n";
-    
+
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
             $page_url = get_permalink();
-            $feed_data .= "$page_url, LowAdSpendCars\n";
+            $id = get_the_ID();
+            $_car_status = get_post_meta($id, '_car_status_key', true);
+            $_car_post_status_key = get_post_meta($id, '_car_post_status_key', true);
+
+            if ($_car_status == "tekoop" && $_car_post_status_key == "actief") {
+                fputcsv($output, array($page_url, 'ActiefLow'));
+            } else {
+                fputcsv($output, array($page_url, 'Skip'));
+            }
         }
     }
-    
+
     wp_reset_postdata();
-    
 
-    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
-    header('Pragma: no-cache');
-
-    $file_path = plugin_dir_path(__FILE__) . 'ad_spend_low.csv';
-    file_put_contents($file_path, $feed_data);
-    
-    return $file_path;
+    // Close output stream
+    fclose($output);
+    exit;
 }
+
+generate_page_feed_low();
 
 ?>

@@ -66,8 +66,8 @@ add_action( 'carfeed_feed_aanmaken_hook', 'fb_feed_aanmaken' , 10, 1);
 
 
 
-if ( ! wp_next_scheduled( 'generate_page_feed_low_hook' ) ) {
-    wp_schedule_event( time(), '10min', 'generate_page_feed_low_hook' );
-}
-add_action( 'generate_page_feed_low_hook', 'generate_page_feed_low' , 10, 1);
+// if ( ! wp_next_scheduled( 'generate_page_feed_low_hook' ) ) {
+//     wp_schedule_event( time(), '10min', 'generate_page_feed_low_hook' );
+// }
+// add_action( 'generate_page_feed_low_hook', 'generate_page_feed_low' , 10, 1);
 ?>
