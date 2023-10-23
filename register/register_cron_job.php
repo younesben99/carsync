@@ -62,5 +62,25 @@ if ( ! wp_next_scheduled( 'carfeed_feed_aanmaken_hook' ) ) {
 }
 add_action( 'carfeed_feed_aanmaken_hook', 'fb_feed_aanmaken' , 10, 1);
 
+//DSA feed 
+
+// Function to schedule the event
+function schedule_page_feed_generation() {
+    if (!wp_next_scheduled('generate_page_feed_low')) {
+        wp_schedule_event(time(), 'every_five_minutes', 'generate_page_feed_low');
+    }
+}
+add_action('wp', 'schedule_page_feed_generation');
+
+// Custom cron schedule for every 5 minutes
+function custom_cron_schedule($schedules) {
+    $schedules['every_five_minutes'] = array(
+        'interval' => 300, // 5 minutes in seconds
+        'display'  => __('Every Five Minutes'),
+    );
+    return $schedules;
+}
+add_filter('cron_schedules', 'custom_cron_schedule');
+
 
 ?>
