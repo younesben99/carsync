@@ -35,6 +35,10 @@ function generate_page_feed_low() {
     
     wp_reset_postdata();
     
+
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+    
     $file_path = plugin_dir_path(__FILE__) . 'ad_spend_low.csv';
     file_put_contents($file_path, $feed_data);
     
