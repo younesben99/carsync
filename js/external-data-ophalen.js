@@ -165,7 +165,7 @@
             });
             fields["pid"] = postid;
 
-            var url = "https://" + document.domain + "/wp-content/plugins/carsync/php/pdf_gen/aankoop.php?"+ $.param(fields);
+            var url = "https://" + document.domain + "/wp-content/plugins/carsync/php/pdf_gen/mPDF_aankoop.php?"+ $.param(fields);
             window.open(url, '_blank').focus();
 
             $(this).closest(".aankoopborderel_popup_wrap").fadeOut();
