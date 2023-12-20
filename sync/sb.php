@@ -2,7 +2,7 @@
 include(__DIR__."/../../../../wp-load.php");
 
 
-carsync_posts_maken();
+carsync_data_ophalen();
 
 
 ?>

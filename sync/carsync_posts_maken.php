@@ -1,8 +1,30 @@
 <?php
 
 
+function carsync_log_error($message) {
+    $logs_dir = ABSPATH . 'wp-content/uploads/dds_uploads/carsync/logs';
+    $log_file = $logs_dir . '/error_log.txt';
+
+    // Check if logs directory exists, if not create it
+    if (!file_exists($logs_dir)) {
+        mkdir($logs_dir, 0755, true); // The 0755 permission sets read and execute access for everyone and also write access for the owner of the file.
+    }
+
+    // Check if log file exists, if not create it
+    if (!file_exists($log_file)) {
+        file_put_contents($log_file, ''); // Create an empty file
+    }
+
+    // Append the error message to the log file
+    $current_time = current_time('mysql');
+    $log_message = "{$current_time} - {$message}\n";
+    file_put_contents($log_file, $log_message, FILE_APPEND);
+}
 
 function carsync_posts_maken(){
+
+
+    
     if(file_exists(ABSPATH . 'wp-content/uploads/dds_uploads/carsync/sync/data/input_query.json')) {
         $Vdata = file_get_contents(ABSPATH . 'wp-content/uploads/dds_uploads/carsync/sync/data/input_query.json');
     }
@@ -14,7 +36,7 @@ function carsync_posts_maken(){
     $array = json_decode($Vdata, true);
     
     $cars = $array['data']['search']['listings']['listings'];
-     
+
     //als het bestand niet leeg is, alleen dan doe iets (validatie)
  
     if(!empty($cars) && $cars !== 0 && $cars !== null){
@@ -173,6 +195,9 @@ function carsync_posts_maken(){
         }
      
      }
+     else {
+        carsync_log_error('Error: No cars data found or data is invalid.');
+    }
         
 
    }
