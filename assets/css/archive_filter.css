@@ -19,7 +19,41 @@
     font-size:18px;
     font-weight:500;
 }
+.overlay {
+    display: none;
+    position: fixed; /* Cover the whole viewport */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #53535330;
+    z-index: 9; /* Ensure it's below the filter but above other content */
+}
 
+.filterwrap {
+    z-index: 10; /* Higher than the overlay */
+    /* Other styles for your filter */
+}
+
+.filter_close_corner {
+    font-size: 22px;
+    color: var( --e-global-color-primary );
+    background: #f8f8f8;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    position: fixed;
+    top: 150px;
+    right: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1000px;
+    border: 3px solid;
+    margin-top: -66px;
+    z-index: 10000;
+    cursor:pointer;
+}
 .toonresult.showloading:after{
     visibility: visible;
 }
@@ -36,29 +70,30 @@
 }
 .toonresult:after {
     visibility: hidden;
-    left: 9px;
     content: "";
-    width: 63%;
-    background: var( --e-global-color-primary );
+    width: 80%;
+    background: var(--e-global-color-primary);
     position: absolute;
     height: 55px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    border-radius:5px;
-    background-image: url("https://digiflowroot.be/static/images/icons/loading.gif");
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-image: url(https://digiflowroot.be/static/images/icons/loading.gif);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    -webkit-transition:0.3s;
-    -o-transition:0.3s;
-    transition:0.3s;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    left: 50%;
+    transform: translateX(-50%);
 
 }
 .facet_list input[type=checkbox] {
@@ -229,7 +264,7 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-            z-index: 98;
+            z-index: 9;
     top: 0;
     border-bottom: 1px solid #e6e6e6;
 }
@@ -278,7 +313,8 @@
     -webkit-box-direction: reverse;
         -ms-flex-direction: row-reverse;
             flex-direction: row-reverse;
-    width:68%;
+    width:80%;
+    box-shadow: 0px 0px 10px #b1b1b1;
 }
 .filter_btn_mobile{
     border: 2px solid var( --e-global-color-primary ) !important;
@@ -327,4 +363,8 @@
         width:28%;
     }
 
-  
+    @media only screen and (max-width: 400px) {
+        .filter_mobile_wrap button{
+            font-size: 15px;
+        }
+    }

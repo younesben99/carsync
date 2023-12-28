@@ -114,20 +114,13 @@ foreach ($grid_cars as $car) {
    
 </button>
 
-<button class="filter_btn_close outline_btn">
-        
-        <span>&#x2715</span>
-        <span>
-        Sluiten</span>
-    
-       
-    </button>
 
 </div>
 
 
 <!-- filter voor desk -->
 <div class="filterwrap">
+    <div class="filter_close_corner">&#x2715;</div>
 <h3 class="filter_h3">Gevonden wagens (<span class="gevonden_count"><?php echo($carcount); ?></span>)</h3>
 
 
@@ -450,3 +443,4 @@ foreach ($euro_facet as $facet) {
 </div>
 
 </div>
+<div class="overlay"></div>

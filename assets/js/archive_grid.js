@@ -90,11 +90,7 @@ jQuery(document).ready(function ($) {
        
     });
 
-    $(".sort_btn_mobile").on("click",function(){
-
-        $(".sort_btn_group").slideToggle();
-
-    });
+    
     $(".sort_btn_group li").on("click",function(){
 
     $(".sort_btn_group li").each(function(){
@@ -106,33 +102,54 @@ jQuery(document).ready(function ($) {
     var sortval = $(this).attr("data-sort");
 
     sort_grid(sortval);
-    $(".sort_btn_group").slideToggle();
+
+    $(".dds_pop_close").trigger("click");
+
 
     });
 
 
 
 
-    $(".filter_btn_close").on("click",function(e){
-       
+    function closeFilter() {
         $(".filterwrap").animate({
             'opacity': '0',
             'bottom': '-100vh'
-        }, 300);
-
-        setTimeout(function () {
-            $(".filterwrap").hide();
-        }, 300);
-        $(".filter_mobile_close").toggleClass("displayflex");
+        }, 300, function() {
+            $(this).hide();
+            $(".overlay").hide(); // Hide the overlay
+            $(".filter_mobile_close").toggleClass("displayflex");
+        });
         window.scrollTo({ top: 100, behavior: 'smooth' });
+    }
+    
+    // Open filter event
+    $(".filter_btn_mobile").on("click", function() {
+        $(".filterwrap").stop().animate({
+            'opacity': '1',
+            'bottom': '0'
+        }, 300).show();
+        $(".overlay").show(); // Show the overlay
+    });
+    
+    // Close filter events for close button, corner close button, and overlay
+$(document).on("click", ".filter_btn_close, .overlay", function() {
+    closeFilter();
+});
+$(".filter_close_corner").on("click", function() {
+    closeFilter();
+});
 
-
-
-    }).on('click', 'div', function (e) {
+    
+    // Prevents event propagation inside the filter wrap
+    $(".filterwrap").on('click', function(e) {
         e.stopPropagation();
     });
-        
-   
+
+    
+
+
+
 
     function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -253,6 +270,7 @@ jQuery(document).ready(function ($) {
         $(".pop_chosenfacets").html(chosenfilters.join(""));
         
         $grid.isotope({ filter: comboFilter});
+        updateActiveFilterCount();
         //console.log(comboFilter);
     })
 
@@ -551,7 +569,13 @@ jQuery(document).ready(function ($) {
         $(".chosen_wrap").hide();
 
 
-       
+        for (var key in filters) {
+            if (filters.hasOwnProperty(key)) {
+                delete filters[key];
+            }
+        }
+
+        updateActiveFilterCount();
         
 
     });
@@ -633,5 +657,14 @@ jQuery(document).ready(function ($) {
         $grid.isotope({ filter: "."+$.urlParam('model')});
     }
 
-      
+    function updateActiveFilterCount() {
+        var count = Object.keys(filters).length;
+        if (count > 0) {
+            jQuery(".amt_active_filters").text("(" + count + ")");
+        } else {
+            jQuery(".amt_active_filters").empty();
+        }
+    }
+    
 });
+

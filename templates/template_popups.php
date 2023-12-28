@@ -172,3 +172,30 @@ else{
 popup_close();
 
 ?>
+
+
+<?php
+
+popup_open("sorteer_wagens");
+
+
+
+
+
+    echo ('
+    <h2>Sorteer Op:</h2><br>
+    <div class="sort_btn_group">
+    <ul>
+        <li data-sort="original-order" class="active">Standaard</li>
+        <li data-sort="prijs_o">Prijs oplopend</li>
+        <li data-sort="prijs_a">Prijs aflopend</li>
+        <li data-sort="nieuwste">Nieuwste eerst</li>
+        <li data-sort="km_o">Kilometerstand oplopend</li>
+        <li data-sort="km_a">Kilometerstand aflopend</li>
+    </ul>
+    </div>');
+
+
+popup_close();
+
+?>

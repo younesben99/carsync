@@ -848,6 +848,15 @@ if(!empty($value_sync_images)){
     </div>
 
 </div>
+
+<div class="dds_popup_wrap sorteer_popup_wrap">
+ <div class="dds_popup sorteerborderel_popup">
+ <div id="sorteer_pop_close" class="pop_close">&#x2715</div>
+ <h2 style="padding: 0;">Sorteren:</h2>
+ 
+ </div>  
+ </div>
+
 <div class="dds_popup_wrap aankoopborderel_popup_wrap">
  <div class="dds_popup aankoopborderel_popup">
  <div id="aankoopborderel_pop_close" class="pop_close">&#x2715</div>

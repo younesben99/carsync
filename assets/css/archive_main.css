@@ -15,17 +15,20 @@
     display: flex;
 }
 .sort_btn_group{
-    display:none;
-    position: absolute;
-    top: 79px;
+    display:block;
+    width: 100%;
+ 
     background: white;
-    padding: 20px 30px;
-    border-radius: 5px;
-    -webkit-box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px;
-            box-shadow: rgb(0 0 0 / 8%) 0px 2px 4px 0px;
-     border: 1px solid whitesmoke;
-     width: 90%;
+   
+    
+    
 }
+
+.sorteer_wagens{
+    height: 70% !important;
+    min-height: 70% !important;
+}
+
 .sort_btn_group ul{
     margin: 0;
     padding:0;
@@ -33,22 +36,27 @@ list-style-type: none;
 }
 
 .sort_btn_group li {
-padding-bottom: 15px;
-padding-top: 15px;
-border-top: 1px solid #e2e2e2;
-cursor:pointer;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    cursor: pointer;
+    padding-left: 20px;
+    background: #fcfcfc;
+    margin-bottom: 11px;
+    border-radius: 6Px;
+    box-shadow: 0px 0px 2Px #cfcfcf;
 }
 .sort_btn_group li:hover {
 font-weight:500;
 
 }
-.sort_btn_group li:first-child {
-border-top: 0px solid #e2e2e2;
-}
+
 .sort_btn_mobile{
 cursor:pointer;
 }
-.sort_btn_group .active{
-font-weight:bold;
-color: var( --e-global-color-primary );
+.sort_btn_group .active {
+    color: white;
+    font-weight: 500;
+    background: var(--e-global-color-primary);
+    padding-left: 20px;
+    border-radius: 5px;
 }

@@ -1,31 +1,41 @@
-jQuery( document ).ready(function() {
+jQuery(document).ready(function() {
+    var currentPopup = "";
 
-    var popup = "";
-    jQuery(".pop_open").on("click",function(e){
-    e.preventDefault();
-    popup = "." + jQuery(this).attr("data-popup");
- 
-    
-    jQuery(popup).show();
-    jQuery(popup).animate({
-                    'opacity': '1',
-                    'bottom': 0
-    }, 300);
+    jQuery(".pop_open").on("click", function(e) {
+        e.preventDefault();
 
-});
+        var newPopup = "." + jQuery(this).attr("data-popup");
 
-jQuery(".dds_pop_close,.pop_close,.dds_dialog_pop_close").on('click', function (e) {
-    e.preventDefault();
-    jQuery(popup).animate({
-        'opacity': '0',
-        'bottom': '-100vh'
-    }, 300);
-    setTimeout(function () {
-        jQuery(popup).hide();
-    }, 300);
-}).on('click', 'div', function (e) {
-    e.stopPropagation();
-});
+        // Close current popup if it's different from the new one
+        if (currentPopup && currentPopup !== newPopup) {
+            closePopup();
+        }
 
+        // Open the new popup
+        currentPopup = newPopup;
+        jQuery(currentPopup).show().animate({
+            'opacity': '1',
+            'bottom': 0
+        }, 300);
+    });
 
+    jQuery(".dds_pop_close, .pop_close, .dds_dialog_pop_close").on('click', function(e) {
+        e.preventDefault();
+        closePopup();
+    }).on('click', 'div', function(e) {
+        e.stopPropagation();
+    });
+
+    // Function to close the current popup
+    function closePopup() {
+        if (currentPopup) {
+            jQuery(currentPopup).animate({
+                'opacity': '0',
+                'bottom': '-100vh'
+            }, 300, function() {
+                jQuery(this).hide();
+            });
+            currentPopup = "";
+        }
+    }
 });

@@ -18,6 +18,9 @@
     
 
 }
+.filter_close_corner{
+    display: none;
+}
 .grid_bodh_badge {
     width: fit-content;
     text-align: center;
@@ -476,6 +479,9 @@
         padding: 0 2%;
     }
     }@media only screen and (max-width: 770px) {
+        .filter_close_corner{
+            display: flex;
+        }
         .select_list select {
             width:80% !important;
         }
@@ -483,7 +489,7 @@
             display:none;
         }
         .select2-container{
-            z-index:98!important
+            z-index: 100000!important;
         }
         .sort_wrap{
             display: -webkit-box;
@@ -566,22 +572,32 @@
     
     }
     .filterwrap {
-        display:none;
-        width: 79%;
+        display: block; /* or 'display: table;' if needed for other reasons */
+        width: 90%;
         position: fixed;
         z-index: 100000;
-        height: 100%;
-        top: auto;
-        bottom:-100vh;
+        height: 93%;
+        top: auto; /* Adjust this if you need vertical centering */
+        bottom: -100vh; /* This positions the element off-screen initially */
         overflow-y: scroll;
-        padding-bottom:100px;
-        opacity:0;
-        
+        padding-bottom: 100px;
+        opacity: 0;
+        background: white !important;
+        border-radius: 10px;
+        border: 1px solid #f8f8f8;
+        box-shadow: 0px 0px 22px #a1a1a130;
+        border-top: 4px solid var(--e-global-color-primary);
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
     }
+    
     
         .grid_item{
         width:47%;
         min-width:200px;
+        height:460px;
       }
     }@media only screen and (max-width: 590px) {
        
