@@ -2,6 +2,8 @@
 fb_feed_aanmaken();
 function fb_feed_aanmaken(){
     $allposts = get_posts( array('post_type'=>'autos','numberposts'=>-1) );
+    $fb_xml_pt1 = 0;
+    $fb_xml_loop = 0;
     if(!empty($allposts)){
     $pturl = get_site_url() . "/autos/";
     $fb_xml_pt1 = '"vehicle_id","title","description","url","make","model","year","mileage.value","mileage.unit","image[0].url","image[1].url","image[2].url","image[3].url","image[4].url","image[5].url","image[6].url","image[7].url","image[8].url","image[9].url","image[10].url","image[11].url","image[12].url","image[13].url","image[14].url","transmission","body_style","vin","price","exterior_color","state_of_vehicle","fuel_type","fb_page_id","address"';
@@ -43,18 +45,18 @@ function fb_feed_aanmaken(){
         }
         $fb_xml_loop .= '"KM",';  
         
-        if(!empty(get_post_meta($car->ID, '_car_syncimages_key', true))){
+        if (!empty(get_post_meta($car->ID, '_car_syncimages_key', true))) {
             $img = get_post_meta($car->ID, '_car_syncimages_key', true);
-            for($i = 0; $i <= 14; $i++){
-                $fb_xml_loop .= '"'.$img[$i].'",';
-            } 
-        }
-        else{
+            for ($i = 0; $i <= 14; $i++) {
+                $fb_xml_loop .= isset($img[$i]) ? '"' . $img[$i] . '",' : '"",';
+            }
+        } else {
             $img = get_post_meta($car->ID, 'vdw_gallery_id', true);
-            for($i = 0; $i <= 14; $i++){
-                $fb_xml_loop .= '"'.wp_get_attachment_url($img[$i]).'",';
-            } 
+            for ($i = 0; $i <= 14; $i++) {
+                $fb_xml_loop .= isset($img[$i]) ? '"' . wp_get_attachment_url($img[$i]) . '",' : '"",';
+            }
         }
+        
         
         
         if ( ! empty ( get_post_meta($car->ID, '_car_staat_key', true) ) ){

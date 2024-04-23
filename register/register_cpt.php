@@ -113,36 +113,35 @@ function column_order($columns) {
 add_action( 'manage_autos_posts_custom_column' , 'custom_autos_column', 10, 2 );
 function custom_autos_column( $column, $post_id ) {
     switch ( $column ) {
+        case 'uitgelichtefoto':
+            $carsync_fotos = get_post_meta( $post_id, '_car_syncimages_key', true );
+            $manual_fotos = get_post_meta( $post_id, 'vdw_gallery_id', true );
 
-        case 'uitgelichtefoto' :
-            $carsync_fotos = get_post_meta( $post_id , '_car_syncimages_key', true );
-            $manual_fotos = get_post_meta( $post_id , 'vdw_gallery_id', true );
-            $value_sync = get_post_meta( $post_id, '_car_sync_key', true );
-
-            if(!empty($manual_fotos)){
-                if($manual_fotos[0] == 1){
+            if (!empty($manual_fotos) && is_array($manual_fotos) && isset($manual_fotos[0])) {
+                if ($manual_fotos[0] == 1) {
                     echo "<img src='https://digiflowroot.be/static/images/camera_image.jpg' style='max-width:150px;border-radius:5px;' />";
+                } else {
+                    echo "<img src='" . wp_get_attachment_url($manual_fotos[0]) . "' style='max-width:150px;border-radius:5px;' />";
                 }
-                else{
-                    echo "<img src='".wp_get_attachment_url($manual_fotos[0])."' style='max-width:150px;border-radius:5px;' />";
-                }
-                
-            }else{
-                echo "<img src='".$carsync_fotos[0]."' style='max-width:150px;border-radius:5px;' />";
+            } elseif (!empty($carsync_fotos) && is_array($carsync_fotos) && isset($carsync_fotos[0])) {
+                echo "<img src='" . $carsync_fotos[0] . "' style='max-width:150px;border-radius:5px;' />";
+            } else {
+                echo "<img src='https://digiflowroot.be/static/images/no_image_available.jpg' style='max-width:150px;border-radius:5px;' />";
             }
-            
             break;
-        case 'wagenstatus' :
+
+        case 'wagenstatus':
             $value_wagen_status = get_post_meta( $post_id, '_car_post_status_key', true );
             echo $value_wagen_status;
             break;
-        case 'fotosgedownload' :
+
+        case 'fotosgedownload':
             $value_wagen_fotos_gedownload = get_post_meta( $post_id, '_car_api_images_downloaded', true );
             echo $value_wagen_fotos_gedownload;
             break;
-
     }
 }
+
 
 add_action('admin_head', 'admin_width');
 

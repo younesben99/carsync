@@ -1084,9 +1084,13 @@ if (is_edit_page('new')){
        
         if(isset($_POST["caruniq-input"]))
             update_post_meta($post->ID, '_car_uniq_key', $_POST["caruniq-input"]);
-        if(isset($_POST["car_post_status"]))
+        if(isset($_POST["car_post_status"])){
             update_post_meta($post->ID, '_car_post_status_key', $_POST["car_post_status"]);
         if($_POST["car_post_status"] == "archief"){
+            update_post_meta($post->ID, '_car_sync_key', 'NO');
+        }
+        }
+        else{
             update_post_meta($post->ID, '_car_sync_key', 'NO');
         }
         if(isset($_POST["carstatus-input"]))

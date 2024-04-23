@@ -137,7 +137,7 @@ if(!empty($car["prijs"]) && is_numeric($car["prijs"])){
 
 <div class="grid_bottom_btns">
     <a href="<?php echo $car["link"]; ?>" class="grid_btn"><svg style="margin-right: 10px;" width="25px" height="25px" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M754.752 480H160a32 32 0 100 64h594.752L521.344 777.344a32 32 0 0045.312 45.312l288-288a32 32 0 000-45.312l-288-288a32 32 0 10-45.312 45.312L754.752 480z"/></svg>
- Bekijk deze auto</a></div>
+ Bekijk deze <?php echo __("auto"); ?></a></div>
     </div>
     </div>
 

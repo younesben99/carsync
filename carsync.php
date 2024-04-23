@@ -4,7 +4,7 @@
 Plugin Name: Digiflow Carsync
 Plugin URI: https://github.com/younesben99/carsync
 Description: A plugin that syncs autoscout24 cars with wordpress posts.
-Version: 9.6.5
+Version: 9.6.6
 Author: Younes Benkheil
 Author URI: https://digiflow.be/
 License: GPL2
@@ -32,7 +32,7 @@ include(__DIR__."/templates/template_og_tags.php");
 require_once( __DIR__ . '/feed/facebook_feed_aanmaken.php');
 require_once( __DIR__ . '/register/register_cron_job.php');
 require_once( __DIR__ . '/socialpush/social_metaboxes.php');
-
+require_once( __DIR__ . '/feed/facebook_feed_aanmaken.php');
 
 function dds_echo($var,$suffix = ""){
 
@@ -202,8 +202,20 @@ add_filter('use_block_editor_for_post_type', '__return_false', 10);
 
 //script op elke pagina welkom
 
-wp_enqueue_script(  'dds_popup', plugin_dir_url( __FILE__ ).'/assets/js/dds_popup.js' ,array ( 'jquery' ),uniqid());
-wp_enqueue_style('dds_popup', plugin_dir_url( __FILE__ ).'/assets/css/dds_popup.css','',uniqid());
+// Add this code to your plugin or theme's functions.php file or a relevant place in your plugin files
+
+function dds_enqueue_scripts_and_styles() {
+  // Enqueue the script
+  wp_enqueue_script('dds_popup', plugin_dir_url(__FILE__) . '/assets/js/dds_popup.js', array('jquery'), uniqid(), true);
+
+  // Enqueue the style
+  wp_enqueue_style('dds_popup', plugin_dir_url(__FILE__) . '/assets/css/dds_popup.css', array(), uniqid());
+}
+
+// Hook into wp_enqueue_scripts for front end scripts and styles
+add_action('wp_enqueue_scripts', 'dds_enqueue_scripts_and_styles');
+
+
 
 
 
@@ -338,7 +350,7 @@ function nlDate($datum){
 
 function vergelijk_pagina_maken()
 {
-    if (get_page_by_title("Vergelijken") == null) {
+    if (dds_get_page_by_title("Vergelijken") == null) {
 
         $exists = false;
         global $user_ID;
@@ -516,39 +528,34 @@ function merken_ophalen(){
 
 
 
+ function add_default_ad_spend_term($post_id, $post, $update) {
+  // Only add term if it's a new 'autos' post
+  if ($post->post_type !== 'autos' || $update) {
+      return;
+  }
 
- function add_default_ad_spend_term() {
-  // Check if 'low' term exists
-  if (!term_exists('low', 'ad_spend')) {
+  // Check if 'low' term exists, if not, add it
+  $term_exists = term_exists('low', 'ad_spend');
+  if (!$term_exists) {
       wp_insert_term('low', 'ad_spend');
   }
+  
+  // Get term object for 'low'
+  $term = get_term_by('name', 'low', 'ad_spend');
+  if (!$term) {
+      return;
+  }
 
-  $args = array(
-      'post_type' => 'autos',
-      'posts_per_page' => -1,
-  );
-  
-  $query = new WP_Query($args);
-  
-  if ($query->have_posts()) {
-      while ($query->have_posts()) {
-          $query->the_post();
-          $post_id = get_the_ID();
-          
-          $terms = wp_get_post_terms($post_id, 'ad_spend', array("fields" => "ids"));
-          
-          if (empty($terms)) {
-              // Get term object for 'low'
-              $term = get_term_by('name', 'low', 'ad_spend');
-              
-              // Set to 'low'
-              wp_set_post_terms($post_id, array($term->term_id), 'ad_spend');
-          }
-      }
-      wp_reset_postdata();
+  // Set to 'low' if no terms set
+  $terms = wp_get_post_terms($post_id, 'ad_spend', array("fields" => "ids"));
+  if (empty($terms)) {
+      wp_set_post_terms($post_id, array($term->term_id), 'ad_spend', false);
   }
 }
-add_action('init', 'add_default_ad_spend_term');
+add_action('wp_insert_post', 'add_default_ad_spend_term', 10, 3);
+
+
+
 
 function noindex_taxonomy_pages() {
   if (is_tax('ad_spend')) {  // Replace 'ad_spend' with your taxonomy name
@@ -557,6 +564,27 @@ function noindex_taxonomy_pages() {
 }
 add_action('wp_head', 'noindex_taxonomy_pages');
 
+function dds_get_page_by_title($title, $output = OBJECT, $post_type = 'page') {
+  $args = array(
+      'post_type'      => $post_type,
+      'post_status'    => 'any',
+      'posts_per_page' => 1,
+      'title'          => $title,
+      'fields'         => 'ids' // Get only the ID for performance reasons
+  );
+
+  $query = new WP_Query($args);
+
+  if ($query->have_posts()) {
+      $post_id = $query->posts[0]; // Get the first (and only) post ID
+      if ($output == OBJECT) {
+          return get_post($post_id); // Return the post object if needed
+      }
+      return $post_id; // By default or for 'ARRAY_A', return the post ID
+  }
+
+  return null; // Return null if no post is found
+}
 
 
  
