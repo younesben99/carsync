@@ -1,0 +1,68 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Digiflow Carsync\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-25 13:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.7; wp-6.5.2\n"
+"X-Domain: carsync"
+
+#. Description of the plugin
+msgid "A plugin that syncs autoscout24 cars with wordpress posts."
+msgstr ""
+
+#: templates/template_popups.php:108
+msgid "auto"
+msgstr ""
+
+#: templates/archive/template_card.php:140
+msgid "Bekijk deze auto"
+msgstr ""
+
+#: templates/archive/template_card.php:159
+msgid ""
+"Dagelijks worden er nieuwe auto's toegevoegd. We kunnen je een seintje geven "
+"wanneer er een auto die overeenkomt met jouw interesses beschikbaar komt."
+msgstr ""
+
+#. Name of the plugin
+msgid "Digiflow Carsync"
+msgstr ""
+
+#: templates/template_sp_gerelateerde_wagens.php:2
+msgid "Gerelateerde wagens"
+msgstr ""
+
+#: templates/archive/template_ad_spend_archive_filter.php:147
+#: templates/archive/template_archive_filter.php:124
+msgid "Gevonden wagens"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://digiflow.be/"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/younesben99/carsync"
+msgstr ""
+
+#: templates/archive/template_card.php:158
+msgid "Jouw auto niet gevonden?"
+msgstr ""
+
+#: templates/archive/template_card.php:126
+msgid "Prijs op aanvraag"
+msgstr ""
+
+#. Author of the plugin
+msgid "Younes Benkheil"
+msgstr ""

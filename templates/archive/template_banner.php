@@ -16,7 +16,7 @@
 </style>
 <div class="archive_banner">
 <div class="archive_banner_inner" style="padding:0 20px;">
-<h2>Onze wagens</h2>
+<h2><?php echo __("Onze wagens","carsync"); ?></h2>
 </div>
 
 

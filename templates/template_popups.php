@@ -105,7 +105,7 @@ if(get_post_type( get_the_ID() == "autos")){
     }
     else{
         echo "<h2>Blijf op de hoogte</h2>
-        <span class='dds_pop_title'>We geven je een melding wanneer een auto die overeenkomt met jouw interesses beschikbaar komt.</span>
+        <span class='dds_pop_title'>We geven je een melding wanneer een ". __("auto","carsync") ." die overeenkomt met jouw interesses beschikbaar komt.</span>
         <button class='selecteer_filter'>+ Selecteer filter</button>
         <div class='pop_chosenfacets'>
         </div>

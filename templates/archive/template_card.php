@@ -123,7 +123,7 @@ if(!empty($car["prijs"]) && is_numeric($car["prijs"])){
     <?php
 }else{
   ?>
- <span class="">Prijs op aanvraag</span>
+ <span class=""><?php echo __("Prijs op aanvraag","carsync"); ?></span>
 
 <?php
 }
@@ -137,7 +137,7 @@ if(!empty($car["prijs"]) && is_numeric($car["prijs"])){
 
 <div class="grid_bottom_btns">
     <a href="<?php echo $car["link"]; ?>" class="grid_btn"><svg style="margin-right: 10px;" width="25px" height="25px" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M754.752 480H160a32 32 0 100 64h594.752L521.344 777.344a32 32 0 0045.312 45.312l288-288a32 32 0 000-45.312l-288-288a32 32 0 10-45.312 45.312L754.752 480z"/></svg>
- Bekijk deze <?php echo __("auto"); ?></a></div>
+  <?php echo __("Bekijk deze auto","carsync"); ?></a></div>
     </div>
     </div>
 
@@ -155,8 +155,8 @@ function bodh_card(){
 <div class="bodh grid_item element-item ">
 
    <div>
-   <div class="bodh_title">Jouw auto niet gevonden?</div>
-   <p style="font-size:14px;margin-top:5px; margin-bottom:20px;">Dagelijks worden er nieuwe auto's toegevoegd. We kunnen je een seintje geven wanneer er een auto die overeenkomt met jouw interesses beschikbaar komt.</p>
+   <div class="bodh_title"><?php echo __("Jouw auto niet gevonden?","carsync"); ?></div>
+   <p style="font-size:14px;margin-top:5px; margin-bottom:20px;"><?php echo __("Dagelijks worden er nieuwe auto's toegevoegd. We kunnen je een seintje geven wanneer er een auto die overeenkomt met jouw interesses beschikbaar komt.","carsync"); ?></p>
 
    <button  class="bodh_btn_filter pop_open" data-popup="bodh_pop"><span style="padding-right:10px;">Blijf op de hoogte</span><svg  class="bodh_icon" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512">
  <g>
