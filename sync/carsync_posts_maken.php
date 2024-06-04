@@ -45,7 +45,7 @@ function carsync_posts_maken(){
      $car_md_array = array();
          foreach($cars as $car){
 
-            
+         
             
             if(empty($car['details']['vehicle']['identifier']['vin'])){
                 $tempuniqid = $car['id'];
