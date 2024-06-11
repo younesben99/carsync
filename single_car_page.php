@@ -108,6 +108,7 @@ include(__DIR__."/templates/template_sp_sub_nav.php");
                     <li><a href=""><i data-feather="check"></i>12 maanden Garantie</a></li>
                 </ul>
             </div>
+            <?php do_action('checklist_scp'); ?>
 
             
 
