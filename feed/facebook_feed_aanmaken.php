@@ -1,10 +1,6 @@
 <?php
-// Enable error reporting for debugging
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
-fb_feed_aanmaken();
+
 
 function fb_feed_aanmaken() {
     $allposts = get_posts(array('post_type' => 'autos', 'numberposts' => -1));
@@ -100,4 +96,5 @@ function fb_feed_aanmaken() {
     $json_data = json_encode($json_array);
     file_put_contents($fileLocation_json, $json_data);
 }
+fb_feed_aanmaken();
 ?>
