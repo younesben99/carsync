@@ -44,8 +44,7 @@ try {
 
 
     $count = 0;
-    foreach($posts_arr as $current_post){
-
+    foreach ($posts_arr as $current_post) {
         if ($count < 5) {
             if (!empty($current_post)) {
                 $local_gallery = get_post_meta($current_post, "vdw_gallery_id");
@@ -53,25 +52,24 @@ try {
                 $imgtoadd = array();
                 if (!empty($api_gallery)) {
                     foreach ($api_gallery[0] as $img) {
-                        $image = "";
                         if ($img != "") {
                             $file = array();
                             $file['name'] = $img;
                             $file['tmp_name'] = download_url($img);
-                
+    
                             if (is_wp_error($file['tmp_name'])) {
-                                @unlink($file['tmp_name']);
+                                // No need to unlink since there's no file
                                 var_dump($file['tmp_name']->get_error_messages());
                                 array_push($imgtoadd, 1);
                             } else {
                                 var_dump($file['tmp_name']);
-                            
-                                $file['name'] = slugify(strtolower(get_the_title($current_post))) . "_" .uniqid().".jpg";
+                                $file['name'] = slugify(strtolower(get_the_title($current_post))) . "_" . uniqid() . ".jpg";
                                 var_dump($file['name']);
-                                $attachmentId = media_handle_sideload($file, $post_id);
-                            
+                                $attachmentId = media_handle_sideload($file, $current_post);
+    
+                                @unlink($file['tmp_name']); // Clean up temporary file
+    
                                 if (is_wp_error($attachmentId)) {
-                                    @unlink($file['tmp_name']);
                                     var_dump($attachmentId->get_error_messages());
                                     array_push($imgtoadd, 1);
                                 } else {
@@ -87,15 +85,13 @@ try {
                 if (!empty($imgtoadd)) {
                     update_post_meta($current_post, 'vdw_gallery_id', $imgtoadd);
                 }
-    
-            
             }
-        }
-        else{
+        } else {
             return;
         }
         $count++;
     }
+    
 
 } catch (\Throwable $th) {
     wp_mail("younesbenkheil@gmail.com","Error Cron job",$th);
